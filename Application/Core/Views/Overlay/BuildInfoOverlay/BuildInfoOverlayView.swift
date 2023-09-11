@@ -46,7 +46,7 @@ public struct BuildInfoOverlayView: View {
             }
         }
         .onFirstAppear {
-            AppSwitchboards.register(switchboard: BuildInfoOverlayViewSwitchboard(viewModel))
+            Observers.register(observer: BuildInfoOverlayViewObserver(viewModel))
             viewModel.send(.viewAppeared)
         }
     }

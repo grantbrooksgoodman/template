@@ -93,14 +93,14 @@
 		B9E7D42B2AAC1F4000FAF2A9 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D42A2AAC1F4000FAF2A9 /* AppConstants.swift */; };
 		B9E7D4302AAC20D900FAF2A9 /* BuildInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D42F2AAC20D900FAF2A9 /* BuildInfoOverlayView.swift */; };
 		B9E7D4322AAC20E100FAF2A9 /* BuildInfoOverlayReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4312AAC20E100FAF2A9 /* BuildInfoOverlayReducer.swift */; };
-		B9E7D4392AAC21F500FAF2A9 /* AppSwitchboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4382AAC21F500FAF2A9 /* AppSwitchboards.swift */; };
+		B9E7D4392AAC21F500FAF2A9 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4382AAC21F500FAF2A9 /* Observers.swift */; };
 		B9E7D43B2AAC221F00FAF2A9 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D43A2AAC221F00FAF2A9 /* Observer.swift */; };
 		B9E7D43D2AAC222600FAF2A9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D43C2AAC222600FAF2A9 /* Observable.swift */; };
-		B9E7D43F2AAC223700FAF2A9 /* Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D43E2AAC223700FAF2A9 /* Registry.swift */; };
-		B9E7D4412AAC227100FAF2A9 /* BuildInfoOverlayViewSwitchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4402AAC227100FAF2A9 /* BuildInfoOverlayViewSwitchboard.swift */; };
+		B9E7D43F2AAC223700FAF2A9 /* ObservableRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D43E2AAC223700FAF2A9 /* ObservableRegistry.swift */; };
+		B9E7D4412AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4402AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift */; };
 		B9E7D4462AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4452AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift */; };
 		B9E7D4482AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4472AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift */; };
-		B9E7D44A2AAC289400FAF2A9 /* RegistryDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4492AAC289400FAF2A9 /* RegistryDependency.swift */; };
+		B9E7D44A2AAC289400FAF2A9 /* ObservableRegistryDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4492AAC289400FAF2A9 /* ObservableRegistryDependency.swift */; };
 		B9E7D44C2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D44B2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift */; };
 		B9E7D4562AAD0D8100FAF2A9 /* CalendarDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4552AAD0D8100FAF2A9 /* CalendarDependency.swift */; };
 		B9E7D46E2AAD117A00FAF2A9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D46D2AAD117A00FAF2A9 /* Core.swift */; };
@@ -292,14 +292,14 @@
 		B9E7D42A2AAC1F4000FAF2A9 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		B9E7D42F2AAC20D900FAF2A9 /* BuildInfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayView.swift; sourceTree = "<group>"; };
 		B9E7D4312AAC20E100FAF2A9 /* BuildInfoOverlayReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayReducer.swift; sourceTree = "<group>"; };
-		B9E7D4382AAC21F500FAF2A9 /* AppSwitchboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitchboards.swift; sourceTree = "<group>"; };
+		B9E7D4382AAC21F500FAF2A9 /* Observers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
 		B9E7D43A2AAC221F00FAF2A9 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		B9E7D43C2AAC222600FAF2A9 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		B9E7D43E2AAC223700FAF2A9 /* Registry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registry.swift; sourceTree = "<group>"; };
-		B9E7D4402AAC227100FAF2A9 /* BuildInfoOverlayViewSwitchboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewSwitchboard.swift; sourceTree = "<group>"; };
+		B9E7D43E2AAC223700FAF2A9 /* ObservableRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableRegistry.swift; sourceTree = "<group>"; };
+		B9E7D4402AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewObserver.swift; sourceTree = "<group>"; };
 		B9E7D4452AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewServiceDependency.swift; sourceTree = "<group>"; };
 		B9E7D4472AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewService.swift; sourceTree = "<group>"; };
-		B9E7D4492AAC289400FAF2A9 /* RegistryDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistryDependency.swift; sourceTree = "<group>"; };
+		B9E7D4492AAC289400FAF2A9 /* ObservableRegistryDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableRegistryDependency.swift; sourceTree = "<group>"; };
 		B9E7D44B2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+BuildInfoOverlayView.swift"; sourceTree = "<group>"; };
 		B9E7D4552AAD0D8100FAF2A9 /* CalendarDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDependency.swift; sourceTree = "<group>"; };
 		B9E7D46D2AAD117A00FAF2A9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
@@ -374,7 +374,7 @@
 				B934570E2AABFE7A00944602 /* Core */,
 				B93457052AABF9E400944602 /* Localization */,
 				B94657702AABC6200091193B /* Navigation */,
-				B9E7D44F2AAC394B00FAF2A9 /* Registry + Switchboards */,
+				B9E7D44F2AAC394B00FAF2A9 /* Observables */,
 				A2DF2C6F28199BF40089DEA1 /* Supporting Files */,
 				A2DF2CBE28199D630089DEA1 /* Views */,
 			);
@@ -517,7 +517,7 @@
 				B9E7D4712AAD163B00FAF2A9 /* CoreKitDependency.swift */,
 				B9E7D46F2AAD12F000FAF2A9 /* DateFormatterDependency.swift */,
 				B9E7D4192AAC0FC500FAF2A9 /* FileManagerDependency.swift */,
-				B9E7D4492AAC289400FAF2A9 /* RegistryDependency.swift */,
+				B9E7D4492AAC289400FAF2A9 /* ObservableRegistryDependency.swift */,
 				B9E7D4162AAC06D000FAF2A9 /* TranslatorServiceDependency.swift */,
 				B93457112AAC015200944602 /* UIApplicationDependency.swift */,
 				B93BCDE12AAD94CF00AA16FE /* UITraitCollectionDependency.swift */,
@@ -664,8 +664,8 @@
 		B9E7D4422AAC256000FAF2A9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B9E7D4402AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift */,
 				B9E7D4472AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift */,
-				B9E7D4402AAC227100FAF2A9 /* BuildInfoOverlayViewSwitchboard.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -678,13 +678,13 @@
 			path = Dependencies;
 			sourceTree = "<group>";
 		};
-		B9E7D44F2AAC394B00FAF2A9 /* Registry + Switchboards */ = {
+		B9E7D44F2AAC394B00FAF2A9 /* Observables */ = {
 			isa = PBXGroup;
 			children = (
-				B9E7D4382AAC21F500FAF2A9 /* AppSwitchboards.swift */,
-				B9E7D43E2AAC223700FAF2A9 /* Registry.swift */,
+				B9E7D43E2AAC223700FAF2A9 /* ObservableRegistry.swift */,
+				B9E7D4382AAC21F500FAF2A9 /* Observers.swift */,
 			);
-			path = "Registry + Switchboards";
+			path = Observables;
 			sourceTree = "<group>";
 		};
 		B9E7D4502AAC3A3F00FAF2A9 /* Foundation */ = {
@@ -965,14 +965,14 @@
 			files = (
 				B93BCDF32AADA47400AA16FE /* BuildConfig.swift in Sources */,
 				B9E7D46E2AAD117A00FAF2A9 /* Core.swift in Sources */,
-				B9E7D4392AAC21F500FAF2A9 /* AppSwitchboards.swift in Sources */,
+				B9E7D4392AAC21F500FAF2A9 /* Observers.swift in Sources */,
 				B9E7D4762AAD35CE00FAF2A9 /* Date+CoreExtensions.swift in Sources */,
 				B9C582F529BEC266009DCE29 /* DevModeService.swift in Sources */,
-				B9E7D43F2AAC223700FAF2A9 /* Registry.swift in Sources */,
+				B9E7D43F2AAC223700FAF2A9 /* ObservableRegistry.swift in Sources */,
 				B91688EB290490CD004C80A2 /* Exception.swift in Sources */,
 				B93BCDF72AAF937500AA16FE /* FileManager+CoreExtensions.swift in Sources */,
 				B93BCDE72AAD9A2000AA16FE /* SampleViewInputs.swift in Sources */,
-				B9E7D44A2AAC289400FAF2A9 /* RegistryDependency.swift in Sources */,
+				B9E7D44A2AAC289400FAF2A9 /* ObservableRegistryDependency.swift in Sources */,
 				B9E7D4272AAC1F0400FAF2A9 /* FailureView.swift in Sources */,
 				B9E7D4292AAC1F0400FAF2A9 /* AppConstants+FailureView.swift in Sources */,
 				B9E7D4702AAD12F000FAF2A9 /* DateFormatterDependency.swift in Sources */,
@@ -993,7 +993,7 @@
 				B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */,
 				A286879F28A4A1CB00A34912 /* ReportDelegate.swift in Sources */,
 				B93457122AAC015200944602 /* UIApplicationDependency.swift in Sources */,
-				B9E7D4412AAC227100FAF2A9 /* BuildInfoOverlayViewSwitchboard.swift in Sources */,
+				B9E7D4412AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift in Sources */,
 				B93BCDCE2AAD854B00AA16FE /* URLSessionDependency.swift in Sources */,
 				B9C582FF29BECA8D009DCE29 /* Timeout.swift in Sources */,
 				B9E7D42B2AAC1F4000FAF2A9 /* AppConstants.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  Registry.swift
+//  ObservableRegistry.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -14,7 +14,7 @@ public enum ObservableKey: String {
 }
 
 /// For sending and accessing observed values between scopes.
-public struct Registry {
+public struct ObservableRegistry {
     
     // MARK: - Properties
     
@@ -23,7 +23,7 @@ public struct Registry {
     // MARK: - Init
     
     public init() {
-        guard let buildInfoOverlaySwitchboard = AppSwitchboards.buildInfoOverlay else { return }
-        isDeveloperModeEnabled.addObserver(buildInfoOverlaySwitchboard)
+        guard let buildInfoOverlayObserver = Observers.buildInfoOverlay else { return }
+        isDeveloperModeEnabled.addObserver(buildInfoOverlayObserver)
     }
 }

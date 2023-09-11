@@ -166,7 +166,7 @@ public struct DevModeService {
     private static func toggleDeveloperMode(enabled: Bool) {
         @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
         @Dependency(\.userDefaults) var defaults: UserDefaults
-        @Dependency(\.registry) var registry: Registry
+        @Dependency(\.observableRegistry) var registry: ObservableRegistry
         
         Build.set(.developerModeEnabled, to: enabled)
         defaults.set(enabled, forKey: .developerModeEnabled)

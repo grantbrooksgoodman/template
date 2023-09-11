@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol Observer {
-    var id: ObjectIdentifier { get }
+    var type: ObserverType { get }
     func onChange(of observable: Observable<Any>)
 }

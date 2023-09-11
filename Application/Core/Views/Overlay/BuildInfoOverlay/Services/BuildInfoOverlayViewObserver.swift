@@ -1,5 +1,5 @@
 //
-//  BuildInfoOverlayViewSwitchboard.swift
+//  BuildInfoOverlayViewObserver.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -11,13 +11,11 @@ import Foundation
 /* 3rd-party */
 import Redux
 
-public class BuildInfoOverlayViewSwitchboard: Observer, Switchboard {
+public class BuildInfoOverlayViewObserver: Observer {
     
     // MARK: - Properties
     
-    public var id: ObjectIdentifier { return .init(self) }
-    public var type: SwitchboardType = .buildInfoOverlay
-    
+    public var type: ObserverType = .buildInfoOverlay
     private let viewModel: ViewModel<BuildInfoOverlayReducer>
     
     // MARK: - Init

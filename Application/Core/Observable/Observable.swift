@@ -37,13 +37,12 @@ public class Observable<T> {
     // MARK: - Addition/Removal
     
     public func addObserver(_ observer: Observer) {
-        guard !observers.contains(where: { $0.id == observer.id }) else { return }
+        guard !observers.contains(where: { $0.type == observer.type }) else { return }
         observers.append(observer)
     }
     
     public func removeObserver(_ observer: Observer) {
-        guard let index = observers.firstIndex(where: { $0.id == observer.id }) else { return }
-        observers.remove(at: index)
+        observers.removeAll(where: { $0.type == observer.type })
     }
     
     public func removeAllObservers() {
