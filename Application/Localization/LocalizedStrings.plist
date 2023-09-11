@@ -1,0 +1,4551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>language_codes</key>
+	<dict>
+		<key>af</key>
+		<string>Afrikaans (Afrikaans)</string>
+		<key>ar</key>
+		<string>Arabic (العربية)</string>
+		<key>az</key>
+		<string>Azerbaijan (Azərbaycan)</string>
+		<key>ba</key>
+		<string>Bashkir (Башҡорт)</string>
+		<key>be</key>
+		<string>Belarusian (Беларуская)</string>
+		<key>bg</key>
+		<string>Bulgarian (Български)</string>
+		<key>bn</key>
+		<string>Bengali (বাংলা)</string>
+		<key>bs</key>
+		<string>Bosnian (Bosanskih)</string>
+		<key>ca</key>
+		<string>Catalan (Català)</string>
+		<key>ceb</key>
+		<string>Cebuano (Cebuano)</string>
+		<key>cs</key>
+		<string>Czech (Čeština)</string>
+		<key>cy</key>
+		<string>Welsh (Cymru)</string>
+		<key>da</key>
+		<string>Danish (Dansk)</string>
+		<key>de</key>
+		<string>German (Deutsch)</string>
+		<key>el</key>
+		<string>Greek (Ελληνικά)</string>
+		<key>en</key>
+		<string>English</string>
+		<key>eo</key>
+		<string>Esperanto (Esperanto)</string>
+		<key>es</key>
+		<string>Spanish (Español)</string>
+		<key>et</key>
+		<string>Estonian (Eesti)</string>
+		<key>eu</key>
+		<string>Basque (Euskal)</string>
+		<key>fa</key>
+		<string>Persian (فارسی)</string>
+		<key>fi</key>
+		<string>Finnish (Suomalainen)</string>
+		<key>fr</key>
+		<string>French (Français)</string>
+		<key>ga</key>
+		<string>Irish (Gaeilge)</string>
+		<key>gd</key>
+		<string>Scottish Gaelic (Gàidhlig Na H-Alba)</string>
+		<key>gl</key>
+		<string>Galician (Galego)</string>
+		<key>gu</key>
+		<string>Gujarati (ગુજરાતી)</string>
+		<key>he</key>
+		<string>Hebrew (עברית)</string>
+		<key>hi</key>
+		<string>Hindi (हिन्दी)</string>
+		<key>hr</key>
+		<string>Croatian (Hrvatski)</string>
+		<key>ht</key>
+		<string>Haitian Creole (Ayisyen Kreyòl)</string>
+		<key>hu</key>
+		<string>Hungarian (Magyar)</string>
+		<key>hy</key>
+		<string>Armenian (Հայ)</string>
+		<key>id</key>
+		<string>Indonesian (Bahasa Indonesia)</string>
+		<key>is</key>
+		<string>Icelandic (Íslensk)</string>
+		<key>it</key>
+		<string>Italian (Italiano)</string>
+		<key>ja</key>
+		<string>Japanese (日本語)</string>
+		<key>jv</key>
+		<string>Javanese (Jawa)</string>
+		<key>ka</key>
+		<string>Georgian (ქართული)</string>
+		<key>kk</key>
+		<string>Kazakh (Қазақ)</string>
+		<key>kn</key>
+		<string>Kannada (ಕನ್ನಡ)</string>
+		<key>ko</key>
+		<string>Korean (한국어)</string>
+		<key>ky</key>
+		<string>Kyrgyz (Киргизский)</string>
+		<key>la</key>
+		<string>Latin (Latine)</string>
+		<key>lt</key>
+		<string>Lithuanian (Lietuvių)</string>
+		<key>mg</key>
+		<string>Malagasy (Malagasy)</string>
+		<key>mi</key>
+		<string>Maori (Māori)</string>
+		<key>mk</key>
+		<string>Macedonian (Македонски)</string>
+		<key>ml</key>
+		<string>Malayalam (മലയാളം)</string>
+		<key>mn</key>
+		<string>Mongolian (Монгол улсын)</string>
+		<key>mr</key>
+		<string>Marathi (मराठी)</string>
+		<key>ms</key>
+		<string>Malay (Melayu)</string>
+		<key>mt</key>
+		<string>Maltese (Malti)</string>
+		<key>ne</key>
+		<string>Nepali (नेपाली)</string>
+		<key>nl</key>
+		<string>Dutch (Nederlands)</string>
+		<key>no</key>
+		<string>Norwegian (Norsk)</string>
+		<key>pa</key>
+		<string>Punjabi (ਪੰਜਾਬੀ)</string>
+		<key>pl</key>
+		<string>Polish (Polski)</string>
+		<key>pt</key>
+		<string>Portuguese (Português)</string>
+		<key>ro</key>
+		<string>Romanian (Română)</string>
+		<key>ru</key>
+		<string>Russian (Русский)</string>
+		<key>si</key>
+		<string>Sinhala (සිංහල)</string>
+		<key>sk</key>
+		<string>Slovakian (Slovenský)</string>
+		<key>sl</key>
+		<string>Slovenian (Slovenski)</string>
+		<key>sq</key>
+		<string>Albanian (Shqiptare)</string>
+		<key>sr</key>
+		<string>Serbian (Српски)</string>
+		<key>su</key>
+		<string>Sundanese (Basa sunda)</string>
+		<key>sv</key>
+		<string>Swedish (Svenska)</string>
+		<key>sw</key>
+		<string>Swahili (Kiswahili)</string>
+		<key>ta</key>
+		<string>Tamil (தமிழ்)</string>
+		<key>te</key>
+		<string>Telugu (తెలుగు)</string>
+		<key>tg</key>
+		<string>Tajik (Тоҷик)</string>
+		<key>th</key>
+		<string>Thai (ภาษาไทย)</string>
+		<key>tl</key>
+		<string>Tagalog (Tagalog)</string>
+		<key>tr</key>
+		<string>Turkish (Türkçe)</string>
+		<key>tt</key>
+		<string>Tatar (Татар)</string>
+		<key>udm</key>
+		<string>Udmurt (Удмурт)</string>
+		<key>uk</key>
+		<string>Ukrainian (Українська)</string>
+		<key>ur</key>
+		<string>Urdu (اردو)</string>
+		<key>uz</key>
+		<string>Uzbek (O&apos;zbek)</string>
+		<key>vi</key>
+		<string>Vietnamese (Tiếng Việt)</string>
+		<key>yi</key>
+		<string>Yiddish (ייִדיש)</string>
+		<key>zh</key>
+		<string>Chinese (中文)</string>
+	</dict>
+	<key>cancel</key>
+	<dict>
+		<key>af</key>
+		<string>Kanselleer</string>
+		<key>ar</key>
+		<string>يلغي</string>
+		<key>az</key>
+		<string>Ləğv et</string>
+		<key>ba</key>
+		<string>Cancel</string>
+		<key>be</key>
+		<string>Адмяніць</string>
+		<key>bg</key>
+		<string>Отказ</string>
+		<key>bn</key>
+		<string>বাতিল করুন</string>
+		<key>bs</key>
+		<string>Otkaži</string>
+		<key>ca</key>
+		<string>Cancel · lar</string>
+		<key>ceb</key>
+		<string>Pagkanselar</string>
+		<key>cs</key>
+		<string>Zrušení</string>
+		<key>cy</key>
+		<string>Canslo</string>
+		<key>da</key>
+		<string>Afbestille</string>
+		<key>de</key>
+		<string>Absagen</string>
+		<key>el</key>
+		<string>Ματαίωση</string>
+		<key>en</key>
+		<string>Cancel</string>
+		<key>eo</key>
+		<string>Nuligi</string>
+		<key>es</key>
+		<string>Cancelar</string>
+		<key>et</key>
+		<string>Tühista</string>
+		<key>eu</key>
+		<string>Utzi</string>
+		<key>fa</key>
+		<string>لغو کنید</string>
+		<key>fi</key>
+		<string>Peruuttaa</string>
+		<key>fr</key>
+		<string>Annuler</string>
+		<key>ga</key>
+		<string>Cealaigh</string>
+		<key>gd</key>
+		<string>Sguir dheth</string>
+		<key>gl</key>
+		<string>Cancelar</string>
+		<key>gu</key>
+		<string>રદ કરો</string>
+		<key>he</key>
+		<string>לְבַטֵל</string>
+		<key>hi</key>
+		<string>रद्द करना</string>
+		<key>hr</key>
+		<string>Otkazati</string>
+		<key>ht</key>
+		<string>Anile</string>
+		<key>hu</key>
+		<string>Megszünteti</string>
+		<key>hy</key>
+		<string>Չեղարկել</string>
+		<key>id</key>
+		<string>Membatalkan</string>
+		<key>is</key>
+		<string>Hætta við</string>
+		<key>it</key>
+		<string>Annulla</string>
+		<key>ja</key>
+		<string>キャンセル</string>
+		<key>jv</key>
+		<string>Cancel</string>
+		<key>ka</key>
+		<string>Გაუქმება</string>
+		<key>kk</key>
+		<string>Болдырмау</string>
+		<key>kn</key>
+		<string>ರದ್ದುಮಾಡಿ</string>
+		<key>ko</key>
+		<string>취소</string>
+		<key>ky</key>
+		<string>Жокко чыгаруу</string>
+		<key>la</key>
+		<string>Cancel</string>
+		<key>lt</key>
+		<string>Atšaukti</string>
+		<key>mg</key>
+		<string>Hanafoana</string>
+		<key>mi</key>
+		<string>Whakakore</string>
+		<key>mk</key>
+		<string>Откажи</string>
+		<key>ml</key>
+		<string>റദ്ദാക്കുക</string>
+		<key>mn</key>
+		<string>Цуцлах</string>
+		<key>mr</key>
+		<string>रद्द करा</string>
+		<key>ms</key>
+		<string>Batalkan</string>
+		<key>mt</key>
+		<string>Ikkanċella</string>
+		<key>ne</key>
+		<string>रद्द गर्नुहोस्</string>
+		<key>nl</key>
+		<string>Annuleren</string>
+		<key>no</key>
+		<string>Avbryt</string>
+		<key>pa</key>
+		<string>ਰੱਦ ਕਰੋ</string>
+		<key>pl</key>
+		<string>Anulować</string>
+		<key>pt</key>
+		<string>Cancelar</string>
+		<key>ro</key>
+		<string>Anulare</string>
+		<key>ru</key>
+		<string>Отмена</string>
+		<key>si</key>
+		<string>අවලංගු කරන්න</string>
+		<key>sk</key>
+		<string>Zrušiť</string>
+		<key>sl</key>
+		<string>Prekliči</string>
+		<key>sq</key>
+		<string>Anulo</string>
+		<key>sr</key>
+		<string>Поништити, отказати</string>
+		<key>su</key>
+		<string>Ngabolaykeun</string>
+		<key>sv</key>
+		<string>Avbryt</string>
+		<key>sw</key>
+		<string>Ghairi</string>
+		<key>ta</key>
+		<string>ரத்து செய்</string>
+		<key>te</key>
+		<string>రద్దు చేయండి</string>
+		<key>tg</key>
+		<string>Бекор кардан</string>
+		<key>th</key>
+		<string>ยกเลิก</string>
+		<key>tl</key>
+		<string>Kanselahin</string>
+		<key>tr</key>
+		<string>İptal</string>
+		<key>tt</key>
+		<string>Баш тарту</string>
+		<key>udm</key>
+		<string>Cancel</string>
+		<key>uk</key>
+		<string>Скасувати</string>
+		<key>ur</key>
+		<string>منسوخ کریں۔</string>
+		<key>uz</key>
+		<string>Bekor qilish</string>
+		<key>vi</key>
+		<string>Hủy bỏ</string>
+		<key>yi</key>
+		<string>באָטל מאַכן</string>
+		<key>zh</key>
+		<string>取消</string>
+	</dict>
+	<key>copy</key>
+	<dict>
+		<key>af</key>
+		<string>Kopieer</string>
+		<key>ar</key>
+		<string>ينسخ</string>
+		<key>az</key>
+		<string>Kopyalayın</string>
+		<key>ba</key>
+		<string>Copiar</string>
+		<key>be</key>
+		<string>Копія</string>
+		<key>bg</key>
+		<string>Копие</string>
+		<key>bn</key>
+		<string>কপি</string>
+		<key>bs</key>
+		<string>Kopiraj</string>
+		<key>ca</key>
+		<string>Còpia</string>
+		<key>ceb</key>
+		<string>Kopyaha</string>
+		<key>cs</key>
+		<string>Kopírovat</string>
+		<key>cy</key>
+		<string>Copi</string>
+		<key>da</key>
+		<string>Kopi</string>
+		<key>de</key>
+		<string>Kopieren</string>
+		<key>el</key>
+		<string>Αντίγραφο</string>
+		<key>en</key>
+		<string>Copy</string>
+		<key>eo</key>
+		<string>Kopiu</string>
+		<key>es</key>
+		<string>Copiar</string>
+		<key>et</key>
+		<string>Kopeeri</string>
+		<key>eu</key>
+		<string>Kopiatu</string>
+		<key>fa</key>
+		<string>کپی 🀄</string>
+		<key>fi</key>
+		<string>Kopio</string>
+		<key>fr</key>
+		<string>Copie</string>
+		<key>ga</key>
+		<string>Cóip</string>
+		<key>gd</key>
+		<string>Dèan lethbhreac</string>
+		<key>gl</key>
+		<string>Copiar</string>
+		<key>gu</key>
+		<string>નકલ કરો</string>
+		<key>he</key>
+		<string>עותק</string>
+		<key>hi</key>
+		<string>प्रतिलिपि</string>
+		<key>hr</key>
+		<string>Kopirati</string>
+		<key>ht</key>
+		<string>Kopi</string>
+		<key>hu</key>
+		<string>Másolat</string>
+		<key>hy</key>
+		<string>Պատճենել</string>
+		<key>id</key>
+		<string>Salinan</string>
+		<key>is</key>
+		<string>Afrita</string>
+		<key>it</key>
+		<string>Copia</string>
+		<key>ja</key>
+		<string>コピー</string>
+		<key>jv</key>
+		<string>Copiar</string>
+		<key>ka</key>
+		<string>Კოპირება</string>
+		<key>kk</key>
+		<string>Көшіру</string>
+		<key>kn</key>
+		<string>ನಕಲು ಮಾಡಿ</string>
+		<key>ko</key>
+		<string>복사</string>
+		<key>ky</key>
+		<string>Көчүрүү</string>
+		<key>la</key>
+		<string>Copy</string>
+		<key>lt</key>
+		<string>Kopijuoti</string>
+		<key>mg</key>
+		<string>Dika mitovy</string>
+		<key>mi</key>
+		<string>Tārua</string>
+		<key>mk</key>
+		<string>Копирај</string>
+		<key>ml</key>
+		<string>പകർത്തുക</string>
+		<key>mn</key>
+		<string>Хуулах</string>
+		<key>mr</key>
+		<string>कॉपी करा</string>
+		<key>ms</key>
+		<string>Salinan</string>
+		<key>mt</key>
+		<string>Kopja</string>
+		<key>ne</key>
+		<string>कापी</string>
+		<key>nl</key>
+		<string>Kopiëren</string>
+		<key>no</key>
+		<string>Kopiere</string>
+		<key>pa</key>
+		<string>ਕਾਪੀ ਕਰੋ</string>
+		<key>pl</key>
+		<string>Kopiuj</string>
+		<key>pt</key>
+		<string>Copiar</string>
+		<key>ro</key>
+		<string>Copie</string>
+		<key>ru</key>
+		<string>Копировать</string>
+		<key>si</key>
+		<string>පිටපත් කරන්න</string>
+		<key>sk</key>
+		<string>Kopírovať</string>
+		<key>sl</key>
+		<string>Kopirati</string>
+		<key>sq</key>
+		<string>Kopjo</string>
+		<key>sr</key>
+		<string>Копирај</string>
+		<key>su</key>
+		<string>Nyalin</string>
+		<key>sv</key>
+		<string>Kopiera</string>
+		<key>sw</key>
+		<string>Nakili</string>
+		<key>ta</key>
+		<string>நகலெடுக்கவும்</string>
+		<key>te</key>
+		<string>కాపీ చేయండి</string>
+		<key>tg</key>
+		<string>Нусхабардорӣ</string>
+		<key>th</key>
+		<string>สำเนา</string>
+		<key>tl</key>
+		<string>Kopya</string>
+		<key>tr</key>
+		<string>Kopyala</string>
+		<key>tt</key>
+		<string>Күчермә</string>
+		<key>udm</key>
+		<string>Copy</string>
+		<key>uk</key>
+		<string>Копіювати</string>
+		<key>ur</key>
+		<string>کاپی</string>
+		<key>uz</key>
+		<string>Nusxalash</string>
+		<key>vi</key>
+		<string>Sao chép</string>
+		<key>yi</key>
+		<string>קאָפּי</string>
+		<key>zh</key>
+		<string>复制</string>
+	</dict>
+	<key>delete</key>
+	<dict>
+		<key>af</key>
+		<string>Vee uit</string>
+		<key>ar</key>
+		<string>حذف</string>
+		<key>az</key>
+		<string>Sil</string>
+		<key>ba</key>
+		<string>Delete</string>
+		<key>be</key>
+		<string>Выдаліць</string>
+		<key>bg</key>
+		<string>Изтрий</string>
+		<key>bn</key>
+		<string>মুছে ফেলা</string>
+		<key>bs</key>
+		<string>Izbriši</string>
+		<key>ca</key>
+		<string>Suprimeix</string>
+		<key>ceb</key>
+		<string>Pagtangtang</string>
+		<key>cs</key>
+		<string>Vymazat</string>
+		<key>cy</key>
+		<string>Dileu</string>
+		<key>da</key>
+		<string>Slet</string>
+		<key>de</key>
+		<string>Löschen</string>
+		<key>el</key>
+		<string>Διαγράφω</string>
+		<key>en</key>
+		<string>Delete</string>
+		<key>eo</key>
+		<string>Forigi</string>
+		<key>es</key>
+		<string>Borrar</string>
+		<key>et</key>
+		<string>Kustuta</string>
+		<key>eu</key>
+		<string>Ezabatu</string>
+		<key>fa</key>
+		<string>حذف</string>
+		<key>fi</key>
+		<string>Poistaa</string>
+		<key>fr</key>
+		<string>Effacer</string>
+		<key>ga</key>
+		<string>Scrios</string>
+		<key>gd</key>
+		<string>Sguab às</string>
+		<key>gl</key>
+		<string>Eliminar</string>
+		<key>gu</key>
+		<string>કાઢી નાખો</string>
+		<key>he</key>
+		<string>לִמְחוֹק</string>
+		<key>hi</key>
+		<string>मिटाना</string>
+		<key>hr</key>
+		<string>Izbrisati</string>
+		<key>ht</key>
+		<string>Efase</string>
+		<key>hu</key>
+		<string>Töröl</string>
+		<key>hy</key>
+		<string>Ջնջել</string>
+		<key>id</key>
+		<string>Menghapus</string>
+		<key>is</key>
+		<string>Eyða</string>
+		<key>it</key>
+		<string>Elimina</string>
+		<key>ja</key>
+		<string>消去</string>
+		<key>jv</key>
+		<string>Delete</string>
+		<key>ka</key>
+		<string>Წაშლა</string>
+		<key>kk</key>
+		<string>Жою</string>
+		<key>kn</key>
+		<string>ಅಳಿಸಿ</string>
+		<key>ko</key>
+		<string>삭제</string>
+		<key>ky</key>
+		<string>Жок кылуу</string>
+		<key>la</key>
+		<string>Delere</string>
+		<key>lt</key>
+		<string>Ištrinti</string>
+		<key>mg</key>
+		<string>Mamafa</string>
+		<key>mi</key>
+		<string>Mukua</string>
+		<key>mk</key>
+		<string>Избриши</string>
+		<key>ml</key>
+		<string>ഇല്ലാതാക്കുക</string>
+		<key>mn</key>
+		<string>Устгах</string>
+		<key>mr</key>
+		<string>हटवा</string>
+		<key>ms</key>
+		<string>Padam</string>
+		<key>mt</key>
+		<string>Ħassar</string>
+		<key>ne</key>
+		<string>मेटाउन</string>
+		<key>nl</key>
+		<string>Verwijderen</string>
+		<key>no</key>
+		<string>Slett</string>
+		<key>pa</key>
+		<string>ਮਿਟਾਓ</string>
+		<key>pl</key>
+		<string>Usuwać</string>
+		<key>pt</key>
+		<string>Excluir</string>
+		<key>ro</key>
+		<string>Șterge</string>
+		<key>ru</key>
+		<string>Удалить</string>
+		<key>si</key>
+		<string>මකන්න</string>
+		<key>sk</key>
+		<string>Odstrániť</string>
+		<key>sl</key>
+		<string>Izbriši</string>
+		<key>sq</key>
+		<string>Fshije</string>
+		<key>sr</key>
+		<string>Избриши</string>
+		<key>su</key>
+		<string>Mupus</string>
+		<key>sv</key>
+		<string>Radera</string>
+		<key>sw</key>
+		<string>Futa</string>
+		<key>ta</key>
+		<string>அழி</string>
+		<key>te</key>
+		<string>తొలగించు</string>
+		<key>tg</key>
+		<string>Нобуд кунед</string>
+		<key>th</key>
+		<string>ลบ</string>
+		<key>tl</key>
+		<string>Tanggalin</string>
+		<key>tr</key>
+		<string>Silmek</string>
+		<key>tt</key>
+		<string>Бетерү</string>
+		<key>udm</key>
+		<string>Delete</string>
+		<key>uk</key>
+		<string>Видалити</string>
+		<key>ur</key>
+		<string>حذف کریں۔</string>
+		<key>uz</key>
+		<string>Oʻchirish</string>
+		<key>vi</key>
+		<string>Xóa bỏ</string>
+		<key>yi</key>
+		<string>ויסמעקן</string>
+		<key>zh</key>
+		<string>删除</string>
+	</dict>
+	<key>dismiss</key>
+	<dict>
+		<key>af</key>
+		<string>Ontslaan</string>
+		<key>ar</key>
+		<string>رفض</string>
+		<key>az</key>
+		<string>Azad</string>
+		<key>ba</key>
+		<string>Ҡыуып</string>
+		<key>be</key>
+		<string>Звольніць</string>
+		<key>bg</key>
+		<string>Съкрати</string>
+		<key>bn</key>
+		<string>বরখাস্ত</string>
+		<key>bs</key>
+		<string>Odbaci</string>
+		<key>ca</key>
+		<string>Ometre</string>
+		<key>ceb</key>
+		<string>Wagtangon</string>
+		<key>cs</key>
+		<string>Zamítl</string>
+		<key>cy</key>
+		<string>Diswyddo</string>
+		<key>da</key>
+		<string>Afvise</string>
+		<key>de</key>
+		<string>Entlassen</string>
+		<key>el</key>
+		<string>Να απορρίψει</string>
+		<key>en</key>
+		<string>Dismiss</string>
+		<key>eo</key>
+		<string>Eksigi</string>
+		<key>es</key>
+		<string>Descartar</string>
+		<key>et</key>
+		<string>Jätta</string>
+		<key>eu</key>
+		<string>Baztertu</string>
+		<key>fa</key>
+		<string>اخراج</string>
+		<key>fi</key>
+		<string>Hylkää</string>
+		<key>fr</key>
+		<string>Rejeter</string>
+		<key>ga</key>
+		<string>Dhíbhe</string>
+		<key>gd</key>
+		<string>Cuir air falbh</string>
+		<key>gl</key>
+		<string>Dimitir</string>
+		<key>gu</key>
+		<string>બરતરફ</string>
+		<key>he</key>
+		<string>לבטל</string>
+		<key>hi</key>
+		<string>खारिज</string>
+		<key>hr</key>
+		<string>Otpustiti</string>
+		<key>ht</key>
+		<string>Rejte</string>
+		<key>hu</key>
+		<string>Elvetéséhez</string>
+		<key>hy</key>
+		<string>Հեռացնել</string>
+		<key>id</key>
+		<string>Mengabaikan</string>
+		<key>is</key>
+		<string>Sleppa</string>
+		<key>it</key>
+		<string>Respingere</string>
+		<key>ja</key>
+		<string>任</string>
+		<key>jv</key>
+		<string>Ngilangi</string>
+		<key>ka</key>
+		<string>გადააყენოს</string>
+		<key>kk</key>
+		<string>Босатыңыз</string>
+		<key>kn</key>
+		<string>ವಜಾಗೊಳಿಸಿ</string>
+		<key>ko</key>
+		<string>닫기</string>
+		<key>ky</key>
+		<string>Бошотулсун</string>
+		<key>la</key>
+		<string>Dimittis</string>
+		<key>lt</key>
+		<string>Atleisti</string>
+		<key>mg</key>
+		<string>Handroaka</string>
+		<key>mi</key>
+		<string>Tonoa</string>
+		<key>mk</key>
+		<string>Разреши</string>
+		<key>ml</key>
+		<string>നിരസിക്കുക</string>
+		<key>mn</key>
+		<string>Халах</string>
+		<key>mr</key>
+		<string>घालविणे</string>
+		<key>ms</key>
+		<string>Memecat</string>
+		<key>mt</key>
+		<string>Tiċħad</string>
+		<key>ne</key>
+		<string>खारेज</string>
+		<key>nl</key>
+		<string>Sluiten</string>
+		<key>no</key>
+		<string>Avvise</string>
+		<key>pa</key>
+		<string>ਖਾਰਜ</string>
+		<key>pl</key>
+		<string>Zwolnić</string>
+		<key>pt</key>
+		<string>Fechar</string>
+		<key>ro</key>
+		<string>Respingerea</string>
+		<key>ru</key>
+		<string>Уволить</string>
+		<key>si</key>
+		<string>සේවයෙන් ඉවත්</string>
+		<key>sk</key>
+		<string>Zrušiť</string>
+		<key>sl</key>
+		<string>Opustite</string>
+		<key>sq</key>
+		<string>Të shkarkonte</string>
+		<key>sr</key>
+		<string>Отпусти</string>
+		<key>su</key>
+		<string>Ngilangkeun</string>
+		<key>sv</key>
+		<string>Avskeda</string>
+		<key>sw</key>
+		<string>Kumfukuza</string>
+		<key>ta</key>
+		<string>பதவி நீக்கம்</string>
+		<key>te</key>
+		<string>కొట్టి</string>
+		<key>tg</key>
+		<string>ยกเลิก</string>
+		<key>th</key>
+		<string>ไม่สนใจ</string>
+		<key>tl</key>
+		<string>Bale-walain</string>
+		<key>tr</key>
+		<string>Görevden</string>
+		<key>tt</key>
+		<string>Хезмәтеннән азат итү</string>
+		<key>udm</key>
+		<string>Палэнтыны</string>
+		<key>uk</key>
+		<string>Звільнити</string>
+		<key>ur</key>
+		<string>مسترد</string>
+		<key>uz</key>
+		<string>Lavozimdan ozod qiladi</string>
+		<key>vi</key>
+		<string>Bỏ</string>
+		<key>yi</key>
+		<string>אָפּזאָגן</string>
+		<key>zh</key>
+		<string>驳回</string>
+	</dict>
+	<key>done</key>
+	<dict>
+		<key>af</key>
+		<string>Klaar</string>
+		<key>ar</key>
+		<string>فعله</string>
+		<key>az</key>
+		<string>Bitdi</string>
+		<key>ba</key>
+		<string>Done</string>
+		<key>be</key>
+		<string>Гатова</string>
+		<key>bg</key>
+		<string>Свършен</string>
+		<key>bn</key>
+		<string>সম্পন্ন</string>
+		<key>bs</key>
+		<string>Gotovo</string>
+		<key>ca</key>
+		<string>Fet</string>
+		<key>ceb</key>
+		<string>Nahimo</string>
+		<key>cs</key>
+		<string>Hotovo</string>
+		<key>cy</key>
+		<string>Wedi&apos;i wneud</string>
+		<key>da</key>
+		<string>Færdig</string>
+		<key>de</key>
+		<string>Fertig</string>
+		<key>el</key>
+		<string>Ολοκληρώθηκε</string>
+		<key>en</key>
+		<string>Done</string>
+		<key>eo</key>
+		<string>Farita</string>
+		<key>es</key>
+		<string>Hecho</string>
+		<key>et</key>
+		<string>Valmis</string>
+		<key>eu</key>
+		<string>Eginda</string>
+		<key>fa</key>
+		<string>انجام شده</string>
+		<key>fi</key>
+		<string>Tehty</string>
+		<key>fr</key>
+		<string>Fait</string>
+		<key>ga</key>
+		<string>Déanta</string>
+		<key>gd</key>
+		<string>Dèanta</string>
+		<key>gl</key>
+		<string>Feito</string>
+		<key>gu</key>
+		<string>થઈ ગયું</string>
+		<key>he</key>
+		<string>בוצע</string>
+		<key>hi</key>
+		<string>पूर्ण</string>
+		<key>hr</key>
+		<string>Gotovo</string>
+		<key>ht</key>
+		<string>Fè</string>
+		<key>hu</key>
+		<string>Kész</string>
+		<key>hy</key>
+		<string>Կատարած</string>
+		<key>id</key>
+		<string>Selesai</string>
+		<key>is</key>
+		<string>Búið</string>
+		<key>it</key>
+		<string>Fatto</string>
+		<key>ja</key>
+		<string>終わり</string>
+		<key>jv</key>
+		<string>Done</string>
+		<key>ka</key>
+		<string>Შესრულებულია</string>
+		<key>kk</key>
+		<string>Дайын</string>
+		<key>kn</key>
+		<string>ಮುಗಿದಿದೆ</string>
+		<key>ko</key>
+		<string>완료</string>
+		<key>ky</key>
+		<string>Бүттү</string>
+		<key>la</key>
+		<string>Done</string>
+		<key>lt</key>
+		<string>Padaryta</string>
+		<key>mg</key>
+		<string>Hatao</string>
+		<key>mi</key>
+		<string>Kua oti</string>
+		<key>mk</key>
+		<string>Направено</string>
+		<key>ml</key>
+		<string>ചെയ്തു</string>
+		<key>mn</key>
+		<string>Дууслаа</string>
+		<key>mr</key>
+		<string>झाले</string>
+		<key>ms</key>
+		<string>Selesai</string>
+		<key>mt</key>
+		<string>Magħmul</string>
+		<key>ne</key>
+		<string>सकियो</string>
+		<key>nl</key>
+		<string>Gedaan</string>
+		<key>no</key>
+		<string>Ferdig</string>
+		<key>pa</key>
+		<string>ਹੋ ਗਿਆ</string>
+		<key>pl</key>
+		<string>Gotowe</string>
+		<key>pt</key>
+		<string>Feito</string>
+		<key>ro</key>
+		<string>Terminat</string>
+		<key>ru</key>
+		<string>Сделанный</string>
+		<key>si</key>
+		<string>කළා</string>
+		<key>sk</key>
+		<string>Hotový</string>
+		<key>sl</key>
+		<string>Končano</string>
+		<key>sq</key>
+		<string>U krye</string>
+		<key>sr</key>
+		<string>Готово</string>
+		<key>su</key>
+		<string>Réngsé</string>
+		<key>sv</key>
+		<string>Gjort</string>
+		<key>sw</key>
+		<string>Imekamilika</string>
+		<key>ta</key>
+		<string>முடிந்தது</string>
+		<key>te</key>
+		<string>పూర్తి</string>
+		<key>tg</key>
+		<string>Иҷро шуд</string>
+		<key>th</key>
+		<string>เสร็จแล้ว</string>
+		<key>tl</key>
+		<string>Tapos na</string>
+		<key>tr</key>
+		<string>Tamamlandı</string>
+		<key>tt</key>
+		<string>Булды</string>
+		<key>udm</key>
+		<string>Done</string>
+		<key>uk</key>
+		<string>Готово</string>
+		<key>ur</key>
+		<string>ہو گیا</string>
+		<key>uz</key>
+		<string>Bajarildi</string>
+		<key>vi</key>
+		<string>Xong</string>
+		<key>yi</key>
+		<string>געטאן</string>
+		<key>zh</key>
+		<string>完毕</string>
+	</dict>
+	<key>friday</key>
+	<dict>
+		<key>af</key>
+		<string>Vrydag</string>
+		<key>ar</key>
+		<string>جمعة</string>
+		<key>az</key>
+		<string>Cümə</string>
+		<key>ba</key>
+		<string>Friday</string>
+		<key>be</key>
+		<string>Пятніца</string>
+		<key>bg</key>
+		<string>Петък</string>
+		<key>bn</key>
+		<string>শুক্রবার</string>
+		<key>bs</key>
+		<string>Petak</string>
+		<key>ca</key>
+		<string>Divendres</string>
+		<key>ceb</key>
+		<string>Biyernes</string>
+		<key>cs</key>
+		<string>Pátek</string>
+		<key>cy</key>
+		<string>Gwener</string>
+		<key>da</key>
+		<string>Fredag</string>
+		<key>de</key>
+		<string>Freitag</string>
+		<key>el</key>
+		<string>Παρασκευή</string>
+		<key>en</key>
+		<string>Friday</string>
+		<key>eo</key>
+		<string>Vendredo</string>
+		<key>es</key>
+		<string>Viernes</string>
+		<key>et</key>
+		<string>Reede</string>
+		<key>eu</key>
+		<string>Ostirala</string>
+		<key>fa</key>
+		<string>جمعه</string>
+		<key>fi</key>
+		<string>Perjantai</string>
+		<key>fr</key>
+		<string>Vendredi</string>
+		<key>ga</key>
+		<string>Dé hAoine</string>
+		<key>gd</key>
+		<string>Dihaoine</string>
+		<key>gl</key>
+		<string>Venres</string>
+		<key>gu</key>
+		<string>શુક્રવાર</string>
+		<key>he</key>
+		<string>יוֹם שִׁישִׁי</string>
+		<key>hi</key>
+		<string>शुक्रवार</string>
+		<key>hr</key>
+		<string>Petak</string>
+		<key>ht</key>
+		<string>Vandredi</string>
+		<key>hu</key>
+		<string>Péntek</string>
+		<key>hy</key>
+		<string>Ուրբաթ</string>
+		<key>id</key>
+		<string>Jumat</string>
+		<key>is</key>
+		<string>Föstudag</string>
+		<key>it</key>
+		<string>Venerdì</string>
+		<key>ja</key>
+		<string>金曜日</string>
+		<key>jv</key>
+		<string>Friday</string>
+		<key>ka</key>
+		<string>Პარასკევი</string>
+		<key>kk</key>
+		<string>Жұма</string>
+		<key>kn</key>
+		<string>ಶುಕ್ರವಾರ</string>
+		<key>ko</key>
+		<string>금요일</string>
+		<key>ky</key>
+		<string>Жума</string>
+		<key>la</key>
+		<string>Veneris</string>
+		<key>lt</key>
+		<string>Penktadienis</string>
+		<key>mg</key>
+		<string>ZOMA</string>
+		<key>mi</key>
+		<string>Paraire</string>
+		<key>mk</key>
+		<string>Петок</string>
+		<key>ml</key>
+		<string>വെള്ളിയാഴ്ച</string>
+		<key>mn</key>
+		<string>Баасан гараг</string>
+		<key>mr</key>
+		<string>शुक्रवार</string>
+		<key>ms</key>
+		<string>Jumaat</string>
+		<key>mt</key>
+		<string>Il-Ġimgħa</string>
+		<key>ne</key>
+		<string>शुक्रबार</string>
+		<key>nl</key>
+		<string>Vrijdag</string>
+		<key>no</key>
+		<string>Fredag</string>
+		<key>pa</key>
+		<string>ਸ਼ੁੱਕਰਵਾਰ</string>
+		<key>pl</key>
+		<string>Piątek</string>
+		<key>pt</key>
+		<string>Sexta-feira</string>
+		<key>ro</key>
+		<string>Vineri</string>
+		<key>ru</key>
+		<string>Пятница</string>
+		<key>si</key>
+		<string>සිකුරාදා</string>
+		<key>sk</key>
+		<string>Piatok</string>
+		<key>sl</key>
+		<string>Petek</string>
+		<key>sq</key>
+		<string>e premte</string>
+		<key>sr</key>
+		<string>Петак</string>
+		<key>su</key>
+		<string>Jumaah</string>
+		<key>sv</key>
+		<string>Fredag</string>
+		<key>sw</key>
+		<string>Ijumaa</string>
+		<key>ta</key>
+		<string>வெள்ளி</string>
+		<key>te</key>
+		<string>శుక్రవారం</string>
+		<key>tg</key>
+		<string>Ҷумъа</string>
+		<key>th</key>
+		<string>วันศุกร์</string>
+		<key>tl</key>
+		<string>Biyernes</string>
+		<key>tr</key>
+		<string>Cuma</string>
+		<key>tt</key>
+		<string>Fridayомга</string>
+		<key>udm</key>
+		<string>Friday</string>
+		<key>uk</key>
+		<string>П&apos;ятниця</string>
+		<key>ur</key>
+		<string>جمعہ</string>
+		<key>uz</key>
+		<string>Juma</string>
+		<key>vi</key>
+		<string>Thứ sáu</string>
+		<key>yi</key>
+		<string>פרייטאג</string>
+		<key>zh</key>
+		<string>星期五</string>
+	</dict>
+	<key>monday</key>
+	<dict>
+		<key>af</key>
+		<string>Maandag</string>
+		<key>ar</key>
+		<string>الاثنين</string>
+		<key>az</key>
+		<string>bazar ertəsi</string>
+		<key>ba</key>
+		<string>Monday</string>
+		<key>be</key>
+		<string>Панядзелак</string>
+		<key>bg</key>
+		<string>Понеделник</string>
+		<key>bn</key>
+		<string>সোমবার</string>
+		<key>bs</key>
+		<string>Ponedjeljak</string>
+		<key>ca</key>
+		<string>Dilluns</string>
+		<key>ceb</key>
+		<string>Lunes</string>
+		<key>cs</key>
+		<string>Pondělí</string>
+		<key>cy</key>
+		<string>Dydd Llun</string>
+		<key>da</key>
+		<string>Mandag</string>
+		<key>de</key>
+		<string>Montag</string>
+		<key>el</key>
+		<string>Δευτέρα</string>
+		<key>en</key>
+		<string>Monday</string>
+		<key>eo</key>
+		<string>Lundo</string>
+		<key>es</key>
+		<string>Lunes</string>
+		<key>et</key>
+		<string>Esmaspäev</string>
+		<key>eu</key>
+		<string>Astelehena</string>
+		<key>fa</key>
+		<string>دوشنبه</string>
+		<key>fi</key>
+		<string>Maanantai</string>
+		<key>fr</key>
+		<string>Lundi</string>
+		<key>ga</key>
+		<string>Dé Luain</string>
+		<key>gd</key>
+		<string>Diluain</string>
+		<key>gl</key>
+		<string>Luns</string>
+		<key>gu</key>
+		<string>સોમવાર</string>
+		<key>he</key>
+		<string>יוֹם שֵׁנִי</string>
+		<key>hi</key>
+		<string>सोमवार</string>
+		<key>hr</key>
+		<string>Ponedjeljak</string>
+		<key>ht</key>
+		<string>Lendi</string>
+		<key>hu</key>
+		<string>Hétfő</string>
+		<key>hy</key>
+		<string>Երկուշաբթի</string>
+		<key>id</key>
+		<string>Senin</string>
+		<key>is</key>
+		<string>Mánudagur</string>
+		<key>it</key>
+		<string>Lunedì</string>
+		<key>ja</key>
+		<string>月曜日</string>
+		<key>jv</key>
+		<string>Monday</string>
+		<key>ka</key>
+		<string>Ორშაბათი</string>
+		<key>kk</key>
+		<string>Дүйсенбі</string>
+		<key>kn</key>
+		<string>ಸೋಮವಾರ</string>
+		<key>ko</key>
+		<string>월요일</string>
+		<key>ky</key>
+		<string>Дүйшөмбү</string>
+		<key>la</key>
+		<string>dies Lunae</string>
+		<key>lt</key>
+		<string>Pirmadienis</string>
+		<key>mg</key>
+		<string>Alatsinainy</string>
+		<key>mi</key>
+		<string>Mane</string>
+		<key>mk</key>
+		<string>Понеделник</string>
+		<key>ml</key>
+		<string>തിങ്കളാഴ്ച</string>
+		<key>mn</key>
+		<string>Даваа гариг</string>
+		<key>mr</key>
+		<string>सोमवार</string>
+		<key>ms</key>
+		<string>Isnin</string>
+		<key>mt</key>
+		<string>It-Tnejn</string>
+		<key>ne</key>
+		<string>सोमवार</string>
+		<key>nl</key>
+		<string>Maandag</string>
+		<key>no</key>
+		<string>Mandag</string>
+		<key>pa</key>
+		<string>ਸੋਮਵਾਰ</string>
+		<key>pl</key>
+		<string>Poniedziałek</string>
+		<key>pt</key>
+		<string>Segunda-feira</string>
+		<key>ro</key>
+		<string>Luni</string>
+		<key>ru</key>
+		<string>Понедельник</string>
+		<key>si</key>
+		<string>සඳුදා</string>
+		<key>sk</key>
+		<string>Pondelok</string>
+		<key>sl</key>
+		<string>Ponedeljek</string>
+		<key>sq</key>
+		<string>e hënë</string>
+		<key>sr</key>
+		<string>Понедељак</string>
+		<key>su</key>
+		<string>Senén</string>
+		<key>sv</key>
+		<string>Måndag</string>
+		<key>sw</key>
+		<string>Jumatatu</string>
+		<key>ta</key>
+		<string>திங்கட்கிழமை</string>
+		<key>te</key>
+		<string>సోమవారం</string>
+		<key>tg</key>
+		<string>Душанбе</string>
+		<key>th</key>
+		<string>วันจันทร์</string>
+		<key>tl</key>
+		<string>Lunes</string>
+		<key>tr</key>
+		<string>Pazartesi</string>
+		<key>tt</key>
+		<string>Дүшәмбе</string>
+		<key>udm</key>
+		<string>Monday</string>
+		<key>uk</key>
+		<string>Понеділок</string>
+		<key>ur</key>
+		<string>پیر</string>
+		<key>uz</key>
+		<string>Dushanba</string>
+		<key>vi</key>
+		<string>Thứ hai</string>
+		<key>yi</key>
+		<string>מאנטאג</string>
+		<key>zh</key>
+		<string>周一</string>
+	</dict>
+	<key>no_email</key>
+	<dict>
+		<key>af</key>
+		<string>Dit blyk dat jou toestel nie in staat is om e-pos te stuur nie.
+
+Verifieer asseblief dat jou e-poskliënt opgestel is en probeer weer.</string>
+		<key>ar</key>
+		<string>يبدو أن جهازك غير قادر على إرسال بريد إلكتروني.
+
+يرجى التحقق من إعداد عميل البريد الإلكتروني الخاص بك وحاول مرة أخرى.</string>
+		<key>az</key>
+		<string>Görünür, cihazınız e-poçt göndərə bilmir.
+
+Lütfən, e-poçt müştərinizin qurulduğunu yoxlayın və yenidən cəhd edin.</string>
+		<key>ba</key>
+		<string>Dealraíonn sé nach bhfuil do ghléas in ann r-phost a sheoladh.
+
+Cinntigh go bhfuil do chliant ríomhphoist socraithe agus bain triail eile as.</string>
+		<key>be</key>
+		<string>Здаецца, ваша прылада не можа адпраўляць электронную пошту.
+
+Калі ласка, пераканайцеся, што ваш паштовы кліент настроены, і паўтарыце спробу.</string>
+		<key>bg</key>
+		<string>Изглежда, че вашето устройство не може да изпраща имейл.
+
+Моля, проверете дали вашият имейл клиент е настроен и опитайте отново.</string>
+		<key>bn</key>
+		<string>মনে হচ্ছে আপনার ডিভাইস ই-মেইল পাঠাতে সক্ষম নয়।
+
+আপনার ই-মেইল ক্লায়েন্ট সেট আপ করা হয়েছে তা যাচাই করুন এবং আবার চেষ্টা করুন।</string>
+		<key>bs</key>
+		<string>Čini se da vaš uređaj ne može slati e-poštu.
+
+Provjerite je li vaš klijent e-pošte postavljen i pokušajte ponovo.</string>
+		<key>ca</key>
+		<string>Sembla que el vostre dispositiu no pot enviar correu electrònic.
+
+Verifiqueu que el vostre client de correu electrònic estigui configurat i torneu-ho a provar.</string>
+		<key>ceb</key>
+		<string>Mopatim-aw nga ang imong device dili makapadala og e-mail.
+
+Palihug pamatud-i nga ang imong e-mail client gipahimutang ug sulayi pag-usab.</string>
+		<key>cs</key>
+		<string>Zdá se, že vaše zařízení není schopno odesílat e-maily.
+
+Zkontrolujte, zda je váš e-mailový klient nastaven, a zkuste to znovu.</string>
+		<key>cy</key>
+		<string>Mae&apos;n ymddangos nad yw&apos;ch dyfais yn gallu anfon e-bost.
+
+Gwiriwch fod eich cleient e-bost wedi&apos;i osod a cheisiwch eto.</string>
+		<key>da</key>
+		<string>Det ser ud til, at din enhed ikke er i stand til at sende e-mail.
+
+Bekræft venligst, at din e-mail-klient er konfigureret, og prøv igen.</string>
+		<key>de</key>
+		<string>Anscheinend kann Ihr Gerät keine E-Mails senden.
+
+Bitte überprüfen Sie, ob Ihr E-Mail-Client eingerichtet ist, und versuchen Sie es erneut.</string>
+		<key>el</key>
+		<string>Φαίνεται ότι η συσκευή σας δεν μπορεί να στείλει e-mail.
+
+Επαληθεύστε ότι το πρόγραμμα-πελάτη ηλεκτρονικού ταχυδρομείου σας έχει ρυθμιστεί και δοκιμάστε ξανά.</string>
+		<key>en</key>
+		<string>It appears that your device is not able to send e-mail.
+
+Please verify that your e-mail client is set up and try again.</string>
+		<key>eo</key>
+		<string>Ŝajnas, ke via aparato ne kapablas sendi retpoŝton.
+
+Bonvolu kontroli, ke via retpoŝta kliento estas agordita kaj provu denove.</string>
+		<key>es</key>
+		<string>Parece que su dispositivo no puede enviar correos electrónicos.
+
+Verifique que su cliente de correo electrónico esté configurado y vuelva a intentarlo.</string>
+		<key>et</key>
+		<string>Näib, et teie seade ei saa e-kirju saata.
+
+Veenduge, et teie e-posti klient on seadistatud, ja proovige uuesti.</string>
+		<key>eu</key>
+		<string>Badirudi zure gailua ezin dela mezu elektronikoa bidaltzeko.
+
+Egiaztatu posta-bezeroa konfiguratuta dagoela eta saiatu berriro.</string>
+		<key>fa</key>
+		<string>به نظر می رسد که دستگاه شما قادر به ارسال ایمیل نیست.
+
+لطفاً بررسی کنید که سرویس گیرنده ایمیل شما تنظیم شده است و دوباره امتحان کنید.</string>
+		<key>fi</key>
+		<string>Näyttää siltä, että laitteesi ei pysty lähettämään sähköpostia.
+
+Varmista, että sähköpostiohjelmasi on määritetty, ja yritä uudelleen.</string>
+		<key>fr</key>
+		<string>Il semble que votre appareil ne soit pas en mesure d&apos;envoyer des e-mails.
+
+Veuillez vérifier que votre client de messagerie est configuré et réessayez.</string>
+		<key>ga</key>
+		<string>Dealraíonn sé nach bhfuil do ghléas in ann r-phost a sheoladh.
+
+Cinntigh go bhfuil do chliant ríomhphoist socraithe agus bain triail eile as.</string>
+		<key>gd</key>
+		<string>Tha e coltach nach urrainn don inneal agad post-d a chuir.
+
+Dèan cinnteach gu bheil an cleachdaiche puist-d agad air a stèidheachadh is feuch ris a-rithist.</string>
+		<key>gl</key>
+		<string>Parece que o teu dispositivo non é capaz de enviar correo electrónico.
+
+Verifique que o seu cliente de correo electrónico estea configurado e ténteo de novo.</string>
+		<key>gu</key>
+		<string>એવું લાગે છે કે તમારું ઉપકરણ ઈ-મેલ મોકલવામાં સક્ષમ નથી.
+
+કૃપા કરીને ચકાસો કે તમારું ઈ-મેલ ક્લાયંટ સેટ થઈ ગયું છે અને ફરી પ્રયાસ કરો.</string>
+		<key>he</key>
+		<string>נראה שהמכשיר שלך אינו מסוגל לשלוח דואר אלקטרוני.
+
+אנא ודא שלקוח הדואר האלקטרוני שלך מוגדר ונסה שוב.</string>
+		<key>hi</key>
+		<string>ऐसा प्रतीत होता है कि आपका उपकरण ई-मेल भेजने में सक्षम नहीं है।
+
+कृपया सत्यापित करें कि आपका ई-मेल क्लाइंट सेट है और पुनः प्रयास करें।</string>
+		<key>hr</key>
+		<string>Čini se da vaš uređaj ne može slati e-poštu.
+
+Provjerite je li vaš klijent e-pošte postavljen i pokušajte ponovno.</string>
+		<key>ht</key>
+		<string>Li sanble ke aparèy ou an pa kapab voye imèl.
+
+Tanpri verifye si kliyan imel ou a tabli epi eseye ankò.</string>
+		<key>hu</key>
+		<string>Úgy tűnik, hogy a készülék nem tud e-mailt küldeni.
+
+Kérjük, ellenőrizze, hogy az e-mail kliens be van-e állítva, és próbálja újra.</string>
+		<key>hy</key>
+		<string>Ըստ երևույթին, ձեր սարքը չի կարողանում էլփոստ ուղարկել:
+
+Խնդրում ենք ստուգել, որ ձեր էլփոստի հաճախորդը կարգավորված է և նորից փորձեք:</string>
+		<key>id</key>
+		<string>Tampaknya perangkat Anda tidak dapat mengirim email.
+
+Harap verifikasi bahwa klien email Anda telah disiapkan dan coba lagi.</string>
+		<key>is</key>
+		<string>Svo virðist sem tækið þitt geti ekki sent tölvupóst.
+
+Vinsamlegast staðfestu að tölvupóstforritið þitt sé sett upp og reyndu aftur.</string>
+		<key>it</key>
+		<string>Sembra che il tuo dispositivo non sia in grado di inviare e-mail.
+
+Verifica che il tuo client di posta elettronica sia impostato e riprova.</string>
+		<key>ja</key>
+		<string>お使いのデバイスはメールを送信できないようです。
+
+電子メールクライアントが設定されていることを確認して、再試行してください。</string>
+		<key>jv</key>
+		<string>It appears that your device is not able to send e-mail.
+
+Please verify that your e-mail client is set up and try again.</string>
+		<key>ka</key>
+		<string>როგორც ჩანს, თქვენს მოწყობილობას არ შეუძლია ელექტრონული ფოსტის გაგზავნა.
+
+გთხოვთ, დაადასტუროთ, რომ თქვენი ელფოსტის კლიენტი დაყენებულია და სცადეთ ხელახლა.</string>
+		<key>kk</key>
+		<string>Құрылғыңыз электрондық поштаны жібере алмайтын сияқты.
+
+Электрондық пошта клиентінің орнатылғанын тексеріп, әрекетті қайталаңыз.</string>
+		<key>kn</key>
+		<string>ನಿಮ್ಮ ಸಾಧನಕ್ಕೆ ಇಮೇಲ್ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ ಎಂದು ತೋರುತ್ತಿದೆ.
+
+ನಿಮ್ಮ ಇಮೇಲ್ ಕ್ಲೈಂಟ್ ಅನ್ನು ಹೊಂದಿಸಲಾಗಿದೆಯೇ ಎಂಬುದನ್ನು ದಯವಿಟ್ಟು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+		<key>ko</key>
+		<string>장치가 이메일을 보낼 수없는 것으로 보입니다.
+
+이메일 클라이언트가 설정되어 있는지 확인하고 다시 시도하십시오.</string>
+		<key>ky</key>
+		<string>Сиздин аппаратыңыз электрондук почтаны жөнөтө албайт окшойт.
+
+Электрондук почта кардарыңыз орнотулганын текшерип, кайра аракет кылыңыз.</string>
+		<key>la</key>
+		<string>Apparet machinam tuam electronicam mittere non posse.
+
+Quaeso cognoscere quod clientem tuum electronicum erigitur et iterum conare.</string>
+		<key>lt</key>
+		<string>Atrodo, kad jūsų įrenginys negali siųsti el.
+
+Patikrinkite, ar jūsų el. pašto programa nustatyta, ir bandykite dar kartą.</string>
+		<key>mg</key>
+		<string>Toa tsy afaka mandefa mailaka ny fitaovanao.
+
+Azafady, hamarino fa efa napetraka ny mpanjifanao mailaka ary andramo indray.</string>
+		<key>mi</key>
+		<string>Te ahua nei kaore e taea e to taputapu te tuku ī-mēra.
+
+Manatokohia kua tatūhia to kiritaki ī-mēra ka ngana ano.</string>
+		<key>mk</key>
+		<string>Се чини дека вашиот уред не може да испраќа е-пошта.
+
+Ве молиме потврдете дека вашиот клиент за е-пошта е поставен и обидете се повторно.</string>
+		<key>ml</key>
+		<string>നിങ്ങളുടെ ഉപകരണത്തിന് ഇ-മെയിൽ അയയ്‌ക്കാൻ കഴിയുന്നില്ലെന്ന് തോന്നുന്നു.
+
+നിങ്ങളുടെ ഇ-മെയിൽ ക്ലയന്റ് സജ്ജീകരിച്ചിട്ടുണ്ടോയെന്ന് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+		<key>mn</key>
+		<string>Таны төхөөрөмж имэйл илгээх боломжгүй байна.
+
+Имэйл клиентээ тохируулсан эсэхийг шалгаад дахин оролдоно уу.</string>
+		<key>mr</key>
+		<string>असे दिसते की आपले डिव्हाइस ई-मेल पाठविण्यास सक्षम नाही.
+
+कृपया आपला ई-मेल क्लायंट सेट केला आहे हे सत्यापित करा आणि पुन्हा प्रयत्न करा.</string>
+		<key>ms</key>
+		<string>Nampaknya peranti anda tidak dapat menghantar e-mel.
+
+Sila sahkan bahawa klien e-mel anda telah disediakan dan cuba lagi.</string>
+		<key>mt</key>
+		<string>Jidher li t-tagħmir tiegħek mhux kapaċi jibgħat e-mail.
+
+Jekk jogħġbok ivverifika li l-klijent tal-posta elettronika tiegħek huwa stabbilit u erġa &apos;pprova.</string>
+		<key>ne</key>
+		<string>यस्तो देखिन्छ कि तपाईंको उपकरण इ-मेल पठाउन सक्षम छैन।
+
+कृपया तपाईंको इ-मेल क्लाइन्ट सेट अप गरिएको छ भनी प्रमाणित गर्नुहोस् र पुन: प्रयास गर्नुहोस्।</string>
+		<key>nl</key>
+		<string>Het lijkt erop dat uw apparaat geen e-mail kan verzenden.
+
+Controleer of uw e-mailclient is ingesteld en probeer het opnieuw.</string>
+		<key>no</key>
+		<string>Det ser ut til at enheten din ikke er i stand til å sende e-post.
+
+Bekreft at e-postklienten din er konfigurert og prøv igjen.</string>
+		<key>pa</key>
+		<string>ਅਜਿਹਾ ਲਗਦਾ ਹੈ ਕਿ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਈ-ਮੇਲ ਭੇਜਣ ਦੇ ਯੋਗ ਨਹੀਂ ਹੈ।
+
+ਕਿਰਪਾ ਕਰਕੇ ਤਸਦੀਕ ਕਰੋ ਕਿ ਤੁਹਾਡਾ ਈ-ਮੇਲ ਕਲਾਇੰਟ ਸੈੱਟਅੱਪ ਹੋ ਗਿਆ ਹੈ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+		<key>pl</key>
+		<string>Wygląda na to, że twoje urządzenie nie jest w stanie wysyłać wiadomości e-mail.
+
+Sprawdź, czy twój klient e-mail jest skonfigurowany i spróbuj ponownie.</string>
+		<key>pt</key>
+		<string>Parece que o seu dispositivo não consegue enviar e-mail.
+
+Verifique se o seu cliente de e-mail está configurado e tente novamente.</string>
+		<key>ro</key>
+		<string>Se pare că dispozitivul dvs. nu poate trimite e-mail.
+
+Verificați dacă clientul dvs. de e-mail este configurat și încercați din nou.</string>
+		<key>ru</key>
+		<string>Похоже, ваше устройство не может отправлять электронную почту.
+
+Убедитесь, что ваш почтовый клиент настроен, и повторите попытку.</string>
+		<key>si</key>
+		<string>ඔබගේ උපාංගයට විද්‍යුත් තැපෑල යැවීමට නොහැකි බව පෙනේ.
+
+කරුණාකර ඔබගේ විද්‍යුත් තැපැල් සේවාලාභියා පිහිටුවා ඇති බව තහවුරු කර නැවත උත්සාහ කරන්න.</string>
+		<key>sk</key>
+		<string>Zdá sa, že vaše zariadenie nedokáže odosielať e-maily.
+
+Skontrolujte, či je váš e-mailový klient nastavený a skúste to znova.</string>
+		<key>sl</key>
+		<string>Videti je, da vaša naprava ne more pošiljati e-pošte.
+
+Preverite, ali je vaš e-poštni odjemalec nastavljen in poskusite znova.</string>
+		<key>sq</key>
+		<string>Duket se pajisja juaj nuk është në gjendje të dërgojë e-mail.
+
+Ju lutemi verifikoni që klienti juaj i postës elektronike është i konfiguruar dhe provoni përsëri.</string>
+		<key>sr</key>
+		<string>Изгледа да ваш уређај није у могућности да пошаље е-пошту.
+
+Проверите да ли је ваш клијент за е-пошту постављен и покушајте поново.</string>
+		<key>su</key>
+		<string>Nembongan yen alat Anjeun teu bisa ngirim e-mail.
+
+Mangga pariksa yen klien e-mail anjeun geus disetel jeung cobian deui.</string>
+		<key>sv</key>
+		<string>Det verkar som att din enhet inte kan skicka e-post.
+
+Kontrollera att din e-postklient är konfigurerad och försök igen.</string>
+		<key>sw</key>
+		<string>Inaonekana kifaa chako hakiwezi kutuma barua pepe.
+
+Tafadhali thibitisha kuwa kiteja chako cha barua pepe kimewekwa na ujaribu tena.</string>
+		<key>ta</key>
+		<string>உங்கள் சாதனத்தில் மின்னஞ்சலை அனுப்ப முடியவில்லை என்று தோன்றுகிறது.
+
+உங்கள் மின்னஞ்சல் கிளையன்ட் அமைக்கப்பட்டுள்ளதா என்பதைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
+		<key>te</key>
+		<string>మీ పరికరం ఇ-మెయిల్ పంపలేకపోయినట్లు కనిపిస్తోంది.
+
+దయచేసి మీ ఇ-మెయిల్ క్లయింట్ సెటప్ చేయబడిందని ధృవీకరించి, మళ్లీ ప్రయత్నించండి.</string>
+		<key>tg</key>
+		<string>Чунин ба назар мерасад, ки дастгоҳи шумо имкони ирсоли почтаи электронӣ надорад.
+
+Лутфан тасдиқ кунед, ки муштарии почтаи электронии шумо насб шудааст ва аз нав кӯшиш кунед.</string>
+		<key>th</key>
+		<string>ดูเหมือนว่าอุปกรณ์ของคุณไม่สามารถส่งอีเมลได้
+
+โปรดตรวจสอบว่าโปรแกรมรับส่งเมลของคุณได้รับการตั้งค่าแล้วและลองอีกครั้ง</string>
+		<key>tl</key>
+		<string>Lumalabas na ang iyong device ay hindi makapagpadala ng e-mail.
+
+Paki-verify na ang iyong e-mail client ay naka-set up at subukang muli.</string>
+		<key>tr</key>
+		<string>Cihazınızın e-posta gönderemediği anlaşılıyor.
+
+Lütfen e-posta istemcinizin kurulduğunu ve tekrar deneyin.</string>
+		<key>tt</key>
+		<string>Сезнең җайланма электрон почта җибәрә алмый кебек.
+
+Зинһар, сезнең электрон почта клиентыгызның көйләнгәнлеген тикшерегез һәм кабатлап карагыз.</string>
+		<key>udm</key>
+		<string>It appears that your device is not able to send e-mail.
+
+Please verify that your e-mail client is set up and try again.</string>
+		<key>uk</key>
+		<string>Схоже, ваш пристрій не може надсилати електронну пошту.
+
+Переконайтеся, що ваш клієнт електронної пошти налаштовано, і повторіть спробу.</string>
+		<key>ur</key>
+		<string>ایسا لگتا ہے کہ آپ کا آلہ ای میل بھیجنے کے قابل نہیں ہے۔
+
+براہ کرم تصدیق کریں کہ آپ کا ای میل کلائنٹ سیٹ اپ ہے اور دوبارہ کوشش کریں۔</string>
+		<key>uz</key>
+		<string>Ko&apos;rinib turibdiki, qurilmangiz elektron pochta xabarlarini jo&apos;nata olmaydi.
+
+Iltimos, elektron pochta mijozingiz sozlanganligini tekshiring va qayta urinib ko‘ring.</string>
+		<key>vi</key>
+		<string>Có vẻ như thiết bị của bạn không thể gửi e-mail.
+
+Vui lòng xác minh rằng ứng dụng e-mail của bạn đã được thiết lập và thử lại.</string>
+		<key>yi</key>
+		<string>עס אויס אַז דיין מיטל איז נישט ביכולת צו שיקן E- פּאָסט.
+
+ביטע באַשטעטיקן אַז דיין E- בריוו קליענט איז שטעלן אַרויף און פּרובירן ווידער.</string>
+		<key>zh</key>
+		<string>您的设备似乎无法发送电子邮件。
+
+请确认您的电子邮件客户端已设置并重试。</string>
+	</dict>
+	<key>no_internet_message</key>
+	<dict>
+		<key>af</key>
+		<string>Die Internet-verbinding blyk te wees op die regte pad.
+
+Asseblief toegang tot die Internet en probeer weer.</string>
+		<key>ar</key>
+		<string>اتصال إنترنت يبدو حاليا.
+
+يرجى الاتصال بالإنترنت ثم حاول مرة أخرى.</string>
+		<key>az</key>
+		<string>İnternet bağlantısı yerləşir offline.
+
+Xahiş edirik, qoşulun İnternet və yenidən cəhd edin.</string>
+		<key>ba</key>
+		<string>Интернет-берләшмә ҡушыла.
+
+режимда автономиялы.
+
+Зинһар, ҡабатларға тырышасаҡ һәм интернетҡа тоташтырылған.</string>
+		<key>be</key>
+		<string>Інтэрнэт-злучэнне знаходзіцца ў аўтаномным рэжыме.
+
+Калі ласка, падключыцеся да Інтэрнэту і паўтарыце спробу.</string>
+		<key>bg</key>
+		<string>Интернет-връзка, е в офлайн режим.
+
+Моля, свържете се към Интернет и опитайте отново.</string>
+		<key>bn</key>
+		<string>ইন্টারনেট সংযোগ প্রদর্শিত হতে অফলাইন.
+
+দয়া করে ইন্টারনেটের সাথে সংযোগ এবং আবার চেষ্টা করুন.</string>
+		<key>bs</key>
+		<string>Internet veza izgleda da je van dometa.
+
+Molim te spoji na Internet i pokušaj ponovo.</string>
+		<key>ca</key>
+		<string>La connexió a Internet sembla estar fora de línia. Si us plau, connectar-se a Internet i provar de nou.</string>
+		<key>ceb</key>
+		<string>Ang Internet connection makita nga offline.
+
+Palihug sa sumpaysumpaya sa Internet ug mosulay pag-usab.</string>
+		<key>cs</key>
+		<string>Připojení k Internetu se zdá být v režimu offline.
+
+Prosím, připojení k Internetu a zkuste to znovu.</string>
+		<key>cy</key>
+		<string>Y cysylltiad Rhyngrwyd yn ymddangos i fod yn all-lein.
+
+Os gwelwch yn dda cysylltu i&apos;r Rhyngrwyd ac yn ceisio eto.</string>
+		<key>da</key>
+		<string>Den Internet-forbindelse ser ud til at være offline.
+
+Bemærk oprette forbindelse til Internettet, og prøv igen.</string>
+		<key>de</key>
+		<string>Die Internet-Verbindung scheint offline zu sein.
+
+Bitte mit dem Internet verbinden und versuchen Sie es erneut.</string>
+		<key>el</key>
+		<string>Η σύνδεση με το Διαδίκτυο φαίνεται να είναι εκτός σύνδεσης.
+
+Παρακαλώ συνδεθείτε στο Internet και προσπαθήστε ξανά.</string>
+		<key>en</key>
+		<string>The internet connection appears to be offline.
+
+Please connect to the internet and try again.</string>
+		<key>eo</key>
+		<string>La Interreta konekto aperas esti elreta.
+
+Bonvolu konekti al la Interreto kaj provu denove.</string>
+		<key>es</key>
+		<string>La conexión a Internet parece estar fuera de línea.
+
+Por favor, conectarse a Internet e inténtelo de nuevo.</string>
+		<key>et</key>
+		<string>Interneti-ühenduse tundub, et offline.
+
+Palun Interneti-ühendust ja proovige uuesti.</string>
+		<key>eu</key>
+		<string>Internet konexioa agertzen offline.
+
+Mesedez, Internetera konektatu eta saiatu berriro.</string>
+		<key>fa</key>
+		<string>اتصال به اینترنت به نظر می رسد نیست.
+
+لطفا اتصال به اینترنت و دوباره سعی کنید.</string>
+		<key>fi</key>
+		<string>Internet-yhteys näyttää olevan offline-tilassa.
+
+Ole hyvä yhteyden Internetiin ja yritä uudelleen.</string>
+		<key>fr</key>
+		<string>La connexion Internet semble être hors ligne.
+
+Veuillez vous connecter à l&apos;Internet et essayez à nouveau.</string>
+		<key>ga</key>
+		<string>Ar an Idirlíon nasc dealraitheach a bheith as líne.
+
+Le do thoil nascadh leis an Idirlíon agus bain triail as arís.</string>
+		<key>gd</key>
+		<string>An t-eadar-Lìon ceangal gu bheil far loidhne.
+
+Cuir ceangal ris an eadar-Lìon agus feuch ris a-rithist.</string>
+		<key>gl</key>
+		<string>A conexión a Internet parece estar fóra de liña.
+
+Por favor, conectarse a Internet e ténteo de novo.</string>
+		<key>gu</key>
+		<string>ઇન્ટરનેટ કનેક્શન ઓફલાઈન થયેલ હોય એમ દેખાય છે.
+
+કૃપા કરીને ઇન્ટરનેટ સાથે કનેક્ટ કરો અને ફરીથી પ્રયત્ન કરો.</string>
+		<key>he</key>
+		<string>חיבור לאינטרנט נראה במצב לא מקוון.
+
+בבקשה להתחבר לאינטרנט ונסה שוב.</string>
+		<key>hi</key>
+		<string>इंटरनेट कनेक्शन प्रकट होता है किया जा करने के लिए ऑफ़लाइन है । कृपया इंटरनेट से कनेक्ट करें और फिर कोशिश करें.</string>
+		<key>hr</key>
+		<string>Internet veza je u izvanmrežnom načinu rada.
+
+Molimo vas, povežite se s Internetom i pokušajte ponovo.</string>
+		<key>ht</key>
+		<string>Koneksyon sou Entènèt la parèt yo dwe offline.
+
+Tanpri konekte sou Entènèt la epi eseye ankò.</string>
+		<key>hu</key>
+		<string>Az Internet-kapcsolat, úgy tűnik, hogy offline.
+
+Kérjük, csatlakozzon az Internethez, majd próbálja meg újra.</string>
+		<key>hy</key>
+		<string>Ինտերնետ-կապը գտնվում է օֆլայն է: Խնդրում ենք, միացեք Ինտերնետին և կրկին փորձեք.</string>
+		<key>id</key>
+		<string>Koneksi Internet tampaknya offline.
+
+Silakan terhubung ke Internet dan coba lagi.</string>
+		<key>is</key>
+		<string>Nettengingu virðist vera ótengdur.
+
+Vinsamlegast tengjast Netinu og reyna aftur.</string>
+		<key>it</key>
+		<string>La connessione a Internet sembra essere offline.
+
+Si prega di collegarsi a Internet e riprovare.</string>
+		<key>ja</key>
+		<string>インターネット接続がオフラインです。 くださいインターネットへ接続して操作をやり直してください。</string>
+		<key>jv</key>
+		<string>Sambungan Internet katon dadi offline.
+
+Mangga nyambung menyang Internet lan nyoba maneh.</string>
+		<key>ka</key>
+		<string>ინტერნეტი, როგორც ჩანს ფორუმზე.
+
+გთხოვთ დაკავშირება ინტერნეტი და სცადეთ კიდევ ერთხელ.</string>
+		<key>kk</key>
+		<string>Интернет қосылымы және орналасқан желіден тыс.
+
+Пожалуйста, подключитесь Интернетке және әрекетті қайталаңыз.</string>
+		<key>kn</key>
+		<string>ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಕಂಡುಬರುತ್ತದೆ ಆಫ್ಲೈನ್.
+
+ಮಾಡಿ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+		<key>ko</key>
+		<string>인터넷 연결을 나타나는 오프라인 상태로 표시됩니다.
+
+인터넷에 연결하시기 바랍니다 다시 시도하십시오.</string>
+		<key>ky</key>
+		<string>Интернет-туташуу турат автономном режиминде.
+
+Мейли, подключитесь карата Интернетке жана повторите өтүүсүнө.</string>
+		<key>la</key>
+		<string>Internet nexu apparet, consectetuer adipiscing elit.
+
+Placere coniungere ad Internet, et experiri iterum.</string>
+		<key>lt</key>
+		<string>Interneto ryšys, atrodo, būti neprisijungęs.
+
+Prašome prisijungti prie Interneto ir bandykite dar kartą.</string>
+		<key>mg</key>
+		<string>Ny Aterineto toa ivelan&apos;ny aterineto.
+
+Azafady mifandray amin&apos;ny Aterineto, ary miezaka indray.</string>
+		<key>mi</key>
+		<string>Te hononga Ipurangi puta ki te waiho i te tuimotu.
+
+Tēnā hono atu ki te Internet me te ngana anō.</string>
+		<key>mk</key>
+		<string>Интернет конекцијата се појавува да биде присутен.
+
+Ве молиме да се поврзете на Интернет и обидете се повторно.</string>
+		<key>ml</key>
+		<string>ഇന്റർനെറ്റ് കണക്ഷൻ ഓഫ്ലൈനിൽ ദൃശ്യമാകുന്നു.
+
+ദയവായി ഇൻറർനെറ്റുമായി ബന്ധിപ്പിച്ച് വീണ്ടും ശ്രമിക്കൂ.</string>
+		<key>mn</key>
+		<string>Интернет холболт байх нь харагдаж офлайн.
+
+Уу Интернэтэд холбогдож, дахин оролдоно.</string>
+		<key>mr</key>
+		<string>इंटरनेट कनेक्शन असल्याचे दिसून येत आहे ऑफलाइन आहे.
+
+कृपया इंटरनेटशी कनेक्ट करा आणि पुन्हा प्रयत्न करा.</string>
+		<key>ms</key>
+		<string>Sambungan Internet muncul untuk menjadi offline.
+
+Tolong sambungkan ke Internet dan cuba lagi.</string>
+		<key>mt</key>
+		<string>L-konnessjoni mal-Internet jidher li l-internet.
+
+Jekk jogħġbok jgħaqqdu l-Internet u erġa &apos; ipprova.</string>
+		<key>ne</key>
+		<string>इन्टरनेट जडान देखिन्छ अफलाइन छ । कृपया इन्टरनेट जडान र फेरि प्रयास गर्नुहोस् । </string>
+		<key>nl</key>
+		<string>De Internet verbinding wordt weergegeven als offline.
+
+Maak verbinding met het Internet en probeer het opnieuw.</string>
+		<key>no</key>
+		<string>Internett-tilkobling ser ut til å være offline.
+
+Vennligst koble til Internett, og prøv på nytt.</string>
+		<key>pa</key>
+		<string>ਨੂੰ ਇੰਟਰਨੈੱਟ ਕੁਨੈਕਸ਼ਨ ਹੋਣ ਦਾ ਦਿਸਦਾ ਹੈ ਆਫਲਾਈਨ ਹੈ.
+
+ਜੀ, ਨੂੰ ਇੰਟਰਨੈੱਟ ਨਾਲ ਕੁਨੈਕਟ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
+		<key>pl</key>
+		<string>Połączenie z internetem jest w trybie offline. 
+
+            Proszę, połącz się z Internetem i spróbuj ponownie.</string>
+		<key>pt</key>
+		<string>A conexão com a Internet parece estar offline.
+
+Por favor conecte-se à Internet e tente novamente.</string>
+		<key>ro</key>
+		<string>Conexiunea la Internet pare a fi deconectat.
+
+Vă rugăm să vă conectați la Internet și încercați din nou.</string>
+		<key>ru</key>
+		<string>Интернет-соединение находится в автономном режиме.
+
+Пожалуйста, подключитесь к Интернету и повторите попытку.</string>
+		<key>si</key>
+		<string>අන්තර්ජාල සම්බන්ධතාවයක් බව පෙනී යයි නොබැඳි වනු ඇත.
+
+කරුණාකර අන්තර්ජාලය වෙත සම්බන්ධ කර නැවත උත්සාහ කරන්න.</string>
+		<key>sk</key>
+		<string>Pripojenie na Internet sa zdá byť offline.
+
+Prosím, pripojiť na Internet, a skúste to znova.</string>
+		<key>sl</key>
+		<string>Internetna povezava se zdi, da se brez povezave.
+
+Prosimo, da se povežete z Internetom in poskusite znova.</string>
+		<key>sq</key>
+		<string>Lidhja në Internet duket të jetë e shkëputur.
+
+Ju lutemi të lidheni me Internet dhe të provoni përsëri.</string>
+		<key>sr</key>
+		<string>Интернет веза је у режиму ван мреже.
+
+Молим вас, морате да имате Интернет везу и покушајте поново.</string>
+		<key>su</key>
+		<string>Nu sambungan Internet mucunghul jadi offline.
+
+Mangga nyambung ka Internet jeung coba deui.</string>
+		<key>sv</key>
+		<string>Internet-anslutning verkar vara offline.
+
+Anslut till Internet och försök igen.</string>
+		<key>sw</key>
+		<string>Internet uhusiano inaonekana kuwa offline.
+
+Tafadhali kuungana na Mtandao na kujaribu tena.</string>
+		<key>ta</key>
+		<string>இணைய இணைப்பு தோன்றுகிறது தான்.
+
+தயவு செய்து இணைய இணைக்க மீண்டும் முயற்சி.</string>
+		<key>te</key>
+		<string>ఇంటర్నెట్ కనెక్షన్ ఆఫ్లైన్లో కనిపిస్తుంది.
+
+దయచేసి ఇంటర్నెట్కు కనెక్ట్ చేసి మళ్లీ ప్రయత్నించండి.</string>
+		<key>tg</key>
+		<string>Интернет-мураккаб аст, хомӯш.
+
+Лутфан, подключитесь ба Интернет ва амалро такрор кунед.</string>
+		<key>th</key>
+		<string>ที่เชื่อมต่ออินเทอร์เน็ตดูเหมือนจะเป็นออฟไลน์นะ ได้โปรดเชื่อมต่อไปยังอินเทอร์เน็ตก่อนแล้วลองใหม่อีกครั้ง</string>
+		<key>tl</key>
+		<string>Ang koneksyon sa Internet ay lilitaw upang maging offline.
+
+Mangyaring kumonekta sa Internet at subukan muli.</string>
+		<key>tr</key>
+		<string>İnternet bağlantısı çevrimdışı görünüyor.
+
+Internet&apos;e bağlanın ve yeniden deneyin.</string>
+		<key>tt</key>
+		<string>Интернет-соединение урнашкан, автоном режимда.
+
+Зинһар, подключитесь Интернетка һәм повторите узды.</string>
+		<key>udm</key>
+		<string>Интернет-режимын пуке автономной огазеян.
+
+Пожалуйста, подключаться, Интернет please try доры.</string>
+		<key>uk</key>
+		<string>Інтернет-з&apos;єднання знаходиться в автономному режимі.
+
+Будь ласка, підключіться до Інтернету і повторіть спробу.</string>
+		<key>ur</key>
+		<string>انٹرنیٹ کنکشن ہونا ظاہر ہوتا ہے آف لائن.
+
+براہ مہربانی رابطہ قائم کرنے کے لئے انٹرنیٹ اور دوبارہ کوشش کریں.</string>
+		<key>uz</key>
+		<string>Internet ulanish offline ko&apos;rinadi.
+
+Internetga ulanish va yana harakat qiling, iltimos.</string>
+		<key>vi</key>
+		<string>Các kết nối Internet dường như là nhé.
+
+Hãy kết nối với Internet và cố gắng một lần nữa.</string>
+		<key>yi</key>
+		<string>די אינטערנעט קשר אויס צו זיין אָפפלינע.
+
+ביטע פאַרבינדן צו די אינטערנעט און פּרובירן ווידער.</string>
+		<key>zh</key>
+		<string>互联网连接，似乎是离线。 请连接到互联网和再试一次。</string>
+	</dict>
+	<key>no_internet_title</key>
+	<dict>
+		<key>af</key>
+		<string>Geen Internet Konneksie</string>
+		<key>ar</key>
+		<string>لا اتصال إنترنت</string>
+		<key>az</key>
+		<string>Heç Bir İnternet Bağlantısı</string>
+		<key>ba</key>
+		<string>Интернетҡа Тоташыу Юҡ</string>
+		<key>be</key>
+		<string>Няма Падлучэння Да Інтэрнэту</string>
+		<key>bg</key>
+		<string>Няма Интернет Връзка</string>
+		<key>bn</key>
+		<string>কোন ইন্টারনেট সংযোগ</string>
+		<key>bs</key>
+		<string>Nema Internet</string>
+		<key>ca</key>
+		<string>Sense Connexió A Internet</string>
+		<key>ceb</key>
+		<string>Walay Koneksyon Sa Internet</string>
+		<key>cs</key>
+		<string>Bez Připojení K Internetu</string>
+		<key>cy</key>
+		<string>Nid Oes Cysylltiad Rhyngrwyd</string>
+		<key>da</key>
+		<string>Er Der Ingen Internetforbindelse</string>
+		<key>de</key>
+		<string>Keine Internet-Verbindung</string>
+		<key>el</key>
+		<string>Δεν Υπάρχει Σύνδεση Στο Internet</string>
+		<key>en</key>
+		<string>Internet Connection Offline</string>
+		<key>eo</key>
+		<string>Neniu Interreta Konekto</string>
+		<key>es</key>
+		<string>No Hay Conexión A Internet</string>
+		<key>et</key>
+		<string>Interneti-ühendus puudub</string>
+		<key>eu</key>
+		<string>Internet Konexioa Ez</string>
+		<key>fa</key>
+		<string>بدون اتصال به اینترنت</string>
+		<key>fi</key>
+		<string>Ei Internet-Yhteyden</string>
+		<key>fr</key>
+		<string>Pas De Connexion Internet</string>
+		<key>ga</key>
+		<string>Níl Aon Nasc Idirlín</string>
+		<key>gd</key>
+		<string>Chan Eil Ceangal Eadar-Lìn</string>
+		<key>gl</key>
+		<string>Non Hai Conexión A Internet</string>
+		<key>gu</key>
+		<string>કોઈ ઇન્ટરનેટ કનેક્શન છે</string>
+		<key>he</key>
+		<string>אין חיבור לאינטרנט</string>
+		<key>hi</key>
+		<string>कोई इंटरनेट कनेक्शन</string>
+		<key>hr</key>
+		<string>Nema Veze Na Internet</string>
+		<key>ht</key>
+		<string>Pa Gen Okenn Koneksyon Entènèt</string>
+		<key>hu</key>
+		<string>Nincs Internet Kapcsolat</string>
+		<key>hy</key>
+		<string>Չկա Ինտերնետ Կապ</string>
+		<key>id</key>
+		<string>Tidak Ada Koneksi Internet</string>
+		<key>is</key>
+		<string>Engin Tengsl</string>
+		<key>it</key>
+		<string>Nessuna Connessione A Internet</string>
+		<key>ja</key>
+		<string>なインターネット接続</string>
+		<key>jv</key>
+		<string>Ora Ana Sambungan Internet</string>
+		<key>ka</key>
+		<string>არ ინტერნეტი</string>
+		<key>kk</key>
+		<string>Жоқ, Интернетке Қосылу</string>
+		<key>kn</key>
+		<string>ಯಾವುದೇ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ</string>
+		<key>ko</key>
+		<string>인터넷 연결 없음</string>
+		<key>ky</key>
+		<string>Жок Интернетке Кошуу</string>
+		<key>la</key>
+		<string>Non Penitus Iunctio</string>
+		<key>lt</key>
+		<string>Nėra Interneto Ryšio</string>
+		<key>mg</key>
+		<string>Tsy Misy Fifandraisana Aterineto</string>
+		<key>mi</key>
+		<string>Kahore He Hononga Ipurangi</string>
+		<key>mk</key>
+		<string>Без Интернет Конекција</string>
+		<key>ml</key>
+		<string>ഇന്റർനെറ്റ് കണക്ഷൻ ഇല്ല</string>
+		<key>mn</key>
+		<string>Ямар Ч Интернэт Холболт</string>
+		<key>mr</key>
+		<string>इंटरनेट कनेक्शन</string>
+		<key>ms</key>
+		<string>Tidak Ada Sambungan Internet</string>
+		<key>mt</key>
+		<string>L-Ebda Konnessjoni Mal-Internet</string>
+		<key>ne</key>
+		<string>कुनै इन्टरनेट जडान</string>
+		<key>nl</key>
+		<string>Geen Internet Verbinding</string>
+		<key>no</key>
+		<string>Ingen Internett-Tilkobling</string>
+		<key>pa</key>
+		<string>ਕੋਈ ਵੀ ਇੰਟਰਨੈੱਟ ਕੁਨੈਕਸ਼ਨ</string>
+		<key>pl</key>
+		<string>Brak Połączenia Z Internetem</string>
+		<key>pt</key>
+		<string>Sem Conexão À Internet</string>
+		<key>ro</key>
+		<string>Nici O Conexiune La Internet</string>
+		<key>ru</key>
+		<string>Нет Подключения К Интернету</string>
+		<key>si</key>
+		<string>කිසිදු අන්තර්ජාල සම්බන්ධතාවයක්</string>
+		<key>sk</key>
+		<string>Pripojenie Na Internet</string>
+		<key>sl</key>
+		<string>Brez Internetne Povezave</string>
+		<key>sq</key>
+		<string>Nuk Ka Lidhje Të Internetit</string>
+		<key>sr</key>
+		<string>Нема Интернет Конекција</string>
+		<key>su</key>
+		<string>No Sambungan Internet</string>
+		<key>sv</key>
+		<string>Ingen Internet-Anslutning</string>
+		<key>sw</key>
+		<string>Hakuna Uhusiano Internet</string>
+		<key>ta</key>
+		<string>எந்த இணைய இணைப்பு</string>
+		<key>te</key>
+		<string>ఇంటర్నెట్ కనెక్షన్</string>
+		<key>tg</key>
+		<string>Не Пайвастшавӣ Ба Интернет</string>
+		<key>th</key>
+		<string>ไม่มีการเชื่อมต่ออินเทอร์เน็ต</string>
+		<key>tl</key>
+		<string>Walang Koneksyon Sa Internet</string>
+		<key>tr</key>
+		<string>Hiçbir İnternet Bağlantısı</string>
+		<key>tt</key>
+		<string>Юк, Интернетка Тоташу</string>
+		<key>udm</key>
+		<string>Вотэсын Ӧвӧл Подключение</string>
+		<key>uk</key>
+		<string>Немає Підключення До Інтернету</string>
+		<key>ur</key>
+		<string>کوئی انٹرنیٹ کنکشن</string>
+		<key>uz</key>
+		<string>Hech Internet Aloqasi</string>
+		<key>vi</key>
+		<string>Không Có Internet</string>
+		<key>yi</key>
+		<string>קיין אינטערנעט קשר</string>
+		<key>zh</key>
+		<string>没有互联网连接的</string>
+	</dict>
+	<key>no_results</key>
+	<dict>
+		<key>af</key>
+		<string>Geen resultate</string>
+		<key>ar</key>
+		<string>لا نتائج</string>
+		<key>az</key>
+		<string>Nəticə yoxdur</string>
+		<key>ba</key>
+		<string>No results</string>
+		<key>be</key>
+		<string>Няма вынікаў</string>
+		<key>bg</key>
+		<string>Няма резултати</string>
+		<key>bn</key>
+		<string>কোন ফলাফল নেই</string>
+		<key>bs</key>
+		<string>Nema rezultata</string>
+		<key>ca</key>
+		<string>Sense resultats</string>
+		<key>ceb</key>
+		<string>Walay resulta</string>
+		<key>cs</key>
+		<string>Žádné výsledky</string>
+		<key>cy</key>
+		<string>Dim canlyniadau</string>
+		<key>da</key>
+		<string>Ingen resultater</string>
+		<key>de</key>
+		<string>Keine ergebnisse</string>
+		<key>el</key>
+		<string>Χωρίς αποτέλεσμα</string>
+		<key>en</key>
+		<string>No results</string>
+		<key>eo</key>
+		<string>Neniuj rezultoj</string>
+		<key>es</key>
+		<string>No hay resultados</string>
+		<key>et</key>
+		<string>Tulemused puuduvad</string>
+		<key>eu</key>
+		<string>Ez dago emaitzarik</string>
+		<key>fa</key>
+		<string>هیچ نتیجه ای</string>
+		<key>fi</key>
+		<string>Ei tuloksia</string>
+		<key>fr</key>
+		<string>Aucun résultat</string>
+		<key>ga</key>
+		<string>Gan torthaí</string>
+		<key>gd</key>
+		<string>Gun thoraidhean</string>
+		<key>gl</key>
+		<string>Sen resultados</string>
+		<key>gu</key>
+		<string>પરિણામ નથી</string>
+		<key>he</key>
+		<string>אין תוצאות</string>
+		<key>hi</key>
+		<string>कोई परिणाम नहीं</string>
+		<key>hr</key>
+		<string>Nema rezultata</string>
+		<key>ht</key>
+		<string>Pa gen rezilta</string>
+		<key>hu</key>
+		<string>Nincs eredmény</string>
+		<key>hy</key>
+		<string>Ոչ մի արդյունք</string>
+		<key>id</key>
+		<string>Tidak ada hasil</string>
+		<key>is</key>
+		<string>Engar niðurstöður</string>
+		<key>it</key>
+		<string>Nessun risultato</string>
+		<key>ja</key>
+		<string>結果がありません</string>
+		<key>jv</key>
+		<string>No results</string>
+		<key>ka</key>
+		<string>Არანაირი შედეგი</string>
+		<key>kk</key>
+		<string>Нәтиже жоқ</string>
+		<key>kn</key>
+		<string>ಯಾವುದೇ ಫಲಿತಾಂಶಗಳಿಲ್ಲ</string>
+		<key>ko</key>
+		<string>결과 없음</string>
+		<key>ky</key>
+		<string>Натыйжа жок</string>
+		<key>la</key>
+		<string>Nihil eventorum</string>
+		<key>lt</key>
+		<string>Jokių rezultatų</string>
+		<key>mg</key>
+		<string>Tsy misy valiny</string>
+		<key>mi</key>
+		<string>Karekau he hua</string>
+		<key>mk</key>
+		<string>Нема резултати</string>
+		<key>ml</key>
+		<string>ഫലങ്ങളൊന്നുമില്ല</string>
+		<key>mn</key>
+		<string>Үр дүнгүй</string>
+		<key>mr</key>
+		<string>कोणतेही परिणाम नाहीत</string>
+		<key>ms</key>
+		<string>Tiada keputusan</string>
+		<key>mt</key>
+		<string>Ebda riżultati</string>
+		<key>ne</key>
+		<string>कुनै परिणाम छैन</string>
+		<key>nl</key>
+		<string>Geen resultaten</string>
+		<key>no</key>
+		<string>Ingen resultater</string>
+		<key>pa</key>
+		<string>ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ</string>
+		<key>pl</key>
+		<string>Brak wyników</string>
+		<key>pt</key>
+		<string>Sem resultados</string>
+		<key>ro</key>
+		<string>Fara rezultate</string>
+		<key>ru</key>
+		<string>Без результатов</string>
+		<key>si</key>
+		<string>ප්රතිපල නැත</string>
+		<key>sk</key>
+		<string>Žiadne výsledky</string>
+		<key>sl</key>
+		<string>Brez rezultatov</string>
+		<key>sq</key>
+		<string>Nuk ka rezultate</string>
+		<key>sr</key>
+		<string>Нема резултата</string>
+		<key>su</key>
+		<string>Taya hasilna</string>
+		<key>sv</key>
+		<string>Inga resultat</string>
+		<key>sw</key>
+		<string>Hakuna matokeo</string>
+		<key>ta</key>
+		<string>முடிவுகள் இல்லை</string>
+		<key>te</key>
+		<string>ఫలితాలు లేవు</string>
+		<key>tg</key>
+		<string>Ҳеҷ натиҷае нест</string>
+		<key>th</key>
+		<string>ไม่มีผลลัพธ์</string>
+		<key>tl</key>
+		<string>Walang resulta</string>
+		<key>tr</key>
+		<string>Sonuç yok</string>
+		<key>tt</key>
+		<string>Нәтиҗә юк</string>
+		<key>udm</key>
+		<string>No results</string>
+		<key>uk</key>
+		<string>Немає результатів</string>
+		<key>ur</key>
+		<string>کوئی نتیجہ نہیں۔</string>
+		<key>uz</key>
+		<string>Natija yoʻq</string>
+		<key>vi</key>
+		<string>Ko có kết quả</string>
+		<key>yi</key>
+		<string>קיין רעזולטאַטן</string>
+		<key>zh</key>
+		<string>没有结果</string>
+	</dict>
+	<key>report_bug</key>
+	<dict>
+		<key>af</key>
+		<string>Rapporteer &apos;n Fout</string>
+		<key>ar</key>
+		<string>الإبلاغ عن خطأ</string>
+		<key>az</key>
+		<string>Xəta bildirin</string>
+		<key>ba</key>
+		<string>Report an Error</string>
+		<key>be</key>
+		<string>Паведаміць пра Памылку</string>
+		<key>bg</key>
+		<string>Докладване за Грешка</string>
+		<key>bn</key>
+		<string>একটি ত্রুটি রিপোর্ট করুন</string>
+		<key>bs</key>
+		<string>Prijavite grešku</string>
+		<key>ca</key>
+		<string>Informa d&apos;un Error</string>
+		<key>ceb</key>
+		<string>I-report ang usa ka Sayop</string>
+		<key>cs</key>
+		<string>Nahlásit chybu</string>
+		<key>cy</key>
+		<string>Adrodd Gwall</string>
+		<key>da</key>
+		<string>Rapporter en Fejl</string>
+		<key>de</key>
+		<string>Fehler melden</string>
+		<key>el</key>
+		<string>Αναφορά σφάλματος</string>
+		<key>en</key>
+		<string>Report Bug</string>
+		<key>eo</key>
+		<string>Raportu Eraron</string>
+		<key>es</key>
+		<string>Informar de un error</string>
+		<key>et</key>
+		<string>Teata veast</string>
+		<key>eu</key>
+		<string>Eman errore Bat</string>
+		<key>fa</key>
+		<string>یک خطا را گزارش کنید</string>
+		<key>fi</key>
+		<string>Ilmoita virheestä</string>
+		<key>fr</key>
+		<string>Signaler une Erreur</string>
+		<key>ga</key>
+		<string>Tuairiscigh Earráid</string>
+		<key>gd</key>
+		<string>Dèan aithris air Mearachd</string>
+		<key>gl</key>
+		<string>Informar dun Erro</string>
+		<key>gu</key>
+		<string>ભૂલની જાણ કરો</string>
+		<key>he</key>
+		<string>דווח על שגיאה</string>
+		<key>hi</key>
+		<string>त्रुटि की रिपोर्ट करें</string>
+		<key>hr</key>
+		<string>Prijavi pogrešku</string>
+		<key>ht</key>
+		<string>Rapòte yon Erè</string>
+		<key>hu</key>
+		<string>Hiba bejelentése</string>
+		<key>hy</key>
+		<string>Հաղորդել սխալի Մասին</string>
+		<key>id</key>
+		<string>Laporkan Kesalahan</string>
+		<key>is</key>
+		<string>Tilkynna villu</string>
+		<key>it</key>
+		<string>Segnala un Errore</string>
+		<key>ja</key>
+		<string>エラーを報告する</string>
+		<key>jv</key>
+		<string>Report an Error</string>
+		<key>ka</key>
+		<string>Შეატყობინეთ შეცდომის Შესახებ</string>
+		<key>kk</key>
+		<string>Қатені хабарлау</string>
+		<key>kn</key>
+		<string>ದೋಷವನ್ನು ವರದಿ ಮಾಡಿ</string>
+		<key>ko</key>
+		<string>오류 보고</string>
+		<key>ky</key>
+		<string>Ката жөнүндө Кабарлоо</string>
+		<key>la</key>
+		<string>Report an Error</string>
+		<key>lt</key>
+		<string>Pranešti apie Klaidą</string>
+		<key>mg</key>
+		<string>Mitatitra lesoka</string>
+		<key>mi</key>
+		<string>Pūrongo he Hapa</string>
+		<key>mk</key>
+		<string>Пријавете грешка</string>
+		<key>ml</key>
+		<string>ഒരു പിശക് റിപ്പോർട്ട് ചെയ്യുക</string>
+		<key>mn</key>
+		<string>Алдаа мэдээлэх</string>
+		<key>mr</key>
+		<string>त्रुटी नोंदवा</string>
+		<key>ms</key>
+		<string>Laporkan Ralat</string>
+		<key>mt</key>
+		<string>Irrapporta Żball</string>
+		<key>ne</key>
+		<string>त्रुटि रिपोर्ट गर्नुहोस्</string>
+		<key>nl</key>
+		<string>Meld een Fout</string>
+		<key>no</key>
+		<string>Rapporter en Feil</string>
+		<key>pa</key>
+		<string>ਇੱਕ ਗਲਤੀ ਦੀ ਰਿਪੋਰਟ ਕਰੋ</string>
+		<key>pl</key>
+		<string>Zgłoś błąd</string>
+		<key>pt</key>
+		<string>Informar um Erro</string>
+		<key>ro</key>
+		<string>Raportați o Eroare</string>
+		<key>ru</key>
+		<string>Сообщить об Ошибке</string>
+		<key>si</key>
+		<string>දෝෂයක් වාර්තා කරන්න</string>
+		<key>sk</key>
+		<string>Nahlásiť chybu</string>
+		<key>sl</key>
+		<string>Prijavi napako</string>
+		<key>sq</key>
+		<string>Raportoni një Gabim</string>
+		<key>sr</key>
+		<string>Пријавите грешку</string>
+		<key>su</key>
+		<string>Ngalaporkeun Kasalahan</string>
+		<key>sv</key>
+		<string>Rapportera ett Fel</string>
+		<key>sw</key>
+		<string>Ripoti Hitilafu</string>
+		<key>ta</key>
+		<string>ஒரு பிழையைப் புகாரளிக்கவும்</string>
+		<key>te</key>
+		<string>లోపాన్ని నివేదించండి</string>
+		<key>tg</key>
+		<string>Дар бораи хато хабар диҳед</string>
+		<key>th</key>
+		<string>รายงานข้อผิดพลาด</string>
+		<key>tl</key>
+		<string>Mag-ulat ng Error</string>
+		<key>tr</key>
+		<string>Hata Bildir</string>
+		<key>tt</key>
+		<string>Хата турында хәбәр итегез</string>
+		<key>udm</key>
+		<string>Report an Error</string>
+		<key>uk</key>
+		<string>Повідомити про Помилку</string>
+		<key>ur</key>
+		<string>غلطی کی اطلاع دیں۔</string>
+		<key>uz</key>
+		<string>Xato haqida xabar berish</string>
+		<key>vi</key>
+		<string>Báo lỗi</string>
+		<key>yi</key>
+		<string>באריכט אַ טעות</string>
+		<key>zh</key>
+		<string>报告错误</string>
+	</dict>
+	<key>saturday</key>
+	<dict>
+		<key>af</key>
+		<string>Saterdag</string>
+		<key>ar</key>
+		<string>السبت</string>
+		<key>az</key>
+		<string>Şənbə</string>
+		<key>ba</key>
+		<string>Lørdag</string>
+		<key>be</key>
+		<string>Субота</string>
+		<key>bg</key>
+		<string>Събота</string>
+		<key>bn</key>
+		<string>শনিবার</string>
+		<key>bs</key>
+		<string>Subota</string>
+		<key>ca</key>
+		<string>Dissabte</string>
+		<key>ceb</key>
+		<string>Sabado</string>
+		<key>cs</key>
+		<string>Sobota</string>
+		<key>cy</key>
+		<string>dydd Sadwrn</string>
+		<key>da</key>
+		<string>Lørdag</string>
+		<key>de</key>
+		<string>Samstag</string>
+		<key>el</key>
+		<string>Σάββατο</string>
+		<key>en</key>
+		<string>Saturday</string>
+		<key>eo</key>
+		<string>Sabato</string>
+		<key>es</key>
+		<string>Sábado</string>
+		<key>et</key>
+		<string>Laupäeval</string>
+		<key>eu</key>
+		<string>Larunbat</string>
+		<key>fa</key>
+		<string>شنبه</string>
+		<key>fi</key>
+		<string>Lauantai</string>
+		<key>fr</key>
+		<string>Samedi</string>
+		<key>ga</key>
+		<string>Dé Sathairn</string>
+		<key>gd</key>
+		<string>Disathairne</string>
+		<key>gl</key>
+		<string>Sábado</string>
+		<key>gu</key>
+		<string>શનિવાર</string>
+		<key>he</key>
+		<string>יום שבת</string>
+		<key>hi</key>
+		<string>शनिवार</string>
+		<key>hr</key>
+		<string>Subota</string>
+		<key>ht</key>
+		<string>Samdi</string>
+		<key>hu</key>
+		<string>Szombat</string>
+		<key>hy</key>
+		<string>շաբաթ օրը</string>
+		<key>id</key>
+		<string>Sabtu</string>
+		<key>is</key>
+		<string>Laugardag</string>
+		<key>it</key>
+		<string>Sabato</string>
+		<key>ja</key>
+		<string>土曜日</string>
+		<key>jv</key>
+		<string>Lørdag</string>
+		<key>ka</key>
+		<string>Შაბათი</string>
+		<key>kk</key>
+		<string>Сенбі</string>
+		<key>kn</key>
+		<string>ಶನಿವಾರ</string>
+		<key>ko</key>
+		<string>토요일</string>
+		<key>ky</key>
+		<string>Ишемби</string>
+		<key>la</key>
+		<string>Saturni</string>
+		<key>lt</key>
+		<string>Šeštadienis</string>
+		<key>mg</key>
+		<string>Asabotsy</string>
+		<key>mi</key>
+		<string>Rāhoroi</string>
+		<key>mk</key>
+		<string>Сабота</string>
+		<key>ml</key>
+		<string>ശനിയാഴ്ച</string>
+		<key>mn</key>
+		<string>Бямба гариг</string>
+		<key>mr</key>
+		<string>शनिवार</string>
+		<key>ms</key>
+		<string>Sabtu</string>
+		<key>mt</key>
+		<string>Is-Sibt</string>
+		<key>ne</key>
+		<string>शनिबार</string>
+		<key>nl</key>
+		<string>Zaterdag</string>
+		<key>no</key>
+		<string>Lørdag</string>
+		<key>pa</key>
+		<string>ਸ਼ਨੀਵਾਰ</string>
+		<key>pl</key>
+		<string>Sobota</string>
+		<key>pt</key>
+		<string>Sábado</string>
+		<key>ro</key>
+		<string>Sâmbătă</string>
+		<key>ru</key>
+		<string>Суббота</string>
+		<key>si</key>
+		<string>සෙනසුරාදා</string>
+		<key>sk</key>
+		<string>Sobota</string>
+		<key>sl</key>
+		<string>Sobota</string>
+		<key>sq</key>
+		<string>e shtunë</string>
+		<key>sr</key>
+		<string>Субота</string>
+		<key>su</key>
+		<string>Saptu</string>
+		<key>sv</key>
+		<string>Lördag</string>
+		<key>sw</key>
+		<string>Jumamosi</string>
+		<key>ta</key>
+		<string>சனிக்கிழமை</string>
+		<key>te</key>
+		<string>శనివారం</string>
+		<key>tg</key>
+		<string>Шанбе</string>
+		<key>th</key>
+		<string>วันเสาร์</string>
+		<key>tl</key>
+		<string>Sabado</string>
+		<key>tr</key>
+		<string>Cumartesi</string>
+		<key>tt</key>
+		<string>Шимбә</string>
+		<key>udm</key>
+		<string>Saturday</string>
+		<key>uk</key>
+		<string>Субота</string>
+		<key>ur</key>
+		<string>ہفتہ</string>
+		<key>uz</key>
+		<string>Shanba</string>
+		<key>vi</key>
+		<string>Thứ bảy</string>
+		<key>yi</key>
+		<string>שבת</string>
+		<key>zh</key>
+		<string>周六</string>
+	</dict>
+	<key>search</key>
+	<dict>
+		<key>af</key>
+		<string>Soek</string>
+		<key>ar</key>
+		<string>يبحث</string>
+		<key>az</key>
+		<string>Axtar</string>
+		<key>ba</key>
+		<string>Search</string>
+		<key>be</key>
+		<string>Пошук</string>
+		<key>bg</key>
+		<string>Търсене</string>
+		<key>bn</key>
+		<string>অনুসন্ধান করুন</string>
+		<key>bs</key>
+		<string>Traži</string>
+		<key>ca</key>
+		<string>Cerca</string>
+		<key>ceb</key>
+		<string>Pangitaa</string>
+		<key>cs</key>
+		<string>Vyhledávání</string>
+		<key>cy</key>
+		<string>Chwiliwch</string>
+		<key>da</key>
+		<string>Søg</string>
+		<key>de</key>
+		<string>Suche</string>
+		<key>el</key>
+		<string>Αναζήτηση</string>
+		<key>en</key>
+		<string>Search</string>
+		<key>eo</key>
+		<string>Serĉu</string>
+		<key>es</key>
+		<string>Búsqueda</string>
+		<key>et</key>
+		<string>Otsing</string>
+		<key>eu</key>
+		<string>Bilatu</string>
+		<key>fa</key>
+		<string>جستجو کردن</string>
+		<key>fi</key>
+		<string>Hae</string>
+		<key>fr</key>
+		<string>Chercher</string>
+		<key>ga</key>
+		<string>Cuardach</string>
+		<key>gd</key>
+		<string>Rannsaich</string>
+		<key>gl</key>
+		<string>Busca</string>
+		<key>gu</key>
+		<string>શોધો</string>
+		<key>he</key>
+		<string>לחפש</string>
+		<key>hi</key>
+		<string>खोज</string>
+		<key>hr</key>
+		<string>Traži</string>
+		<key>ht</key>
+		<string>Rechèch</string>
+		<key>hu</key>
+		<string>Keresés</string>
+		<key>hy</key>
+		<string>Որոնում</string>
+		<key>id</key>
+		<string>Mencari</string>
+		<key>is</key>
+		<string>Leita</string>
+		<key>it</key>
+		<string>Ricerca</string>
+		<key>ja</key>
+		<string>探す</string>
+		<key>jv</key>
+		<string>Search</string>
+		<key>ka</key>
+		<string>Ძიება</string>
+		<key>kk</key>
+		<string>Іздеу</string>
+		<key>kn</key>
+		<string>ಹುಡುಕಿ Kannada</string>
+		<key>ko</key>
+		<string>검색</string>
+		<key>ky</key>
+		<string>Издөө</string>
+		<key>la</key>
+		<string>Quaerere</string>
+		<key>lt</key>
+		<string>Paieška</string>
+		<key>mg</key>
+		<string>Karohy</string>
+		<key>mi</key>
+		<string>Rapu</string>
+		<key>mk</key>
+		<string>Пребарување</string>
+		<key>ml</key>
+		<string>തിരയുക</string>
+		<key>mn</key>
+		<string>Хайх</string>
+		<key>mr</key>
+		<string>शोधा</string>
+		<key>ms</key>
+		<string>Cari</string>
+		<key>mt</key>
+		<string>Fittex</string>
+		<key>ne</key>
+		<string>खोज्नुहोस्</string>
+		<key>nl</key>
+		<string>Zoeken</string>
+		<key>no</key>
+		<string>Søk</string>
+		<key>pa</key>
+		<string>ਖੋਜ</string>
+		<key>pl</key>
+		<string>Szukaj</string>
+		<key>pt</key>
+		<string>Procurar</string>
+		<key>ro</key>
+		<string>Căutare</string>
+		<key>ru</key>
+		<string>Поиск</string>
+		<key>si</key>
+		<string>සොයන්න</string>
+		<key>sk</key>
+		<string>Vyhľadávanie</string>
+		<key>sl</key>
+		<string>Iskanje</string>
+		<key>sq</key>
+		<string>Kërko</string>
+		<key>sr</key>
+		<string>Претрага</string>
+		<key>su</key>
+		<string>Pilarian</string>
+		<key>sv</key>
+		<string>Sök</string>
+		<key>sw</key>
+		<string>Tafuta</string>
+		<key>ta</key>
+		<string>தேடு</string>
+		<key>te</key>
+		<string>వెతకండి</string>
+		<key>tg</key>
+		<string>Ҷустуҷӯ</string>
+		<key>th</key>
+		<string>ค้นหา</string>
+		<key>tl</key>
+		<string>Maghanap</string>
+		<key>tr</key>
+		<string>Arama</string>
+		<key>tt</key>
+		<string>Эзләү</string>
+		<key>udm</key>
+		<string>Search</string>
+		<key>uk</key>
+		<string>Пошук</string>
+		<key>ur</key>
+		<string>تلاش کریں۔</string>
+		<key>uz</key>
+		<string>Qidirmoq</string>
+		<key>vi</key>
+		<string>Tìm kiếm</string>
+		<key>yi</key>
+		<string>זוכן</string>
+		<key>zh</key>
+		<string>搜索</string>
+	</dict>
+	<key>send_feedback</key>
+	<dict>
+		<key>af</key>
+		<string>Stuur Terugvoer</string>
+		<key>ar</key>
+		<string>إرسال الملاحظات</string>
+		<key>az</key>
+		<string>Əlaqə Göndər</string>
+		<key>ba</key>
+		<string>Баһалама Ебәреү</string>
+		<key>be</key>
+		<string>Адправіць Водгук</string>
+		<key>bg</key>
+		<string>Изпрати На Върха</string>
+		<key>bn</key>
+		<string>প্রতিক্রিয়া পাঠান</string>
+		<key>bs</key>
+		<string>Pošalji Povratne</string>
+		<key>ca</key>
+		<string>Enviament De Comentaris</string>
+		<key>ceb</key>
+		<string>Ipadala Feedback</string>
+		<key>cs</key>
+		<string>Odeslat Zpětnou Vazbu</string>
+		<key>cy</key>
+		<string>Anfon Adborth</string>
+		<key>da</key>
+		<string>Send Kommentarer</string>
+		<key>de</key>
+		<string>Feedback Senden</string>
+		<key>el</key>
+		<string>Στείλτε Τα Σχόλιά Σας</string>
+		<key>en</key>
+		<string>Send Feedback</string>
+		<key>eo</key>
+		<string>Sendu Rimarkojn</string>
+		<key>es</key>
+		<string>Enviar Comentarios</string>
+		<key>et</key>
+		<string>Tagasisidet</string>
+		<key>eu</key>
+		<string>Bidali Iradokizunak</string>
+		<key>fa</key>
+		<string>ارسال بازخورد</string>
+		<key>fi</key>
+		<string>Lähetä Palautetta</string>
+		<key>fr</key>
+		<string>Envoyer Des Commentaires</string>
+		<key>ga</key>
+		<string>Aiseolas A Thabhairt</string>
+		<key>gd</key>
+		<string>Cuir Fios Air Ais</string>
+		<key>gl</key>
+		<string>Enviar Feedback</string>
+		<key>gu</key>
+		<string>પ્રતિસાદ મોકલો</string>
+		<key>he</key>
+		<string>שלח משוב</string>
+		<key>hi</key>
+		<string>प्रतिक्रिया भेजें</string>
+		<key>hr</key>
+		<string>Pošalji Komentar</string>
+		<key>ht</key>
+		<string>Voye Fidbak</string>
+		<key>hu</key>
+		<string>A Visszajelzés Küldése</string>
+		<key>hy</key>
+		<string>Ուղարկել Արձագանք</string>
+		<key>id</key>
+		<string>Mengirim Umpan Balik</string>
+		<key>is</key>
+		<string>Senda Viðbrögð</string>
+		<key>it</key>
+		<string>Inviare Commenti</string>
+		<key>ja</key>
+		<string>ご意見-ご要望の送信</string>
+		<key>jv</key>
+		<string>Ngirim Saran</string>
+		<key>ka</key>
+		<string>გამოხმაურების</string>
+		<key>kk</key>
+		<string>Жіберу Кері Қайтарып Алу</string>
+		<key>kn</key>
+		<string>ಪ್ರತಿಕ್ರಿಯೆ ಕಳುಹಿಸಿ</string>
+		<key>ko</key>
+		<string>의견 보내기</string>
+		<key>ky</key>
+		<string>Жөнөтүүгө Чакырып Алуу</string>
+		<key>la</key>
+		<string>Mittere Feedback</string>
+		<key>lt</key>
+		<string>Siųsti Atsiliepimus</string>
+		<key>mg</key>
+		<string>Mandefa Fanehoan-Kevitra</string>
+		<key>mi</key>
+		<string>Tukua Atu Urupare</string>
+		<key>mk</key>
+		<string>Да Испратите Повратни Информации</string>
+		<key>ml</key>
+		<string>Send Feedback</string>
+		<key>mn</key>
+		<string>Илгээх Санал Хүсэлт</string>
+		<key>mr</key>
+		<string>अभिप्राय पाठवा</string>
+		<key>ms</key>
+		<string>Maklum Balas</string>
+		<key>mt</key>
+		<string>Ibgħat Il-Kummenti</string>
+		<key>ne</key>
+		<string>Send Feedback</string>
+		<key>nl</key>
+		<string>Feedback Verzenden</string>
+		<key>no</key>
+		<string>Send Tilbakemelding</string>
+		<key>pa</key>
+		<string>ਭੇਜਣ ਫੀਡਬੈਕ</string>
+		<key>pl</key>
+		<string>Wyślij Opinię</string>
+		<key>pt</key>
+		<string>Enviar Comentário</string>
+		<key>ro</key>
+		<string>Trimite Comentarii</string>
+		<key>ru</key>
+		<string>Отправить Отзыв</string>
+		<key>si</key>
+		<string>යැවීමට ප්රතිචාර</string>
+		<key>sk</key>
+		<string>Odoslať Spätnú Väzbu</string>
+		<key>sl</key>
+		<string>Pošlji Povratne Informacije</string>
+		<key>sq</key>
+		<string>Dërgoni Komentin Tuaj</string>
+		<key>sr</key>
+		<string>Пошаљи Повратне Информације</string>
+		<key>su</key>
+		<string>Ngirim Eupan Balik</string>
+		<key>sv</key>
+		<string>Skicka Feedback</string>
+		<key>sw</key>
+		<string>Kutuma Maoni</string>
+		<key>ta</key>
+		<string>கருத்துக்களை அனுப்ப</string>
+		<key>te</key>
+		<string>అభిప్రాయాన్ని పంపండి</string>
+		<key>tg</key>
+		<string>Ирсол Шарҳи</string>
+		<key>th</key>
+		<string>ส่งการแจ้งเตือนการเริ่มทำงาน</string>
+		<key>tl</key>
+		<string>Magpadala Ng Mga Komento</string>
+		<key>tr</key>
+		<string>Geri Bildirim Gönder </string>
+		<key>tt</key>
+		<string>Җибәрергә Отзыв</string>
+		<key>udm</key>
+		<string>Келяны Отзыв</string>
+		<key>uk</key>
+		<string>Відправити Відгук</string>
+		<key>ur</key>
+		<string>تاثرات بھیجیں</string>
+		<key>uz</key>
+		<string>Hisobot Yuborish </string>
+		<key>vi</key>
+		<string>Gửi Thông Tin Phản Hồi</string>
+		<key>yi</key>
+		<string>שיקן באַמערקונגען</string>
+		<key>zh</key>
+		<string>发送反馈</string>
+	</dict>
+	<key>settings</key>
+	<dict>
+		<key>af</key>
+		<string>Instellings...</string>
+		<key>ar</key>
+		<string>إعدادات...</string>
+		<key>az</key>
+		<string>Parametrlər...</string>
+		<key>ba</key>
+		<string>Settings...</string>
+		<key>be</key>
+		<string>Налады...</string>
+		<key>bg</key>
+		<string>Настройки...</string>
+		<key>bn</key>
+		<string>সেটিংস...</string>
+		<key>bs</key>
+		<string>Postavke...</string>
+		<key>ca</key>
+		<string>Configuració...</string>
+		<key>ceb</key>
+		<string>Mga setting...</string>
+		<key>cs</key>
+		<string>Nastavení...</string>
+		<key>cy</key>
+		<string>Gosodiadau...</string>
+		<key>da</key>
+		<string>Indstillinger...</string>
+		<key>de</key>
+		<string>Einstellungen...</string>
+		<key>el</key>
+		<string>Ρυθμίσεις...</string>
+		<key>en</key>
+		<string>Settings...</string>
+		<key>eo</key>
+		<string>Agordoj...</string>
+		<key>es</key>
+		<string>Ajustes...</string>
+		<key>et</key>
+		<string>Seaded...</string>
+		<key>eu</key>
+		<string>Ezarpenak...</string>
+		<key>fa</key>
+		<string>تنظیمات...</string>
+		<key>fi</key>
+		<string>Asetukset...</string>
+		<key>fr</key>
+		<string>Paramètres...</string>
+		<key>ga</key>
+		<string>Socruithe...</string>
+		<key>gd</key>
+		<string>Suidheachaidhean...</string>
+		<key>gl</key>
+		<string>Configuración...</string>
+		<key>gu</key>
+		<string>સેટિંગ્સ...</string>
+		<key>he</key>
+		<string>הגדרות...</string>
+		<key>hi</key>
+		<string>समायोजन...</string>
+		<key>hr</key>
+		<string>Postavke...</string>
+		<key>ht</key>
+		<string>Anviwònman...</string>
+		<key>hu</key>
+		<string>Beállítások...</string>
+		<key>hy</key>
+		<string>Կարգավորումներ...</string>
+		<key>id</key>
+		<string>Setelan...</string>
+		<key>is</key>
+		<string>Stillingar...</string>
+		<key>it</key>
+		<string>Impostazioni...</string>
+		<key>ja</key>
+		<string>設定...</string>
+		<key>jv</key>
+		<string>Settings...</string>
+		<key>ka</key>
+		<string>Პარამეტრები...</string>
+		<key>kk</key>
+		<string>Параметрлер...</string>
+		<key>kn</key>
+		<string>ಸಂಯೋಜನೆಗಳು...</string>
+		<key>ko</key>
+		<string>설정...</string>
+		<key>ky</key>
+		<string>Жөндөөлөр...</string>
+		<key>la</key>
+		<string>Occasus...</string>
+		<key>lt</key>
+		<string>Nustatymai...</string>
+		<key>mg</key>
+		<string>Fikirana...</string>
+		<key>mi</key>
+		<string>Tautuhinga...</string>
+		<key>mk</key>
+		<string>Поставки...</string>
+		<key>ml</key>
+		<string>ക്രമീകരണങ്ങൾ...</string>
+		<key>mn</key>
+		<string>Тохиргоо...</string>
+		<key>mr</key>
+		<string>सेटिंग्ज...</string>
+		<key>ms</key>
+		<string>Tetapan...</string>
+		<key>mt</key>
+		<string>Settings...</string>
+		<key>ne</key>
+		<string>सेटिङहरू...</string>
+		<key>nl</key>
+		<string>Instellingen...</string>
+		<key>no</key>
+		<string>Innstillinger...</string>
+		<key>pa</key>
+		<string>ਸੈਟਿੰਗਾਂ...</string>
+		<key>pl</key>
+		<string>Ustawienia...</string>
+		<key>pt</key>
+		<string>Configurações...</string>
+		<key>ro</key>
+		<string>Setări...</string>
+		<key>ru</key>
+		<string>Настройки...</string>
+		<key>si</key>
+		<string>සැකසුම්...</string>
+		<key>sk</key>
+		<string>Nastavenie...</string>
+		<key>sl</key>
+		<string>nastavitve ...</string>
+		<key>sq</key>
+		<string>Cilësimet...</string>
+		<key>sr</key>
+		<string>Подешавања...</string>
+		<key>su</key>
+		<string>Setélan...</string>
+		<key>sv</key>
+		<string>Inställningar...</string>
+		<key>sw</key>
+		<string>Mipangilio...</string>
+		<key>ta</key>
+		<string>அமைப்புகள்...</string>
+		<key>te</key>
+		<string>సెట్టింగ్‌లు...</string>
+		<key>tg</key>
+		<string>Танзимотҳо...</string>
+		<key>th</key>
+		<string>การตั้งค่า...</string>
+		<key>tl</key>
+		<string>Mga setting...</string>
+		<key>tr</key>
+		<string>Ayarlar...</string>
+		<key>tt</key>
+		<string>Көйләүләр ...</string>
+		<key>udm</key>
+		<string>Settings...</string>
+		<key>uk</key>
+		<string>Налаштування...</string>
+		<key>ur</key>
+		<string>ترتیبات...</string>
+		<key>uz</key>
+		<string>Sozlamalar...</string>
+		<key>vi</key>
+		<string>Cài đặt...</string>
+		<key>yi</key>
+		<string>סעטטינגס...</string>
+		<key>zh</key>
+		<string>设置...</string>
+	</dict>
+	<key>sunday</key>
+	<dict>
+		<key>af</key>
+		<string>Sondag</string>
+		<key>ar</key>
+		<string>الأحد</string>
+		<key>az</key>
+		<string>bazar günü</string>
+		<key>ba</key>
+		<string>Sunday</string>
+		<key>be</key>
+		<string>Нядзеля</string>
+		<key>bg</key>
+		<string>Неделя</string>
+		<key>bn</key>
+		<string>রবিবার</string>
+		<key>bs</key>
+		<string>Nedjelja</string>
+		<key>ca</key>
+		<string>Diumenge</string>
+		<key>ceb</key>
+		<string>Domingo</string>
+		<key>cs</key>
+		<string>Neděle</string>
+		<key>cy</key>
+		<string>Sul</string>
+		<key>da</key>
+		<string>Søndag</string>
+		<key>de</key>
+		<string>Sonntag</string>
+		<key>el</key>
+		<string>Κυριακή</string>
+		<key>en</key>
+		<string>Sunday</string>
+		<key>eo</key>
+		<string>Dimanĉo</string>
+		<key>es</key>
+		<string>Domingo</string>
+		<key>et</key>
+		<string>Pühapäev</string>
+		<key>eu</key>
+		<string>Igandea</string>
+		<key>fa</key>
+		<string>یکشنبه</string>
+		<key>fi</key>
+		<string>Sunnuntai</string>
+		<key>fr</key>
+		<string>Dimanche</string>
+		<key>ga</key>
+		<string>Domhnach</string>
+		<key>gd</key>
+		<string>Didòmhnaich</string>
+		<key>gl</key>
+		<string>Domingo</string>
+		<key>gu</key>
+		<string>રવિવાર</string>
+		<key>he</key>
+		<string>יוֹם רִאשׁוֹן</string>
+		<key>hi</key>
+		<string>रविवार</string>
+		<key>hr</key>
+		<string>Nedjelja</string>
+		<key>ht</key>
+		<string>Dimanch</string>
+		<key>hu</key>
+		<string>Vasárnap</string>
+		<key>hy</key>
+		<string>Կիրակի</string>
+		<key>id</key>
+		<string>Minggu</string>
+		<key>is</key>
+		<string>Sunnudag</string>
+		<key>it</key>
+		<string>Domenica</string>
+		<key>ja</key>
+		<string>日曜日</string>
+		<key>jv</key>
+		<string>Sunday</string>
+		<key>ka</key>
+		<string>Კვირა</string>
+		<key>kk</key>
+		<string>Жексенбі</string>
+		<key>kn</key>
+		<string>ಭಾನುವಾರ</string>
+		<key>ko</key>
+		<string>일요일</string>
+		<key>ky</key>
+		<string>Жекшемби</string>
+		<key>la</key>
+		<string>Solis</string>
+		<key>lt</key>
+		<string>Sekmadienis</string>
+		<key>mg</key>
+		<string>ALAHADY</string>
+		<key>mi</key>
+		<string>Rātapu</string>
+		<key>mk</key>
+		<string>Недела</string>
+		<key>ml</key>
+		<string>ഞായറാഴ്ച</string>
+		<key>mn</key>
+		<string>Ням гараг</string>
+		<key>mr</key>
+		<string>रविवार</string>
+		<key>ms</key>
+		<string>Ahad</string>
+		<key>mt</key>
+		<string>Il-Ħadd</string>
+		<key>ne</key>
+		<string>आइतबार</string>
+		<key>nl</key>
+		<string>Zondag</string>
+		<key>no</key>
+		<string>Søndag</string>
+		<key>pa</key>
+		<string>ਐਤਵਾਰ</string>
+		<key>pl</key>
+		<string>Niedziela</string>
+		<key>pt</key>
+		<string>Domingo</string>
+		<key>ro</key>
+		<string>Duminică</string>
+		<key>ru</key>
+		<string>Воскресенье</string>
+		<key>si</key>
+		<string>ඉරිදා</string>
+		<key>sk</key>
+		<string>Nedeľa</string>
+		<key>sl</key>
+		<string>Nedelja</string>
+		<key>sq</key>
+		<string>të dielën</string>
+		<key>sr</key>
+		<string>Недеља</string>
+		<key>su</key>
+		<string>Minggu</string>
+		<key>sv</key>
+		<string>Söndag</string>
+		<key>sw</key>
+		<string>Jumapili</string>
+		<key>ta</key>
+		<string>ஞாயிற்றுக்கிழமை</string>
+		<key>te</key>
+		<string>ఆదివారం</string>
+		<key>tg</key>
+		<string>Якшанбе</string>
+		<key>th</key>
+		<string>วันอาทิตย์</string>
+		<key>tl</key>
+		<string>Linggo</string>
+		<key>tr</key>
+		<string>Pazar</string>
+		<key>tt</key>
+		<string>Якшәмбе</string>
+		<key>udm</key>
+		<string>Sunday</string>
+		<key>uk</key>
+		<string>Неділя</string>
+		<key>ur</key>
+		<string>اتوار</string>
+		<key>uz</key>
+		<string>Yakshanba</string>
+		<key>vi</key>
+		<string>Chủ nhật</string>
+		<key>yi</key>
+		<string>זונטיק</string>
+		<key>zh</key>
+		<string>星期日</string>
+	</dict>
+	<key>thursday</key>
+	<dict>
+		<key>af</key>
+		<string>Donderdag</string>
+		<key>ar</key>
+		<string>يوم الخميس</string>
+		<key>az</key>
+		<string>cümə axşamı</string>
+		<key>ba</key>
+		<string>Thursday</string>
+		<key>be</key>
+		<string>Чацвер</string>
+		<key>bg</key>
+		<string>Четвъртък</string>
+		<key>bn</key>
+		<string>বৃহস্পতিবার</string>
+		<key>bs</key>
+		<string>Četvrtak</string>
+		<key>ca</key>
+		<string>Dijous</string>
+		<key>ceb</key>
+		<string>Huwebes</string>
+		<key>cs</key>
+		<string>Čtvrtek</string>
+		<key>cy</key>
+		<string>dydd Iau</string>
+		<key>da</key>
+		<string>Torsdag</string>
+		<key>de</key>
+		<string>Donnerstag</string>
+		<key>el</key>
+		<string>Πέμπτη</string>
+		<key>en</key>
+		<string>Thursday</string>
+		<key>eo</key>
+		<string>Ĵaŭdon</string>
+		<key>es</key>
+		<string>Jueves</string>
+		<key>et</key>
+		<string>Neljapäeval</string>
+		<key>eu</key>
+		<string>Osteguna</string>
+		<key>fa</key>
+		<string>پنج شنبه</string>
+		<key>fi</key>
+		<string>Torstai</string>
+		<key>fr</key>
+		<string>Jeudi</string>
+		<key>ga</key>
+		<string>Déardaoin</string>
+		<key>gd</key>
+		<string>Diardaoin</string>
+		<key>gl</key>
+		<string>Xoves</string>
+		<key>gu</key>
+		<string>ગુરુવાર</string>
+		<key>he</key>
+		<string>יוֹם חֲמִישִׁי</string>
+		<key>hi</key>
+		<string>गुरुवार</string>
+		<key>hr</key>
+		<string>Četvrtak</string>
+		<key>ht</key>
+		<string>Jedi</string>
+		<key>hu</key>
+		<string>Csütörtök</string>
+		<key>hy</key>
+		<string>Հինգշաբթի</string>
+		<key>id</key>
+		<string>Kamis</string>
+		<key>is</key>
+		<string>Fimmtudag</string>
+		<key>it</key>
+		<string>Giovedì</string>
+		<key>ja</key>
+		<string>木曜日</string>
+		<key>jv</key>
+		<string>Thursday</string>
+		<key>ka</key>
+		<string>Ხუთშაბათი</string>
+		<key>kk</key>
+		<string>Бейсенбі</string>
+		<key>kn</key>
+		<string>ಗುರುವಾರ</string>
+		<key>ko</key>
+		<string>목요일</string>
+		<key>ky</key>
+		<string>Бейшемби</string>
+		<key>la</key>
+		<string>Iovis</string>
+		<key>lt</key>
+		<string>Ketvirtadienis</string>
+		<key>mg</key>
+		<string>Alakamisy</string>
+		<key>mi</key>
+		<string>Rāpare</string>
+		<key>mk</key>
+		<string>Четврток</string>
+		<key>ml</key>
+		<string>വ്യാഴാഴ്ച</string>
+		<key>mn</key>
+		<string>Пүрэв гараг</string>
+		<key>mr</key>
+		<string>गुरुवार</string>
+		<key>ms</key>
+		<string>Khamis</string>
+		<key>mt</key>
+		<string>Il-Ħamis</string>
+		<key>ne</key>
+		<string>बिहीबार</string>
+		<key>nl</key>
+		<string>Donderdag</string>
+		<key>no</key>
+		<string>Torsdag</string>
+		<key>pa</key>
+		<string>ਵੀਰਵਾਰ</string>
+		<key>pl</key>
+		<string>Czwartek</string>
+		<key>pt</key>
+		<string>Quinta-feira</string>
+		<key>ro</key>
+		<string>Joi</string>
+		<key>ru</key>
+		<string>Четверг</string>
+		<key>si</key>
+		<string>බ්රහස්පතින්දා</string>
+		<key>sk</key>
+		<string>Štvrtok</string>
+		<key>sl</key>
+		<string>Četrtek</string>
+		<key>sq</key>
+		<string>e enjte</string>
+		<key>sr</key>
+		<string>Четвртак</string>
+		<key>su</key>
+		<string>Kemis</string>
+		<key>sv</key>
+		<string>Torsdag</string>
+		<key>sw</key>
+		<string>Alhamisi</string>
+		<key>ta</key>
+		<string>வியாழன்</string>
+		<key>te</key>
+		<string>గురువారం</string>
+		<key>tg</key>
+		<string>Панҷшанбе</string>
+		<key>th</key>
+		<string>วันพฤหัสบดี</string>
+		<key>tl</key>
+		<string>Huwebes</string>
+		<key>tr</key>
+		<string>Perşembe</string>
+		<key>tt</key>
+		<string>Пәнҗешәмбе</string>
+		<key>udm</key>
+		<string>Thursday</string>
+		<key>uk</key>
+		<string>Четвер</string>
+		<key>ur</key>
+		<string>جمعرات</string>
+		<key>uz</key>
+		<string>Payshanba</string>
+		<key>vi</key>
+		<string>thứ năm</string>
+		<key>yi</key>
+		<string>דאנערשטאג</string>
+		<key>zh</key>
+		<string>星期四</string>
+	</dict>
+	<key>timed_out</key>
+	<dict>
+		<key>af</key>
+		<string>Die aksie se tyd het uitgeloop. Probeer asseblief weer later.</string>
+		<key>ar</key>
+		<string>انتهت مهلة العملية في. الرجاء معاودة المحاولة في وقت لاحق.</string>
+		<key>az</key>
+		<string>Əməliyyatın vaxtı bitdi. Zəhmət olmasa bir az sonra yenə cəhd edin.</string>
+		<key>ba</key>
+		<string>Se agotó el tiempo de espera de la operación. Por favor, inténtelo de nuevo más tarde.</string>
+		<key>be</key>
+		<string>Час чакання аперацыі скончыўся. Калі ласка паспрабуйце зноў пазней.</string>
+		<key>bg</key>
+		<string>Операцията изтече. Моля, опитайте отново по-късно.</string>
+		<key>bn</key>
+		<string>ক্রিয়াকলাপের সময় শেষ হয়েছে। অনুগ্রহ করে একটু পরে আবার চেষ্টা করুন.</string>
+		<key>bs</key>
+		<string>Operacija je istekla. Molimo pokušajte ponovo kasnije.</string>
+		<key>ca</key>
+		<string>S&apos;ha acabat el temps per l&apos;operació. Siusplau, intenta-ho més tard.</string>
+		<key>ceb</key>
+		<string>Nag-time out ang operasyon. Palihug sulayi pag-usab unya.</string>
+		<key>cs</key>
+		<string>Operace vypršela. Prosím zkuste to znovu později.</string>
+		<key>cy</key>
+		<string>Daeth y llawdriniaeth i ben. Rho gynnig Arni eto&apos;n hwyrach.</string>
+		<key>da</key>
+		<string>Operationen udløb. Prøv igen senere.</string>
+		<key>de</key>
+		<string>Der Vorgang ist abgelaufen. Bitte versuchen Sie es später erneut.</string>
+		<key>el</key>
+		<string>Λήξη χρονικού ορίου λειτουργίας. Παρακαλώ προσπαθήστε ξανά αργότερα.</string>
+		<key>en</key>
+		<string>The operation timed out. Please try again later.</string>
+		<key>eo</key>
+		<string>La operacio finiĝis. Bonvolu reprovi poste.</string>
+		<key>es</key>
+		<string>Se agotó el tiempo de espera de la operación. Por favor, inténtelo de nuevo más tarde.</string>
+		<key>et</key>
+		<string>Operatsioon aegus. Palun proovi hiljem uuesti.</string>
+		<key>eu</key>
+		<string>Eragiketa denbora-muga gainditu da. Mesedez, saiatu berriro geroago.</string>
+		<key>fa</key>
+		<string>زمان عملیات تمام شد. لطفاً بعداً دوباره امتحان کنید.</string>
+		<key>fi</key>
+		<string>Aikakatkaistiin. Yritä uudelleen myöhemmin.</string>
+		<key>fr</key>
+		<string>L&apos;opération a expiré. Veuillez réessayer plus tard.</string>
+		<key>ga</key>
+		<string>Tháinig deireadh leis an oibríocht. Bain triail eile as ar ball.</string>
+		<key>gd</key>
+		<string>Thàinig an ùine a-mach. Feuch ris a-rithist nas anmoiche.</string>
+		<key>gl</key>
+		<string>Esgotouse o tempo da operación. Por favor inténtao de novo máis tarde.</string>
+		<key>gu</key>
+		<string>ઓપરેશનનો સમય સમાપ્ત થયો. પછીથી ફરી પ્રયત્ન કરો.</string>
+		<key>he</key>
+		<string>תם הזמן הקצוב למבצע. בבקשה נסה שוב מאוחר יותר.</string>
+		<key>hi</key>
+		<string>संचालन का समय समाप्त हुआ। बाद में पुन: प्रयास करें।</string>
+		<key>hr</key>
+		<string>Operacija je istekla. Molimo pokušajte ponovo kasnije.</string>
+		<key>ht</key>
+		<string>Operasyon an fini. Tanpri eseye ankò pita.</string>
+		<key>hu</key>
+		<string>A művelet időtúllépést ért el. Kérlek, próbáld újra később.</string>
+		<key>hy</key>
+		<string>Վիրահատության ժամանակը սպառվել է: Խնդրում ենք փորձել ավելի ուշ.</string>
+		<key>id</key>
+		<string>Waktu operasi habis. Silakan coba lagi nanti.</string>
+		<key>is</key>
+		<string>Aðgerðin rann út á tíma. Vinsamlegast reyndu aftur síðar.</string>
+		<key>it</key>
+		<string>L&apos;operazione è scaduta. per Favore riprova più tardi.</string>
+		<key>ja</key>
+		<string>操作がタイムアウトしました。 後でもう一度やり直してください。</string>
+		<key>jv</key>
+		<string>Se agotó el tiempo de espera de la operación. Por favor, inténtelo de nuevo más tarde.</string>
+		<key>ka</key>
+		<string>ოპერაციის დრო ამოიწურა. Გთხოვთ სცადოთ მოგვიანებით.</string>
+		<key>kk</key>
+		<string>Операция уақыты аяқталды. Тағы жасауды сәл кейінірек көріңізді өтінеміз.</string>
+		<key>kn</key>
+		<string>ಕಾರ್ಯಾಚರಣೆಯ ಸಮಯ ಮೀರಿದೆ. ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+		<key>ko</key>
+		<string>작업 시간이 초과되었습니다. 나중에 다시 시도 해주십시오.</string>
+		<key>ky</key>
+		<string>Операциянын убактысы бүттү. сураныч, Кийинчерээк кайра аракет кылыңыз.</string>
+		<key>la</key>
+		<string>Operatio opportuno. Conatus sodes iterum postmodum.</string>
+		<key>lt</key>
+		<string>Baigėsi operacijos laikas. Pabandykite dar kartą vėliau.</string>
+		<key>mg</key>
+		<string>Tapitra ny fotoana. Andramo indray rahatrizay.</string>
+		<key>mi</key>
+		<string>Kua mutu te mahi. Me ngana ano i muri mai.</string>
+		<key>mk</key>
+		<string>Операцијата истече. Обидете се повторно подоцна.</string>
+		<key>ml</key>
+		<string>പ്രവൃത്തിയുടെ സമയം കഴിഞ്ഞു. ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
+		<key>mn</key>
+		<string>Үйл ажиллагаа завсарласан. дараа Дахин оролдож үзнэ үү.</string>
+		<key>mr</key>
+		<string>ऑपरेशन कालबाह्य झाले आहे. कृपया पुन्हा प्रयत्न करा.</string>
+		<key>ms</key>
+		<string>Operasi tamat masa. Sila cuba sebentar lagi.</string>
+		<key>mt</key>
+		<string>L-operazzjoni skadiet il-ħin. Jekk jogħġbok erġa&apos; pprova aktar tard.</string>
+		<key>ne</key>
+		<string>सञ्चालनको समय सकियो। फेरी प्रयास गर्नु होला।</string>
+		<key>nl</key>
+		<string>De bewerking is verlopen. Probeer het later opnieuw.</string>
+		<key>no</key>
+		<string>Operasjonen ble tidsavbrutt. Prøv igjen senere.</string>
+		<key>pa</key>
+		<string>ਓਪਰੇਸ਼ਨ ਦਾ ਸਮਾਂ ਸਮਾਪਤ ਹੋ ਗਿਆ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ.</string>
+		<key>pl</key>
+		<string>Upłynął czas operacji. Spróbuj ponownie później.</string>
+		<key>pt</key>
+		<string>A operação expirou. Por favor, tente novamente mais tarde.</string>
+		<key>ro</key>
+		<string>Operația a expirat. Vă rugăm să încercați din nou mai târziu.</string>
+		<key>ru</key>
+		<string>Время операции вышло. Пожалуйста, попробуйте позже.</string>
+		<key>si</key>
+		<string>මෙහෙයුම කල් ඉකුත් විය. කරුණාකර පසුව නැවත උත්සාහ කරන්න.</string>
+		<key>sk</key>
+		<string>Časový limit operácie vypršal. Skúste neskôr prosím.</string>
+		<key>sl</key>
+		<string>Operacija se je iztekla. Prosim poskusite kasneje.</string>
+		<key>sq</key>
+		<string>Operacioni përfundoi. ju lutemi Provoni sërish më vonë.</string>
+		<key>sr</key>
+		<string>Операција је истекла. Покушајте поново касније.</string>
+		<key>su</key>
+		<string>Operasi waktos kaluar. Cobaan deui engke.</string>
+		<key>sv</key>
+		<string>Operationen tog timeout. Vänligen försök igen senare.</string>
+		<key>sw</key>
+		<string>Muda wa operesheni umekwisha. Tafadhali jaribu tena baadae.</string>
+		<key>ta</key>
+		<string>அறுவை சிகிச்சை நேரம் முடிந்தது. பிறகு முயற்சிக்கவும்.</string>
+		<key>te</key>
+		<string>ఆపరేషన్ సమయం ముగిసింది. దయచేసి తర్వాత మళ్లీ ప్రయత్నించండి.</string>
+		<key>tg</key>
+		<string>Амалиёт ба охир расид. Лутфан баъдтар бори дигар кӯшиш кунед.</string>
+		<key>th</key>
+		<string>หมดเวลาการดำเนินการ โปรดลองอีกครั้งในภายหลัง.</string>
+		<key>tl</key>
+		<string>Nag-time out ang operasyon. Subukang muli mamaya.</string>
+		<key>tr</key>
+		<string>Operasyon zaman aşımına uğradı. Lütfen daha sonra tekrar deneyiniz.</string>
+		<key>tt</key>
+		<string>Операция тәмамланды. Зинһар, соңрак кабатлап карагыз.</string>
+		<key>udm</key>
+		<string>The operation timed out. Please try again later.</string>
+		<key>uk</key>
+		<string>Час очікування операції минув. Будь-ласка спробуйте пізніше.</string>
+		<key>ur</key>
+		<string>آپریشن کا وقت ختم ہوگیا. براہ کرم کچھ دیر بعد کوشش کریں.</string>
+		<key>uz</key>
+		<string>Operatsiya vaqti tugadi. iltimos Keyinroq qayta urinib ko&apos;ring.</string>
+		<key>vi</key>
+		<string>Các hoạt động quá giờ. Vui lòng thử lại sau.</string>
+		<key>yi</key>
+		<string>די אָפּעראַציע איז געווען טיימד אויס. ביטע פּרובירן ווידער שפּעטער.</string>
+		<key>zh</key>
+		<string>操作超时。 请稍后再试。</string>
+	</dict>
+	<key>today</key>
+	<dict>
+		<key>af</key>
+		<string>Vandag</string>
+		<key>ar</key>
+		<string>اليوم</string>
+		<key>az</key>
+		<string>Bu gün</string>
+		<key>ba</key>
+		<string>Today</string>
+		<key>be</key>
+		<string>Сёння</string>
+		<key>bg</key>
+		<string>Днес</string>
+		<key>bn</key>
+		<string>আজ</string>
+		<key>bs</key>
+		<string>Danas</string>
+		<key>ca</key>
+		<string>Avui</string>
+		<key>ceb</key>
+		<string>Karon</string>
+		<key>cs</key>
+		<string>Dnes</string>
+		<key>cy</key>
+		<string>Heddiw</string>
+		<key>da</key>
+		<string>I dag</string>
+		<key>de</key>
+		<string>Heute</string>
+		<key>el</key>
+		<string>Σήμερα</string>
+		<key>en</key>
+		<string>Today</string>
+		<key>eo</key>
+		<string>Hodiaŭ</string>
+		<key>es</key>
+		<string>Hoy</string>
+		<key>et</key>
+		<string>Täna</string>
+		<key>eu</key>
+		<string>Gaur</string>
+		<key>fa</key>
+		<string>امروز</string>
+		<key>fi</key>
+		<string>Tänään</string>
+		<key>fr</key>
+		<string>Aujourd&apos;hui</string>
+		<key>ga</key>
+		<string>Inniu</string>
+		<key>gd</key>
+		<string>An-diugh</string>
+		<key>gl</key>
+		<string>Hoxe</string>
+		<key>gu</key>
+		<string>આજ</string>
+		<key>he</key>
+		<string>היום</string>
+		<key>hi</key>
+		<string>Heute</string>
+		<key>hr</key>
+		<string>Danas</string>
+		<key>ht</key>
+		<string>Jodi a</string>
+		<key>hu</key>
+		<string>Ma</string>
+		<key>hy</key>
+		<string>Այսօր</string>
+		<key>id</key>
+		<string>Hari ini</string>
+		<key>is</key>
+		<string>Í dag</string>
+		<key>it</key>
+		<string>In data odierna</string>
+		<key>ja</key>
+		<string>今日</string>
+		<key>jv</key>
+		<string>Today</string>
+		<key>ka</key>
+		<string>Დღეს</string>
+		<key>kk</key>
+		<string>Бүгін</string>
+		<key>kn</key>
+		<string>ಇಂದು</string>
+		<key>ko</key>
+		<string>오늘</string>
+		<key>ky</key>
+		<string>Бүгүн</string>
+		<key>la</key>
+		<string>Hodie</string>
+		<key>lt</key>
+		<string>Šiandien</string>
+		<key>mg</key>
+		<string>Ankehitriny</string>
+		<key>mi</key>
+		<string>Tēnei rā</string>
+		<key>mk</key>
+		<string>Денес</string>
+		<key>ml</key>
+		<string>ഇന്നേദിവസം</string>
+		<key>mn</key>
+		<string>Оноо</string>
+		<key>mr</key>
+		<string>आज</string>
+		<key>ms</key>
+		<string>Hari ini</string>
+		<key>mt</key>
+		<string>Illum</string>
+		<key>ne</key>
+		<string>आज</string>
+		<key>nl</key>
+		<string>Vandaag</string>
+		<key>no</key>
+		<string>I dag</string>
+		<key>pa</key>
+		<string>ਅੱਜ</string>
+		<key>pl</key>
+		<string>Dziś</string>
+		<key>pt</key>
+		<string>Hoje</string>
+		<key>ro</key>
+		<string>Astăzi</string>
+		<key>ru</key>
+		<string>Сегодня</string>
+		<key>si</key>
+		<string>අද</string>
+		<key>sk</key>
+		<string>Dnes</string>
+		<key>sl</key>
+		<string>Danes</string>
+		<key>sq</key>
+		<string>Sot</string>
+		<key>sr</key>
+		<string>Данас</string>
+		<key>su</key>
+		<string>Ayeuna</string>
+		<key>sv</key>
+		<string>I dag</string>
+		<key>sw</key>
+		<string>Leo</string>
+		<key>ta</key>
+		<string>இன்று</string>
+		<key>te</key>
+		<string>ఈరోజు</string>
+		<key>tg</key>
+		<string>Имрӯз</string>
+		<key>th</key>
+		<string>วันนี้</string>
+		<key>tl</key>
+		<string>Ngayon</string>
+		<key>tr</key>
+		<string>Bugün</string>
+		<key>tt</key>
+		<string>Бүген</string>
+		<key>udm</key>
+		<string>Today</string>
+		<key>uk</key>
+		<string>Сьогодні</string>
+		<key>ur</key>
+		<string>آج</string>
+		<key>uz</key>
+		<string>Bugun</string>
+		<key>vi</key>
+		<string>Hôm nay</string>
+		<key>yi</key>
+		<string>היינט</string>
+		<key>zh</key>
+		<string>今天</string>
+	</dict>
+	<key>try_again</key>
+	<dict>
+		<key>af</key>
+		<string>Probeer Weer</string>
+		<key>ar</key>
+		<string>حاول ثانية</string>
+		<key>az</key>
+		<string>Yenidən cəhd elə</string>
+		<key>ba</key>
+		<string>Andramo indray mandeha</string>
+		<key>be</key>
+		<string>Паспрабуй Яшчэ</string>
+		<key>bg</key>
+		<string>Опитай Пак</string>
+		<key>bn</key>
+		<string>আবার চেষ্টা কর</string>
+		<key>bs</key>
+		<string>Pokušaj Ponovo</string>
+		<key>ca</key>
+		<string>Torna-ho a provar</string>
+		<key>ceb</key>
+		<string>Sulayi Pag-usab</string>
+		<key>cs</key>
+		<string>Zkus to znovu</string>
+		<key>cy</key>
+		<string>Ceisio Eto</string>
+		<key>da</key>
+		<string>Prøv Igen</string>
+		<key>de</key>
+		<string>Versuchen Sie es erneut</string>
+		<key>el</key>
+		<string>Προσπάθησε Ξανά</string>
+		<key>en</key>
+		<string>Try Again</string>
+		<key>eo</key>
+		<string>Provu Denove</string>
+		<key>es</key>
+		<string>Intentar otra vez</string>
+		<key>et</key>
+		<string>Proovi Uuesti</string>
+		<key>eu</key>
+		<string>Saiatu Berriro</string>
+		<key>fa</key>
+		<string>دوباره امتحان کنید</string>
+		<key>fi</key>
+		<string>Yritä Uudelleen</string>
+		<key>fr</key>
+		<string>Essayer à nouveau</string>
+		<key>ga</key>
+		<string>Déan iarracht arís</string>
+		<key>gd</key>
+		<string>Feuch A-rithist</string>
+		<key>gl</key>
+		<string>Téntao de novo</string>
+		<key>gu</key>
+		<string>ફરીથી પ્રયત્ન કરો</string>
+		<key>he</key>
+		<string>נסה שוב</string>
+		<key>hi</key>
+		<string>पुनः प्रयास करें</string>
+		<key>hr</key>
+		<string>Pokušajte Ponovno</string>
+		<key>ht</key>
+		<string>Eseye Anko</string>
+		<key>hu</key>
+		<string>Próbáld Újra</string>
+		<key>hy</key>
+		<string>Կրկին Փորձեք</string>
+		<key>id</key>
+		<string>Coba Lagi</string>
+		<key>is</key>
+		<string>Reyndu Aftur</string>
+		<key>it</key>
+		<string>Riprova</string>
+		<key>ja</key>
+		<string>再試行する</string>
+		<key>jv</key>
+		<string>Andramo indray mandeha</string>
+		<key>ka</key>
+		<string>Კიდევ Სცადე</string>
+		<key>kk</key>
+		<string>Қайтадан байқап көріңіз</string>
+		<key>kn</key>
+		<string>ಮತ್ತೆ ಪ್ರಯತ್ನಿಸು</string>
+		<key>ko</key>
+		<string>다시 시도하십시오</string>
+		<key>ky</key>
+		<string>Кайра аракет кыл</string>
+		<key>la</key>
+		<string>Iterum Conare</string>
+		<key>lt</key>
+		<string>Bandyk iš naujo</string>
+		<key>mg</key>
+		<string>Andramo indray mandeha</string>
+		<key>mi</key>
+		<string>Ngana Ano</string>
+		<key>mk</key>
+		<string>Обиди се повторно</string>
+		<key>ml</key>
+		<string>വീണ്ടും ശ്രമിക്കുക</string>
+		<key>mn</key>
+		<string>Дахин Оролд</string>
+		<key>mr</key>
+		<string>पुन्हा प्रयत्न करा</string>
+		<key>ms</key>
+		<string>Cuba Lagi</string>
+		<key>mt</key>
+		<string>Erġa &apos;pprova</string>
+		<key>ne</key>
+		<string>फेरि प्रयास गर्नुहोस्</string>
+		<key>nl</key>
+		<string>Probeer het nog eens</string>
+		<key>no</key>
+		<string>Prøv Igjen</string>
+		<key>pa</key>
+		<string>ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+		<key>pl</key>
+		<string>Spróbuj Ponownie</string>
+		<key>pt</key>
+		<string>Tente Novamente</string>
+		<key>ro</key>
+		<string>Încearcă din nou</string>
+		<key>ru</key>
+		<string>Попробуйте еще раз</string>
+		<key>si</key>
+		<string>නැවත උත්සාහ කරන්න</string>
+		<key>sk</key>
+		<string>Skúste Znova</string>
+		<key>sl</key>
+		<string>Poskusi Ponovno</string>
+		<key>sq</key>
+		<string>Provo Përsëri</string>
+		<key>sr</key>
+		<string>Покушајте Поново</string>
+		<key>su</key>
+		<string>Cobian Deui</string>
+		<key>sv</key>
+		<string>Försök Igen</string>
+		<key>sw</key>
+		<string>Jaribu Tena</string>
+		<key>ta</key>
+		<string>மீண்டும் முயற்சி செய்</string>
+		<key>te</key>
+		<string>మళ్లీ ప్రయత్నించండి</string>
+		<key>tg</key>
+		<string>Як бори дигар санҷед</string>
+		<key>th</key>
+		<string>ลองอีกครั้ง</string>
+		<key>tl</key>
+		<string>Subukan Muli</string>
+		<key>tr</key>
+		<string>Tekrar Deneyin</string>
+		<key>tt</key>
+		<string>Кабатларга</string>
+		<key>udm</key>
+		<string>Try Again</string>
+		<key>uk</key>
+		<string>Спробуйте Знову</string>
+		<key>ur</key>
+		<string>دوبارہ کوشش کریں</string>
+		<key>uz</key>
+		<string>Qayta urinib ko&apos;ring</string>
+		<key>vi</key>
+		<string>Thử Lại</string>
+		<key>yi</key>
+		<string>פּרוּווט ווידער</string>
+		<key>zh</key>
+		<string>再试一次</string>
+	</dict>
+	<key>tuesday</key>
+	<dict>
+		<key>af</key>
+		<string>Dinsdag</string>
+		<key>ar</key>
+		<string>يوم الثلاثاء</string>
+		<key>az</key>
+		<string>çərşənbə axşamı</string>
+		<key>ba</key>
+		<string>Tuesday</string>
+		<key>be</key>
+		<string>Аўторак</string>
+		<key>bg</key>
+		<string>Вторник</string>
+		<key>bn</key>
+		<string>মঙ্গলবার</string>
+		<key>bs</key>
+		<string>Utorak</string>
+		<key>ca</key>
+		<string>Dimarts</string>
+		<key>ceb</key>
+		<string>Martes</string>
+		<key>cs</key>
+		<string>Úterý</string>
+		<key>cy</key>
+		<string>Dydd Mawrth</string>
+		<key>da</key>
+		<string>Tirsdag</string>
+		<key>de</key>
+		<string>Dienstag</string>
+		<key>el</key>
+		<string>Τρίτη</string>
+		<key>en</key>
+		<string>Tuesday</string>
+		<key>eo</key>
+		<string>Mardon</string>
+		<key>es</key>
+		<string>Martes</string>
+		<key>et</key>
+		<string>Teisipäev</string>
+		<key>eu</key>
+		<string>Astearte</string>
+		<key>fa</key>
+		<string>سهشنبه</string>
+		<key>fi</key>
+		<string>Tiistai</string>
+		<key>fr</key>
+		<string>Mardi</string>
+		<key>ga</key>
+		<string>Dé Máirt</string>
+		<key>gd</key>
+		<string>Dimàirt</string>
+		<key>gl</key>
+		<string>Martes</string>
+		<key>gu</key>
+		<string>મંગળવારે</string>
+		<key>he</key>
+		<string>יוֹם שְׁלִישִׁי</string>
+		<key>hi</key>
+		<string>मंगलवार</string>
+		<key>hr</key>
+		<string>Utorak</string>
+		<key>ht</key>
+		<string>Madi</string>
+		<key>hu</key>
+		<string>Kedd</string>
+		<key>hy</key>
+		<string>Երեքշաբթի</string>
+		<key>id</key>
+		<string>Selasa</string>
+		<key>is</key>
+		<string>Þriðjudag</string>
+		<key>it</key>
+		<string>Martedì</string>
+		<key>ja</key>
+		<string>火曜日</string>
+		<key>jv</key>
+		<string>Tuesday</string>
+		<key>ka</key>
+		<string>Სამშაბათი</string>
+		<key>kk</key>
+		<string>Сейсенбі</string>
+		<key>kn</key>
+		<string>ಮಂಗಳವಾರ</string>
+		<key>ko</key>
+		<string>화요일</string>
+		<key>ky</key>
+		<string>Шейшемби</string>
+		<key>la</key>
+		<string>Martis</string>
+		<key>lt</key>
+		<string>Antradienis</string>
+		<key>mg</key>
+		<string>Talata</string>
+		<key>mi</key>
+		<string>Turei</string>
+		<key>mk</key>
+		<string>Вторник</string>
+		<key>ml</key>
+		<string>ചൊവ്വാഴ്ച</string>
+		<key>mn</key>
+		<string>Мягмар гариг</string>
+		<key>mr</key>
+		<string>मंगळवार</string>
+		<key>ms</key>
+		<string>Selasa</string>
+		<key>mt</key>
+		<string>It-Tlieta</string>
+		<key>ne</key>
+		<string>मंगलवार</string>
+		<key>nl</key>
+		<string>Dinsdag</string>
+		<key>no</key>
+		<string>Tirsdag</string>
+		<key>pa</key>
+		<string>ਮੰਗਲਵਾਰ</string>
+		<key>pl</key>
+		<string>Wtorek</string>
+		<key>pt</key>
+		<string>Terça-feira</string>
+		<key>ro</key>
+		<string>Marți</string>
+		<key>ru</key>
+		<string>Вторник</string>
+		<key>si</key>
+		<string>අඟහරුවාදා</string>
+		<key>sk</key>
+		<string>Utorok</string>
+		<key>sl</key>
+		<string>Torek</string>
+		<key>sq</key>
+		<string>E martë</string>
+		<key>sr</key>
+		<string>Уторак</string>
+		<key>su</key>
+		<string>Salasa</string>
+		<key>sv</key>
+		<string>Tisdag</string>
+		<key>sw</key>
+		<string>Jumanne</string>
+		<key>ta</key>
+		<string>செவ்வாய்</string>
+		<key>te</key>
+		<string>మంగళవారం</string>
+		<key>tg</key>
+		<string>Сешанбе</string>
+		<key>th</key>
+		<string>วันอังคาร</string>
+		<key>tl</key>
+		<string>Martes</string>
+		<key>tr</key>
+		<string>Salı</string>
+		<key>tt</key>
+		<string>Сишәмбе</string>
+		<key>udm</key>
+		<string>Tuesday</string>
+		<key>uk</key>
+		<string>У вівторок</string>
+		<key>ur</key>
+		<string>منگل</string>
+		<key>uz</key>
+		<string>Seshanba</string>
+		<key>vi</key>
+		<string>Thứ ba</string>
+		<key>yi</key>
+		<string>דינסטיק</string>
+		<key>zh</key>
+		<string>星期二</string>
+	</dict>
+	<key>wednesday</key>
+	<dict>
+		<key>af</key>
+		<string>Woensdag</string>
+		<key>ar</key>
+		<string>الأربعاء</string>
+		<key>az</key>
+		<string>Çərşənbə</string>
+		<key>ba</key>
+		<string>Wednesday</string>
+		<key>be</key>
+		<string>Серада</string>
+		<key>bg</key>
+		<string>Сряда</string>
+		<key>bn</key>
+		<string>বুধবার</string>
+		<key>bs</key>
+		<string>Srijeda</string>
+		<key>ca</key>
+		<string>Dimecres</string>
+		<key>ceb</key>
+		<string>Miyerkules</string>
+		<key>cs</key>
+		<string>Středa</string>
+		<key>cy</key>
+		<string>Mercher</string>
+		<key>da</key>
+		<string>Onsdag</string>
+		<key>de</key>
+		<string>Mittwoch</string>
+		<key>el</key>
+		<string>Τετάρτη</string>
+		<key>en</key>
+		<string>Wednesday</string>
+		<key>eo</key>
+		<string>Merkredon</string>
+		<key>es</key>
+		<string>Miércoles</string>
+		<key>et</key>
+		<string>Kolmapäeval</string>
+		<key>eu</key>
+		<string>Asteazkena</string>
+		<key>fa</key>
+		<string>چهار شنبه</string>
+		<key>fi</key>
+		<string>Keskiviikko</string>
+		<key>fr</key>
+		<string>Mercredi</string>
+		<key>ga</key>
+		<string>Dé Céadaoin</string>
+		<key>gd</key>
+		<string>Diciadain</string>
+		<key>gl</key>
+		<string>Mércores</string>
+		<key>gu</key>
+		<string>બુધવાર</string>
+		<key>he</key>
+		<string>יום רביעי</string>
+		<key>hi</key>
+		<string>बुधवार</string>
+		<key>hr</key>
+		<string>Srijeda</string>
+		<key>ht</key>
+		<string>Mèkredi</string>
+		<key>hu</key>
+		<string>Szerda</string>
+		<key>hy</key>
+		<string>Չորեքշաբթի</string>
+		<key>id</key>
+		<string>Rabu</string>
+		<key>is</key>
+		<string>Miðvikudag</string>
+		<key>it</key>
+		<string>Mercoledì</string>
+		<key>ja</key>
+		<string>水曜日</string>
+		<key>jv</key>
+		<string>Wednesday</string>
+		<key>ka</key>
+		<string>Ოთხშაბათი</string>
+		<key>kk</key>
+		<string>Сәрсенбі</string>
+		<key>kn</key>
+		<string>ಬುಧವಾರ</string>
+		<key>ko</key>
+		<string>수요일</string>
+		<key>ky</key>
+		<string>Шаршемби</string>
+		<key>la</key>
+		<string>Mercurii</string>
+		<key>lt</key>
+		<string>Trečiadienį</string>
+		<key>mg</key>
+		<string>Alarobia</string>
+		<key>mi</key>
+		<string>Wenerei</string>
+		<key>mk</key>
+		<string>Среда</string>
+		<key>ml</key>
+		<string>ബുധനാഴ്ച</string>
+		<key>mn</key>
+		<string>Лхагва гараг</string>
+		<key>mr</key>
+		<string>बुधवार</string>
+		<key>ms</key>
+		<string>Rabu</string>
+		<key>mt</key>
+		<string>L-Erbgħa</string>
+		<key>ne</key>
+		<string>बुधबार</string>
+		<key>nl</key>
+		<string>Woensdag</string>
+		<key>no</key>
+		<string>Onsdag</string>
+		<key>pa</key>
+		<string>ਬੁੱਧਵਾਰ</string>
+		<key>pl</key>
+		<string>Środa</string>
+		<key>pt</key>
+		<string>Quarta-feira</string>
+		<key>ro</key>
+		<string>Miercuri</string>
+		<key>ru</key>
+		<string>Среда</string>
+		<key>si</key>
+		<string>බදාදා</string>
+		<key>sk</key>
+		<string>Streda</string>
+		<key>sl</key>
+		<string>Sreda</string>
+		<key>sq</key>
+		<string>e mërkurë</string>
+		<key>sr</key>
+		<string>Среда</string>
+		<key>su</key>
+		<string>Rebo</string>
+		<key>sv</key>
+		<string>Onsdag</string>
+		<key>sw</key>
+		<string>Jumatano</string>
+		<key>ta</key>
+		<string>புதன்</string>
+		<key>te</key>
+		<string>బుధవారం</string>
+		<key>tg</key>
+		<string>Чоршанбе</string>
+		<key>th</key>
+		<string>วันพุธ</string>
+		<key>tl</key>
+		<string>Miyerkules</string>
+		<key>tr</key>
+		<string>Çarşamba</string>
+		<key>tt</key>
+		<string>Чәршәмбе</string>
+		<key>udm</key>
+		<string>Wednesday</string>
+		<key>uk</key>
+		<string>Середа</string>
+		<key>ur</key>
+		<string>بدھ</string>
+		<key>uz</key>
+		<string>Chorshanba</string>
+		<key>vi</key>
+		<string>Thứ Tư</string>
+		<key>yi</key>
+		<string>מיטוואך</string>
+		<key>zh</key>
+		<string>周三</string>
+	</dict>
+	<key>yesterday</key>
+	<dict>
+		<key>af</key>
+		<string>Gister</string>
+		<key>ar</key>
+		<string>في الامس</string>
+		<key>az</key>
+		<string>Dünən</string>
+		<key>ba</key>
+		<string>Yesterday</string>
+		<key>be</key>
+		<string>Учора</string>
+		<key>bg</key>
+		<string>Вчера</string>
+		<key>bn</key>
+		<string>গতকাল</string>
+		<key>bs</key>
+		<string>Jučer</string>
+		<key>ca</key>
+		<string>Ahir</string>
+		<key>ceb</key>
+		<string>Kagahapon</string>
+		<key>cs</key>
+		<string>Včera</string>
+		<key>cy</key>
+		<string>Ddoe</string>
+		<key>da</key>
+		<string>I går</string>
+		<key>de</key>
+		<string>Gestern</string>
+		<key>el</key>
+		<string>Χθες</string>
+		<key>en</key>
+		<string>Yesterday</string>
+		<key>eo</key>
+		<string>Hieraŭ</string>
+		<key>es</key>
+		<string>Ayer</string>
+		<key>et</key>
+		<string>Eile</string>
+		<key>eu</key>
+		<string>Atzo</string>
+		<key>fa</key>
+		<string>دیروز</string>
+		<key>fi</key>
+		<string>Eilen</string>
+		<key>fr</key>
+		<string>Hier</string>
+		<key>ga</key>
+		<string>Inné</string>
+		<key>gd</key>
+		<string>An-dè</string>
+		<key>gl</key>
+		<string>Onte</string>
+		<key>gu</key>
+		<string>ગઇકાલે</string>
+		<key>he</key>
+		<string>אתמול</string>
+		<key>hi</key>
+		<string>कल</string>
+		<key>hr</key>
+		<string>Jučer</string>
+		<key>ht</key>
+		<string>Yè</string>
+		<key>hu</key>
+		<string>Tegnap</string>
+		<key>hy</key>
+		<string>Երեկ</string>
+		<key>id</key>
+		<string>Kemarin</string>
+		<key>is</key>
+		<string>Í gær</string>
+		<key>it</key>
+		<string>Ieri</string>
+		<key>ja</key>
+		<string>昨日</string>
+		<key>jv</key>
+		<string>Yesterday</string>
+		<key>ka</key>
+		<string>Გუშინ</string>
+		<key>kk</key>
+		<string>Кеше</string>
+		<key>kn</key>
+		<string>ನಿನ್ನೆ</string>
+		<key>ko</key>
+		<string>어제</string>
+		<key>ky</key>
+		<string>Кечээ</string>
+		<key>la</key>
+		<string>Heri</string>
+		<key>lt</key>
+		<string>Vakar</string>
+		<key>mg</key>
+		<string>Omaly</string>
+		<key>mi</key>
+		<string>Inanahi</string>
+		<key>mk</key>
+		<string>Вчера</string>
+		<key>ml</key>
+		<string>ഇന്നലെ</string>
+		<key>mn</key>
+		<string>Өчигдөр</string>
+		<key>mr</key>
+		<string>काल</string>
+		<key>ms</key>
+		<string>Semalam</string>
+		<key>mt</key>
+		<string>Ilbieraħ</string>
+		<key>ne</key>
+		<string>हिजो</string>
+		<key>nl</key>
+		<string>Gisteren</string>
+		<key>no</key>
+		<string>I går</string>
+		<key>pa</key>
+		<string>ਕੱਲ੍ਹ</string>
+		<key>pl</key>
+		<string>Wczoraj</string>
+		<key>pt</key>
+		<string>Ontem</string>
+		<key>ro</key>
+		<string>Ieri</string>
+		<key>ru</key>
+		<string>Вчерашний день</string>
+		<key>si</key>
+		<string>ඊයේ</string>
+		<key>sk</key>
+		<string>Včera</string>
+		<key>sl</key>
+		<string>Včeraj</string>
+		<key>sq</key>
+		<string>Dje</string>
+		<key>sr</key>
+		<string>Јучер</string>
+		<key>su</key>
+		<string>Kamari</string>
+		<key>sv</key>
+		<string>I går</string>
+		<key>sw</key>
+		<string>Jana</string>
+		<key>ta</key>
+		<string>நேற்று</string>
+		<key>te</key>
+		<string>నిన్న</string>
+		<key>tg</key>
+		<string>Дируз</string>
+		<key>th</key>
+		<string>เมื่อวาน</string>
+		<key>tl</key>
+		<string>Kahapon</string>
+		<key>tr</key>
+		<string>Dün</string>
+		<key>tt</key>
+		<string>Кичә</string>
+		<key>udm</key>
+		<string>Yesterday</string>
+		<key>uk</key>
+		<string>Вчора</string>
+		<key>ur</key>
+		<string>کل</string>
+		<key>uz</key>
+		<string>Kecha</string>
+		<key>vi</key>
+		<string>Hôm qua</string>
+		<key>yi</key>
+		<string>נעכטן</string>
+		<key>zh</key>
+		<string>昨天</string>
+	</dict>
+</dict>
+</plist>
