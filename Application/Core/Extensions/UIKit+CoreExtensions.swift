@@ -154,7 +154,7 @@ public extension UIView {
         let overlayView = UIView(frame: bounds)
         overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         overlayView.backgroundColor = color ?? .black
-        overlayView.tag = coreUI.nameTag(for: tag ?? "OVERLAY_VIEW")
+        overlayView.tag = coreUI.semTag(for: tag ?? "OVERLAY_VIEW")
         overlayView.alpha = alpha
         addSubview(overlayView)
         
@@ -164,18 +164,18 @@ public extension UIView {
         indicatorView.center = center
         indicatorView.color = .white
         indicatorView.startAnimating()
-        indicatorView.tag = coreUI.nameTag(for: "ACTIVITY_INDICATOR")
+        indicatorView.tag = coreUI.semTag(for: "OVERLAY_VIEW_ACTIVITY_INDICATOR")
         addSubview(indicatorView)
     }
     
     func firstSubview(for string: String) -> UIView? {
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
-        return subviews.filter({ $0.tag == coreUI.nameTag(for: string) }).first
+        return subviews.filter({ $0.tag == coreUI.semTag(for: string) }).first
     }
     
     func removeOverlay(name tag: String? = nil, animated: Bool = true) {
         let overlayView = firstSubview(for: tag ?? "OVERLAY_VIEW")
-        let activityIndicatorView = firstSubview(for: "ACTIVITY_INDICATOR")
+        let activityIndicatorView = firstSubview(for: "OVERLAY_VIEW_ACTIVITY_INDICATOR")
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.2) {
@@ -190,7 +190,7 @@ public extension UIView {
     
     func removeSubviews(for string: String, animated: Bool = true) {
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
-        subviews.filter({ $0.tag == coreUI.nameTag(for: string) }).forEach { subview in
+        subviews.filter({ $0.tag == coreUI.semTag(for: string) }).forEach { subview in
             DispatchQueue.main.async {
                 guard animated else {
                     subview.removeFromSuperview()
@@ -208,6 +208,6 @@ public extension UIView {
     
     func subviews(for string: String) -> [UIView] {
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
-        return subviews.filter({ $0.tag == coreUI.nameTag(for: string) })
+        return subviews.filter({ $0.tag == coreUI.semTag(for: string) })
     }
 }

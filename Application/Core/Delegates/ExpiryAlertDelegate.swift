@@ -62,7 +62,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
                     self.exitTimer?.invalidate()
                     self.exitTimer = nil
                     
-                    RuntimeStorage.topWindow?.removeSubviews(for: "expiryOverlayWindow")
+                    RuntimeStorage.topWindow?.removeSubviews(for: "EXPIRY_OVERLAY_WINDOW")
                 } else {
                     let incorrectAlertController = UIAlertController(title: self.incorrectCodeTitle,
                                                                      message: self.incorrectCodeMessage,

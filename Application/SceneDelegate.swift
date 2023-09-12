@@ -62,7 +62,7 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
                                               height: 100)
         buildInfoOverlayWindow.rootViewController = UIHostingController(rootView: BuildInfoOverlayView(.init(initialState: .init(), reducer: BuildInfoOverlayReducer())))
         buildInfoOverlayWindow.isHidden = false
-        buildInfoOverlayWindow.tag = coreUI.nameTag(for: "buildInfoOverlayWindow")
+        buildInfoOverlayWindow.tag = coreUI.semTag(for: "BUILD_INFO_OVERLAY_WINDOW")
         
         window.addGestureRecognizer(tapGesture)
         window.addSubview(buildInfoOverlayWindow)
@@ -80,7 +80,7 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
                                                height: bounds.size.height)
             expiryOverlayWindow.rootViewController = UIHostingController(rootView: ExpiryOverlayView())
             expiryOverlayWindow.isHidden = false
-            expiryOverlayWindow.tag = coreUI.nameTag(for: "expiryOverlayWindow")
+            expiryOverlayWindow.tag = coreUI.semTag(for: "EXPIRY_OVERLAY_WINDOW")
             
             window.addSubview(self.expiryOverlayWindow)
         }

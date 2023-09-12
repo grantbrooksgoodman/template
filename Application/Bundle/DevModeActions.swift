@@ -137,7 +137,7 @@ public extension DevModeService {
     private static func toggleBuildInfoOverlay() {
         @Dependency(\.userDefaults) var defaults: UserDefaults
         
-        guard let overlay = RuntimeStorage.topWindow?.firstSubview(for: "buildInfoOverlayWindow") as? UIWindow else { return }
+        guard let overlay = RuntimeStorage.topWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW") as? UIWindow else { return }
         
         guard let currentValue = defaults.value(forKey: .hidesBuildInfoOverlay) as? Bool else {
             overlay.isHidden.toggle()

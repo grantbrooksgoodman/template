@@ -223,15 +223,18 @@ public struct CoreKit {
         
         /* MARK: View Tagging */
         
-        public func nameTag(for viewNamed: String) -> Int {
-            var finalValue: Float = 1.0
+        /// Generates a semantic, integer-based identifier for a given view name.
+        public func semTag(for viewName: String) -> Int {
+            var float: Float = 1
             
-            for character in String(viewNamed.unicodeScalars.filter(CharacterSet.letters.contains)).components {
+            for (index, character) in viewName.components.enumerated() {
                 guard let position = character.alphabeticalPosition else { continue }
-                finalValue += (finalValue / Float(position))
+                float += float / Float(position * (index + 1))
             }
             
-            return Int(String(finalValue).replacingOccurrences(of: ".", with: "")) ?? .random(in: 5...10)
+            let rawString = String(float).removingOccurrences(of: ["."])
+            guard let integer = Int(rawString) else { return Int(float) }
+            return integer
         }
     }
     
