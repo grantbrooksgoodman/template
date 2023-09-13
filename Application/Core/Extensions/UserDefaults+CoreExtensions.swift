@@ -29,8 +29,7 @@ public extension UserDefaults {
             removeObject(forKey: key)
         }
         
-        for key in mappedValues.keys {
-            guard let value = mappedValues[key] else { continue }
+        mappedValues.forEach { key, value in
             set(value, forKey: key)
         }
     }

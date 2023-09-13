@@ -35,10 +35,8 @@ public struct UITheme: Equatable {
     
     /// - Warning: Returns `UIColor.clear` if item is not themed.
     public func color(for itemType: ColoredItemType) -> UIColor {
-        @Dependency(\.uiTraitCollection) var traitCollection: UITraitCollection
-        
         guard let item = items.first(where: { $0.type == itemType }) else { return .clear }
-        return traitCollection.userInterfaceStyle == .dark ? (item.set.variant ?? item.set.primary) : item.set.primary
+        return UITraitCollection.current.userInterfaceStyle == .dark ? (item.set.variant ?? item.set.primary) : item.set.primary
     }
     
     // MARK: - Auxiliary

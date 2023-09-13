@@ -46,9 +46,11 @@ public enum AppTheme: CaseIterable {
     
     private static var defaultColoredItems: [ColoredItem] {
         let background = ColoredItem(type: .background, set: ColorSet(primary: .white, variant: .black))
+        
         let navigationBarBackground = ColoredItem(type: .navigationBarBackground, set: ColorSet(primary: UIColor(hex: 0xF8F8F8),
                                                                                                 variant: UIColor(hex: 0x2A2A2C)))
         let navigationBarTitle = ColoredItem(type: .navigationBarTitle, set: ColorSet(primary: .black, variant: .white))
+        
         let titleText = ColoredItem(type: .titleText, set: ColorSet(primary: .black, variant: .white))
         let subtitleText = ColoredItem(type: .subtitleText, set: ColorSet(primary: .black, variant: .white))
         

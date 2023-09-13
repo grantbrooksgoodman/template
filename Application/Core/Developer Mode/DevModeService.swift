@@ -32,6 +32,10 @@ public struct DevModeService {
         }
     }
     
+    public static func addStandardActions() {
+        addActions(DevModeAction.Standard.available)
+    }
+    
     // MARK: - Action Insertion
     
     public static func insertAction(_ action: DevModeAction,
@@ -167,6 +171,13 @@ public struct DevModeService {
         @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
         @Dependency(\.userDefaults) var defaults: UserDefaults
         @Dependency(\.observableRegistry) var registry: ObservableRegistry
+        
+        if !enabled,
+           let hidesBuildInfoOverlay = defaults.value(forKey: .hidesBuildInfoOverlay) as? Bool,
+           hidesBuildInfoOverlay {
+            defaults.set(false, forKey: .hidesBuildInfoOverlay)
+            RuntimeStorage.topWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW")?.isHidden = false
+        }
         
         Build.set(.developerModeEnabled, to: enabled)
         defaults.set(enabled, forKey: .developerModeEnabled)

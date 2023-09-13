@@ -18,6 +18,10 @@ public extension UIApplication {
     
     /* MARK: Properties */
     
+    var interfaceStyle: UIUserInterfaceStyle? {
+        keyWindow?.overrideUserInterfaceStyle
+    }
+    
     var keyViewController: UIViewController? {
         keyViewController(keyWindow?.rootViewController)
     }
@@ -146,23 +150,25 @@ public extension UIScreen {
 
 public extension UIView {
     func addOverlay(alpha: CGFloat = 1,
+                    activityIndicator indicatorConfig: (style: UIActivityIndicatorView.Style, color: UIColor)? = nil,
+                    blurStyle: UIBlurEffect.Style? = nil,
                     color: UIColor? = nil,
-                    showsActivityIndicator: Bool = false,
                     name tag: String? = nil) {
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
         
-        let overlayView = UIView(frame: bounds)
+        let overlayView = blurStyle == nil ? UIView() : UIVisualEffectView(effect: UIBlurEffect(style: blurStyle!))
+        overlayView.alpha = alpha
         overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         overlayView.backgroundColor = color ?? .black
+        overlayView.frame = bounds
         overlayView.tag = coreUI.semTag(for: tag ?? "OVERLAY_VIEW")
-        overlayView.alpha = alpha
         addSubview(overlayView)
         
-        guard showsActivityIndicator else { return }
+        guard let indicatorConfig else { return }
         
-        let indicatorView = UIActivityIndicatorView(style: .large)
-        indicatorView.center = center
-        indicatorView.color = .white
+        let indicatorView = UIActivityIndicatorView(style: indicatorConfig.style)
+        indicatorView.center = overlayView.center
+        indicatorView.color = indicatorConfig.color
         indicatorView.startAnimating()
         indicatorView.tag = coreUI.semTag(for: "OVERLAY_VIEW_ACTIVITY_INDICATOR")
         addSubview(indicatorView)

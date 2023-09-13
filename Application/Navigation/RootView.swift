@@ -16,7 +16,7 @@ import Redux
 public struct RootView: View {
     // MARK: - Properties
     
-    @ObservedDependency(\.rootNavigationCoordinator) private var navigationCoordinator
+    @ObservedDependency(\.rootNavigationCoordinator) private var navigationCoordinator: RootNavigationCoordinator
     
     // MARK: - View
     

@@ -9,15 +9,24 @@
 /* Native */
 import Foundation
 
+/* 3rd-party */
+import Redux
+
 public enum ObserverType {
     case buildInfoOverlay
+    case themedView
 }
 
 public final class Observers {
     
+    // MARK: - Dependencies
+    
+    @Dependency(\.observableRegistry) private static var registry: ObservableRegistry
+    
     // MARK: - Properties
     
     private(set) static var buildInfoOverlay: BuildInfoOverlayViewObserver?
+    private(set) static var themedView: ThemedViewObserver?
     
     // MARK: - Registration
     
@@ -25,7 +34,11 @@ public final class Observers {
         switch observer.type {
         case .buildInfoOverlay:
             buildInfoOverlay = observer as? BuildInfoOverlayViewObserver
+        case .themedView:
+            themedView = observer as? ThemedViewObserver
         }
+        
+        registry.setObservers()
     }
     
     public static func register(observers: [Observer]) {

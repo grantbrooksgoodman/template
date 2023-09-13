@@ -58,9 +58,10 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
                    .timebombActive: BuildConfig.timebombActive])
         
         defaults.set(developerModeEnabled, forKey: .developerModeEnabled)
+        Logger.exposureLevel = BuildConfig.loggingLevel
         
-        Logger.exposureLevel = .verbose
         DevModeService.addStandardActions()
+        DevModeService.addCustomActions()
         
         if defaults.value(forKey: .hidesBuildInfoOverlay) as? Bool == nil {
             defaults.set(false, forKey: .hidesBuildInfoOverlay)

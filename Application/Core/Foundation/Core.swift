@@ -114,8 +114,7 @@ public struct CoreKit {
             }
             
             let millisecondDelay = Int(delay * 1000)
-            let gcd: GCD = .init()
-            gcd.after(milliseconds: millisecondDelay) {
+            GCD().after(milliseconds: millisecondDelay) {
                 ProgressHUD.show(text ?? nil)
             }
         }
@@ -164,11 +163,9 @@ public struct CoreKit {
         /* MARK: Navigation Bar Appearance */
         
         public func resetNavigationBarAppearance() {
-            @Dependency(\.uiTraitCollection) var traitCollection: UITraitCollection
-            
             let appearance = UINavigationBarAppearance()
             appearance.configureWithTransparentBackground()
-            appearance.backgroundColor = traitCollection.userInterfaceStyle == .dark ? .black : .white
+            appearance.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
             
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
@@ -194,19 +191,31 @@ public struct CoreKit {
             uiApplication.keyViewController?.dismiss(animated: animated)
         }
         
-        public func present(_ viewController: UIViewController, animated: Bool = true) {
-            queuePresentation(of: viewController, animated: animated)
+        /// - Parameter embedded: Pass `true` to embed the given view controller inside a `UINavigationController`.
+        public func present(_ viewController: UIViewController,
+                            animated: Bool = true,
+                            embedded: Bool = false) {
+            queuePresentation(of: viewController, animated: animated, embedded: embedded)
         }
         
-        private func queuePresentation(of viewController: UIViewController, animated: Bool) {
+        private func queuePresentation(of viewController: UIViewController,
+                                       animated: Bool,
+                                       embedded: Bool) {
             HUD().hide()
             
             let keyVC = uiApplication.keyViewController
-            func present() { keyVC?.present(viewController, animated: animated) }
+            func present() {
+                guard embedded else {
+                    keyVC?.present(viewController, animated: animated)
+                    return
+                }
+                
+                keyVC?.present(UINavigationController(rootViewController: viewController), animated: animated)
+            }
             
             guard !isPresentingAlertController else {
                 GCD().after(seconds: 1) {
-                    queuePresentation(of: viewController, animated: animated)
+                    queuePresentation(of: viewController, animated: animated, embedded: embedded)
                 }
                 return
             }

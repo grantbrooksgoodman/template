@@ -47,15 +47,10 @@ public extension Exception {
     /* MARK: Methods */
     
     func isEqual(to cataloggedException: TEException) -> Bool {
-        return hashlet == cataloggedException.description
+        hashlet == cataloggedException.description
     }
     
     func isEqual(toAny in: [TEException]) -> Bool {
-        for exception in `in` {
-            guard hashlet == exception.description else { continue }
-            return true
-        }
-        
-        return false
+        `in`.filter({ $0.description == hashlet }).count > 0
     }
 }

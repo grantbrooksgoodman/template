@@ -21,7 +21,6 @@ public class BuildInfoOverlayViewService {
     @Dependency(\.coreKit) private var core: CoreKit
     
     // MARK: - Properties
-    // MARK: - Properties
     
     private var willPresentDisclaimerAlert = false
     
@@ -96,6 +95,7 @@ public class BuildInfoOverlayViewService {
                                    using: .google) { translations, errorDescriptors in
             guard let translations else {
                 self.core.hud.hide()
+                self.willPresentDisclaimerAlert = false
                 Logger.log(errorDescriptors?.keys.joined(separator: "\n") ?? "An unknown error occurred.",
                            metadata: [#file, #function, #line])
                 return
@@ -132,6 +132,7 @@ public class BuildInfoOverlayViewService {
             guard Build.timebombActive else {
                 alertController.message = translations.first(where: { $0.input.value() == messageToDisplay })?.output.sanitized ?? messageToDisplay.sanitized
                 hasPresented = true
+                self.willPresentDisclaimerAlert = false
                 self.core.ui.present(alertController)
                 
                 return
@@ -157,6 +158,7 @@ public class BuildInfoOverlayViewService {
             alertController.setValue(attributed, forKey: "attributedMessage")
             
             hasPresented = true
+            self.willPresentDisclaimerAlert = false
             self.core.ui.present(alertController)
         }
     }

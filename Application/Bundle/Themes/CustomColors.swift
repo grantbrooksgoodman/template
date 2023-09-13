@@ -19,13 +19,16 @@ import Redux
  */
 public extension UIColor {
     // MARK: - View Backgrounds
+    
     static var background: UIColor { ThemeService.currentTheme.color(for: .background) }
     
     // MARK: - Navigation Bar
+    
     static var navigationBarBackground: UIColor { ThemeService.currentTheme.color(for: .navigationBarBackground) }
     static var navigationBarTitle: UIColor { ThemeService.currentTheme.color(for: .navigationBarTitle) }
     
     // MARK: - Label Text
+    
     static var subtitleText: UIColor { ThemeService.currentTheme.color(for: .subtitleText) }
     static var titleText: UIColor { ThemeService.currentTheme.color(for: .titleText) }
 }
@@ -35,17 +38,21 @@ public extension UIColor {
  */
 public extension Color {
     // MARK: - View Backgrounds
+    
     static var background: Color { colorProvider.backgroundColor }
     
     // MARK: - Navigation Bar
+    
     static var navigationBarTitle: Color { colorProvider.navigationBarTitleColor }
     static var navigationBarBackground: Color { colorProvider.navigationBarBackgroundColor }
     
     // MARK: - Label Text
+    
     static var subtitleText: Color { colorProvider.subtitleTextColor }
     static var titleText: Color { colorProvider.titleTextColor }
     
     // MARK: - Color Provider
+    
     private static var colorProvider: ColorProvider { @Dependency(\.colorProvider) var colorProvider; return colorProvider }
 }
 
@@ -53,10 +60,6 @@ public extension Color {
  This class can be used to access your custom `UIColors` in SwiftUI and keep them in sync.
  */
 public class ColorProvider: ObservableObject {
-    
-    // MARK: - Dependencies
-    
-    @Dependency(\.uiApplication) private var uiApplication: UIApplication
     
     // MARK: - Properties
     
@@ -86,7 +89,21 @@ public class ColorProvider: ObservableObject {
         subtitleTextColor = ColorProvider.binding(with: .subtitleText)
         titleTextColor = ColorProvider.binding(with: .titleText)
         
-        uiApplication.overrideUserInterfaceStyle(ThemeService.currentTheme.style)
+        setStyle()
+    }
+    
+    private func setStyle() {
+        @Dependency(\.coreKit.gcd) var coreGCD: CoreKit.GCD
+        @Dependency(\.uiApplication) var uiApplication: UIApplication
+        
+        let currentThemeStyle = ThemeService.currentTheme.style
+        guard uiApplication.interfaceStyle != currentThemeStyle else { return }
+        uiApplication.overrideUserInterfaceStyle(currentThemeStyle)
+        
+        coreGCD.after(milliseconds: 10) {
+            guard uiApplication.interfaceStyle != currentThemeStyle else { return }
+            self.setStyle()
+        }
     }
     
     // MARK: - Binding Constructor

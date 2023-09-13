@@ -14,6 +14,7 @@ import Redux
 import Translator
 
 public struct SampleReducer: Reducer {
+    
     // MARK: - Dependencies
     
     @Dependency(\.translatorService) private var translator: TranslatorService

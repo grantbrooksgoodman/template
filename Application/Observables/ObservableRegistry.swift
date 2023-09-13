@@ -11,6 +11,7 @@ import Foundation
 
 public enum ObservableKey: String {
     case isDeveloperModeEnabled
+    case themedViewAppearanceChanged
 }
 
 /// For sending and accessing observed values between scopes.
@@ -19,11 +20,23 @@ public struct ObservableRegistry {
     // MARK: - Properties
     
     public let isDeveloperModeEnabled: Observable<Bool> = .init(.isDeveloperModeEnabled, false)
+    public let themedViewAppearanceChanged: Observable<Nil> = .init(key: .themedViewAppearanceChanged)
     
     // MARK: - Init
     
     public init() {
-        guard let buildInfoOverlayObserver = Observers.buildInfoOverlay else { return }
-        isDeveloperModeEnabled.addObserver(buildInfoOverlayObserver)
+        setObservers()
+    }
+    
+    // MARK: - Set Observers
+    
+    public func setObservers() {
+        if let buildInfoOverlayObserver = Observers.buildInfoOverlay {
+            isDeveloperModeEnabled.addObserver(buildInfoOverlayObserver)
+        }
+        
+        if let themedViewObserver = Observers.themedView {
+            themedViewAppearanceChanged.addObserver(themedViewObserver)
+        }
     }
 }

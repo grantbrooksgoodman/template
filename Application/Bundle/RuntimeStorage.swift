@@ -31,7 +31,7 @@ public enum RuntimeStorage {
         /* MARK: Properties */
         
         public var description: String {
-            return rawValue.snakeCase()
+            return rawValue.snakeCased
         }
     }
     
@@ -45,7 +45,6 @@ public enum RuntimeStorage {
     
     public static func retrieve(_ item: StoredItem) -> Any? {
         guard let object = storedItems[item.description] else { return nil }
-        
         return object
     }
     
@@ -59,11 +58,13 @@ public extension RuntimeStorage {
     /* Add new static properties here for quick access. */
     
     // MARK: - AppDelegate
+    
     static var currentFile: String? { get { retrieve(.currentFile) as? String } }
     static var languageCode: String? { get { guard let overridden = retrieve(.overriddenLanguageCode) as? String else { return retrieve(.languageCode) as? String }; return overridden } }
     static var languageCodeDictionary: [String: String]? { get { retrieve(.languageCodeDictionary) as? [String: String] } }
     
     // MARK: - SceneDelegate
+    
     static var topWindow: UIWindow? { get { retrieve(.topWindow) as? UIWindow } }
 }
 

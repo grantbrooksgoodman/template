@@ -132,6 +132,19 @@ public extension String {
         removingOccurrences(of: ["*", "⌘"])
     }
     
+    var snakeCased: String {
+        var characters = components
+        func satisfiesConstraints(_ character: String) -> Bool {
+            character.isAlphabetical && character.isUppercase
+        }
+        
+        for (index, character) in characters.enumerated() where satisfiesConstraints(character) {
+            characters[index] = "_\(character.lowercased())"
+        }
+        
+        return characters.joined()
+    }
+    
     var trimmingBorderedWhitespace: String {
         return trimmingLeadingWhitespace.trimmingTrailingWhitespace
     }
@@ -218,17 +231,5 @@ public extension String {
             mutable = mutable.replacingOccurrences(of: string, with: "")
         }
         return mutable
-    }
-    
-    func snakeCase() -> String {
-        var characters = self.components
-        
-        for (index, character) in characters.enumerated() {
-            guard character.isUppercase,
-                  character.isAlphabetical else { continue }
-            characters[index] = "_\(character.lowercased())"
-        }
-        
-        return characters.joined()
     }
 }

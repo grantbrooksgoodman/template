@@ -163,7 +163,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
                                                     preferredStyle: .alert)
             
             core.ui.present(alertController)
-            core.gcd.after(seconds: 2) { fatalError("Evaluation period ended") }
+            core.gcd.after(seconds: 5) { fatalError("Evaluation period ended") }
         } else {
             let decrementString = String(format: "%02d", remainingSeconds)
             expiryMessage = "\(expiryMessage.components(separatedBy: ":")[0]): 00:\(decrementString)"

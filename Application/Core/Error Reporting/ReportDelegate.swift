@@ -32,7 +32,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
             guard let fileName = currentFile.components(separatedBy: "/").last else { return parameters }
             guard let trimmedFileName = fileName.components(separatedBy: ".").first else { return parameters }
             
-            let snakeCaseFileName = trimmedFileName.firstLowercase.snakeCase()
+            let snakeCaseFileName = trimmedFileName.firstLowercase.snakeCased
             parameters["CurrentFile"] = snakeCaseFileName
         }
         

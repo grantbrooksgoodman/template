@@ -20,11 +20,12 @@ public struct ThemeService {
     
     private(set) static var currentTheme = AppTheme.default.theme {
         didSet {
-            @Dependency(\.userDefaults) var defaults: UserDefaults
             @Dependency(\.colorProvider) var colorProvider: ColorProvider
+            @Dependency(\.userDefaults) var defaults: UserDefaults
+            @Dependency(\.observableRegistry) var registry: ObservableRegistry
             defaults.set(currentTheme.name, forKey: .currentTheme)
             colorProvider.updateColorState()
-            colorProvider.currentThemeName = currentTheme.name
+            registry.themedViewAppearanceChanged.trigger()
         }
     }
     

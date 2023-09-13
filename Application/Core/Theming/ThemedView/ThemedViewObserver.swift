@@ -1,5 +1,5 @@
 //
-//  BuildInfoOverlayViewObserver.swift
+//  ThemedViewObserver.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -11,16 +11,16 @@ import Foundation
 /* 3rd-party */
 import Redux
 
-public class BuildInfoOverlayViewObserver: Observer {
+public class ThemedViewObserver: Observer {
     
     // MARK: - Properties
     
-    public var type: ObserverType = .buildInfoOverlay
-    private let viewModel: ViewModel<BuildInfoOverlayReducer>
+    public var type: ObserverType = .themedView
+    private let viewModel: ViewModel<ThemedReducer>
     
     // MARK: - Init
     
-    public init(_ viewModel: ViewModel<BuildInfoOverlayReducer>) {
+    public init(_ viewModel: ViewModel<ThemedReducer>) {
         self.viewModel = viewModel
     }
     
@@ -38,14 +38,13 @@ public class BuildInfoOverlayViewObserver: Observer {
         }
         
         switch observable.key {
-        case .isDeveloperModeEnabled:
-            guard let value = observable.value as? Bool else { return }
-            send(.isDeveloperModeEnabledChanged(value))
+        case .themedViewAppearanceChanged:
+            send(.appearanceChanged)
         default: ()
         }
     }
     
-    private func send(_ action: BuildInfoOverlayReducer.Action) {
+    private func send(_ action: ThemedReducer.Action) {
         DispatchQueue.main.async {
             self.viewModel.send(action)
         }

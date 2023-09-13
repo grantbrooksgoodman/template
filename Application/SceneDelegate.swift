@@ -54,13 +54,13 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         tapGesture.delegate = self
         
         let bounds = UIScreen.main.bounds
-        
         buildInfoOverlayWindow = UIWindow()
         buildInfoOverlayWindow.frame = CGRect(x: 0,
                                               y: bounds.maxY - 100,
                                               width: bounds.size.width,
                                               height: 100)
-        buildInfoOverlayWindow.rootViewController = UIHostingController(rootView: BuildInfoOverlayView(.init(initialState: .init(), reducer: BuildInfoOverlayReducer())))
+        let view = BuildInfoOverlayView(.init(initialState: .init(), reducer: BuildInfoOverlayReducer()))
+        buildInfoOverlayWindow.rootViewController = UIHostingController(rootView: view)
         buildInfoOverlayWindow.isHidden = false
         buildInfoOverlayWindow.tag = coreUI.semTag(for: "BUILD_INFO_OVERLAY_WINDOW")
         
@@ -125,8 +125,9 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
                             UIInterfaceOrientation,
                             traitCollection previousTraitCollection: UITraitCollection) {
         @Dependency(\.colorProvider) var colorProvider: ColorProvider
-        @Dependency(\.uiTraitCollection) var traitCollection: UITraitCollection
-        colorProvider.interfaceStyle = traitCollection.userInterfaceStyle
+        @Dependency(\.observableRegistry) var registry: ObservableRegistry
+        colorProvider.interfaceStyle = UITraitCollection.current.userInterfaceStyle
+        registry.themedViewAppearanceChanged.trigger()
     }
     
     // MARK: - UIGestureRecognizer
@@ -153,11 +154,11 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
     
     @objc
     private func touchTimerAction() {
+        guard touchTimer != nil else { return }
+        touchTimer?.invalidate()
+        touchTimer = nil
+        
         UIView.animate(withDuration: 0.2) {
-            guard self.touchTimer != nil else { return }
-            self.touchTimer?.invalidate()
-            self.touchTimer = nil
-            
             self.buildInfoOverlayWindow.alpha = 1
         }
     }
