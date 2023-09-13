@@ -36,27 +36,27 @@ public struct ThemedReducer: Reducer {
         
         var body: (() -> any View)
         var objectID = UUID()
-        var reloadsForUpdates: Bool
+        var redrawsOnAppearanceChange: Bool
         var viewID = UUID()
         
         /* MARK: Init */
         
         public init(_ body: @escaping (() -> any View),
-                    reloadsForUpdates: Bool = false) {
+                    redrawsOnAppearanceChange: Bool = false) {
             self.body = body
-            self.reloadsForUpdates = reloadsForUpdates
+            self.redrawsOnAppearanceChange = redrawsOnAppearanceChange
         }
         
         /* MARK: Equatable Conformance */
         
         public static func == (left: ThemedReducer.State, right: ThemedReducer.State) -> Bool {
             let sameObjectID = left.objectID == right.objectID
-            let sameReloadsForUpdates = left.reloadsForUpdates == right.reloadsForUpdates
+            let sameRedrawsOnAppearanceChange = left.redrawsOnAppearanceChange == right.redrawsOnAppearanceChange
             let sameViewID = left.viewID == right.viewID
             
             guard sameObjectID,
                   sameViewID,
-                  sameReloadsForUpdates else {
+                  sameRedrawsOnAppearanceChange else {
                 return false
             }
             
@@ -74,7 +74,7 @@ public struct ThemedReducer: Reducer {
                                               titleColor: .navigationBarTitle)
             state.objectID = UUID()
             
-            if state.reloadsForUpdates {
+            if state.redrawsOnAppearanceChange {
                 state.viewID = UUID()
             }
         }

@@ -16,15 +16,15 @@ public struct ThemedView: View {
     
     // MARK: - Properties
     
-    public var reloadsForUpdates = false
+    public var redrawsOnAppearanceChange = false
     public var viewBody: (() -> any View)
     
     // MARK: - Init
     
     public init(_ body: @escaping () -> any View,
-                reloadsForUpdates: Bool = false) {
+                redrawsOnAppearanceChange: Bool = false) {
         self.viewBody = body
-        self.reloadsForUpdates = reloadsForUpdates
+        self.redrawsOnAppearanceChange = redrawsOnAppearanceChange
     }
     
     // MARK: - View
@@ -32,7 +32,7 @@ public struct ThemedView: View {
     public var body: some View {
         Themed(
             .init(
-                initialState: .init(viewBody, reloadsForUpdates: reloadsForUpdates),
+                initialState: .init(viewBody, redrawsOnAppearanceChange: redrawsOnAppearanceChange),
                 reducer: ThemedReducer()
             )
         )
