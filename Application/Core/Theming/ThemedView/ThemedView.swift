@@ -57,7 +57,6 @@ private struct Themed: View {
             .id(viewModel.viewID)
             .onFirstAppear {
                 Observers.register(observer: ThemedViewObserver(viewModel))
-                viewModel.send(.viewAppeared)
             }
     }
 }

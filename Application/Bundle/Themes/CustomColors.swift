@@ -63,10 +63,6 @@ public class ColorProvider: ObservableObject {
     
     // MARK: - Properties
     
-    // Theme Information
-    @Published public var currentThemeName = ThemeService.currentTheme.name
-    @Published public var interfaceStyle = UITraitCollection.current.userInterfaceStyle
-    
     // View Backgrounds
     @Published public var backgroundColor = binding(with: .background)
     

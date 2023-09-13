@@ -124,9 +124,7 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
                             interfaceOrientation previousInterfaceOrientation:
                             UIInterfaceOrientation,
                             traitCollection previousTraitCollection: UITraitCollection) {
-        @Dependency(\.colorProvider) var colorProvider: ColorProvider
         @Dependency(\.observableRegistry) var registry: ObservableRegistry
-        colorProvider.interfaceStyle = UITraitCollection.current.userInterfaceStyle
         registry.themedViewAppearanceChanged.trigger()
     }
     

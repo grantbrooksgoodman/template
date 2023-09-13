@@ -22,7 +22,6 @@ public struct ThemedReducer: Reducer {
     // MARK: - Actions
     
     public enum Action {
-        case viewAppeared
         case appearanceChanged
     }
     
@@ -69,9 +68,6 @@ public struct ThemedReducer: Reducer {
     
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
-        case .action(.viewAppeared):
-            RuntimeStorage.store(#file, as: .currentFile)
-            
         case .action(.appearanceChanged):
             colorProvider.updateColorState()
             coreUI.setNavigationBarAppearance(backgroundColor: .navigationBarBackground,
