@@ -7,6 +7,7 @@
 
 /* Native */
 import Foundation
+import SwiftUI
 
 /* 3rd-party */
 import Redux
@@ -27,12 +28,15 @@ public struct BuildInfoOverlayReducer: Reducer {
         case didShakeDevice
         case sendFeedbackButtonTapped
         
+        case breadcrumbsDidCapture
         case isDeveloperModeEnabledChanged(Bool)
     }
     
     // MARK: - Feedback
     
-    public typealias Feedback = Never
+    public enum Feedback {
+        case restoreIndicatorColor
+    }
     
     // MARK: - State
     
@@ -45,6 +49,7 @@ public struct BuildInfoOverlayReducer: Reducer {
         @Localized(.sendFeedback) var sendFeedbackButtonText: String
         
         // Other
+        var developerModeIndicatorDotColor: Color = .orange
         var isDeveloperModeEnabled: Bool = false
         var yOffset: CGFloat
         
@@ -74,11 +79,20 @@ public struct BuildInfoOverlayReducer: Reducer {
             guard Build.developerModeEnabled else { return .none }
             DevModeService.presentActionSheet()
             
+        case .action(.breadcrumbsDidCapture):
+            state.developerModeIndicatorDotColor = .red
+            return .task(delay: .seconds(1.5)) {
+                return .restoreIndicatorColor
+            }
+            
         case let .action(.isDeveloperModeEnabledChanged(developerModeEnabled)):
             state.isDeveloperModeEnabled = developerModeEnabled
             
         case .action(.sendFeedbackButtonTapped):
             service.sendFeedbackButtonTapped()
+            
+        case .feedback(.restoreIndicatorColor):
+            state.developerModeIndicatorDotColor = .orange
         }
         
         return .none

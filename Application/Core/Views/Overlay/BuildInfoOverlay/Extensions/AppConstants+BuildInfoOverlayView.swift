@@ -40,8 +40,6 @@ public extension AppConstants.Colors {
         public static let buildInfoButtonBackground: Color = .black
         public static let buildInfoButtonLabelForeground: Color = .white
         
-        public static let developerModeIndicatorForeground: Color = .orange
-        
         public static let sendFeedbackButtonBackground: Color = .black
         public static let sendFeedbackButtonLabelForeground: Color = .white
     }

@@ -38,6 +38,31 @@ public extension UIApplication {
         keyWindow?.screen
     }
     
+    var snapshot: UIImage? {
+#if targetEnvironment(simulator)
+        guard let mainScreen else { return nil }
+        let snapshotView = mainScreen.snapshotView(afterScreenUpdates: true)
+        snapshotView.bounds = .init(origin: .zero, size: mainScreen.bounds.size)
+        
+        let renderer = UIGraphicsImageRenderer(size: mainScreen.bounds.size)
+        return renderer.image { _ in
+            snapshotView.drawHierarchy(in: mainScreen.bounds, afterScreenUpdates: true)
+        }
+#else
+        guard let keyWindow else { return nil }
+        var image: UIImage?
+        
+        UIGraphicsBeginImageContextWithOptions(keyWindow.layer.frame.size, false, keyWindow.screen.scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        keyWindow.layer.render(in: context)
+        
+        image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+#endif
+    }
+    
     /* MARK: Methods */
     
     func overrideUserInterfaceStyle(_ style: UIUserInterfaceStyle) {
@@ -129,20 +154,6 @@ public extension UIImage {
             
             completion(image)
         }.resume()
-    }
-}
-
-// MARK: - UIScreen
-
-public extension UIScreen {
-    var snapshot: UIImage {
-        let snapshotView = snapshotView(afterScreenUpdates: true)
-        snapshotView.bounds = .init(origin: .zero, size: bounds.size)
-        
-        let renderer = UIGraphicsImageRenderer(size: bounds.size)
-        return renderer.image { _ in
-            snapshotView.drawHierarchy(in: bounds, afterScreenUpdates: true)
-        }
     }
 }
 

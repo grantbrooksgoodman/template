@@ -29,18 +29,22 @@ public class BuildInfoOverlayViewObserver: Observer {
     public func onChange(of observable: Observable<Any>) {
         if observable.value as? Nil != nil {
             Logger.log("Triggered .\(observable.key.rawValue)",
-                       verbose: true,
+                       domain: .observer,
                        metadata: [#file, #function, #line])
         } else {
             Logger.log("Observed change of .\(observable.key.rawValue)",
-                       verbose: true,
+                       domain: .observer,
                        metadata: [#file, #function, #line])
         }
         
         switch observable.key {
+        case .breadcrumbsDidCapture:
+            send(.breadcrumbsDidCapture)
+            
         case .isDeveloperModeEnabled:
             guard let value = observable.value as? Bool else { return }
             send(.isDeveloperModeEnabledChanged(value))
+            
         default: ()
         }
     }

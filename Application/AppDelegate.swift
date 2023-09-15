@@ -19,6 +19,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Dependencies
     
     @Dependency(\.alertKitCore) private var akCore: AKCore
+    @Dependency(\.breadcrumbs) private var breadcrumbs: Breadcrumbs
     @Dependency(\.userDefaults) private var defaults: UserDefaults
     
     // MARK: - UIApplication
@@ -58,7 +59,16 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
                    .timebombActive: BuildConfig.timebombActive])
         
         defaults.set(developerModeEnabled, forKey: .developerModeEnabled)
-        Logger.exposureLevel = BuildConfig.loggingLevel
+        Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
+        
+        if Build.stage == .generalRelease {
+            defaults.set(false, forKey: .breadcrumbsCaptureEnabled)
+            defaults.removeObject(forKey: .breadcrumbsCapturesAllViews)
+        } else if let breadcrumbsCaptureEnabled = defaults.value(forKey: .breadcrumbsCaptureEnabled) as? Bool,
+                  let breadcrumbsCapturesAllViews = defaults.value(forKey: .breadcrumbsCapturesAllViews) as? Bool,
+                  breadcrumbsCaptureEnabled {
+            breadcrumbs.startCapture(uniqueViewsOnly: !breadcrumbsCapturesAllViews)
+        }
         
         DevModeService.addStandardActions()
         DevModeService.addCustomActions()

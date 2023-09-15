@@ -123,9 +123,9 @@ public struct DevModeService {
                                 message: "Are you sure you'd like to disable Developer Mode?",
                                 cancelConfirmTitles: (cancel: nil, confirm: "Disable"),
                                 confirmationStyle: .destructivePreferred,
-                                shouldTranslate: [.none]).present { confirmed in
+                                shouldTranslate: [.none]).present { didConfirm in
                 akCore.unlockLanguageCode(andSetTo: previousLanguage)
-                guard confirmed == 1 else { return }
+                guard didConfirm == 1 else { return }
                 toggleDeveloperMode(enabled: false)
             }
             

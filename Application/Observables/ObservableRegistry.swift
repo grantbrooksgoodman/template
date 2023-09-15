@@ -10,6 +10,7 @@
 import Foundation
 
 public enum ObservableKey: String {
+    case breadcrumbsDidCapture
     case isDeveloperModeEnabled
     case themedViewAppearanceChanged
 }
@@ -19,6 +20,7 @@ public struct ObservableRegistry {
     
     // MARK: - Properties
     
+    public let breadcrumbsDidCapture: Observable<Nil> = .init(key: .breadcrumbsDidCapture)
     public let isDeveloperModeEnabled: Observable<Bool> = .init(.isDeveloperModeEnabled, false)
     public let themedViewAppearanceChanged: Observable<Nil> = .init(key: .themedViewAppearanceChanged)
     
@@ -32,6 +34,7 @@ public struct ObservableRegistry {
     
     public func setObservers() {
         if let buildInfoOverlayObserver = Observers.buildInfoOverlay {
+            breadcrumbsDidCapture.addObserver(buildInfoOverlayObserver)
             isDeveloperModeEnabled.addObserver(buildInfoOverlayObserver)
         }
         

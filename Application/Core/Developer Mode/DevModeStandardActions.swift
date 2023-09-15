@@ -22,6 +22,7 @@ public extension DevModeAction {
             var availableActions: [DevModeAction] = [.Standard.toggleBuildInfoOverlayAction,
                                                      .Standard.overrideLanguageCodeAction,
                                                      .Standard.resetUserDefaultsAction,
+                                                     .Standard.toggleBreadcrumbsAction,
                                                      .Standard.disableDeveloperModeAction]
             guard AppTheme.allCases.count > 1 else { return availableActions }
             availableActions.insert(.Standard.changeThemeAction, at: 0)
@@ -146,6 +147,65 @@ public extension DevModeAction {
             }
             
             return .init(title: "Reset UserDefaults", perform: resetUserDefaults)
+        }
+        
+        public static var toggleBreadcrumbsAction: DevModeAction {
+            @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
+            
+            func toggleBreadcrumbs() {
+                @Dependency(\.coreKit) var core: CoreKit
+                @Dependency(\.userDefaults) var defaults: UserDefaults
+                
+                guard !breadcrumbs.isCapturing else {
+                    AKConfirmationAlert(message: "Stop breadcrumbs capture?",
+                                        confirmationStyle: .destructivePreferred,
+                                        shouldTranslate: [.none]).present { didConfirm in
+                        guard didConfirm == 1 else { return }
+                        defaults.set(false, forKey: .breadcrumbsCaptureEnabled)
+                        
+                        if let exception = breadcrumbs.stopCapture() {
+                            Logger.log(exception, with: .errorAlert)
+                        } else {
+                            core.hud.showSuccess()
+                            DevModeService.removeAction(withTitle: "Stop Breadcrumbs Capture")
+                            DevModeService.insertAction(.Standard.toggleBreadcrumbsAction, at: DevModeService.actions.count - 1)
+                        }
+                    }
+                    
+                    return
+                }
+                
+                let alert = AKAlert(title: "Start Breadcrumbs Capture",
+                                    message: "Starting breadcrumbs capture will periodically take snapshots of the current view and save them to the device's photo library.\n\nSelect the capture granularity to begin.",
+                                    actions: [.init(title: "All Views", style: .default),
+                                              .init(title: "Unique Views Only", style: .preferred)],
+                                    shouldTranslate: [.none])
+                
+                alert.present { actionID in
+                    guard actionID != -1 else { return }
+                    
+                    defaults.set(true, forKey: .breadcrumbsCaptureEnabled)
+                    
+                    var uniqueViewsOnly = true
+                    if actionID == alert.actions.first(where: { $0.title == "All Views" })?.identifier {
+                        defaults.set(true, forKey: .breadcrumbsCapturesAllViews)
+                        uniqueViewsOnly = false
+                    } else {
+                        defaults.set(false, forKey: .breadcrumbsCapturesAllViews)
+                    }
+                    
+                    if let exception = breadcrumbs.startCapture(uniqueViewsOnly: uniqueViewsOnly) {
+                        Logger.log(exception, with: .errorAlert)
+                    } else {
+                        core.hud.showSuccess()
+                        DevModeService.removeAction(withTitle: "Start Breadcrumbs Capture")
+                        DevModeService.insertAction(.Standard.toggleBreadcrumbsAction, at: DevModeService.actions.count - 1)
+                    }
+                }
+            }
+            
+            let command = breadcrumbs.isCapturing ? "Stop" : "Start"
+            return .init(title: "\(command) Breadcrumbs Capture", perform: toggleBreadcrumbs, isDestructive: command == "Stop")
         }
         
         public static var toggleBuildInfoOverlayAction: DevModeAction {

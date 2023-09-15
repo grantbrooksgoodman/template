@@ -10,6 +10,8 @@
 import Foundation
 
 public enum UserDefaultsKey: String {
+    case breadcrumbsCaptureEnabled
+    case breadcrumbsCapturesAllViews
     case currentTheme
     case developerModeEnabled
     case hidesBuildInfoOverlay

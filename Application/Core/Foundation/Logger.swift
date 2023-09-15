@@ -18,14 +18,12 @@ public struct Logger {
     
     // MARK: - Properties
     
-    public static var exposureLevel: ExposureLevel = .normal
+    public private(set) static var subscribedDomains: [LoggerDomain] = [.general]
     
     private static var currentTimeLastCalled = Date()
     private static var elapsedTime: String {
-        get {
-            let time = String(abs(currentTimeLastCalled.seconds(from: Date())))
-            return time == "0" ? "" : " @ \(time)s FLC"
-        }
+        let time = String(abs(currentTimeLastCalled.seconds(from: Date())))
+        return time == "0" ? "" : " @ \(time)s FLC"
     }
     private static var streamOpen = false
     
@@ -39,41 +37,48 @@ public struct Logger {
         case normalAlert
     }
     
-    public enum ExposureLevel {
-        case verbose
-        case normal
+    // MARK: - Domain Subscription
+    
+    public static func subscribe(to domain: LoggerDomain) {
+        subscribedDomains.append(domain)
+        subscribedDomains = subscribedDomains.unique()
+    }
+    
+    public static func subscribe(to domains: [LoggerDomain]) {
+        subscribedDomains.append(contentsOf: domains)
+        subscribedDomains = subscribedDomains.unique()
+    }
+    
+    public static func unsubscribe(from domain: LoggerDomain) {
+        subscribedDomains = subscribedDomains.filter({ $0 != domain })
+    }
+    
+    public static func unsubscribe(from domains: [LoggerDomain]) {
+        subscribedDomains.removeAll(where: { domains.contains($0) })
     }
     
     // MARK: - Logging
     
     public static func log(_ error: Error,
-                           with: AlertType? = .none,
-                           verbose: Bool? = nil,
+                           domain: LoggerDomain = .general,
+                           with alert: AlertType? = .none,
                            metadata: [Any]) {
-        log(Exception(error, metadata: metadata),
-            with: with,
-            verbose: verbose)
+        log(.init(error, metadata: metadata), domain: domain, with: alert)
     }
     
     public static func log(_ error: NSError,
-                           with: AlertType? = .none,
-                           verbose: Bool? = nil,
+                           domain: LoggerDomain = .general,
+                           with alert: AlertType? = .none,
                            metadata: [Any]) {
-        log(Exception(error, metadata: metadata),
-            with: with,
-            verbose: verbose)
+        log(.init(error, metadata: metadata), domain: domain, with: alert)
     }
     
     public static func log(_ exception: Exception,
-                           with: AlertType? = .none,
-                           verbose: Bool? = nil) {
-        guard Build.loggingEnabled else {
+                           domain: LoggerDomain = .general,
+                           with alert: AlertType? = .none) {
+        guard Build.loggingEnabled,
+              subscribedDomains.contains(domain) else {
             showAlertIfNeeded()
-            return
-        }
-        
-        if let verbose = verbose,
-           verbose, exposureLevel != .verbose {
             return
         }
         
@@ -82,24 +87,25 @@ public struct Logger {
         let lineNumber = exception.metadata[2] as! Int
         
         guard !streamOpen else {
-            logToStream(exception.descriptor!, line: lineNumber)
+            logToStream(exception.descriptor!, domain: domain, line: lineNumber)
             return
         }
         
-        print("\n--------------------------------------------------\n\(fileName): \(functionName)() [\(lineNumber)]\(elapsedTime)\n\(exception.descriptor!) (\(exception.hashlet!))")
+        let header = "-------------------- \(domain.rawValue.uppercased()) --------------------"
+        let footer = String(repeating: "-", count: header.count)
+        print("\n\(header)\n\(fileName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(exception.descriptor!) (\(exception.hashlet!))")
         
         if let params = exception.extraParams {
             printExtraParams(params)
         }
         
-        print("--------------------------------------------------\n")
+        print("\(footer)\n")
         
         currentTimeLastCalled = Date()
-        
         showAlertIfNeeded()
         
         func showAlertIfNeeded() {
-            guard let alertType = with else { return }
+            guard let alertType = alert else { return }
             
             core.hud.hide()
             
@@ -130,16 +136,11 @@ public struct Logger {
     }
     
     public static func log(_ text: String,
-                           with: AlertType? = .none,
-                           verbose: Bool? = nil,
+                           domain: LoggerDomain = .general,
+                           with alert: AlertType? = .none,
                            metadata: [Any]) {
-        if let verbose = verbose,
-           verbose, exposureLevel != .verbose {
-            return
-        }
-        
         guard validateMetadata(metadata) else {
-            fallbackLog(text, with: with)
+            fallbackLog(text, domain: domain, with: alert)
             return
         }
         
@@ -147,33 +148,34 @@ public struct Logger {
         let functionName = (metadata[1] as! String).components(separatedBy: "(")[0]
         let lineNumber = metadata[2] as! Int
         
-        guard Build.loggingEnabled else {
+        guard Build.loggingEnabled,
+              subscribedDomains.contains(domain) else {
             showAlertIfNeeded(fileName: fileName, functionName: functionName, lineNumber: lineNumber)
             return
         }
         
         guard !streamOpen else {
-            logToStream(text, line: lineNumber)
+            logToStream(text, domain: domain, line: lineNumber)
             return
         }
         
-        print("\n--------------------------------------------------\n\(fileName): \(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n--------------------------------------------------\n")
+        let header = "-------------------- \(domain.rawValue.uppercased()) --------------------"
+        let footer = String(repeating: "-", count: header.count)
+        print("\n\(header)\n\(fileName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n\(footer)\n")
         
         currentTimeLastCalled = Date()
-        
         showAlertIfNeeded(fileName: fileName, functionName: functionName, lineNumber: lineNumber)
         
         func showAlertIfNeeded(fileName: String,
                                functionName: String,
                                lineNumber: Int) {
-            guard let alertType = with else { return }
+            guard let alertType = alert else { return }
             
             core.hud.hide()
             
             switch alertType {
             case .errorAlert:
-                let exception = Exception(text,
-                                          metadata: [fileName, functionName, lineNumber])
+                let exception = Exception(text, metadata: [fileName, functionName, lineNumber])
                 
                 let sugarCoatedDescriptor = Exception("", metadata: [#file, #function, #line]).userFacingDescriptor
                 let translateDescriptor = (exception.userFacingDescriptor != exception.descriptor) || (exception.userFacingDescriptor == sugarCoatedDescriptor)
@@ -192,8 +194,7 @@ public struct Logger {
                 core.gcd.after(seconds: 1) { core.hud.flash(text, image: icon) }
                 
             case .normalAlert:
-                AKAlert(message: Exception(text,
-                                           metadata: [fileName, functionName, lineNumber]).userFacingDescriptor,
+                AKAlert(message: Exception(text, metadata: [fileName, functionName, lineNumber]).userFacingDescriptor,
                         cancelButtonTitle: "OK",
                         shouldTranslate: [.title, .message]).present()
             }
@@ -203,49 +204,49 @@ public struct Logger {
     // MARK: - Streaming
     
     public static func openStream(message: String? = nil,
+                                  domain: LoggerDomain = .general,
                                   metadata: [Any]) {
-        guard Build.loggingEnabled else { return }
+        guard Build.loggingEnabled,
+              subscribedDomains.contains(domain) else { return }
         
-        if exposureLevel == .verbose {
-            guard validateMetadata(metadata) else {
-                Logger.log("Improperly formatted metadata.",
-                           metadata: [#file, #function, #line])
-                return
-            }
-            
-            let fileName = akCore.fileName(for: metadata[0] as! String)
-            let functionName = (metadata[1] as! String).components(separatedBy: "(")[0]
-            let lineNumber = metadata[2] as! Int
-            
-            streamOpen = true
-            
-            currentTimeLastCalled = Date()
-            
-            guard let firstEntry = message else {
-                print("\n*------------------------STREAM OPENED------------------------*\n\(fileName): \(functionName)()\(elapsedTime)")
-                return
-            }
-            
-            print("\n*------------------------STREAM OPENED------------------------*\n\(fileName): \(functionName)()\n[\(lineNumber)]: \(firstEntry)\(elapsedTime)")
+        guard validateMetadata(metadata) else {
+            Logger.log("Improperly formatted metadata.",
+                       metadata: [#file, #function, #line])
+            return
         }
+        
+        let fileName = akCore.fileName(for: metadata[0] as! String)
+        let functionName = (metadata[1] as! String).components(separatedBy: "(")[0]
+        let lineNumber = metadata[2] as! Int
+        
+        streamOpen = true
+        currentTimeLastCalled = Date()
+        
+        guard let firstEntry = message else {
+            print("\n*------------------------STREAM OPENED------------------------*\n[\(domain.rawValue.uppercased())]\n\(fileName).\(functionName)()\(elapsedTime)")
+            return
+        }
+        
+        print("\n*------------------------STREAM OPENED------------------------*\n[\(domain.rawValue.uppercased())]\n\(fileName).\(functionName)()\n[\(lineNumber)]: \(firstEntry)\(elapsedTime)")
     }
     
     public static func logToStream(_ message: String,
+                                   domain: LoggerDomain = .general,
                                    line: Int) {
         guard Build.loggingEnabled,
-              streamOpen,
-              exposureLevel == .verbose else { return }
+              subscribedDomains.contains(domain),
+              streamOpen else { return }
         
         print("[\(line)]: \(message)\(elapsedTime)")
     }
     
     public static func closeStream(message: String? = nil,
+                                   domain: LoggerDomain = .general,
                                    onLine: Int? = nil) {
         guard Build.loggingEnabled,
-              streamOpen,
-              exposureLevel == .verbose else { return }
+              subscribedDomains.contains(domain),
+              streamOpen else { return }
         streamOpen = false
-        
         currentTimeLastCalled = Date()
         
         guard let closingMessage = message,
@@ -260,27 +261,29 @@ public struct Logger {
     // MARK: - Auxiliary
     
     private static func fallbackLog(_ text: String,
-                                    with: AlertType? = .none) {
-        guard Build.loggingEnabled else {
+                                    domain: LoggerDomain = .general,
+                                    with alert: AlertType? = .none) {
+        guard Build.loggingEnabled,
+              subscribedDomains.contains(domain) else {
             showAlertIfNeeded()
             return
         }
         
-        print("\n--------------------------------------------------\n[IMPROPERLY FORMATTED METADATA]\n\(text)\n--------------------------------------------------\n")
+        let header = "-------------------- \(domain.rawValue.uppercased()) --------------------"
+        let footer = String(repeating: "-", count: header.count)
+        print("\n\(header)\n[IMPROPERLY FORMATTED METADATA]\n\(text)\n\(footer)\n")
         
         currentTimeLastCalled = Date()
-        
         showAlertIfNeeded()
         
         func showAlertIfNeeded() {
-            guard let alertType = with else { return }
+            guard let alertType = alert else { return }
             
             core.hud.hide()
             
             switch alertType {
             case .errorAlert:
-                let exception = Exception(text,
-                                          metadata: [#file, #function, #line])
+                let exception = Exception(text, metadata: [#file, #function, #line])
                 AKErrorAlert(error: exception.asAkError(),
                              shouldTranslate: [.actions(indices: nil),
                                                .cancelButtonTitle]).present()

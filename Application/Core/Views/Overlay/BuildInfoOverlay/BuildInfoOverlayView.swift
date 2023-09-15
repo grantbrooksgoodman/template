@@ -57,7 +57,7 @@ public struct BuildInfoOverlayView: View {
         }, label: {
             if viewModel.isDeveloperModeEnabled {
                 Circle()
-                    .foregroundColor(Colors.developerModeIndicatorForeground)
+                    .foregroundColor(viewModel.developerModeIndicatorDotColor)
                     .frame(width: Floats.developerModeIndicatorFrameWidth,
                            height: Floats.developerModeIndicatorFrameHeight,
                            alignment: .trailing)
