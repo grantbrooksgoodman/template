@@ -13,22 +13,23 @@ import SwiftUI
 import Redux
 
 public struct ThemedView: View {
-    
     // MARK: - Properties
-    
+
     public var redrawsOnAppearanceChange = false
-    public var viewBody: (() -> any View)
-    
+    public var viewBody: () -> any View
+
     // MARK: - Init
-    
-    public init(_ body: @escaping () -> any View,
-                redrawsOnAppearanceChange: Bool = false) {
-        self.viewBody = body
+
+    public init(
+        _ body: @escaping () -> any View,
+        redrawsOnAppearanceChange: Bool = false
+    ) {
+        viewBody = body
         self.redrawsOnAppearanceChange = redrawsOnAppearanceChange
     }
-    
+
     // MARK: - View
-    
+
     public var body: some View {
         Themed(
             .init(
@@ -41,17 +42,17 @@ public struct ThemedView: View {
 
 private struct Themed: View {
     // MARK: - Properties
-    
+
     @StateObject private var viewModel: ViewModel<ThemedReducer>
-    
+
     // MARK: - Init
-    
+
     public init(_ viewModel: ViewModel<ThemedReducer>) {
-        self._viewModel = .init(wrappedValue: viewModel)
+        _viewModel = .init(wrappedValue: viewModel)
     }
-    
+
     // MARK: - View
-    
+
     public var body: some View {
         AnyView(viewModel.body())
             .id(viewModel.viewID)

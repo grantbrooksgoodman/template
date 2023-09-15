@@ -11,23 +11,23 @@ import Foundation
 
 public enum BuildConfig {
     // MARK: - Flags
-    
+
     public static let loggingEnabled = true
     public static let timebombActive = true
-    
+
     // MARK: - Names
-    
+
     public static let codeName = "Template"
     public static let finalName = ""
-    
+
     // MARK: - Versioning
-    
+
     public static let appStoreReleaseVersion = 0
     public static let dmyFirstCompileDateString = "29062007"
     public static let stage: Build.Stage = .preAlpha
-    
+
     // MARK: - Other
-    
+
     public static let languageCode = Locale.preferredLanguages[0].components(separatedBy: "-")[0]
     public static let loggerDomainSubscriptions: [LoggerDomain] = LoggerDomain.allCases
 }

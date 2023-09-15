@@ -775,7 +775,9 @@
 			buildConfigurationList = A2DF2C6528199B670089DEA1 /* Build configuration list for PBXNativeTarget "Template" */;
 			buildPhases = (
 				F34BB2715D098A64B21A6C6F /* [CP] Check Pods Manifest.lock */,
+				B98145F22AB4F34100937D37 /* Run SwiftFormat */,
 				A2DF2C4D28199B660089DEA1 /* Sources */,
+				B98145F32AB4F51700937D37 /* Run SwiftLint */,
 				A2DF2C4E28199B660089DEA1 /* Frameworks */,
 				A2DF2C4F28199B660089DEA1 /* Resources */,
 				A2DF2CC228199F000089DEA1 /* Update Build Information */,
@@ -965,6 +967,44 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n\nreleaseBuildNumber=$((($buildNumber + 1) - 0))\n\nbuildNumber=$(($buildNumber + 1))\nminorReleaseNumber=$((releaseBuildNumber/150))\nbugFixReleaseNumber=$((releaseBuildNumber/50))\nCFBundleVersionINCR=0.$((minorReleaseNumber)).$((bugFixReleaseNumber))\n\nbuildDate=`date +%s`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $buildDate\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleReleaseVersion $releaseBuildNumber\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $CFBundleVersionINCR\" \"$INFOPLIST_FILE\"\n";
+		};
+		B98145F22AB4F34100937D37 /* Run SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftFormat";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat --config ${SRCROOT}/.swiftformat $SRCROOT\n";
+		};
+		B98145F32AB4F51700937D37 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 		F34BB2715D098A64B21A6C6F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

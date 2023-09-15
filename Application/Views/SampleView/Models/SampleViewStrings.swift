@@ -10,30 +10,35 @@
 import Foundation
 
 public struct SampleViewStrings: Equatable {
-    
     // MARK: - Properties
-    
+
     public var titleLabelText: String
     public var subtitleLabelText: String
-    
+
     // MARK: - Init
-    
-    public init(titleLabelText: String,
-                subtitleLabelText: String) {
+
+    public init(
+        titleLabelText: String,
+        subtitleLabelText: String
+    ) {
         self.titleLabelText = titleLabelText
         self.subtitleLabelText = subtitleLabelText
     }
-    
+
     // MARK: - Static Accessors
-    
+
     public static var `default`: SampleViewStrings {
         let inputs = SampleViewInputs.default
-        return .init(titleLabelText: inputs.titleLabelText.value(),
-                     subtitleLabelText: inputs.subtitleLabelText.value())
+        return .init(
+            titleLabelText: inputs.titleLabelText.value(),
+            subtitleLabelText: inputs.subtitleLabelText.value()
+        )
     }
-    
+
     public static var empty: SampleViewStrings {
-        .init(titleLabelText: "",
-              subtitleLabelText: "")
+        .init(
+            titleLabelText: "",
+            subtitleLabelText: ""
+        )
     }
 }

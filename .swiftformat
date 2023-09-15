@@ -1,0 +1,27 @@
+# Swift version
+--swiftversion 5
+
+# Opt-in rules (See https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#opt-in-rules-disabled-by-default)
+--enable acronyms
+--enable blankLineAfterImports
+--enable blankLinesBetweenImports
+--enable isEmpty
+--enable sortSwitchCases
+--enable wrapEnumCases
+--enable wrapSwitchCases
+
+# Disabled
+--disable wrapMultilineStatementBraces
+
+# Excluded directories
+--exclude Pods
+
+# Rules Options
+## Unused Arguments (See https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#unusedarguments)
+--stripunusedargs closure-only
+
+## Wrapping Arguments (See https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#wraparguments)
+--wraparguments before-first
+
+## Code indentation (See https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#indent)
+--ifdef no-indent

@@ -7,5 +7,7 @@ target 'Template' do
 
   # Pods for Template
     pod 'ProgressHUD'
+    pod 'SwiftFormat/CLI', '~> 0.49'
+    pod 'SwiftLint'
 
 end

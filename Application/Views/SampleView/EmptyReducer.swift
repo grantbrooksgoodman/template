@@ -13,33 +13,32 @@ import Foundation
 import Redux
 
 public struct EmptyReducer: Reducer {
-    
     // MARK: - Actions
-    
+
     public enum Action {
         case viewAppeared
     }
-    
+
     // MARK: - Feedback
-    
-    public enum Feedback { }
-    
+
+    public enum Feedback {}
+
     // MARK: - State
-    
+
     public struct State: Equatable {
         /* MARK: Init */
-        
-        public init() { }
+
+        public init() {}
     }
-    
+
     // MARK: - Reduce
-    
+
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.viewAppeared):
             RuntimeStorage.store(#file, as: .currentFile)
         }
-        
+
         return .none
     }
 }

@@ -14,19 +14,18 @@ import SwiftUI
 import Redux
 
 public struct SampleView: View {
-    
     // MARK: - Properties
-    
+
     @StateObject private var viewModel: ViewModel<SampleReducer>
-    
+
     // MARK: - Init
-    
+
     public init(_ viewModel: ViewModel<SampleReducer>) {
-        self._viewModel = .init(wrappedValue: viewModel)
+        _viewModel = .init(wrappedValue: viewModel)
     }
-    
+
     // MARK: - View
-    
+
     public var body: some View {
         Group {
             switch viewModel.viewState {
@@ -34,7 +33,7 @@ public struct SampleView: View {
                 ProgressView()
             case .loaded:
                 SampleContentView(viewModel)
-            case .error(let exception):
+            case let .error(exception):
                 FailureView(.init(initialState: .init(exception), reducer: FailureReducer()))
             }
         }
@@ -43,5 +42,3 @@ public struct SampleView: View {
         }
     }
 }
-
-

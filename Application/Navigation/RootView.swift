@@ -15,11 +15,11 @@ import Redux
 
 public struct RootView: View {
     // MARK: - Properties
-    
+
     @ObservedDependency(\.rootNavigationCoordinator) private var navigationCoordinator: RootNavigationCoordinator
-    
+
     // MARK: - View
-    
+
     public var body: some View {
         Group {
             switch navigationCoordinator.page {

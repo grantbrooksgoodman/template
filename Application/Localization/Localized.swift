@@ -10,22 +10,23 @@ import Foundation
 
 @propertyWrapper
 public struct Localized: Equatable {
-    
     // MARK: - Properties
-    
+
     private let key: LocalizedStringKey
     private let languageCode: String
-    
+
     // MARK: - Init
-    
-    public init(_ key: LocalizedStringKey,
-                languageCode: String = RuntimeStorage.languageCode ?? "en") {
+
+    public init(
+        _ key: LocalizedStringKey,
+        languageCode: String = RuntimeStorage.languageCode ?? "en"
+    ) {
         self.key = key
         self.languageCode = languageCode
     }
-    
+
     // MARK: - WrappedValue
-    
+
     public var wrappedValue: String {
         Localization.string(for: key, language: languageCode)
     }

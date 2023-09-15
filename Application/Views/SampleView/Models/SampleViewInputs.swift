@@ -13,36 +13,41 @@ import Foundation
 import Translator
 
 public struct SampleViewInputs: Equatable {
-    
     // MARK: - Properties
-    
+
     public let titleLabelText: TranslationInput
     public let subtitleLabelText: TranslationInput
-    
+
     public var array: [TranslationInput] {
         [
             titleLabelText,
-            subtitleLabelText
+            subtitleLabelText,
         ]
     }
-    
+
     // MARK: - Init
-    
-    public init(titleLabelText: TranslationInput,
-                subtitleLabelText: TranslationInput) {
+
+    public init(
+        titleLabelText: TranslationInput,
+        subtitleLabelText: TranslationInput
+    ) {
         self.titleLabelText = titleLabelText
         self.subtitleLabelText = subtitleLabelText
     }
-    
+
     // MARK: - Static Accessors
-    
+
     public static var `default`: SampleViewInputs {
-        .init(titleLabelText: .init("Hello World"),
-              subtitleLabelText: .init("In redux!"))
+        .init(
+            titleLabelText: .init("Hello World"),
+            subtitleLabelText: .init("In redux!")
+        )
     }
-    
+
     public static var empty: SampleViewInputs {
-        .init(titleLabelText: .init(""),
-              subtitleLabelText: .init(""))
+        .init(
+            titleLabelText: .init(""),
+            subtitleLabelText: .init("")
+        )
     }
 }

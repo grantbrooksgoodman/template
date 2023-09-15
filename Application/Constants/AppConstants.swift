@@ -10,17 +10,22 @@ import Foundation
 
 public enum AppConstants {
     // MARK: - CGFloat
-    public enum CGFloats { }
-    
+
+    public enum CGFloats {}
+
     // MARK: - Color
-    public enum Colors { }
-    
+
+    public enum Colors {}
+
     // MARK: - Int
-    public enum Ints { }
-    
+
+    public enum Ints {}
+
     // MARK: - String
-    public enum Strings { }
-    
+
+    public enum Strings {}
+
     // MARK: - URL
-    public enum URLs { }
+
+    public enum URLs {}
 }

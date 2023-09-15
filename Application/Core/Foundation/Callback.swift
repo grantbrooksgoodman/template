@@ -8,7 +8,7 @@
 /* Native */
 import Foundation
 
-public enum Callback<Success, Failure> where Failure : Exceptionable {
+public enum Callback<Success, Failure> where Failure: Exceptionable {
     case success(Success)
     case failure(Failure)
 }

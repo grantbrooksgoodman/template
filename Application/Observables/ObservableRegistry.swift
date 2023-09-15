@@ -17,27 +17,26 @@ public enum ObservableKey: String {
 
 /// For sending and accessing observed values between scopes.
 public struct ObservableRegistry {
-    
     // MARK: - Properties
-    
+
     public let breadcrumbsDidCapture: Observable<Nil> = .init(key: .breadcrumbsDidCapture)
     public let isDeveloperModeEnabled: Observable<Bool> = .init(.isDeveloperModeEnabled, false)
     public let themedViewAppearanceChanged: Observable<Nil> = .init(key: .themedViewAppearanceChanged)
-    
+
     // MARK: - Init
-    
+
     public init() {
         setObservers()
     }
-    
+
     // MARK: - Set Observers
-    
+
     public func setObservers() {
         if let buildInfoOverlayObserver = Observers.buildInfoOverlay {
             breadcrumbsDidCapture.addObserver(buildInfoOverlayObserver)
             isDeveloperModeEnabled.addObserver(buildInfoOverlayObserver)
         }
-        
+
         if let themedViewObserver = Observers.themedView {
             themedViewAppearanceChanged.addObserver(themedViewObserver)
         }

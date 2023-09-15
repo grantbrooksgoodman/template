@@ -19,11 +19,11 @@ public extension Dictionary {
 public extension Dictionary where Key == String, Value == Any {
     var withCapitalizedKeys: [String: Any] {
         var capitalized = [String: Any]()
-        
+
         keys.forEach { key in
             capitalized[key.firstUppercase] = self[key]!
         }
-        
+
         return capitalized
     }
 }

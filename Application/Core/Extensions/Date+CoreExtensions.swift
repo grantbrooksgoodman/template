@@ -12,14 +12,13 @@ import Foundation
 import Redux
 
 public extension Date {
-    
     // MARK: - Properties
-    
+
     var comparator: Date {
         @Dependency(\.currentCalendar) var calendar: Calendar
         return calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: self))!
     }
-    
+
     var weekdayString: String? {
         @Dependency(\.currentCalendar) var calendar: Calendar
         switch calendar.component(.weekday, from: self) {
@@ -41,13 +40,13 @@ public extension Date {
             return nil
         }
     }
-    
+
     // MARK: - Methods
-    
+
     func elapsedString() -> String {
         @Dependency(\.currentCalendar) var calendar: Calendar
         let interval = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: self, to: Date())
-        
+
         if let yearsPassed = interval.year,
            yearsPassed > 0 {
             return "\(yearsPassed)y"
@@ -64,17 +63,17 @@ public extension Date {
                   minutesPassed > 0 {
             return "\(minutesPassed)m"
         }
-        
+
         return "now"
     }
-    
+
     func formattedShortString() -> String {
-        let differenceBetweenDates = Date().comparator.distance(to: self.comparator)
-        
+        let differenceBetweenDates = Date().comparator.distance(to: comparator)
+
         let stylizedDateFormatter = DateFormatter()
         stylizedDateFormatter.locale = RuntimeStorage.languageCode == "en" ? .current : Locale(identifier: RuntimeStorage.languageCode!)
         stylizedDateFormatter.dateStyle = .short
-        
+
         if differenceBetweenDates == 0 {
             return DateFormatter.localizedString(from: self, dateStyle: .none, timeStyle: .short)
         } else if differenceBetweenDates == -86400 {
@@ -84,13 +83,13 @@ public extension Date {
                   weekdayString == Date().weekdayString else {
                 return stylizedDateFormatter.string(from: self)
             }
-            
+
             return weekdayString
         }
-        
+
         return stylizedDateFormatter.string(from: self)
     }
-    
+
     func seconds(from date: Date) -> Int {
         @Dependency(\.currentCalendar) var calendar: Calendar
         return calendar.dateComponents([.second], from: date, to: self).second ?? 0

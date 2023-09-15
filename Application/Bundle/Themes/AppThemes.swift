@@ -14,18 +14,17 @@ import UIKit
  Use this enum to build new `UIThemes`.
  */
 public enum AppTheme: CaseIterable {
-    
     /* MARK: Cases */
-    
+
     case `default`(UITheme)
-    
+
     /* MARK: Properties */
-    
+
     // Static
     public static var `default`: AppTheme {
         .default(.init(name: "Default", items: defaultColoredItems))
     }
-    
+
     // Instance
     public var theme: UITheme {
         switch self {
@@ -33,33 +32,38 @@ public enum AppTheme: CaseIterable {
             return underlyingTheme
         }
     }
-    
+
     /* MARK: CaseIterable Conformance */
-    
+
     public static var allCases: [AppTheme] {
         return [
-            `default`
+            `default`,
         ]
     }
-    
+
     /* MARK: Colored Item Accessors */
-    
+
     private static var defaultColoredItems: [ColoredItem] {
         let background = ColoredItem(type: .background, set: ColorSet(primary: .white, variant: .black))
-        
-        let navigationBarBackground = ColoredItem(type: .navigationBarBackground, set: ColorSet(primary: UIColor(hex: 0xF8F8F8),
-                                                                                                variant: UIColor(hex: 0x2A2A2C)))
+
+        let navigationBarBackground = ColoredItem(
+            type: .navigationBarBackground,
+            set: ColorSet(
+                primary: UIColor(hex: 0xF8F8F8),
+                variant: UIColor(hex: 0x2A2A2C)
+            )
+        )
         let navigationBarTitle = ColoredItem(type: .navigationBarTitle, set: ColorSet(primary: .black, variant: .white))
-        
+
         let titleText = ColoredItem(type: .titleText, set: ColorSet(primary: .black, variant: .white))
         let subtitleText = ColoredItem(type: .subtitleText, set: ColorSet(primary: .black, variant: .white))
-        
+
         return [
             background,
             navigationBarBackground,
             navigationBarTitle,
             titleText,
-            subtitleText
+            subtitleText,
         ]
     }
 }
@@ -69,10 +73,10 @@ public enum AppTheme: CaseIterable {
  */
 public enum ColoredItemType: Equatable {
     case background
-    
+
     case navigationBarBackground
     case navigationBarTitle
-    
+
     case titleText
     case subtitleText
 }

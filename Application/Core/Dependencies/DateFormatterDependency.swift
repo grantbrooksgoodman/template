@@ -11,6 +11,7 @@ import Foundation
 /* 3rd-party */
 import Redux
 
+// swiftlint:disable:next type_name
 public enum ISO8601BritishDateAndTimeFormatterDependency: DependencyKey {
     public static func resolve(_ dependencies: DependencyValues) -> DateFormatter {
         let formatter = DateFormatter()

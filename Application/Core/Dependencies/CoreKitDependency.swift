@@ -13,10 +13,12 @@ import Redux
 
 public enum CoreKitDependency: DependencyKey {
     public static func resolve(_ dependencies: DependencyValues) -> CoreKit {
-        .init(gcd: .init(),
-              hud: .init(),
-              ui: .init(),
-              utils: .init())
+        .init(
+            gcd: .init(),
+            hud: .init(),
+            ui: .init(),
+            utils: .init()
+        )
     }
 }
 

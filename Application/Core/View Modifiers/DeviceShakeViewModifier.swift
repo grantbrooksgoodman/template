@@ -10,19 +10,18 @@ import SwiftUI
 import UIKit
 
 private struct DeviceShakeViewModifier: ViewModifier {
-    
     // MARK: - Properties
-    
+
     public let action: () -> Void
-    
+
     // MARK: - Init
-    
+
     public init(action: @escaping () -> Void) {
         self.action = action
     }
-    
+
     // MARK: - Body
-    
+
     public func body(content: Content) -> some View {
         content
             .onAppear()
@@ -46,6 +45,6 @@ public extension UIWindow {
 
 public extension View {
     func onShake(perform action: @escaping () -> Void) -> some View {
-        self.modifier(DeviceShakeViewModifier(action: action))
+        modifier(DeviceShakeViewModifier(action: action))
     }
 }

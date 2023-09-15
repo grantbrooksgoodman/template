@@ -13,14 +13,13 @@ import AlertKit
 import Redux
 
 public struct ExpiryOverlayView: View {
-    
     // MARK: - Dependencies
-    
+
     @Dependency(\.alertKitCore) private var akCore: AKCore
     @Dependency(\.coreKit.gcd) private var coreGCD: CoreKit.GCD
-    
+
     // MARK: - View
-    
+
     public var body: some View {
         VStack {
             Text("")
