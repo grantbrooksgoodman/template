@@ -88,7 +88,7 @@ public struct FailureReducer: Reducer {
 
         case .action(.reportBugButtonTapped):
             if Build.isOnline {
-                akCore.reportDelegate().fileReport(error: state.exception.asAkError())
+                akCore.reportDelegate().fileReport(error: .init(state.exception))
                 state.didReportBug = true
             } else {
                 akCore.connectionAlertDelegate()?.presentConnectionAlert()

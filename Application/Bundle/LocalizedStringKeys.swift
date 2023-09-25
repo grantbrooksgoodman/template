@@ -12,7 +12,7 @@ import Foundation
 public enum LocalizedStringKey: String {
     /* MARK: Cases */
 
-    /* Add cases here for newly localized strings. */
+    /* Add cases here for newly pre-localized strings. */
 
     case cancel
     case copy

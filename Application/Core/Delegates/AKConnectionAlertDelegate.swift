@@ -1,5 +1,5 @@
 //
-//  ConnectionAlertDelegate.swift
+//  AKConnectionAlertDelegate.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -13,7 +13,7 @@ import AlertKit
 import Redux
 
 public class ConnectionAlertDelegate: AKConnectionAlertDelegate {
-    // MARK: - Protocol Conformance
+    // MARK: - AKConnectionAlertDelegate Conformance
 
     public func presentConnectionAlert() {
         @Dependency(\.uiApplication) var uiApplication: UIApplication
@@ -39,7 +39,7 @@ public class ConnectionAlertDelegate: AKConnectionAlertDelegate {
         @Localized(.noInternetMessage) var noInternetMessage: String
         let errorAlert = AKErrorAlert(
             message: noInternetMessage,
-            error: exception.asAkError(),
+            error: .init(exception),
             actions: actions.isEmpty ? nil : actions,
             cancelButtonTitle: "OK",
             shouldTranslate: [.none]

@@ -68,7 +68,7 @@ public extension Date {
     }
 
     func formattedShortString() -> String {
-        let differenceBetweenDates = Date().comparator.distance(to: comparator)
+        let differenceBetweenDates = Date().distance(to: self)
 
         let stylizedDateFormatter = DateFormatter()
         stylizedDateFormatter.locale = RuntimeStorage.languageCode == "en" ? .current : Locale(identifier: RuntimeStorage.languageCode!)

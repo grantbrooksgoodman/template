@@ -43,12 +43,7 @@ public struct UITheme: Equatable {
     // MARK: - Auxiliary
 
     private func containsDuplicates(items: [ColoredItem]) -> Bool {
-        var seen = [ColoredItemType]()
-        for item in items {
-            guard !seen.contains(item.type) else { return true }
-            seen.append(item.type)
-        }
-
-        return false
+        let types = items.map { $0.type }
+        return types.unique().count != types.count
     }
 }

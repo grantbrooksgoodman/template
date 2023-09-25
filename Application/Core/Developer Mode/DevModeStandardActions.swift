@@ -30,7 +30,7 @@ public extension DevModeAction {
 
         // MARK: - Standard Actions
 
-        public static var changeThemeAction: DevModeAction {
+        private static var changeThemeAction: DevModeAction {
             func changeTheme() {
                 var actions = [AKAction]()
                 var actionIDs = [Int: String]()
@@ -57,7 +57,7 @@ public extension DevModeAction {
             return .init(title: "Change Theme", perform: changeTheme)
         }
 
-        public static var disableDeveloperModeAction: DevModeAction {
+        private static var disableDeveloperModeAction: DevModeAction {
             return .init(
                 title: "Disable Developer Mode",
                 perform: DevModeService.promptToToggle,
@@ -65,7 +65,7 @@ public extension DevModeAction {
             )
         }
 
-        public static var overrideLanguageCodeAction: DevModeAction {
+        private static var overrideLanguageCodeAction: DevModeAction {
             @Dependency(\.alertKitCore) var akCore: AKCore
 
             func setLanguageCode(_ code: String) {
@@ -143,7 +143,7 @@ public extension DevModeAction {
             return .init(title: "Override Language Code", perform: overrideLanguageCode)
         }
 
-        public static var resetUserDefaultsAction: DevModeAction {
+        private static var resetUserDefaultsAction: DevModeAction {
             func resetUserDefaults() {
                 @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
                 @Dependency(\.userDefaults) var defaults: UserDefaults
@@ -158,7 +158,7 @@ public extension DevModeAction {
             return .init(title: "Reset UserDefaults", perform: resetUserDefaults)
         }
 
-        public static var toggleBreadcrumbsAction: DevModeAction {
+        private static var toggleBreadcrumbsAction: DevModeAction {
             @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
 
             func toggleBreadcrumbs() {
@@ -223,7 +223,7 @@ public extension DevModeAction {
             return .init(title: "\(command) Breadcrumbs Capture", perform: toggleBreadcrumbs, isDestructive: command == "Stop")
         }
 
-        public static var toggleBuildInfoOverlayAction: DevModeAction {
+        private static var toggleBuildInfoOverlayAction: DevModeAction {
             func toggleBuildInfoOverlay() {
                 @Dependency(\.userDefaults) var defaults: UserDefaults
 

@@ -55,14 +55,14 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         return dateHash.components[0 ... dateHash.count / 4].joined()
     }
 
-    // MARK: - Protocol Conformance
+    // MARK: - AKReportDelegate Conformance
 
     public func fileReport(error: AKError) {
         var injectedError = error
         injectedError = inject(params: commonParams, into: error)
 
         guard let data = getLogFileData(type: .error, error: injectedError) else {
-            Logger.log(Exception("Couldn't get log file data!", metadata: [#file, #function, #line]))
+            Logger.log(.init("Couldn't get log file data!", metadata: [#file, #function, #line]))
             return
         }
 
@@ -89,7 +89,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         @Dependency(\.translatorService) var translator: TranslatorService
 
         guard akCore.validateMetadata(metadata) else {
-            Logger.log("Improperly formatted metadata.", metadata: [#file, #function, #line])
+            Logger.log(.init("Improperly formatted metadata.", metadata: [#file, #function, #line]))
             return
         }
 
@@ -98,7 +98,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
             metadata: metadata
         ) else {
             Logger.log(
-                Exception(
+                .init(
                     "Couldn't get log file data!",
                     extraParams: ["OriginalMetadata": metadata],
                     metadata: [#file, #function, #line]
@@ -122,13 +122,11 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         translator.getTranslations(
             for: [.init(body),
                   .init(prompt)],
-            languagePair: .init(from: "en", to: RuntimeStorage.languageCode!)
-        ) { translations, errorDescriptors in
+            languagePair: .system,
+            hud: (.seconds(2), true)
+        ) { translations, exception in
             guard let translations else {
-                Logger.log(
-                    errorDescriptors?.keys.joined(separator: "\n") ?? "An unknown error occurred.",
-                    metadata: [#file, #function, #line]
-                )
+                Logger.log(exception ?? .init(metadata: [#file, #function, #line]))
                 return
             }
 
@@ -163,16 +161,15 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
 
                 return encodedMetadata
             } catch {
-                Logger.log(Exception(error, metadata: [#file, #function, #line]))
+                Logger.log(.init(error, metadata: [#file, #function, #line]))
                 return nil
             }
         }
 
         guard let contextCode = akCore.contextCode(for: type, metadata: error?.metadata ?? metadata!) else {
             Logger.log(
-                "Unable to generate context code.",
-                with: .fatalAlert,
-                metadata: [#file, #function, #line]
+                .init("Unable to generate context code.", metadata: [#file, #function, #line]),
+                with: .fatalAlert
             )
             return nil
         }
@@ -227,20 +224,22 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         let path = documentDirectory.appending("/\(logFile.fileName!).log")
 
         guard !fileManager.fileExists(atPath: path) else {
-            Logger.log(Exception(
-                "File already exists.",
-                extraParams: ["FilePath": path],
-                metadata: [#file, #function, #line]
-            ))
+            Logger.log(
+                .init(
+                    "File already exists.",
+                    extraParams: ["FilePath": path],
+                    metadata: [#file, #function, #line]
+                ))
             return path
         }
 
         guard NSData(data: logFile.data).write(toFile: path, atomically: true) else {
-            Logger.log(Exception(
-                "Couldn't write to path!",
-                extraParams: ["FilePath": path],
-                metadata: [#file, #function, #line]
-            ))
+            Logger.log(
+                .init(
+                    "Couldn't write to path!",
+                    extraParams: ["FilePath": path],
+                    metadata: [#file, #function, #line]
+                ))
             return path
         }
 
@@ -263,7 +262,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
             )
 
             AKErrorAlert(
-                error: exception.asAkError(),
+                error: .init(exception),
                 networkDependent: true
             ).present()
 
@@ -295,16 +294,12 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         controller.dismiss(animated: true) {
             self.core.gcd.after(seconds: 1) {
                 if result == .failed {
-                    AKErrorAlert(
-                        error: Exception(error!, metadata: [#file, #function, #line]).asAkError(),
-                        networkDependent: false
-                    ).present()
+                    AKErrorAlert(error: .init(.init(error!, metadata: [#file, #function, #line]))).present()
                 } else if result == .sent {
                     AKAlert(
                         title: "Message Sent",
                         message: "The message was sent successfully.",
-                        cancelButtonTitle: "OK",
-                        networkDependent: false
+                        cancelButtonTitle: "OK"
                     ).present()
                 }
             }

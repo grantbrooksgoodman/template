@@ -92,12 +92,14 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         let connectionAlertDelegate = ConnectionAlertDelegate()
         let expiryAlertDelegate = ExpiryAlertDelegate()
         let reportDelegate = ReportDelegate()
+        let translationDelegate = TranslationDelegate()
 
         akCore.setLanguageCode(RuntimeStorage.languageCode!)
         akCore.register(
             connectionAlertDelegate: connectionAlertDelegate,
             expiryAlertDelegate: expiryAlertDelegate,
-            reportDelegate: reportDelegate
+            reportDelegate: reportDelegate,
+            translationDelegate: translationDelegate
         )
 
         /* MARK: Localization Setup */

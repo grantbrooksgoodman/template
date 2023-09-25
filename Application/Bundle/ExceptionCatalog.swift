@@ -14,7 +14,7 @@ public enum TEException {
 
     /* MARK: Properties */
 
-    public var description: String {
+    public var id: String {
         switch self {
         /* Add hashlet values here. */
         default:
@@ -45,10 +45,10 @@ public extension Exception {
     /* MARK: Methods */
 
     func isEqual(to cataloggedException: TEException) -> Bool {
-        hashlet == cataloggedException.description
+        hashlet == cataloggedException.id
     }
 
     func isEqual(toAny in: [TEException]) -> Bool {
-        !`in`.filter { $0.description == hashlet }.isEmpty
+        !`in`.filter { $0.id == hashlet }.isEmpty
     }
 }

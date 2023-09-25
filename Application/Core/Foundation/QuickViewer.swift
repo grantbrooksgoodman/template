@@ -31,7 +31,7 @@ public final class QuickViewer: NSObject, QLPreviewControllerDataSource {
         core.ui.present(previewController, embedded: true)
     }
 
-    // MARK: - Protocol Conformance
+    // MARK: - QLPreviewControllerDataSource Conformance
 
     public func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
         1

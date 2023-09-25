@@ -1,5 +1,5 @@
 //
-//  ExpiryAlertDelegate.swift
+//  AKExpiryAlertDelegate.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -231,15 +231,11 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
         dispatchGroup.enter()
         translator.getTranslations(
             for: inputsToTranslate,
-            languagePair: .init(from: "en", to: RuntimeStorage.languageCode!),
-            requiresHUD: true,
-            using: .google
-        ) { translations, errorDescriptors in
+            languagePair: .system,
+            hud: (.seconds(5), true)
+        ) { translations, exception in
             guard let translations else {
-                Logger.log(
-                    errorDescriptors?.keys.joined(separator: "\n") ?? "An unknown error occurred.",
-                    metadata: [#file, #function, #line]
-                )
+                Logger.log(exception ?? .init(metadata: [#file, #function, #line]))
                 return
             }
 

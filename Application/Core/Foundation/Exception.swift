@@ -262,6 +262,33 @@ public struct Exception: Equatable, Exceptionable {
     }
 }
 
+public extension AKError {
+    init(_ exception: Exception) {
+        let descriptor = exception.userFacingDescriptor
+        var params: [String: Any] = ["Descriptor": exception.descriptor!,
+                                     "Hashlet": exception.hashlet!]
+
+        if let extraParams = exception.extraParams,
+           !extraParams.isEmpty {
+            extraParams.forEach { param in
+                params[param.key] = param.value
+            }
+        }
+
+        if let underlyingExceptions = exception.underlyingExceptions,
+           !underlyingExceptions.isEmpty {
+            params["UnderlyingExceptions"] = underlyingExceptions.referenceCodes
+        }
+
+        self.init(
+            descriptor,
+            isReportable: exception.isReportable,
+            extraParams: params.withCapitalizedKeys,
+            metadata: exception.metadata
+        )
+    }
+}
+
 public extension Array where Element == Exception {
     /* MARK: Properties */
 
@@ -342,32 +369,6 @@ public extension Exception {
         }
 
         return allExceptions.unique()
-    }
-
-    func asAkError() -> AKError {
-        let descriptor = userFacingDescriptor
-
-        var params: [String: Any] = ["Descriptor": self.descriptor!,
-                                     "Hashlet": hashlet!]
-
-        if let extraParams = extraParams,
-           !extraParams.isEmpty {
-            extraParams.forEach { param in
-                params[param.key] = param.value
-            }
-        }
-
-        if let underlyingExceptions = underlyingExceptions,
-           !underlyingExceptions.isEmpty {
-            params["UnderlyingExceptions"] = underlyingExceptions.referenceCodes
-        }
-
-        return AKError(
-            descriptor,
-            isReportable: isReportable,
-            extraParams: params.withCapitalizedKeys,
-            metadata: metadata
-        )
     }
 
     static func timedOut(_ metadata: [Any]) -> Exception {

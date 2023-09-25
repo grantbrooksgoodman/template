@@ -9,36 +9,35 @@
 /* Native */
 import Foundation
 
-public struct SampleViewStrings: Equatable {
-    // MARK: - Properties
+/* 3rd-party */
+import Translator
 
-    public var titleLabelText: String
-    public var subtitleLabelText: String
+public extension TranslatedLabelStringCollection {
+    enum SampleViewStringKey: String, Equatable, CaseIterable, TranslatedLabelStringKey {
+        case titleLabelText = "Hello World"
+        case subtitleLabelText = "In Redux!"
 
-    // MARK: - Init
-
-    public init(
-        titleLabelText: String,
-        subtitleLabelText: String
-    ) {
-        self.titleLabelText = titleLabelText
-        self.subtitleLabelText = subtitleLabelText
+        public var alternate: String? { nil }
     }
+}
 
-    // MARK: - Static Accessors
-
-    public static var `default`: SampleViewStrings {
-        let inputs = SampleViewInputs.default
-        return .init(
-            titleLabelText: inputs.titleLabelText.value(),
-            subtitleLabelText: inputs.subtitleLabelText.value()
-        )
+public enum SampleViewStrings: TranslatedLabelStrings {
+    public static var keyPairs: [TranslationInputMap] {
+        TranslatedLabelStringCollection.SampleViewStringKey.allCases
+            .map {
+                TranslationInputMap(
+                    key: .sampleView($0),
+                    input: .init(
+                        $0.rawValue,
+                        alternate: $0.alternate
+                    )
+                )
+            }
     }
+}
 
-    public static var empty: SampleViewStrings {
-        .init(
-            titleLabelText: "",
-            subtitleLabelText: ""
-        )
+public extension Array where Element == TranslationOutputMap {
+    func value(for key: TranslatedLabelStringCollection.SampleViewStringKey) -> String {
+        (first(where: { $0.key == .sampleView(key) })?.value ?? key.rawValue).sanitized
     }
 }

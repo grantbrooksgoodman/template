@@ -7,45 +7,41 @@
 
 /* 3rd-party */
 import AlertKit
+import Redux
 
 public class Timeout {
+    // MARK: - Dependencies
+
+    @Dependency(\.coreKit.gcd) private var coreGCD: CoreKit.GCD
+
     // MARK: - Properties
 
     private var callback: (() -> Void)?
+    private var isValid = true
     private var metadata: [Any]?
-    private var timer: Timer?
 
     // MARK: - Object Lifecycle
 
     public init(
-        after: Double,
+        after: Duration,
         _ callback: @escaping () -> Void = {}
     ) {
         self.callback = callback
-
-        timer = Timer.scheduledTimer(
-            timeInterval: after,
-            target: self,
-            selector: #selector(invoke),
-            userInfo: nil,
-            repeats: false
-        )
+        coreGCD.after(seconds: .init(after.components.seconds)) {
+            guard self.isValid else { return }
+            self.invoke()
+        }
     }
 
     public init(
-        alertingAfter: Double,
-        metadata: [Any],
-        _ callback: @escaping () -> Void = {}
+        alertingAfter: Duration,
+        metadata: [Any]
     ) {
-        self.callback = callback
         self.metadata = metadata
-        timer = Timer.scheduledTimer(
-            timeInterval: alertingAfter,
-            target: self,
-            selector: #selector(presentTimeoutAlert),
-            userInfo: nil,
-            repeats: false
-        )
+        coreGCD.after(seconds: .init(alertingAfter.components.seconds)) {
+            guard self.isValid else { return }
+            self.presentTimeoutAlert()
+        }
     }
 
     deinit {
@@ -55,25 +51,22 @@ public class Timeout {
     // MARK: - Cancellation
 
     public func cancel() {
-        timer?.invalidate()
-        timer = nil
+        callback = nil
+        isValid = false
     }
 
     // MARK: - Auxiliary
 
-    @objc private func invoke() {
+    private func invoke() {
         callback?()
-
-        // Discard callback and timer.
-        callback = nil
-        timer = nil
+        cancel()
     }
 
-    @objc private func presentTimeoutAlert() {
-        callback?()
+    private func presentTimeoutAlert() {
+        cancel()
 
         AKErrorAlert(
-            error: Exception.timedOut(metadata!).asAkError(),
+            error: .init(.timedOut(metadata!)),
             shouldTranslate: [Build.isOnline ? .actions(indices: nil) : .none]
         ).present()
     }

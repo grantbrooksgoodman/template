@@ -41,7 +41,8 @@ public struct FailureView: View {
         Text(viewModel.exception.userFacingDescriptor)
             .font(Font.custom(Strings.exceptionLabelFontName, size: Floats.exceptionLabelFontSize))
             .foregroundColor(Colors.exceptionLabelFontColor)
-            .padding(.vertical, Floats.exceptionLabelBottomPadding)
+            .padding(.vertical, Floats.exceptionLabelVerticalPadding)
+            .padding(.horizontal, Floats.exceptionLabelHorizontalPadding)
             .multilineTextAlignment(.center)
 
         if viewModel.retryHandler != nil {

@@ -27,7 +27,7 @@ public struct SampleReducer: Reducer {
     // MARK: - Feedback
 
     public enum Feedback {
-        case getTranslationsReturned(Callback<[Translation], Exception>)
+        case resolveReturned(Callback<[TranslationOutputMap], Exception>)
     }
 
     // MARK: - State
@@ -35,8 +35,8 @@ public struct SampleReducer: Reducer {
     public struct State: Equatable {
         /* MARK: Properties */
 
-        var inputs: SampleViewInputs = .default
-        var strings: SampleViewStrings = .default
+        var inputs: [TranslationInputMap] = SampleViewStrings.keyPairs
+        var strings: [TranslationOutputMap] = SampleViewStrings.keyPairs.defaultOutputMap
         var viewState: ViewState = .loading
 
         /* MARK: Init */
@@ -60,45 +60,21 @@ public struct SampleReducer: Reducer {
             RuntimeStorage.store(#file, as: .currentFile)
             state.viewState = .loading
 
-            let inputs = state.inputs.array
+            let inputs = state.inputs
             return .task {
-                let result = await translator.getTranslations(for: inputs, languagePair: .system)
-                return .getTranslationsReturned(result)
+                let result = await translator.resolve(inputs)
+                return .resolveReturned(result)
             }
 
-        case let .feedback(.getTranslationsReturned(.success(translations))):
-            state.strings = mapToStrings(inputs: state.inputs, translations: translations)
+        case let .feedback(.resolveReturned(.success(strings))):
+            state.strings = strings
             state.viewState = .loaded
 
-        case let .feedback(.getTranslationsReturned(.failure(exception))):
-            state.viewState = .error(exception)
+        case let .feedback(.resolveReturned(.failure(exception))):
             Logger.log(exception)
+            state.viewState = .loaded
         }
 
         return .none
-    }
-
-    // MARK: - Translation Mapper
-
-    private func mapToStrings(
-        inputs: SampleViewInputs,
-        translations: [Translation]
-    ) -> SampleViewStrings {
-        var strings: SampleViewStrings = .default
-
-        for translation in translations {
-            switch translation.input.value() {
-            case inputs.titleLabelText.value():
-                strings.titleLabelText = translation.output.sanitized
-
-            case inputs.subtitleLabelText.value():
-                strings.subtitleLabelText = translation.output.sanitized
-
-            default:
-                continue
-            }
-        }
-
-        return strings
     }
 }

@@ -88,27 +88,17 @@ public class BuildInfoOverlayViewService {
         let enableOrDisable = Build.developerModeEnabled ? "Disable" : "Enable"
         let developerModeString = "\(enableOrDisable) Developer Mode"
 
-        var hasPresented = false
-        core.gcd.after(milliseconds: 750) {
-            guard !hasPresented else { return }
-            self.core.hud.showProgress()
-        }
-
         translator.getTranslations(
             for: [.init(messageToDisplay),
                   .init(projectTitle),
                   .init(viewBuildInformationString)],
-            languagePair: .init(from: "en", to: RuntimeStorage.languageCode!),
-            requiresHUD: false,
-            using: .google
-        ) { translations, errorDescriptors in
+            languagePair: .system,
+            hud: (.seconds(2), true),
+            timeout: (.seconds(5), true)
+        ) { translations, exception in
             guard let translations else {
-                self.core.hud.hide()
                 self.willPresentDisclaimerAlert = false
-                Logger.log(
-                    errorDescriptors?.keys.joined(separator: "\n") ?? "An unknown error occurred.",
-                    metadata: [#file, #function, #line]
-                )
+                Logger.log(exception ?? .init(metadata: [#file, #function, #line]))
                 return
             }
 
@@ -148,7 +138,6 @@ public class BuildInfoOverlayViewService {
 
             guard Build.timebombActive else {
                 alertController.message = translations.first(where: { $0.input.value() == messageToDisplay })?.output.sanitized ?? messageToDisplay.sanitized
-                hasPresented = true
                 self.willPresentDisclaimerAlert = false
                 self.core.ui.present(alertController)
 
@@ -176,7 +165,6 @@ public class BuildInfoOverlayViewService {
             )
             alertController.setValue(attributed, forKey: "attributedMessage")
 
-            hasPresented = true
             self.willPresentDisclaimerAlert = false
             self.core.ui.present(alertController)
         }

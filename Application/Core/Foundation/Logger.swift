@@ -125,7 +125,7 @@ public enum Logger {
 
                 AKErrorAlert(
                     message: exception.userFacingDescriptor,
-                    error: exception.asAkError(),
+                    error: .init(exception),
                     shouldTranslate: translateDescriptor ? [.all] : [.actions(indices: nil),
                                                                      .cancelButtonTitle]
                 ).present()
@@ -203,7 +203,7 @@ public enum Logger {
 
                 AKErrorAlert(
                     message: exception.userFacingDescriptor,
-                    error: exception.asAkError(),
+                    error: .init(exception),
                     shouldTranslate: translateDescriptor ? [.all] : [.actions(indices: nil),
                                                                      .cancelButtonTitle]
                 ).present()
@@ -326,7 +326,7 @@ public enum Logger {
             case .errorAlert:
                 let exception = Exception(text, metadata: [#file, #function, #line])
                 AKErrorAlert(
-                    error: exception.asAkError(),
+                    error: .init(exception),
                     shouldTranslate: [.actions(indices: nil),
                                       .cancelButtonTitle]
                 ).present()

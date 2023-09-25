@@ -29,11 +29,11 @@ public struct SampleContentView: View {
     public var body: some View {
         ThemedView {
             VStack {
-                Text(viewModel.strings.titleLabelText)
+                Text(viewModel.strings.value(for: .titleLabelText))
                     .font(.headline)
                     .foregroundColor(.titleText)
 
-                Text(viewModel.strings.subtitleLabelText)
+                Text(viewModel.strings.value(for: .subtitleLabelText))
                     .font(.subheadline)
                     .foregroundColor(.subtitleText)
             }

@@ -88,7 +88,6 @@ public class Breadcrumbs {
         }
 
         continuallyCapture()
-
         return nil
     }
 
@@ -104,7 +103,6 @@ public class Breadcrumbs {
 
     // MARK: - Auxiliary
 
-    @objc
     private func capture() {
         func saveImage() {
             guard let image = uiApplication.snapshot,
