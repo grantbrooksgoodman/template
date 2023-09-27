@@ -17,15 +17,7 @@ public enum AppConstants {
 
     public enum Colors {}
 
-    // MARK: - Int
-
-    public enum Ints {}
-
     // MARK: - String
 
     public enum Strings {}
-
-    // MARK: - URL
-
-    public enum URLs {}
 }

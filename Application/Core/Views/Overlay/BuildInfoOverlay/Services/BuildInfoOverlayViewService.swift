@@ -17,6 +17,7 @@ import Translator
 public class BuildInfoOverlayViewService {
     // MARK: - Dependencies
 
+    @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
 
     // MARK: - Properties
@@ -27,7 +28,7 @@ public class BuildInfoOverlayViewService {
 
     private func presentBuildInformationAlert() {
         // swiftlint:disable:next line_length
-        let message = "Build Number\n\(String(Build.buildNumber))\n\nBuild Stage\n\(Build.stage.description(short: false).capitalized(with: nil))\n\nBundle Version\n\(Build.bundleVersion)\n\nProject ID\n\(Build.projectID)\n\nSKU\n\(Build.buildSKU)"
+        let message = "Build Number\n\(String(build.buildNumber))\n\nBuild Stage\n\(build.stage.description(short: false).capitalized(with: nil))\n\nBundle Version\n\(build.bundleVersion)\n\nProject ID\n\(build.projectID)\n\nSKU\n\(build.buildSKU)"
 
         let alertController = UIAlertController(
             title: "",
@@ -70,22 +71,22 @@ public class BuildInfoOverlayViewService {
 
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
 
-        let typeString = Build.stage.description(short: false)
-        let expiryString = Build.timebombActive ? "\n\n\(Build.expiryInfoString)" : ""
+        let typeString = build.stage.description(short: false)
+        let expiryString = build.timebombActive ? "\n\n\(build.expiryInfoString)" : ""
 
-        var messageToDisplay = "This is a\(typeString == "alpha" ? "n" : "") \(typeString) version of *project code name \(Build.codeName)*.\(expiryString)"
+        var messageToDisplay = "This is a\(typeString == "alpha" ? "n" : "") \(typeString) version of *project code name \(build.codeName)*.\(expiryString)"
 
-        if Build.appStoreReleaseVersion > 0 {
-            messageToDisplay = "This is a pre-release update to \(Build.finalName).\(Build.expiryInfoString)"
+        if build.appStoreReleaseVersion > 0 {
+            messageToDisplay = "This is a pre-release update to \(build.finalName).\(build.expiryInfoString)"
         }
 
         // swiftlint:disable:next line_length
         messageToDisplay += "\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorized parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(calendar.dateComponents([.year], from: Date()).year!) NEOTechnica Corporation. All rights reserved."
 
-        let projectTitle = "Project \(Build.codeName)"
+        let projectTitle = "Project \(build.codeName)"
         let viewBuildInformationString = "View Build Information"
 
-        let enableOrDisable = Build.developerModeEnabled ? "Disable" : "Enable"
+        let enableOrDisable = build.developerModeEnabled ? "Disable" : "Enable"
         let developerModeString = "\(enableOrDisable) Developer Mode"
 
         translator.getTranslations(
@@ -136,7 +137,7 @@ public class BuildInfoOverlayViewService {
             alertController.addAction(developerModeAction)
             alertController.addAction(dismissAction)
 
-            guard Build.timebombActive else {
+            guard self.build.timebombActive else {
                 alertController.message = translations.first(where: { $0.input.value() == messageToDisplay })?.output.sanitized ?? messageToDisplay.sanitized
                 self.willPresentDisclaimerAlert = false
                 self.core.ui.present(alertController)
@@ -148,8 +149,8 @@ public class BuildInfoOverlayViewService {
             let alternateAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.red]
 
             var dateComponent: String!
-            let preExpiryComponents = Build.expiryInfoString.components(separatedBy: "expire on")
-            let postExpiryComponents = Build.expiryInfoString.components(separatedBy: "ended on")
+            let preExpiryComponents = self.build.expiryInfoString.components(separatedBy: "expire on")
+            let postExpiryComponents = self.build.expiryInfoString.components(separatedBy: "ended on")
 
             if preExpiryComponents.count > 1 {
                 dateComponent = preExpiryComponents[1].components(separatedBy: ".")[0]

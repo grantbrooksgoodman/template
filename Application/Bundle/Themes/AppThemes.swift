@@ -14,36 +14,22 @@ import UIKit
  Use this enum to build new `UIThemes`.
  */
 public enum AppTheme: CaseIterable {
-    /* MARK: Cases */
+    // MARK: - Cases
 
-    case `default`(UITheme)
+    case `default`
 
-    /* MARK: Properties */
+    // MARK: - Properties
 
-    // Static
-    public static var `default`: AppTheme {
-        .default(.init(name: "Default", items: defaultColoredItems))
-    }
-
-    // Instance
     public var theme: UITheme {
         switch self {
-        case let .default(underlyingTheme):
-            return underlyingTheme
+        case .default:
+            return .init(name: "Default", items: defaultColoredItems)
         }
     }
 
-    /* MARK: CaseIterable Conformance */
+    // MARK: - Colored Item Accessors
 
-    public static var allCases: [AppTheme] {
-        return [
-            `default`,
-        ]
-    }
-
-    /* MARK: Colored Item Accessors */
-
-    private static var defaultColoredItems: [ColoredItem] {
+    private var defaultColoredItems: [ColoredItem] {
         let background = ColoredItem(type: .background, set: ColorSet(primary: .white, variant: .black))
 
         let navigationBarBackground = ColoredItem(

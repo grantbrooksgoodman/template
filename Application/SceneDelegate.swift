@@ -32,6 +32,7 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
+        @Dependency(\.build) var build: Build
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
         @Dependency(\.userDefaults) var defaults: UserDefaults
 
@@ -47,7 +48,7 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         self.window = window
 
         defer { RuntimeStorage.store(self.window!, as: .topWindow) }
-        guard Build.stage != .generalRelease else { return }
+        guard build.stage != .generalRelease else { return }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: nil)
         tapGesture.delegate = self
@@ -72,8 +73,8 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
             buildInfoOverlayWindow.isHidden = shouldHide
         }
 
-        if Build.expiryDate.comparator == Date().comparator,
-           Build.timebombActive {
+        if build.expiryDate.comparator == Date().comparator,
+           build.timebombActive {
             expiryOverlayWindow = UIWindow()
             expiryOverlayWindow.frame = CGRect(
                 x: 0,

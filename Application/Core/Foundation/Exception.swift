@@ -12,6 +12,12 @@ import CryptoKit
 import AlertKit
 
 public struct Exception: Equatable, Exceptionable {
+    // MARK: - Types
+
+    public enum CommonParamKeys: String {
+        case userFacingDescriptor = "UserFacingDescriptor"
+    }
+
     // MARK: - Properties
 
     // Arrays
@@ -290,7 +296,7 @@ public extension AKError {
 }
 
 public extension Array where Element == Exception {
-    /* MARK: Properties */
+    // MARK: - Properties
 
     /**
      Returns a single **Exception** from an array of **Exceptions** by appending each as underlying **Exceptions** to the final item in the array.
@@ -328,7 +334,7 @@ public extension Array where Element == Exception {
         return codes
     }
 
-    /* MARK: Methods */
+    // MARK: - Methods
 
     func unique() -> [Exception] {
         var uniqueValues = [Exception]()
@@ -376,7 +382,7 @@ public extension Exception {
         let exception = Exception(
             "The operation timed out. Please try again later.",
             isReportable: false,
-            extraParams: ["UserFacingDescriptor": timedOutString],
+            extraParams: [CommonParamKeys.userFacingDescriptor.rawValue: timedOutString],
             metadata: metadata
         )
         return exception

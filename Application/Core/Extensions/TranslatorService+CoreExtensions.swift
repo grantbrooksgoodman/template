@@ -95,11 +95,11 @@ public extension TranslatorService {
 
             guard let translations,
                   !translations.isEmpty else {
-                let exceptions = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
+                let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
                     partialResult.append(.init(keyPair.key, metadata: [#file, #function, #line]))
                 }.compiledException
                 guard canComplete else { return }
-                completion(nil, exceptions ?? .init(metadata: [#file, #function, #line]))
+                completion(nil, exception ?? .init(metadata: [#file, #function, #line]))
                 return
             }
 

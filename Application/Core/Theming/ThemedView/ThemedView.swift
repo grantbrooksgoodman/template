@@ -15,8 +15,8 @@ import Redux
 public struct ThemedView: View {
     // MARK: - Properties
 
-    public var redrawsOnAppearanceChange = false
-    public var viewBody: () -> any View
+    private var redrawsOnAppearanceChange = false
+    private var viewBody: () -> any View
 
     // MARK: - Init
 

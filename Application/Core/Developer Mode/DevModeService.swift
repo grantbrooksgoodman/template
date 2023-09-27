@@ -115,8 +115,9 @@ public enum DevModeService {
 
     public static func promptToToggle() {
         @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.build) var build: Build
 
-        guard Build.stage != .generalRelease,
+        guard build.stage != .generalRelease,
               let previousLanguage = RuntimeStorage.languageCode else { return }
 
         if akCore.languageCodeIsLocked {
@@ -125,7 +126,7 @@ public enum DevModeService {
             akCore.lockLanguageCode(to: "en")
         }
 
-        guard !Build.developerModeEnabled else {
+        guard !build.developerModeEnabled else {
             AKConfirmationAlert(
                 title: "Disable Developer Mode",
                 message: "Are you sure you'd like to disable Developer Mode?",
@@ -181,6 +182,7 @@ public enum DevModeService {
     // MARK: - Auxiliary
 
     private static func toggleDeveloperMode(enabled: Bool) {
+        @Dependency(\.build) var build: Build
         @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
         @Dependency(\.userDefaults) var defaults: UserDefaults
         @Dependency(\.observableRegistry) var registry: ObservableRegistry
@@ -192,7 +194,7 @@ public enum DevModeService {
             RuntimeStorage.topWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW")?.isHidden = false
         }
 
-        Build.set(.developerModeEnabled, to: enabled)
+        build.setDeveloperModeEnabled(to: enabled)
         defaults.set(enabled, forKey: .developerModeEnabled)
         registry.isDeveloperModeEnabled.value = enabled
         coreHUD.showSuccess(text: "Developer Mode \(enabled ? "Enabled" : "Disabled")")

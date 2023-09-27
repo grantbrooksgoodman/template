@@ -33,6 +33,14 @@ public struct SampleReducer: Reducer {
     // MARK: - State
 
     public struct State: Equatable {
+        /* MARK: View State */
+
+        public enum ViewState: Equatable {
+            case loading
+            case error(Exception)
+            case loaded
+        }
+
         /* MARK: Properties */
 
         var inputs: [TranslationInputMap] = SampleViewStrings.keyPairs
@@ -42,14 +50,6 @@ public struct SampleReducer: Reducer {
         /* MARK: Init */
 
         public init() {}
-    }
-
-    // MARK: - View State
-
-    public enum ViewState: Equatable {
-        case loading
-        case error(Exception)
-        case loaded
     }
 
     // MARK: - Reduce

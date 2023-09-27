@@ -11,11 +11,6 @@ import Redux
 
 // swiftlint:disable:next type_body_length
 public enum Logger {
-    // MARK: - Dependencies
-
-    @Dependency(\.alertKitCore) private static var akCore: AKCore
-    @Dependency(\.coreKit) private static var core: CoreKit
-
     // MARK: - Properties
 
     public private(set) static var subscribedDomains: [LoggerDomain] = [.general]
@@ -83,7 +78,11 @@ public enum Logger {
         domain: LoggerDomain = .general,
         with alert: AlertType? = .none
     ) {
-        guard Build.loggingEnabled,
+        @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.build) var build: Build
+        @Dependency(\.coreKit) var core: CoreKit
+
+        guard build.loggingEnabled,
               subscribedDomains.contains(domain) else {
             showAlertIfNeeded()
             return
@@ -133,7 +132,7 @@ public enum Logger {
                 akCore.present(
                     .fatalErrorAlert,
                     with: [exception.descriptor!,
-                           Build.stage != .generalRelease,
+                           build.stage != .generalRelease,
                            exception.metadata!]
                 )
 
@@ -156,6 +155,10 @@ public enum Logger {
         with alert: AlertType? = .none,
         metadata: [Any]
     ) {
+        @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.build) var build: Build
+        @Dependency(\.coreKit) var core: CoreKit
+
         guard validateMetadata(metadata) else {
             fallbackLog(text, domain: domain, with: alert)
             return
@@ -167,7 +170,7 @@ public enum Logger {
         let lineNumber = metadata[2] as! Int
         // swiftlint:enable force_cast
 
-        guard Build.loggingEnabled,
+        guard build.loggingEnabled,
               subscribedDomains.contains(domain) else {
             showAlertIfNeeded(fileName: fileName, functionName: functionName, lineNumber: lineNumber)
             return
@@ -211,7 +214,7 @@ public enum Logger {
                 akCore.present(
                     .fatalErrorAlert,
                     with: [text,
-                           Build.stage != .generalRelease,
+                           build.stage != .generalRelease,
                            [fileName, functionName, lineNumber]]
                 )
 
@@ -235,7 +238,10 @@ public enum Logger {
         domain: LoggerDomain = .general,
         metadata: [Any]
     ) {
-        guard Build.loggingEnabled,
+        @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.build) var build: Build
+
+        guard build.loggingEnabled,
               subscribedDomains.contains(domain) else { return }
 
         guard validateMetadata(metadata) else {
@@ -270,7 +276,9 @@ public enum Logger {
         domain: LoggerDomain = .general,
         line: Int
     ) {
-        guard Build.loggingEnabled,
+        @Dependency(\.build) var build: Build
+
+        guard build.loggingEnabled,
               subscribedDomains.contains(domain),
               streamOpen else { return }
 
@@ -282,7 +290,9 @@ public enum Logger {
         domain: LoggerDomain = .general,
         onLine: Int? = nil
     ) {
-        guard Build.loggingEnabled,
+        @Dependency(\.build) var build: Build
+
+        guard build.loggingEnabled,
               subscribedDomains.contains(domain),
               streamOpen else { return }
         streamOpen = false
@@ -304,7 +314,11 @@ public enum Logger {
         domain: LoggerDomain = .general,
         with alert: AlertType? = .none
     ) {
-        guard Build.loggingEnabled,
+        @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.build) var build: Build
+        @Dependency(\.coreKit) var core: CoreKit
+
+        guard build.loggingEnabled,
               subscribedDomains.contains(domain) else {
             showAlertIfNeeded()
             return
@@ -334,7 +348,7 @@ public enum Logger {
                 akCore.present(
                     .fatalErrorAlert,
                     with: [text,
-                           Build.stage != .generalRelease,
+                           build.stage != .generalRelease,
                            [#file, #function, #line]]
                 )
 

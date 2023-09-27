@@ -15,6 +15,7 @@ import Redux
 public class Breadcrumbs {
     // MARK: - Dependencies
 
+    @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
     @Dependency(\.breadcrumbsDateFormatter) private var dateFormatter: DateFormatter
     @Dependency(\.fileManager) private var fileManager: FileManager
@@ -40,10 +41,10 @@ public class Breadcrumbs {
 
         var fileName: String!
         if let viewName {
-            fileName = "\(Build.codeName)_\(viewName) @ \(timeString).png"
+            fileName = "\(build.codeName)_\(viewName) @ \(timeString).png"
         } else {
-            let fileNamePrefix = "\(Build.codeName)_\(String(Build.buildNumber))"
-            let fileNameSuffix = "\(Build.stage.description(short: true)) @ \(timeString).png"
+            let fileNamePrefix = "\(build.codeName)_\(String(build.buildNumber))"
+            let fileNameSuffix = "\(build.stage.description(short: true)) @ \(timeString).png"
             fileName = fileNamePrefix + fileNameSuffix
         }
 

@@ -17,19 +17,19 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     // MARK: - Properties
 
     // Dependencies
+    @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
 
     // Strings
-    private var continueUseString = "Continue Use"
-    private var exitApplicationString = "Exit Application"
-    // swiftlint:disable:next line_length
-    private var expiryMessage = "The evaluation period for this pre-release build of \(Build.codeName) has ended.\n\nTo continue using this version, enter the six-digit expiration override code associated with it.\n\nUntil updated to a newer build, entry of this code will be required each time the application is launched.\n\nTime remaining for successful entry: 00:30"
-    private var expiryTitle = "End of Evaluation Period"
-    private var incorrectCodeMessage = "The code entered was incorrect.\n\nPlease enter the correct expiration override code or exit the application."
-    private var incorrectCodeTitle = "Incorrect Override Code"
-    private var timeExpiredMessage = "The application will now exit."
-    private var timeExpiredTitle = "Time Expired"
-    private var tryAgainString = "Try Again"
+    private var continueUseString = ""
+    private var exitApplicationString = ""
+    private var expiryMessage = ""
+    private var expiryTitle = ""
+    private var incorrectCodeMessage = ""
+    private var incorrectCodeTitle = ""
+    private var timeExpiredMessage = ""
+    private var timeExpiredTitle = ""
+    private var tryAgainString = ""
 
     // Other
     private var didTranslateStrings = false
@@ -37,7 +37,22 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     private var exitTimer: Timer?
     private var remainingSeconds = 30
 
-    // MARK: - Public
+    // MARK: - Init
+
+    public init() {
+        continueUseString = "Continue Use"
+        exitApplicationString = "Exit"
+        // swiftlint:disable:next line_length
+        expiryMessage = "The evaluation period for this pre-release build of \(build.codeName) has ended.\n\nTo continue using this version, enter the six-digit expiration override code associated with it.\n\nUntil updated to a newer build, entry of this code will be required each time the application is launched.\n\nTime remaining for successful entry: 00:30"
+        expiryTitle = "End of Evaluation Period"
+        incorrectCodeMessage = "The code entered was incorrect.\n\nPlease enter the correct expiration override code or exit the application."
+        incorrectCodeTitle = "Incorrect Override Code"
+        timeExpiredMessage = "The application will now exit."
+        timeExpiredTitle = "Time Expired"
+        tryAgainString = "Try Again"
+    }
+
+    // MARK: - AKExpiryAlertDelegate Conformance
 
     public func presentExpiryAlert() {
         func present() {
@@ -52,7 +67,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
                 textField.isSecureTextEntry = true
                 textField.keyboardAppearance = .light
                 textField.keyboardType = .numberPad
-                textField.placeholder = "\(Build.bundleVersion) | \(Build.buildSKU)"
+                textField.placeholder = "\(self.build.bundleVersion) | \(self.build.buildSKU)"
                 textField.textAlignment = .center
             }
 
@@ -148,16 +163,18 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
         translateStrings { present() }
     }
 
-    public func getExpirationOverrideCode() -> String {
-        guard !Build.codeName.isEmpty else { return "" }
-        let firstLetter = String(Build.codeName.first!)
-        let lastLetter = String(Build.codeName.last!)
+    // MARK: - Auxiliary
 
-        let middleIndex = Build.codeName.index(
-            Build.codeName.startIndex,
-            offsetBy: Int((Double(Build.codeName.count) / 2).rounded(.down))
+    public func getExpirationOverrideCode() -> String {
+        guard !build.codeName.isEmpty else { return "" }
+        let firstLetter = String(build.codeName.first!)
+        let lastLetter = String(build.codeName.last!)
+
+        let middleIndex = build.codeName.index(
+            build.codeName.startIndex,
+            offsetBy: Int((Double(build.codeName.count) / 2).rounded(.down))
         )
-        let middleLetter = String(Build.codeName[middleIndex])
+        let middleLetter = String(build.codeName[middleIndex])
 
         var numberStrings: [String] = []
 

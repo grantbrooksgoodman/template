@@ -16,12 +16,13 @@ public class ConnectionAlertDelegate: AKConnectionAlertDelegate {
     // MARK: - AKConnectionAlertDelegate Conformance
 
     public func presentConnectionAlert() {
+        @Dependency(\.build) var build: Build
         @Dependency(\.uiApplication) var uiApplication: UIApplication
 
         let exception = Exception(
             "The internet connection is offline.",
             isReportable: false,
-            extraParams: ["IsConnected": Build.isOnline],
+            extraParams: ["IsConnected": build.isOnline],
             metadata: [#file, #function, #line]
         )
 

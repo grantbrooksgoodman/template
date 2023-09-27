@@ -12,6 +12,7 @@ import Redux
 public class Timeout {
     // MARK: - Dependencies
 
+    @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit.gcd) private var coreGCD: CoreKit.GCD
 
     // MARK: - Properties
@@ -67,7 +68,7 @@ public class Timeout {
 
         AKErrorAlert(
             error: .init(.timedOut(metadata!)),
-            shouldTranslate: [Build.isOnline ? .actions(indices: nil) : .none]
+            shouldTranslate: [build.isOnline ? .actions(indices: nil) : .none]
         ).present()
     }
 }

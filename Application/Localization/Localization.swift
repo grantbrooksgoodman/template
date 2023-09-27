@@ -9,7 +9,7 @@
 import Foundation
 
 public enum Localization {
-    /* MARK: Properties */
+    // MARK: - Properties
 
     private static var localizedStrings: [String: [String: String]] {
         guard let filePath = Bundle.main.url(forResource: "LocalizedStrings", withExtension: "plist"),
@@ -21,7 +21,7 @@ public enum Localization {
         return dictionary
     }
 
-    /* MARK: Methods */
+    // MARK: - Methods
 
     public static func string(
         for case: LocalizedStringKey,

@@ -1,5 +1,5 @@
 //
-//  ReportDelegate.swift
+//  AKReportDelegate.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -14,10 +14,35 @@ import AlertKit
 import Redux
 import Translator
 
+public struct LogFile {
+    // MARK: - Properties
+
+    // Strings
+    public let directoryName: String!
+    public let fileName: String!
+
+    // Other
+    public let data: Data!
+
+    // MARK: - Init
+
+    public init(
+        fileName: String,
+        directoryName: String,
+        data: Data
+    ) {
+        self.fileName = fileName
+        self.directoryName = directoryName
+        self.data = data
+    }
+}
+
+// swiftlint:disable:next type_body_length
 public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeViewControllerDelegate {
     // MARK: - Dependencies
 
     @Dependency(\.alertKitCore) private var akCore: AKCore
+    @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
     @Dependency(\.britishDateAndTimeFormatter) private var dateFormatter: DateFormatter
 
@@ -67,11 +92,11 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         }
 
         let logFile = LogFile(
-            fileName: "\(Build.codeName.lowercased())_\(dateHashlet)",
+            fileName: "\(build.codeName.lowercased())_\(dateHashlet)",
             directoryName: "",
             data: data
         )
-        let subject = "\(Build.stage == .generalRelease ? Build.finalName : Build.codeName) (\(Build.bundleVersion)) Error Report"
+        let subject = "\(build.stage == .generalRelease ? build.finalName : build.codeName) (\(build.bundleVersion)) Error Report"
 
         composeMessage(
             recipients: ["me@grantbrooks.io"],
@@ -109,12 +134,12 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         }
 
         let logFile: LogFile = .init(
-            fileName: "\(Build.codeName.lowercased())_\(dateHashlet)",
+            fileName: "\(build.codeName.lowercased())_\(dateHashlet)",
             directoryName: "",
             data: logFileData
         )
 
-        let subject = "\(Build.stage == .generalRelease ? Build.finalName : Build.codeName) (\(Build.bundleVersion)) \(forBug ? "Bug" : "Feedback") Report"
+        let subject = "\(build.stage == .generalRelease ? build.finalName : build.codeName) (\(build.bundleVersion)) \(forBug ? "Bug" : "Feedback") Report"
 
         var translatedBody = body
         var translatedPrompt = prompt
@@ -174,13 +199,13 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
             return nil
         }
 
-        let connectionStatus = Build.isOnline ? "online" : "offline"
+        let connectionStatus = build.isOnline ? "online" : "offline"
 
-        var sections = ["build_sku": Build.buildSKU,
+        var sections = ["build_sku": build.buildSKU,
                         "context_code": contextCode,
                         "internet_connection_status": connectionStatus,
                         "occurrence_date": dateFormatter.string(from: Date()),
-                        "project_id": Build.projectID]
+                        "project_id": build.projectID]
 
         guard let error = error else {
             if let json = getJSON(from: sections) {
@@ -255,14 +280,17 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         logFile: LogFile?
     ) {
         guard MFMailComposeViewController.canSendMail() else {
+            @Localized(.noEmail) var userFacingDescriptor: String
             let exception = Exception(
-                "It appears that your device is not able to send e-mail.\n\nPlease verify that your e-mail client is set up and try again.",
+                "Device can't send e-mail.",
                 isReportable: false,
+                extraParams: [Exception.CommonParamKeys.userFacingDescriptor.rawValue: userFacingDescriptor],
                 metadata: [#file, #function, #line]
             )
 
             AKErrorAlert(
                 error: .init(exception),
+                shouldTranslate: [.none],
                 networkDependent: true
             ).present()
 
@@ -293,14 +321,23 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
     ) {
         controller.dismiss(animated: true) {
             self.core.gcd.after(seconds: 1) {
-                if result == .failed {
-                    AKErrorAlert(error: .init(.init(error!, metadata: [#file, #function, #line]))).present()
-                } else if result == .sent {
+                switch result {
+                case .sent:
                     AKAlert(
                         title: "Message Sent",
                         message: "The message was sent successfully.",
                         cancelButtonTitle: "OK"
                     ).present()
+
+                case .failed:
+                    var exception: Exception = .init(metadata: [#file, #function, #line])
+                    if let error {
+                        exception = .init(error, metadata: [#file, #function, #line])
+                    }
+
+                    AKErrorAlert(error: .init(exception)).present()
+
+                default: ()
                 }
             }
         }

@@ -16,6 +16,7 @@ public struct FailureReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.alertKitCore) private var akCore: AKCore
+    @Dependency(\.build) private var build: Build
 
     // MARK: - Actions
 
@@ -87,7 +88,7 @@ public struct FailureReducer: Reducer {
             }
 
         case .action(.reportBugButtonTapped):
-            if Build.isOnline {
+            if build.isOnline {
                 akCore.reportDelegate().fileReport(error: .init(state.exception))
                 state.didReportBug = true
             } else {

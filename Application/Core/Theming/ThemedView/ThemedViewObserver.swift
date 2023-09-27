@@ -28,13 +28,13 @@ public class ThemedViewObserver: Observer {
     public func onChange(of observable: Observable<Any>) {
         if observable.value as? Nil != nil {
             Logger.log(
-                "Triggered .\(observable.key.rawValue)",
+                "Triggered .\(observable.key.rawValue).",
                 domain: .observer,
                 metadata: [#file, #function, #line]
             )
         } else {
             Logger.log(
-                "Observed change of .\(observable.key.rawValue)",
+                "Observed change of .\(observable.key.rawValue).",
                 domain: .observer,
                 metadata: [#file, #function, #line]
             )

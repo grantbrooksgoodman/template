@@ -189,6 +189,7 @@ public struct CoreKit {
 
         /* MARK: View Controller Presentation */
 
+        // Public
         public func dismissAlertController(animated: Bool = true) {
             guard isPresentingAlertController else { return }
             uiApplication.keyViewController?.dismiss(animated: animated)
@@ -198,9 +199,33 @@ public struct CoreKit {
         public func present(
             _ viewController: UIViewController,
             animated: Bool = true,
-            embedded: Bool = false
+            embedded: Bool = false,
+            force: Bool = false
         ) {
+            guard !force else {
+                dismissAlertController()
+                present(viewController, animated: animated, embedded: embedded)
+                return
+            }
+
             queuePresentation(of: viewController, animated: animated, embedded: embedded)
+        }
+
+        // Private
+        private func present(
+            _ viewController: UIViewController,
+            animated: Bool,
+            embedded: Bool
+        ) {
+            HUD().hide()
+
+            let keyVC = uiApplication.keyViewController
+            guard embedded else {
+                keyVC?.present(viewController, animated: animated)
+                return
+            }
+
+            keyVC?.present(UINavigationController(rootViewController: viewController), animated: animated)
         }
 
         private func queuePresentation(
@@ -208,18 +233,6 @@ public struct CoreKit {
             animated: Bool,
             embedded: Bool
         ) {
-            HUD().hide()
-
-            let keyVC = uiApplication.keyViewController
-            func present() {
-                guard embedded else {
-                    keyVC?.present(viewController, animated: animated)
-                    return
-                }
-
-                keyVC?.present(UINavigationController(rootViewController: viewController), animated: animated)
-            }
-
             guard !isPresentingAlertController else {
                 GCD().after(seconds: 1) {
                     queuePresentation(of: viewController, animated: animated, embedded: embedded)
@@ -229,12 +242,12 @@ public struct CoreKit {
 
             guard Thread.isMainThread else {
                 DispatchQueue.main.sync {
-                    present()
+                    present(viewController, animated: animated, embedded: embedded)
                 }
                 return
             }
 
-            present()
+            present(viewController, animated: animated, embedded: embedded)
         }
 
         /* MARK: View Tagging */

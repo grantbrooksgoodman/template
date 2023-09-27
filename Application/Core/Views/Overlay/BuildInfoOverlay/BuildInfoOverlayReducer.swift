@@ -15,6 +15,7 @@ import Redux
 public struct BuildInfoOverlayReducer: Reducer {
     // MARK: - Dependencies
 
+    @Dependency(\.build) private var build: Build
     @Dependency(\.userDefaults) private var defaults: UserDefaults
     @Dependency(\.buildInfoOverlayViewService) private var service: BuildInfoOverlayViewService
 
@@ -65,7 +66,7 @@ public struct BuildInfoOverlayReducer: Reducer {
         case .action(.viewAppeared):
             RuntimeStorage.store(#file, as: .currentFile)
 
-            state.buildInfoButtonText = "\(Build.codeName) \(Build.bundleVersion) (\(String(Build.buildNumber))\(Build.stage.description(short: true)))"
+            state.buildInfoButtonText = "\(build.codeName) \(build.bundleVersion) (\(String(build.buildNumber))\(build.stage.description(short: true)))"
             if let defaultsValue = defaults.value(forKey: .developerModeEnabled) as? Bool {
                 state.isDeveloperModeEnabled = defaultsValue
             }
@@ -74,7 +75,7 @@ public struct BuildInfoOverlayReducer: Reducer {
             service.buildInfoButtonTapped()
 
         case .action(.didShakeDevice):
-            guard Build.developerModeEnabled else { return .none }
+            guard build.developerModeEnabled else { return .none }
             DevModeService.presentActionSheet()
 
         case .action(.breadcrumbsDidCapture):

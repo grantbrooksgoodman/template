@@ -19,6 +19,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
 
     @Dependency(\.alertKitCore) private var akCore: AKCore
     @Dependency(\.breadcrumbs) private var breadcrumbs: Breadcrumbs
+    @Dependency(\.build) private var build: Build
     @Dependency(\.userDefaults) private var defaults: UserDefaults
 
     // MARK: - UIApplication
@@ -36,28 +37,12 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Initialization + Setup
 
     private func preInitialize() {
-        /* MARK: Build & Logger Setup */
+        /* MARK: Defaults Keys & Logging Setup */
 
         RuntimeStorage.store(BuildConfig.languageCode, as: .languageCode)
-
-        var developerModeEnabled = false
-        if let developerMode = defaults.value(forKey: .developerModeEnabled) as? Bool {
-            developerModeEnabled = Build.stage == .generalRelease ? false : developerMode
-        }
-
-        Build.set([.appStoreReleaseVersion: BuildConfig.appStoreReleaseVersion,
-                   .codeName: BuildConfig.codeName,
-                   .developerModeEnabled: developerModeEnabled,
-                   .dmyFirstCompileDateString: BuildConfig.dmyFirstCompileDateString,
-                   .finalName: BuildConfig.finalName,
-                   .loggingEnabled: BuildConfig.loggingEnabled,
-                   .stage: BuildConfig.stage,
-                   .timebombActive: BuildConfig.timebombActive])
-
-        defaults.set(developerModeEnabled, forKey: .developerModeEnabled)
         Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
 
-        if Build.stage == .generalRelease {
+        if build.stage == .generalRelease {
             defaults.set(false, forKey: .breadcrumbsCaptureEnabled)
             defaults.removeObject(forKey: .breadcrumbsCapturesAllViews)
         } else if let breadcrumbsCaptureEnabled = defaults.value(forKey: .breadcrumbsCaptureEnabled) as? Bool,
@@ -66,18 +51,20 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
             breadcrumbs.startCapture(uniqueViewsOnly: !breadcrumbsCapturesAllViews)
         }
 
-        DevModeService.addStandardActions()
-        DevModeService.addCustomActions()
-
         if defaults.value(forKey: .hidesBuildInfoOverlay) as? Bool == nil {
             defaults.set(false, forKey: .hidesBuildInfoOverlay)
         }
 
+        /* MARK: Developer Mode Setup */
+
+        DevModeService.addStandardActions()
+        DevModeService.addCustomActions()
+
         /* MARK: Theme Setup */
 
         if let themeName = defaults.value(forKey: .pendingThemeName) as? String,
-           let correspondingTheme = AppTheme.allCases.first(where: { $0.theme.name == themeName }) {
-            ThemeService.setTheme(correspondingTheme.theme, checkStyle: false)
+           let correspondingCase = AppTheme.allCases.first(where: { $0.theme.name == themeName }) {
+            ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
             defaults.removeObject(forKey: .pendingThemeName)
         } else if let themeName = defaults.value(forKey: .currentTheme) as? String,
                   let correspondingCase = AppTheme.allCases.first(where: { $0.theme.name == themeName }) {
@@ -108,9 +95,8 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
               let data = try? Data(contentsOf: filePath),
               let localizedStrings = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: [String: String]] else {
             Logger.log(
-                "Missing localized strings.",
-                with: .fatalAlert,
-                metadata: [#file, #function, #line]
+                .init("Missing localized strings.", metadata: [#file, #function, #line]),
+                with: .fatalAlert
             )
             return
         }
@@ -130,8 +116,10 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
             akCore.setLanguageCode("en")
 
             Logger.log(
-                "Unsupported language code; reverting to English.",
-                metadata: [#file, #function, #line]
+                .init(
+                    "Unsupported language code; reverting to English.",
+                    metadata: [#file, #function, #line]
+                )
             )
             return
         }

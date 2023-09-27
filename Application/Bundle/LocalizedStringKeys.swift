@@ -10,7 +10,7 @@
 import Foundation
 
 public enum LocalizedStringKey: String {
-    /* MARK: Cases */
+    // MARK: - Cases
 
     /* Add cases here for newly pre-localized strings. */
 
@@ -26,6 +26,7 @@ public enum LocalizedStringKey: String {
     case noInternetTitle
 
     case reportBug
+    case somethingWentWrong
     case timedOut
     case tryAgain
 
@@ -44,7 +45,7 @@ public enum LocalizedStringKey: String {
     case today
     case yesterday
 
-    /* MARK: Properties */
+    // MARK: - Properties
 
     public var description: String {
         return rawValue.snakeCased
