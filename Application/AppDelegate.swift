@@ -15,13 +15,6 @@ import Redux
 
 @main
 public class AppDelegate: UIResponder, UIApplicationDelegate {
-    // MARK: - Dependencies
-
-    @Dependency(\.alertKitCore) private var akCore: AKCore
-    @Dependency(\.breadcrumbs) private var breadcrumbs: Breadcrumbs
-    @Dependency(\.build) private var build: Build
-    @Dependency(\.userDefaults) private var defaults: UserDefaults
-
     // MARK: - UIApplication
 
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -37,6 +30,13 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Initialization + Setup
 
     private func preInitialize() {
+        /* MARK: Dependencies */
+
+        @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
+        @Dependency(\.build) var build: Build
+        @Dependency(\.userDefaults) var defaults: UserDefaults
+
         /* MARK: Defaults Keys & Logging Setup */
 
         RuntimeStorage.store(BuildConfig.languageCode, as: .languageCode)
@@ -94,10 +94,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let filePath = Bundle.main.url(forResource: "LocalizedStrings", withExtension: "plist"),
               let data = try? Data(contentsOf: filePath),
               let localizedStrings = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: [String: String]] else {
-            Logger.log(
-                .init("Missing localized strings.", metadata: [#file, #function, #line]),
-                with: .fatalAlert
-            )
+            Logger.log(.init("Missing localized strings.", metadata: [#file, #function, #line]))
             return
         }
 

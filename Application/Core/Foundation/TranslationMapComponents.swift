@@ -25,6 +25,8 @@ public struct TranslationInputMap: Equatable {
     public let key: TranslatedLabelStringCollection
     public let input: TranslationInput
 
+    // MARK: - Computed Properties
+
     public var defaultOutputMap: TranslationOutputMap {
         .init(key: key, value: input.value().sanitized)
     }
@@ -64,13 +66,13 @@ public extension Array where Element == TranslationInputMap {
 }
 
 public extension TranslatorService {
-    func resolve(_ keyPairs: [TranslationInputMap]) async -> Callback<[TranslationOutputMap], Exception> {
-        let getTranslationsResult = await getTranslations(for: keyPairs.map { $0.input }, languagePair: .system)
+    func resolve(_ strings: TranslatedLabelStrings.Type) async -> Callback<[TranslationOutputMap], Exception> {
+        let getTranslationsResult = await getTranslations(for: strings.keyPairs.map { $0.input }, languagePair: .system)
 
         switch getTranslationsResult {
         case let .success(translations):
             var outputs = [TranslationOutputMap]()
-            for keyPair in keyPairs {
+            for keyPair in strings.keyPairs {
                 guard let translation = translations.first(where: { $0.input.value() == keyPair.input.value() }) else {
                     outputs.append(keyPair.defaultOutputMap)
                     continue

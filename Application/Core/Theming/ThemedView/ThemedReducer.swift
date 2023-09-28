@@ -33,10 +33,13 @@ public struct ThemedReducer: Reducer {
     public struct State: Equatable {
         /* MARK: Properties */
 
-        var body: () -> any View
-        var objectID = UUID()
-        var redrawsOnAppearanceChange: Bool
-        var viewID = UUID()
+        // UUID
+        public var objectID = UUID()
+        public var viewID = UUID()
+
+        // Other
+        public var body: () -> any View
+        public var redrawsOnAppearanceChange: Bool
 
         /* MARK: Init */
 

@@ -43,14 +43,15 @@ public struct BuildInfoOverlayReducer: Reducer {
     public struct State: Equatable {
         /* MARK: Properties */
 
-        // Strings
-        var buildInfoButtonText: String = ""
-        @Localized(.sendFeedback) var sendFeedbackButtonText: String
+        // String
+        @Localized(.sendFeedback) public var sendFeedbackButtonText: String
+
+        public var buildInfoButtonText = ""
 
         // Other
-        var developerModeIndicatorDotColor: Color = .orange
-        var isDeveloperModeEnabled: Bool = false
-        var yOffset: CGFloat
+        public var developerModeIndicatorDotColor: Color = .orange
+        public var isDeveloperModeEnabled = false
+        public var yOffset: CGFloat
 
         /* MARK: Init */
 
@@ -66,7 +67,7 @@ public struct BuildInfoOverlayReducer: Reducer {
         case .action(.viewAppeared):
             RuntimeStorage.store(#file, as: .currentFile)
 
-            state.buildInfoButtonText = "\(build.codeName) \(build.bundleVersion) (\(String(build.buildNumber))\(build.stage.description(short: true)))"
+            state.buildInfoButtonText = "\(build.codeName) \(build.bundleVersion) (\(String(build.buildNumber))\(build.stage.shortString))"
             if let defaultsValue = defaults.value(forKey: .developerModeEnabled) as? Bool {
                 state.isDeveloperModeEnabled = defaultsValue
             }

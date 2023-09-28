@@ -18,7 +18,7 @@ import Redux
 public enum TEException: String {
     /* Add new cases here. */
 
-    case `default` = "0000"
+    case timedOut = "DE75"
 }
 
 /**
@@ -34,7 +34,7 @@ public extension Exception {
             return laymanDescriptor
         }
 
-        switch descriptor {
+        switch hashlet {
         /* Add simplified error strings here. */
         default:
             return build.stage == .generalRelease ? Localized(.somethingWentWrong).wrappedValue : descriptor

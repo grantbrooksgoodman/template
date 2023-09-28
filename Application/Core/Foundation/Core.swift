@@ -55,7 +55,7 @@ public struct CoreKit {
     // MARK: - Core HUD
 
     public struct HUD {
-        /* MARK: Properties */
+        /* MARK: Types */
 
         public enum HUDImage {
             case success
@@ -200,9 +200,9 @@ public struct CoreKit {
             _ viewController: UIViewController,
             animated: Bool = true,
             embedded: Bool = false,
-            force: Bool = false
+            forced: Bool = false
         ) {
-            guard !force else {
+            guard !forced else {
                 dismissAlertController()
                 present(viewController, animated: animated, embedded: embedded)
                 return

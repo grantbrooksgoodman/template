@@ -10,7 +10,7 @@ import Foundation
 
 // swiftlint:disable force_try line_length
 public enum SystemInformation {
-    // MARK: - Properties
+    // MARK: - Types
 
     private enum SystemInformationError: Error {
         case invalidSize
@@ -19,7 +19,7 @@ public enum SystemInformation {
         case unknownError
     }
 
-    // MARK: - Computed Properties
+    // MARK: - Properties
 
     public static var activeCPUs: Int64 {
         return try! informationInteger(withLevels: CTL_HW, HW_AVAILCPU)
@@ -65,7 +65,7 @@ public enum SystemInformation {
         return try! informationString(withLevels: CTL_KERN, KERN_OSVERSION)
     }
 
-    // MARK: - Private Methods
+    // MARK: - Auxiliary
 
     private static func getInformation(fromLevelName: String) throws -> [Int32] {
         var levelBufferSize = Int(CTL_MAXNAME)

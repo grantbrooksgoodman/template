@@ -26,7 +26,6 @@
  */
 
 // swiftlint:disable all
-
 import Foundation
 import SystemConfiguration
 

@@ -11,6 +11,16 @@ import Foundation
 /* 3rd-party */
 import Translator
 
+public extension Array where Element == Any {
+    var isValidMetadata: Bool {
+        guard count == 3,
+              self[0] is String,
+              self[1] is String,
+              self[2] is Int else { return false }
+        return true
+    }
+}
+
 public extension Array where Element == String {
     // MARK: - Properties
 

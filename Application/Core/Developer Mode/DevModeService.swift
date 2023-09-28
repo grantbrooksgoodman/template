@@ -16,7 +16,7 @@ import Redux
 public enum DevModeService {
     // MARK: - Properties
 
-    private(set) static var actions: [DevModeAction] = []
+    public private(set) static var actions: [DevModeAction] = []
 
     // MARK: - Action Addition
 
@@ -159,7 +159,7 @@ public enum DevModeService {
             guard actionID != -1 else { return }
 
             guard let returnedString,
-                  returnedString == ExpiryAlertDelegate().getExpirationOverrideCode() else {
+                  returnedString == build.expirationOverrideCode else {
                 akCore.lockLanguageCode(to: "en")
                 AKAlert(
                     title: "Enable Developer Mode",

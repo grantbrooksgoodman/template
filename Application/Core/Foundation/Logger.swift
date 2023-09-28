@@ -11,26 +11,27 @@ import Redux
 
 // swiftlint:disable:next type_body_length
 public enum Logger {
+    // MARK: - Types
+
+    public enum AlertType {
+        case errorAlert
+        case fatalAlert
+        case normalAlert
+        case toast(icon: CoreKit.HUD.HUDImage)
+    }
+
     // MARK: - Properties
 
     public private(set) static var subscribedDomains: [LoggerDomain] = [.general]
 
     private static var currentTimeLastCalled = Date()
+    private static var streamOpen = false
+
+    // MARK: - Computed Properties
+
     private static var elapsedTime: String {
         let time = String(abs(currentTimeLastCalled.seconds(from: Date())))
         return time == "0" ? "" : " @ \(time)s FLC"
-    }
-
-    private static var streamOpen = false
-
-    // MARK: - Enums
-
-    public enum AlertType {
-        case errorAlert
-        case fatalAlert
-        case toast(icon: CoreKit.HUD.HUDImage)
-
-        case normalAlert
     }
 
     // MARK: - Domain Subscription
@@ -58,32 +59,29 @@ public enum Logger {
     public static func log(
         _ error: Error,
         domain: LoggerDomain = .general,
-        with alert: AlertType? = .none,
+        with alertType: AlertType? = .none,
         metadata: [Any]
     ) {
-        log(.init(error, metadata: metadata), domain: domain, with: alert)
+        log(.init(error, metadata: metadata), domain: domain, with: alertType)
     }
 
     public static func log(
         _ error: NSError,
         domain: LoggerDomain = .general,
-        with alert: AlertType? = .none,
+        with alertType: AlertType? = .none,
         metadata: [Any]
     ) {
-        log(.init(error, metadata: metadata), domain: domain, with: alert)
+        log(.init(error, metadata: metadata), domain: domain, with: alertType)
     }
 
     public static func log(
         _ exception: Exception,
         domain: LoggerDomain = .general,
-        with alert: AlertType? = .none
+        with alertType: AlertType? = .none
     ) {
         @Dependency(\.alertKitCore) var akCore: AKCore
-        @Dependency(\.build) var build: Build
-        @Dependency(\.coreKit) var core: CoreKit
 
-        guard build.loggingEnabled,
-              subscribedDomains.contains(domain) else {
+        guard canLog(to: domain) else {
             showAlertIfNeeded()
             return
         }
@@ -113,54 +111,26 @@ public enum Logger {
         showAlertIfNeeded()
 
         func showAlertIfNeeded() {
-            guard let alertType = alert else { return }
-
-            core.hud.hide()
-
-            switch alertType {
-            case .errorAlert:
-                let sugarCoatedDescriptor = Exception("", metadata: [#file, #function, #line]).userFacingDescriptor
-                let translateDescriptor = (exception.userFacingDescriptor != exception.descriptor) || (exception.userFacingDescriptor == sugarCoatedDescriptor)
-
-                AKErrorAlert(
-                    message: exception.userFacingDescriptor,
-                    error: .init(exception),
-                    shouldTranslate: translateDescriptor ? [.all] : [.actions(indices: nil),
-                                                                     .cancelButtonTitle]
-                ).present()
-            case .fatalAlert:
-                akCore.present(
-                    .fatalErrorAlert,
-                    with: [exception.descriptor!,
-                           build.stage != .generalRelease,
-                           exception.metadata!]
-                )
-
-            case let .toast(icon):
-                core.gcd.after(seconds: 1) { core.hud.flash(exception.userFacingDescriptor, image: icon) }
-
-            case .normalAlert:
-                AKAlert(
-                    message: exception.userFacingDescriptor,
-                    cancelButtonTitle: "OK",
-                    shouldTranslate: [.title, .message]
-                ).present()
-            }
+            guard let alertType else { return }
+            showAlert(alertType, exception: exception)
         }
     }
 
     public static func log(
         _ text: String,
         domain: LoggerDomain = .general,
-        with alert: AlertType? = .none,
+        with alertType: AlertType? = .none,
         metadata: [Any]
     ) {
         @Dependency(\.alertKitCore) var akCore: AKCore
-        @Dependency(\.build) var build: Build
-        @Dependency(\.coreKit) var core: CoreKit
 
-        guard validateMetadata(metadata) else {
-            fallbackLog(text, domain: domain, with: alert)
+        guard metadata.isValidMetadata else {
+            fallbackLog(text, domain: domain, with: alertType)
+            return
+        }
+
+        guard canLog(to: domain) else {
+            showAlertIfNeeded()
             return
         }
 
@@ -169,12 +139,6 @@ public enum Logger {
         let functionName = (metadata[1] as! String).components(separatedBy: "(")[0]
         let lineNumber = metadata[2] as! Int
         // swiftlint:enable force_cast
-
-        guard build.loggingEnabled,
-              subscribedDomains.contains(domain) else {
-            showAlertIfNeeded(fileName: fileName, functionName: functionName, lineNumber: lineNumber)
-            return
-        }
 
         guard !streamOpen else {
             logToStream(text, domain: domain, line: lineNumber)
@@ -186,48 +150,11 @@ public enum Logger {
         print("\n\(header)\n\(fileName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n\(footer)\n")
 
         currentTimeLastCalled = Date()
-        showAlertIfNeeded(fileName: fileName, functionName: functionName, lineNumber: lineNumber)
+        showAlertIfNeeded()
 
-        func showAlertIfNeeded(
-            fileName: String,
-            functionName: String,
-            lineNumber: Int
-        ) {
-            guard let alertType = alert else { return }
-
-            core.hud.hide()
-
-            switch alertType {
-            case .errorAlert:
-                let exception = Exception(text, metadata: [fileName, functionName, lineNumber])
-
-                let sugarCoatedDescriptor = Exception("", metadata: [#file, #function, #line]).userFacingDescriptor
-                let translateDescriptor = (exception.userFacingDescriptor != exception.descriptor) || (exception.userFacingDescriptor == sugarCoatedDescriptor)
-
-                AKErrorAlert(
-                    message: exception.userFacingDescriptor,
-                    error: .init(exception),
-                    shouldTranslate: translateDescriptor ? [.all] : [.actions(indices: nil),
-                                                                     .cancelButtonTitle]
-                ).present()
-            case .fatalAlert:
-                akCore.present(
-                    .fatalErrorAlert,
-                    with: [text,
-                           build.stage != .generalRelease,
-                           [fileName, functionName, lineNumber]]
-                )
-
-            case let .toast(icon):
-                core.gcd.after(seconds: 1) { core.hud.flash(text, image: icon) }
-
-            case .normalAlert:
-                AKAlert(
-                    message: Exception(text, metadata: [fileName, functionName, lineNumber]).userFacingDescriptor,
-                    cancelButtonTitle: "OK",
-                    shouldTranslate: [.title, .message]
-                ).present()
-            }
+        func showAlertIfNeeded() {
+            guard let alertType else { return }
+            showAlert(alertType, data: (text, metadata))
         }
     }
 
@@ -239,16 +166,13 @@ public enum Logger {
         metadata: [Any]
     ) {
         @Dependency(\.alertKitCore) var akCore: AKCore
-        @Dependency(\.build) var build: Build
 
-        guard build.loggingEnabled,
-              subscribedDomains.contains(domain) else { return }
-
-        guard validateMetadata(metadata) else {
-            Logger.log(
+        guard canLog(to: domain) else { return }
+        guard metadata.isValidMetadata else {
+            log(.init(
                 "Improperly formatted metadata.",
                 metadata: [#file, #function, #line]
-            )
+            ))
             return
         }
 
@@ -258,17 +182,17 @@ public enum Logger {
         let lineNumber = metadata[2] as! Int
         // swiftlint:enable force_cast
 
-        streamOpen = true
-        currentTimeLastCalled = Date()
-
-        guard let firstEntry = message else {
+        guard let message else {
             // swiftlint:disable:next line_length
             print("\n*------------------------STREAM OPENED------------------------*\n[\(domain.rawValue.uppercased())]\n\(fileName).\(functionName)()\(elapsedTime)")
             return
         }
 
         // swiftlint:disable:next line_length
-        print("\n*------------------------STREAM OPENED------------------------*\n[\(domain.rawValue.uppercased())]\n\(fileName).\(functionName)()\n[\(lineNumber)]: \(firstEntry)\(elapsedTime)")
+        print("\n*------------------------STREAM OPENED------------------------*\n[\(domain.rawValue.uppercased())]\n\(fileName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)")
+
+        streamOpen = true
+        currentTimeLastCalled = Date()
     }
 
     public static func logToStream(
@@ -276,11 +200,11 @@ public enum Logger {
         domain: LoggerDomain = .general,
         line: Int
     ) {
-        @Dependency(\.build) var build: Build
-
-        guard build.loggingEnabled,
-              subscribedDomains.contains(domain),
-              streamOpen else { return }
+        guard canLog(to: domain) else { return }
+        guard streamOpen else {
+            log(message, metadata: [#file, #function, #line])
+            return
+        }
 
         print("[\(line)]: \(message)\(elapsedTime)")
     }
@@ -290,36 +214,40 @@ public enum Logger {
         domain: LoggerDomain = .general,
         onLine: Int? = nil
     ) {
-        @Dependency(\.build) var build: Build
+        guard canLog(to: domain) else { return }
+        guard streamOpen else {
+            guard let message else { return }
+            log(message, metadata: [#file, #function, #line])
+            return
+        }
 
-        guard build.loggingEnabled,
-              subscribedDomains.contains(domain),
-              streamOpen else { return }
-        streamOpen = false
-        currentTimeLastCalled = Date()
-
-        guard let closingMessage = message,
-              let line = onLine else {
+        guard let message,
+              let onLine else {
             print("*------------------------STREAM CLOSED------------------------*\n")
             return
         }
 
-        print("[\(line)]: \(closingMessage)\(elapsedTime)\n*------------------------STREAM CLOSED------------------------*\n")
+        print("[\(onLine)]: \(message)\(elapsedTime)\n*------------------------STREAM CLOSED------------------------*\n")
+
+        streamOpen = false
+        currentTimeLastCalled = Date()
     }
 
     // MARK: - Auxiliary
 
+    private static func canLog(to domain: LoggerDomain) -> Bool {
+        @Dependency(\.build) var build: Build
+        guard build.loggingEnabled,
+              subscribedDomains.contains(domain) else { return false }
+        return true
+    }
+
     private static func fallbackLog(
         _ text: String,
         domain: LoggerDomain = .general,
-        with alert: AlertType? = .none
+        with alertType: AlertType? = .none
     ) {
-        @Dependency(\.alertKitCore) var akCore: AKCore
-        @Dependency(\.build) var build: Build
-        @Dependency(\.coreKit) var core: CoreKit
-
-        guard build.loggingEnabled,
-              subscribedDomains.contains(domain) else {
+        guard canLog(to: domain) else {
             showAlertIfNeeded()
             return
         }
@@ -332,42 +260,13 @@ public enum Logger {
         showAlertIfNeeded()
 
         func showAlertIfNeeded() {
-            guard let alertType = alert else { return }
-
-            core.hud.hide()
-
-            switch alertType {
-            case .errorAlert:
-                let exception = Exception(text, metadata: [#file, #function, #line])
-                AKErrorAlert(
-                    error: .init(exception),
-                    shouldTranslate: [.actions(indices: nil),
-                                      .cancelButtonTitle]
-                ).present()
-            case .fatalAlert:
-                akCore.present(
-                    .fatalErrorAlert,
-                    with: [text,
-                           build.stage != .generalRelease,
-                           [#file, #function, #line]]
-                )
-
-            case let .toast(icon):
-                core.gcd.after(seconds: 1) { core.hud.flash(text, image: icon) }
-
-            case .normalAlert:
-                AKAlert(
-                    message: text,
-                    cancelButtonTitle: "OK",
-                    shouldTranslate: [.title, .message]
-                ).present()
-            }
+            guard let alertType else { return }
+            showAlert(alertType, data: (text, [#file, #function, #line]))
         }
     }
 
     private static func printExtraParams(_ parameters: [String: Any]) {
         guard !parameters.isEmpty else { return }
-
         guard parameters.count > 1 else {
             print("[\(parameters.first!.key): \(parameters.first!.value)]")
             return
@@ -385,12 +284,68 @@ public enum Logger {
         }
     }
 
-    private static func validateMetadata(_ metadata: [Any]) -> Bool {
-        guard metadata.count == 3,
-              metadata[0] is String,
-              metadata[1] is String,
-              metadata[2] is Int else { return false }
+    private static func showAlert(
+        _ type: AlertType,
+        exception: Exception? = nil,
+        data: (text: String, metadata: [Any])? = nil
+    ) {
+        @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.build) var build: Build
+        @Dependency(\.coreKit) var core: CoreKit
 
-        return true
+        guard exception != nil || data != nil else { return }
+
+        let descriptor = exception?.descriptor ?? data?.text
+        let userFacingDescriptor = exception?.userFacingDescriptor ?? data?.text
+        let metadata = exception?.metadata ?? data?.metadata
+
+        guard let descriptor,
+              let userFacingDescriptor,
+              let metadata else { return }
+
+        core.hud.hide()
+
+        let mockException: Exception = .init(metadata: [#file, #function, #line])
+        var shouldTranslate = userFacingDescriptor != mockException.userFacingDescriptor
+
+        switch type {
+        case .errorAlert:
+            var akError: AKError?
+            if let exception {
+                akError = .init(exception)
+            } else if let data {
+                akError = .init(.init(data.text, metadata: data.metadata))
+            }
+
+            guard let akError else {
+                showAlert(.normalAlert, exception: exception, data: data)
+                return
+            }
+
+            shouldTranslate = akError.description != mockException.userFacingDescriptor
+
+            AKErrorAlert(
+                error: akError,
+                shouldTranslate: shouldTranslate ? [.all] : [.actions(indices: nil),
+                                                             .cancelButtonTitle]
+            ).present()
+
+        case .fatalAlert:
+            akCore.present(.fatalErrorAlert, with: [
+                descriptor,
+                build.stage != .generalRelease,
+                metadata,
+            ])
+
+        case .normalAlert:
+            AKAlert(
+                message: userFacingDescriptor,
+                cancelButtonTitle: "OK",
+                shouldTranslate: shouldTranslate ? [.message] : [.none]
+            ).present()
+
+        case let .toast(icon: icon):
+            core.gcd.after(seconds: 1) { core.hud.flash(userFacingDescriptor, image: icon) }
+        }
     }
 }

@@ -13,15 +13,6 @@ import UIKit
 import Redux
 
 public class Breadcrumbs {
-    // MARK: - Dependencies
-
-    @Dependency(\.build) private var build: Build
-    @Dependency(\.coreKit) private var core: CoreKit
-    @Dependency(\.breadcrumbsDateFormatter) private var dateFormatter: DateFormatter
-    @Dependency(\.fileManager) private var fileManager: FileManager
-    @Dependency(\.observableRegistry) private var registry: ObservableRegistry
-    @Dependency(\.uiApplication) private var uiApplication: UIApplication
-
     // MARK: - Properties
 
     // Array
@@ -36,6 +27,10 @@ public class Breadcrumbs {
     // MARK: - Computed Properties
 
     private var filePath: URL {
+        @Dependency(\.build) var build: Build
+        @Dependency(\.breadcrumbsDateFormatter) var dateFormatter: DateFormatter
+        @Dependency(\.fileManager) var fileManager: FileManager
+
         let documents = fileManager.documentsDirectoryURL
         let timeString = dateFormatter.string(from: Date())
 
@@ -44,7 +39,7 @@ public class Breadcrumbs {
             fileName = "\(build.codeName)_\(viewName) @ \(timeString).png"
         } else {
             let fileNamePrefix = "\(build.codeName)_\(String(build.buildNumber))"
-            let fileNameSuffix = "\(build.stage.description(short: true)) @ \(timeString).png"
+            let fileNameSuffix = "\(build.stage.shortString) @ \(timeString).png"
             fileName = fileNamePrefix + fileNameSuffix
         }
 
@@ -83,6 +78,7 @@ public class Breadcrumbs {
         isCapturing = true
 
         func continuallyCapture() {
+            @Dependency(\.coreKit) var core: CoreKit
             guard isCapturing else { return }
             capture()
             core.gcd.after(seconds: 10) { continuallyCapture() }
@@ -106,6 +102,9 @@ public class Breadcrumbs {
 
     private func capture() {
         func saveImage() {
+            @Dependency(\.observableRegistry) var registry: ObservableRegistry
+            @Dependency(\.uiApplication) var uiApplication: UIApplication
+
             guard let image = uiApplication.snapshot,
                   let pngData = image.pngData() else { return }
 

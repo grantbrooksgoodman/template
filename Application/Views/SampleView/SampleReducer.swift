@@ -33,7 +33,7 @@ public struct SampleReducer: Reducer {
     // MARK: - State
 
     public struct State: Equatable {
-        /* MARK: View State */
+        /* MARK: Types */
 
         public enum ViewState: Equatable {
             case loading
@@ -43,9 +43,8 @@ public struct SampleReducer: Reducer {
 
         /* MARK: Properties */
 
-        var inputs: [TranslationInputMap] = SampleViewStrings.keyPairs
-        var strings: [TranslationOutputMap] = SampleViewStrings.keyPairs.defaultOutputMap
-        var viewState: ViewState = .loading
+        public var strings: [TranslationOutputMap] = SampleViewStrings.keyPairs.defaultOutputMap
+        public var viewState: ViewState = .loading
 
         /* MARK: Init */
 
@@ -60,9 +59,8 @@ public struct SampleReducer: Reducer {
             RuntimeStorage.store(#file, as: .currentFile)
             state.viewState = .loading
 
-            let inputs = state.inputs
             return .task {
-                let result = await translator.resolve(inputs)
+                let result = await translator.resolve(SampleViewStrings.self)
                 return .resolveReturned(result)
             }
 

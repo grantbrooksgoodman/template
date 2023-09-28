@@ -15,24 +15,28 @@ public class Build {
     // MARK: - Types
 
     public enum Stage: String {
-        case preAlpha /* Typically builds 0-1500. */
+        /* MARK: Cases */
+
+        case preAlpha = "pre-alpha" /* Typically builds 0-1500. */
         case alpha /* Typically builds 1500-3000. */
         case beta /* Typically builds 3000-6000. */
-        case releaseCandidate /* Typically builds 6000 onwards. */
-        case generalRelease
+        case releaseCandidate = "release candidate" /* Typically builds 6000 onwards. */
+        case generalRelease = "general"
 
-        public func description(short: Bool) -> String {
+        /* MARK: Properties */
+
+        public var shortString: String {
             switch self {
             case .preAlpha:
-                return short ? "p" : "pre-alpha"
+                return "p"
             case .alpha:
-                return short ? "a" : "alpha"
+                return "a"
             case .beta:
-                return short ? "b" : "beta"
+                return "b"
             case .releaseCandidate:
-                return short ? "c" : "release candidate"
-            default:
-                return short ? "g" : "general"
+                return "c"
+            case .generalRelease:
+                return "g"
             }
         }
     }
@@ -62,6 +66,7 @@ public class Build {
     // String
     public var buildSKU: String { getBuildSKU() }
     public var bundleVersion: String { getBundleVersion() }
+    public var expirationOverrideCode: String { getExpirationOverrideCode() }
     public var expiryInfoString: String { getExpiryInfoString() }
     public var projectID: String { getProjectID() }
 
@@ -139,13 +144,34 @@ public class Build {
             threeLetterID = "\(prefix)\(String(codeName[middleLetterIndex]))\(suffix)".uppercased()
         }
 
-        return "\(formattedBuildDateString)-\(threeLetterID)-\(String(format: "%06d", getBuildNumber()))\(stage.description(short: true))"
+        return "\(formattedBuildDateString)-\(threeLetterID)-\(String(format: "%06d", getBuildNumber()))\(stage.shortString)"
     }
 
     private func getBundleVersion() -> String {
         guard let bundleReleaseVersionString = infoDictionary["CFBundleReleaseVersion"] as? String,
               let currentReleaseBuildNumber = Int(bundleReleaseVersionString) else { return .init() }
         return "\(String(appStoreReleaseVersion)).\(String(currentReleaseBuildNumber / 150)).\(String(currentReleaseBuildNumber / 50))"
+    }
+
+    private func getExpirationOverrideCode() -> String {
+        guard !codeName.isEmpty,
+              let firstCharacter = codeName.first,
+              let lastCharacter = codeName.last else { return "000000" }
+
+        let firstLetter = String(firstCharacter)
+        let lastLetter = String(lastCharacter)
+
+        let middleIndex = codeName.index(
+            codeName.startIndex,
+            offsetBy: Int((Double(codeName.count) / 2).rounded(.down))
+        )
+        let middleLetter = String(codeName[middleIndex])
+
+        return [firstLetter, middleLetter, lastLetter].reduce(into: [String]()) { partialResult, letter in
+            if let position = letter.alphabeticalPosition {
+                partialResult.append(.init(format: "%02d", position))
+            }
+        }.joined()
     }
 
     private func getExpiryDate() -> Date {

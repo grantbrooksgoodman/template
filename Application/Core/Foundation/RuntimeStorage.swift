@@ -16,15 +16,15 @@ public enum RuntimeStorage {
     // MARK: - Methods
 
     public static func remove(_ item: StoredItem) {
-        storedItems[item.description] = nil
+        storedItems[item.rawValue] = nil
     }
 
     public static func retrieve(_ item: StoredItem) -> Any? {
-        guard let object = storedItems[item.description] else { return nil }
+        guard let object = storedItems[item.rawValue] else { return nil }
         return object
     }
 
-    public static func store(_ object: Any, as: StoredItem) {
-        storedItems[`as`.description] = object
+    public static func store(_ object: Any, as item: StoredItem) {
+        storedItems[item.rawValue] = object
     }
 }

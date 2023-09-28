@@ -19,8 +19,9 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     // Dependencies
     @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
+    @Dependency(\.translatorService) private var translator: TranslatorService
 
-    // Strings
+    // String
     private var continueUseString = ""
     private var exitApplicationString = ""
     private var expiryMessage = ""
@@ -77,7 +78,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
             ) { _ in
                 let returnedString = self.expiryAlertController.textFields![0].text!
 
-                if returnedString == self.getExpirationOverrideCode() {
+                if returnedString == self.build.expirationOverrideCode {
                     self.exitTimer?.invalidate()
                     self.exitTimer = nil
 
@@ -165,29 +166,6 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
 
     // MARK: - Auxiliary
 
-    public func getExpirationOverrideCode() -> String {
-        guard !build.codeName.isEmpty else { return "" }
-        let firstLetter = String(build.codeName.first!)
-        let lastLetter = String(build.codeName.last!)
-
-        let middleIndex = build.codeName.index(
-            build.codeName.startIndex,
-            offsetBy: Int((Double(build.codeName.count) / 2).rounded(.down))
-        )
-        let middleLetter = String(build.codeName[middleIndex])
-
-        var numberStrings: [String] = []
-
-        for letter in [firstLetter, middleLetter, lastLetter] {
-            guard let position = letter.alphabeticalPosition else { continue }
-            numberStrings.append(String(format: "%02d", position))
-        }
-
-        return numberStrings.joined()
-    }
-
-    // MARK: - Private
-
     @objc private func decrementSecond() {
         remainingSeconds -= 1
 
@@ -229,8 +207,6 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     }
 
     private func translateStrings(completion: @escaping () -> Void) {
-        @Dependency(\.translatorService) var translator: TranslatorService
-
         let dispatchGroup = DispatchGroup()
         var leftDispatchGroup = false
 

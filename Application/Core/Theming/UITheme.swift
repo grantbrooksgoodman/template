@@ -15,9 +15,9 @@ import Redux
 public struct UITheme: Equatable {
     // MARK: - Properties
 
-    private(set) var name: String
-    private(set) var items: [ColoredItem]
-    private(set) var style: UIUserInterfaceStyle
+    public private(set) var name: String
+    public private(set) var items: [ColoredItem]
+    public private(set) var style: UIUserInterfaceStyle
 
     // MARK: - Init
 

@@ -18,18 +18,16 @@ public enum ObserverType {
 }
 
 public enum Observers {
-    // MARK: - Dependencies
-
-    @Dependency(\.observableRegistry) private static var registry: ObservableRegistry
-
     // MARK: - Properties
 
-    private(set) static var buildInfoOverlay: BuildInfoOverlayViewObserver?
-    private(set) static var themedView: ThemedViewObserver?
+    public private(set) static var buildInfoOverlay: BuildInfoOverlayViewObserver?
+    public private(set) static var themedView: ThemedViewObserver?
 
     // MARK: - Registration
 
     public static func register(observer: Observer) {
+        @Dependency(\.observableRegistry) var registry: ObservableRegistry
+
         switch observer.type {
         case .buildInfoOverlay:
             buildInfoOverlay = observer as? BuildInfoOverlayViewObserver

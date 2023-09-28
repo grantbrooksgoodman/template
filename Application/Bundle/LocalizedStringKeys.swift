@@ -47,7 +47,5 @@ public enum LocalizedStringKey: String {
 
     // MARK: - Properties
 
-    public var description: String {
-        return rawValue.snakeCased
-    }
+    public var description: String { rawValue.snakeCased }
 }

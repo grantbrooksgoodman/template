@@ -20,11 +20,11 @@ public struct Exception: Equatable, Exceptionable {
 
     // MARK: - Properties
 
-    // Arrays
+    // Array
     public var metadata: [Any]!
     public var underlyingExceptions: [Exception]?
 
-    // Strings
+    // String
     public var descriptor: String!
     public var hashlet: String!
     public var metaID: String!
@@ -42,7 +42,7 @@ public struct Exception: Equatable, Exceptionable {
         underlyingExceptions: [Exception]? = nil,
         metadata: [Any]
     ) {
-        guard validateMetadata(metadata) else { fatalError("Improperly formatted metadata") }
+        guard metadata.isValidMetadata else { fatalError("Improperly formatted metadata") }
 
         self.descriptor = descriptor ?? "An unknown error occurred."
         self.isReportable = isReportable ?? true
@@ -79,7 +79,7 @@ public struct Exception: Equatable, Exceptionable {
         underlyingExceptions: [Exception]? = nil,
         metadata: [Any]
     ) {
-        guard validateMetadata(metadata) else { fatalError("Improperly formatted metadata") }
+        guard metadata.isValidMetadata else { fatalError("Improperly formatted metadata") }
 
         descriptor = error.localizedDescription
         self.isReportable = isReportable ?? true
@@ -111,7 +111,7 @@ public struct Exception: Equatable, Exceptionable {
     public func appending(extraParams: [String: Any]) -> Exception {
         guard let currentParams = self.extraParams,
               !currentParams.isEmpty else {
-            return Exception(
+            return .init(
                 descriptor,
                 isReportable: isReportable,
                 extraParams: extraParams.withCapitalizedKeys,
@@ -124,7 +124,7 @@ public struct Exception: Equatable, Exceptionable {
             params[param.key] = param.value
         }
 
-        return Exception(
+        return .init(
             descriptor,
             isReportable: isReportable,
             extraParams: params.withCapitalizedKeys,
@@ -135,7 +135,7 @@ public struct Exception: Equatable, Exceptionable {
     public func appending(underlyingException: Exception) -> Exception {
         guard let currentUnderlyingExceptions = underlyingExceptions,
               !currentUnderlyingExceptions.isEmpty else {
-            return Exception(
+            return .init(
                 descriptor,
                 isReportable: isReportable,
                 extraParams: extraParams,
@@ -147,7 +147,7 @@ public struct Exception: Equatable, Exceptionable {
         var exceptions = currentUnderlyingExceptions
         exceptions.append(underlyingException)
 
-        return Exception(
+        return .init(
             descriptor,
             isReportable: isReportable,
             extraParams: extraParams,
@@ -190,35 +190,22 @@ public struct Exception: Equatable, Exceptionable {
         // swiftlint:disable force_cast
         let unformattedFileName = metadata[0] as! String
         let fileName = unformattedFileName.components(separatedBy: "/").last!.components(separatedBy: ".")[0]
-
         let lineNumber = metadata[2] as! Int
         // swiftlint:enable force_cast
 
-        var hexArray: [String] = []
-
-        for character in fileName.components(separatedBy: "Controller")[0] {
-            hexArray.append(String(format: "%02X", character.asciiValue!))
+        var hexChars = fileName.reduce(into: [String]()) { partialResult, character in
+            if let asciiValue = character.asciiValue {
+                partialResult.append(.init(format: "%02X", asciiValue))
+            }
         }
 
-        if hexArray.count > 3 {
-            var subsequence = Array(hexArray[0 ... 1])
-            subsequence.append(hexArray.last!)
-
-            hexArray = subsequence
+        if hexChars.count > 3 {
+            var subsequence = Array(hexChars[0 ... 3])
+            subsequence.append(hexChars.last!)
+            hexChars = subsequence
         }
 
-        return "\(hexArray.joined(separator: ""))x\(lineNumber)".lowercased()
-    }
-
-    private func validateMetadata(_ metadata: [Any]) -> Bool {
-        guard metadata.count == 3,
-              metadata[0] is String,
-              metadata[1] is String,
-              metadata[2] is Int else {
-            return false
-        }
-
-        return true
+        return "\(hexChars.joined(separator: ""))x\(lineNumber)".lowercased()
     }
 
     // MARK: - Equatable Conformance
@@ -303,9 +290,7 @@ public extension Array where Element == Exception {
      */
     var compiledException: Exception? {
         guard !isEmpty else { return nil }
-
         var finalException = last!
-
         guard count > 1 else { return finalException }
 
         Array(reversed()[1 ... count - 1]).unique().forEach { exception in

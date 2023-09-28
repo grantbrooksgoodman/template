@@ -32,16 +32,16 @@ public struct FailureReducer: Reducer {
     // MARK: - State
 
     public struct State: Equatable {
-        /* MARK: Strings */
+        /* MARK: Properties */
 
-        @Localized(.reportBug) var reportBugButtonText: String
-        @Localized(.tryAgain) var retryButtonText: String
+        // String
+        @Localized(.reportBug) public var reportBugButtonText: String
+        @Localized(.tryAgain) public var retryButtonText: String
 
-        /* MARK: Other Properties */
-
-        var didReportBug = false
-        var exception: Exception!
-        var retryHandler: (() -> Void)?
+        // Other
+        public var didReportBug = false
+        public var exception: Exception!
+        public var retryHandler: (() -> Void)?
 
         /* MARK: Init */
 

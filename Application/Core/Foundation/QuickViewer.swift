@@ -13,10 +13,6 @@ import QuickLook
 import Redux
 
 public final class QuickViewer: NSObject, QLPreviewControllerDataSource {
-    // MARK: - Dependencies
-
-    @Dependency(\.coreKit) private var core: CoreKit
-
     // MARK: - Properties
 
     private var filePath = ""
@@ -24,6 +20,8 @@ public final class QuickViewer: NSObject, QLPreviewControllerDataSource {
     // MARK: - Preview
 
     public func preview(fileAtPath path: String) {
+        @Dependency(\.coreKit) var core: CoreKit
+
         let previewController = QLPreviewController()
         previewController.dataSource = self
 

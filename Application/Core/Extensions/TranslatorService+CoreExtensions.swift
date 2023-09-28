@@ -77,6 +77,8 @@ public extension TranslatorService {
                 return
             }
 
+            Logger.log(.timedOut([#file, #function, #line]))
+
             let translations = inputs.map { Translation(
                 input: $0,
                 output: $0.value().sanitized,

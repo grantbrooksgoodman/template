@@ -17,27 +17,17 @@ import Translator
 public struct LogFile {
     // MARK: - Properties
 
-    // Strings
-    public let directoryName: String!
-    public let fileName: String!
-
-    // Other
-    public let data: Data!
+    public let fileName: String
+    public let data: Data
 
     // MARK: - Init
 
-    public init(
-        fileName: String,
-        directoryName: String,
-        data: Data
-    ) {
+    public init(fileName: String, data: Data) {
         self.fileName = fileName
-        self.directoryName = directoryName
         self.data = data
     }
 }
 
-// swiftlint:disable:next type_body_length
 public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeViewControllerDelegate {
     // MARK: - Dependencies
 
@@ -45,8 +35,10 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
     @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
     @Dependency(\.britishDateAndTimeFormatter) private var dateFormatter: DateFormatter
+    @Dependency(\.fileManager) private var fileManager: FileManager
+    @Dependency(\.translatorService) private var translator: TranslatorService
 
-    // MARK: - Computed Properties
+    // MARK: - Properties
 
     private var commonParams: [String: String] {
         var parameters = [String: String]()
@@ -87,15 +79,18 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         injectedError = inject(params: commonParams, into: error)
 
         guard let data = getLogFileData(type: .error, error: injectedError) else {
-            Logger.log(.init("Couldn't get log file data!", metadata: [#file, #function, #line]))
+            Logger.log(
+                .init(
+                    "Couldn't get log file data!",
+                    extraParams: ["OriginalMetadata": injectedError.metadata],
+                    metadata: [#file, #function, #line]
+                ),
+                with: .errorAlert
+            )
             return
         }
 
-        let logFile = LogFile(
-            fileName: "\(build.codeName.lowercased())_\(dateHashlet)",
-            directoryName: "",
-            data: data
-        )
+        let logFile: LogFile = .init(fileName: "\(build.codeName.lowercased())_\(dateHashlet)", data: data)
         let subject = "\(build.stage == .generalRelease ? build.finalName : build.codeName) (\(build.bundleVersion)) Error Report"
 
         composeMessage(
@@ -111,9 +106,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         prompt: String,
         metadata: [Any]
     ) {
-        @Dependency(\.translatorService) var translator: TranslatorService
-
-        guard akCore.validateMetadata(metadata) else {
+        guard metadata.isValidMetadata else {
             Logger.log(.init("Improperly formatted metadata.", metadata: [#file, #function, #line]))
             return
         }
@@ -133,12 +126,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
             return
         }
 
-        let logFile: LogFile = .init(
-            fileName: "\(build.codeName.lowercased())_\(dateHashlet)",
-            directoryName: "",
-            data: logFileData
-        )
-
+        let logFile: LogFile = .init(fileName: "\(build.codeName.lowercased())_\(dateHashlet)", data: logFileData)
         let subject = "\(build.stage == .generalRelease ? build.finalName : build.codeName) (\(build.bundleVersion)) \(forBug ? "Bug" : "Feedback") Report"
 
         var translatedBody = body
@@ -191,11 +179,10 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
             }
         }
 
+        guard error != nil || metadata != nil else { return nil }
+
         guard let contextCode = akCore.contextCode(for: type, metadata: error?.metadata ?? metadata!) else {
-            Logger.log(
-                .init("Unable to generate context code.", metadata: [#file, #function, #line]),
-                with: .fatalAlert
-            )
+            Logger.log(.init("Unable to generate context code.", metadata: [#file, #function, #line]))
             return nil
         }
 
@@ -243,10 +230,8 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
     }
 
     private func putFile(_ logFile: LogFile) -> String {
-        @Dependency(\.fileManager) var fileManager: FileManager
-
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let path = documentDirectory.appending("/\(logFile.fileName!).log")
+        let path = documentDirectory.appending("/\(logFile.fileName).log")
 
         guard !fileManager.fileExists(atPath: path) else {
             Logger.log(
@@ -271,7 +256,38 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         return path
     }
 
-    // MARK: - E-mail Composition
+    // MARK: - MFMailComposeViewControllerDelegate Conformance
+
+    public func mailComposeController(
+        _ controller: MFMailComposeViewController,
+        didFinishWith result: MFMailComposeResult,
+        error: Error?
+    ) {
+        controller.dismiss(animated: true) {
+            self.core.gcd.after(seconds: 1) {
+                switch result {
+                case .sent:
+                    AKAlert(
+                        title: "Message Sent",
+                        message: "The message was sent successfully.",
+                        cancelButtonTitle: "OK"
+                    ).present()
+
+                case .failed:
+                    var exception: Exception = .init(metadata: [#file, #function, #line])
+                    if let error {
+                        exception = .init(error, metadata: [#file, #function, #line])
+                    }
+
+                    AKErrorAlert(error: .init(exception)).present()
+
+                default: ()
+                }
+            }
+        }
+    }
+
+    // MARK: - Auxiliary
 
     private func composeMessage(
         _ messageBody: (message: String, isHTML: Bool)? = nil,
@@ -308,42 +324,11 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         }
 
         if let file = logFile {
-            composeController.addAttachmentData(file.data, mimeType: "application/json", fileName: "\(file.fileName!).log")
+            composeController.addAttachmentData(file.data, mimeType: "application/json", fileName: "\(file.fileName).log")
         }
 
         core.ui.present(composeController)
     }
-
-    public func mailComposeController(
-        _ controller: MFMailComposeViewController,
-        didFinishWith result: MFMailComposeResult,
-        error: Error?
-    ) {
-        controller.dismiss(animated: true) {
-            self.core.gcd.after(seconds: 1) {
-                switch result {
-                case .sent:
-                    AKAlert(
-                        title: "Message Sent",
-                        message: "The message was sent successfully.",
-                        cancelButtonTitle: "OK"
-                    ).present()
-
-                case .failed:
-                    var exception: Exception = .init(metadata: [#file, #function, #line])
-                    if let error {
-                        exception = .init(error, metadata: [#file, #function, #line])
-                    }
-
-                    AKErrorAlert(error: .init(exception)).present()
-
-                default: ()
-                }
-            }
-        }
-    }
-
-    // MARK: - Auxiliary
 
     private func inject(params: [String: Any], into akError: AKError) -> AKError {
         var mutable = akError

@@ -17,7 +17,7 @@ import Redux
 public enum ThemeService {
     // MARK: - Properties
 
-    private(set) static var currentTheme = AppTheme.default.theme {
+    public private(set) static var currentTheme = AppTheme.default.theme {
         didSet {
             @Dependency(\.colorProvider) var colorProvider: ColorProvider
             @Dependency(\.userDefaults) var defaults: UserDefaults

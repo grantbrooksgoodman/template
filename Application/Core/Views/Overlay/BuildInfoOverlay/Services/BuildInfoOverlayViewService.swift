@@ -17,8 +17,11 @@ import Translator
 public class BuildInfoOverlayViewService {
     // MARK: - Dependencies
 
+    @Dependency(\.alertKitCore) private var akCore: AKCore
     @Dependency(\.build) private var build: Build
+    @Dependency(\.currentCalendar) private var calendar: Calendar
     @Dependency(\.coreKit) private var core: CoreKit
+    @Dependency(\.translatorService) private var translator: TranslatorService
 
     // MARK: - Properties
 
@@ -28,7 +31,7 @@ public class BuildInfoOverlayViewService {
 
     private func presentBuildInformationAlert() {
         // swiftlint:disable:next line_length
-        let message = "Build Number\n\(String(build.buildNumber))\n\nBuild Stage\n\(build.stage.description(short: false).capitalized(with: nil))\n\nBundle Version\n\(build.bundleVersion)\n\nProject ID\n\(build.projectID)\n\nSKU\n\(build.buildSKU)"
+        let message = "Build Number\n\(String(build.buildNumber))\n\nBuild Stage\n\(build.stage.rawValue.capitalized(with: nil))\n\nBundle Version\n\(build.bundleVersion)\n\nProject ID\n\(build.projectID)\n\nSKU\n\(build.buildSKU)"
 
         let alertController = UIAlertController(
             title: "",
@@ -62,16 +65,13 @@ public class BuildInfoOverlayViewService {
     // MARK: - Disclaimer Alert
 
     public func buildInfoButtonTapped() {
-        @Dependency(\.currentCalendar) var calendar: Calendar
-        @Dependency(\.translatorService) var translator: TranslatorService
-
         guard !core.ui.isPresentingAlertController,
               !willPresentDisclaimerAlert else { return }
         willPresentDisclaimerAlert = true
 
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
 
-        let typeString = build.stage.description(short: false)
+        let typeString = build.stage.rawValue
         let expiryString = build.timebombActive ? "\n\n\(build.expiryInfoString)" : ""
 
         var messageToDisplay = "This is a\(typeString == "alpha" ? "n" : "") \(typeString) version of *project code name \(build.codeName)*.\(expiryString)"
@@ -174,8 +174,6 @@ public class BuildInfoOverlayViewService {
     // MARK: - Send Feedback Action Sheet
 
     public func sendFeedbackButtonTapped() {
-        @Dependency(\.alertKitCore) var akCore: AKCore
-
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
 
         let sendFeedbackAction = AKAction(title: "Send Feedback", style: .default)
@@ -191,7 +189,7 @@ public class BuildInfoOverlayViewService {
             guard actionID != -1 else { return }
 
             if actionID == sendFeedbackAction.identifier {
-                akCore.reportDelegate().fileReport(
+                self.akCore.reportDelegate().fileReport(
                     forBug: false,
                     body: "Any general feedback is appreciated in the appropriate section.",
                     prompt: "General Feedback",
@@ -200,7 +198,7 @@ public class BuildInfoOverlayViewService {
                                #line]
                 )
             } else if actionID == reportBugAction.identifier {
-                akCore.reportDelegate().fileReport(
+                self.akCore.reportDelegate().fileReport(
                     forBug: true,
                     body: "In the appropriate section, please describe the error encountered and the steps to reproduce it.",
                     prompt: "Description/Steps to Reproduce",
