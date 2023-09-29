@@ -13,8 +13,8 @@ import UIKit
 import Redux
 
 public enum UIApplicationDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> UIApplication {
-        UIApplication.shared
+    public static func resolve(_: DependencyValues) -> UIApplication {
+        .shared
     }
 }
 

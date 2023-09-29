@@ -10,18 +10,18 @@ import Foundation
 
 public extension UserDefaults {
     /// Removes the value of the specified default key.
-    func removeObject(forKey defaultName: UserDefaultsKey) {
-        removeObject(forKey: defaultName.rawValue)
+    func removeObject(forKey defaultName: UserDefaultsKeyDomain) {
+        removeObject(forKey: defaultName.keyValue)
     }
 
-    func reset(keeping defaultsKeys: [UserDefaultsKey]? = nil) {
+    func reset(keeping defaultsKeys: [UserDefaultsKeyDomain]? = nil) {
         let dictionary = dictionaryRepresentation()
 
         var mappedValues = [String: Any]()
         if let defaultsKeys {
             for key in defaultsKeys {
-                guard let value = value(forKey: key.rawValue) else { continue }
-                mappedValues[key.rawValue] = value
+                guard let value = value(forKey: key.keyValue) else { continue }
+                mappedValues[key.keyValue] = value
             }
         }
 
@@ -32,12 +32,12 @@ public extension UserDefaults {
     }
 
     /// Sets the value of the specified default key.
-    func set(_ value: Any?, forKey defaultName: UserDefaultsKey) {
-        set(value, forKey: defaultName.rawValue)
+    func set(_ value: Any?, forKey defaultName: UserDefaultsKeyDomain) {
+        set(value, forKey: defaultName.keyValue)
     }
 
     /// Returns the value for the property identified by a given key.
-    func value(forKey key: UserDefaultsKey) -> Any? {
-        value(forKey: key.rawValue)
+    func value(forKey key: UserDefaultsKeyDomain) -> Any? {
+        value(forKey: key.keyValue)
     }
 }

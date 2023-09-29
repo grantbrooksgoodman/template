@@ -35,6 +35,7 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         @Dependency(\.build) var build: Build
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
         @Dependency(\.userDefaults) var defaults: UserDefaults
+        @Dependency(\.uiApplication) var uiApplication: UIApplication
 
         // Create the SwiftUI view that provides the window contents.
         let contentView = RootView()
@@ -47,13 +48,13 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         window.makeKeyAndVisible()
         self.window = window
 
-        defer { RuntimeStorage.store(self.window!, as: .topWindow) }
+        defer { RuntimeStorage.store(self.window!, as: .core(.topWindow)) }
         guard build.stage != .generalRelease else { return }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: nil)
         tapGesture.delegate = self
 
-        let bounds = UIScreen.main.bounds
+        let bounds = window.screen.bounds
         buildInfoOverlayWindow = UIWindow()
         buildInfoOverlayWindow.frame = CGRect(
             x: 0,
@@ -69,7 +70,13 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         window.addGestureRecognizer(tapGesture)
         window.addSubview(buildInfoOverlayWindow)
 
-        if let shouldHide = defaults.value(forKey: .hidesBuildInfoOverlay) as? Bool {
+        if let shouldHide = defaults.value(forKey: .core(.hidesBuildInfoOverlay)) as? Bool,
+           shouldHide {
+            guard build.developerModeEnabled else {
+                defaults.set(false, forKey: .core(.hidesBuildInfoOverlay))
+                return
+            }
+
             buildInfoOverlayWindow.isHidden = shouldHide
         }
 

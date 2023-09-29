@@ -130,8 +130,8 @@ public extension DevModeAction {
                         return
                     }
 
-                    RuntimeStorage.store(inputString, as: .languageCode)
-                    RuntimeStorage.store(inputString, as: .overriddenLanguageCode)
+                    RuntimeStorage.store(inputString, as: .core(.languageCode))
+                    RuntimeStorage.store(inputString, as: .core(.overriddenLanguageCode))
 
                     setLanguageCode(inputString)
                     coreHUD.showSuccess()
@@ -146,10 +146,12 @@ public extension DevModeAction {
                 @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
                 @Dependency(\.userDefaults) var defaults: UserDefaults
 
-                defaults.reset(keeping: [.currentTheme,
-                                         .developerModeEnabled,
-                                         .hidesBuildInfoOverlay])
-                defaults.set(true, forKey: .developerModeEnabled)
+                defaults.reset(keeping: [.core(.breadcrumbsCaptureEnabled),
+                                         .core(.breadcrumbsCapturesAllViews),
+                                         .core(.currentTheme),
+                                         .core(.developerModeEnabled),
+                                         .core(.hidesBuildInfoOverlay)])
+                defaults.set(true, forKey: .core(.developerModeEnabled))
                 coreHUD.showSuccess(text: "Reset UserDefaults")
             }
 
@@ -160,7 +162,7 @@ public extension DevModeAction {
             @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
 
             func toggleBreadcrumbs() {
-                @Dependency(\.coreKit) var core: CoreKit
+                @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
                 @Dependency(\.userDefaults) var defaults: UserDefaults
 
                 guard !breadcrumbs.isCapturing else {
@@ -170,12 +172,12 @@ public extension DevModeAction {
                         shouldTranslate: [.none]
                     ).present { didConfirm in
                         guard didConfirm == 1 else { return }
-                        defaults.set(false, forKey: .breadcrumbsCaptureEnabled)
+                        defaults.set(false, forKey: .core(.breadcrumbsCaptureEnabled))
 
                         if let exception = breadcrumbs.stopCapture() {
                             Logger.log(exception, with: .errorAlert)
                         } else {
-                            core.hud.showSuccess()
+                            coreHUD.showSuccess()
                             DevModeService.removeAction(withTitle: "Stop Breadcrumbs Capture")
                             DevModeService.insertAction(.Standard.toggleBreadcrumbsAction, at: DevModeService.actions.count - 1)
                         }
@@ -197,20 +199,20 @@ public extension DevModeAction {
                 alert.present { actionID in
                     guard actionID != -1 else { return }
 
-                    defaults.set(true, forKey: .breadcrumbsCaptureEnabled)
+                    defaults.set(true, forKey: .core(.breadcrumbsCaptureEnabled))
 
                     var uniqueViewsOnly = true
                     if actionID == alert.actions.first(where: { $0.title == "All Views" })?.identifier {
-                        defaults.set(true, forKey: .breadcrumbsCapturesAllViews)
+                        defaults.set(true, forKey: .core(.breadcrumbsCapturesAllViews))
                         uniqueViewsOnly = false
                     } else {
-                        defaults.set(false, forKey: .breadcrumbsCapturesAllViews)
+                        defaults.set(false, forKey: .core(.breadcrumbsCapturesAllViews))
                     }
 
                     if let exception = breadcrumbs.startCapture(uniqueViewsOnly: uniqueViewsOnly) {
                         Logger.log(exception, with: .errorAlert)
                     } else {
-                        core.hud.showSuccess()
+                        coreHUD.showSuccess()
                         DevModeService.removeAction(withTitle: "Start Breadcrumbs Capture")
                         DevModeService.insertAction(.Standard.toggleBreadcrumbsAction, at: DevModeService.actions.count - 1)
                     }
@@ -226,16 +228,15 @@ public extension DevModeAction {
                 @Dependency(\.userDefaults) var defaults: UserDefaults
 
                 guard let overlayWindow = RuntimeStorage.topWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW") as? UIWindow else { return }
-
-                guard let currentValue = defaults.value(forKey: .hidesBuildInfoOverlay) as? Bool else {
+                guard let currentValue = defaults.value(forKey: .core(.hidesBuildInfoOverlay)) as? Bool else {
                     overlayWindow.isHidden.toggle()
-                    defaults.set(overlayWindow.isHidden, forKey: .hidesBuildInfoOverlay)
+                    defaults.set(overlayWindow.isHidden, forKey: .core(.hidesBuildInfoOverlay))
                     return
                 }
 
                 let toggledValue = !currentValue
                 overlayWindow.isHidden = toggledValue
-                defaults.set(toggledValue, forKey: .hidesBuildInfoOverlay)
+                defaults.set(toggledValue, forKey: .core(.hidesBuildInfoOverlay))
             }
 
             return .init(title: "Show/Hide Build Info Overlay", perform: toggleBuildInfoOverlay)

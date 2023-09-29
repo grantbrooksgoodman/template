@@ -20,7 +20,7 @@ public class BuildInfoOverlayViewService {
     @Dependency(\.alertKitCore) private var akCore: AKCore
     @Dependency(\.build) private var build: Build
     @Dependency(\.currentCalendar) private var calendar: Calendar
-    @Dependency(\.coreKit) private var core: CoreKit
+    @Dependency(\.coreKit.ui) private var coreUI: CoreKit.UI
     @Dependency(\.translatorService) private var translator: TranslatorService
 
     // MARK: - Properties
@@ -59,13 +59,13 @@ public class BuildInfoOverlayViewService {
         )
 
         alertController.setValue(attributed, forKey: "attributedMessage")
-        core.ui.present(alertController)
+        coreUI.present(alertController)
     }
 
     // MARK: - Disclaimer Alert
 
     public func buildInfoButtonTapped() {
-        guard !core.ui.isPresentingAlertController,
+        guard !coreUI.isPresentingAlertController,
               !willPresentDisclaimerAlert else { return }
         willPresentDisclaimerAlert = true
 
@@ -140,7 +140,7 @@ public class BuildInfoOverlayViewService {
             guard self.build.timebombActive else {
                 alertController.message = translations.first(where: { $0.input.value() == messageToDisplay })?.output.sanitized ?? messageToDisplay.sanitized
                 self.willPresentDisclaimerAlert = false
-                self.core.ui.present(alertController)
+                self.coreUI.present(alertController)
 
                 return
             }
@@ -167,7 +167,7 @@ public class BuildInfoOverlayViewService {
             alertController.setValue(attributed, forKey: "attributedMessage")
 
             self.willPresentDisclaimerAlert = false
-            self.core.ui.present(alertController)
+            self.coreUI.present(alertController)
         }
     }
 
@@ -193,7 +193,7 @@ public class BuildInfoOverlayViewService {
                     forBug: false,
                     body: "Any general feedback is appreciated in the appropriate section.",
                     prompt: "General Feedback",
-                    metadata: [RuntimeStorage.currentFile ?? #file,
+                    metadata: [RuntimeStorage.presentedViewName ?? #file,
                                #function,
                                #line]
                 )
@@ -202,7 +202,7 @@ public class BuildInfoOverlayViewService {
                     forBug: true,
                     body: "In the appropriate section, please describe the error encountered and the steps to reproduce it.",
                     prompt: "Description/Steps to Reproduce",
-                    metadata: [RuntimeStorage.currentFile ?? #file,
+                    metadata: [RuntimeStorage.presentedViewName ?? #file,
                                #function,
                                #line]
                 )

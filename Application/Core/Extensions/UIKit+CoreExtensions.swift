@@ -192,10 +192,12 @@ public extension UIView {
     }
 
     func removeOverlay(name tag: String? = nil, animated: Bool = true) {
+        @Dependency(\.mainQueue) var mainQueue: DispatchQueue
+
         let overlayView = firstSubview(for: tag ?? "OVERLAY_VIEW")
         let activityIndicatorView = firstSubview(for: "OVERLAY_VIEW_ACTIVITY_INDICATOR")
 
-        DispatchQueue.main.async {
+        mainQueue.async {
             UIView.animate(withDuration: 0.2) {
                 overlayView?.alpha = 0
                 activityIndicatorView?.alpha = 0
@@ -208,8 +210,10 @@ public extension UIView {
 
     func removeSubviews(for string: String, animated: Bool = true) {
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
+        @Dependency(\.mainQueue) var mainQueue: DispatchQueue
+
         subviews.filter { $0.tag == coreUI.semTag(for: string) }.forEach { subview in
-            DispatchQueue.main.async {
+            mainQueue.async {
                 guard animated else {
                     subview.removeFromSuperview()
                     return

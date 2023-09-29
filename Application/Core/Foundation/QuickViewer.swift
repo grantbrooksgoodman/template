@@ -20,13 +20,13 @@ public final class QuickViewer: NSObject, QLPreviewControllerDataSource {
     // MARK: - Preview
 
     public func preview(fileAtPath path: String) {
-        @Dependency(\.coreKit) var core: CoreKit
+        @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
 
         let previewController = QLPreviewController()
         previewController.dataSource = self
 
         filePath = path
-        core.ui.present(previewController, embedded: true)
+        coreUI.present(previewController, embedded: true)
     }
 
     // MARK: - QLPreviewControllerDataSource Conformance

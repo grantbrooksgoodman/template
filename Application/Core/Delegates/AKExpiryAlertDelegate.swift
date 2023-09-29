@@ -19,6 +19,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     // Dependencies
     @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
+    @Dependency(\.notificationCenter) private var notificationCenter: NotificationCenter
     @Dependency(\.translatorService) private var translator: TranslatorService
 
     // String
@@ -115,7 +116,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
             continueUseAction.isEnabled = false
             expiryAlertController.addAction(continueUseAction)
 
-            NotificationCenter.default.addObserver(
+            notificationCenter.addObserver(
                 forName: UITextField.textDidChangeNotification,
                 object: expiryAlertController.textFields![0],
                 queue: .main
@@ -169,25 +170,26 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     @objc private func decrementSecond() {
         remainingSeconds -= 1
 
-        if remainingSeconds < 0 {
-            exitTimer?.invalidate()
-            exitTimer = nil
-
-            core.ui.dismissAlertController()
-
-            let alertController = UIAlertController(
-                title: timeExpiredTitle,
-                message: timeExpiredMessage,
-                preferredStyle: .alert
-            )
-
-            core.ui.present(alertController)
-            core.gcd.after(seconds: 5) { fatalError("Evaluation period ended") }
-        } else {
+        guard remainingSeconds < 0 else {
             let decrementString = String(format: "%02d", remainingSeconds)
             expiryMessage = "\(expiryMessage.components(separatedBy: ":")[0]): 00:\(decrementString)"
             setAttributedExpiryMessage()
+            return
         }
+
+        exitTimer?.invalidate()
+        exitTimer = nil
+
+        core.ui.dismissAlertController()
+
+        let alertController = UIAlertController(
+            title: timeExpiredTitle,
+            message: timeExpiredMessage,
+            preferredStyle: .alert
+        )
+
+        core.ui.present(alertController)
+        core.gcd.after(seconds: 5) { fatalError("Evaluation period ended") }
     }
 
     private func setAttributedExpiryMessage() {

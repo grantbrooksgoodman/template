@@ -36,23 +36,24 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
         @Dependency(\.build) var build: Build
         @Dependency(\.userDefaults) var defaults: UserDefaults
+        @Dependency(\.mainBundle) var mainBundle: Bundle
 
         /* MARK: Defaults Keys & Logging Setup */
 
-        RuntimeStorage.store(BuildConfig.languageCode, as: .languageCode)
+        RuntimeStorage.store(BuildConfig.languageCode, as: .core(.languageCode))
         Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
 
         if build.stage == .generalRelease {
-            defaults.set(false, forKey: .breadcrumbsCaptureEnabled)
-            defaults.removeObject(forKey: .breadcrumbsCapturesAllViews)
-        } else if let breadcrumbsCaptureEnabled = defaults.value(forKey: .breadcrumbsCaptureEnabled) as? Bool,
-                  let breadcrumbsCapturesAllViews = defaults.value(forKey: .breadcrumbsCapturesAllViews) as? Bool,
+            defaults.set(false, forKey: .core(.breadcrumbsCaptureEnabled))
+            defaults.removeObject(forKey: .core(.breadcrumbsCapturesAllViews))
+        } else if let breadcrumbsCaptureEnabled = defaults.value(forKey: .core(.breadcrumbsCaptureEnabled)) as? Bool,
+                  let breadcrumbsCapturesAllViews = defaults.value(forKey: .core(.breadcrumbsCapturesAllViews)) as? Bool,
                   breadcrumbsCaptureEnabled {
             breadcrumbs.startCapture(uniqueViewsOnly: !breadcrumbsCapturesAllViews)
         }
 
-        if defaults.value(forKey: .hidesBuildInfoOverlay) as? Bool == nil {
-            defaults.set(false, forKey: .hidesBuildInfoOverlay)
+        if defaults.value(forKey: .core(.hidesBuildInfoOverlay)) as? Bool == nil {
+            defaults.set(false, forKey: .core(.hidesBuildInfoOverlay))
         }
 
         /* MARK: Developer Mode Setup */
@@ -62,15 +63,15 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /* MARK: Theme Setup */
 
-        if let themeName = defaults.value(forKey: .pendingThemeName) as? String,
+        if let themeName = defaults.value(forKey: .core(.pendingThemeName)) as? String,
            let correspondingCase = AppTheme.allCases.first(where: { $0.theme.name == themeName }) {
             ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
-            defaults.removeObject(forKey: .pendingThemeName)
-        } else if let themeName = defaults.value(forKey: .currentTheme) as? String,
+            defaults.removeObject(forKey: .core(.pendingThemeName))
+        } else if let themeName = defaults.value(forKey: .core(.currentTheme)) as? String,
                   let correspondingCase = AppTheme.allCases.first(where: { $0.theme.name == themeName }) {
             ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
         } else {
-            defaults.set(AppTheme.default.theme.name, forKey: .currentTheme)
+            defaults.set(AppTheme.default.theme.name, forKey: .core(.currentTheme))
             ThemeService.setTheme(AppTheme.default.theme, checkStyle: false)
         }
 
@@ -91,7 +92,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /* MARK: Localization Setup */
 
-        guard let filePath = Bundle.main.url(forResource: "LocalizedStrings", withExtension: "plist"),
+        guard let filePath = mainBundle.url(forResource: "LocalizedStrings", withExtension: "plist"),
               let data = try? Data(contentsOf: filePath),
               let localizedStrings = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: [String: String]] else {
             Logger.log(.init("Missing localized strings.", metadata: [#file, #function, #line]))
@@ -105,11 +106,11 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
 
-        RuntimeStorage.store(supportedLanguages, as: .languageCodeDictionary)
+        RuntimeStorage.store(supportedLanguages, as: .core(.languageCodeDictionary))
         guard let languageCodeDictionary = RuntimeStorage.languageCodeDictionary else { return }
 
         guard languageCodeDictionary[RuntimeStorage.languageCode!] != nil else {
-            RuntimeStorage.store("en", as: .languageCode)
+            RuntimeStorage.store("en", as: .core(.languageCode))
             akCore.setLanguageCode("en")
 
             Logger.log(

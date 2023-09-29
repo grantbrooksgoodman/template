@@ -53,8 +53,11 @@ public class BuildInfoOverlayViewObserver: Observer {
     }
 
     private func send(_ action: BuildInfoOverlayReducer.Action) {
-        DispatchQueue.main.async {
-            self.viewModel.send(action)
+        @Dependency(\.mainQueue) var mainQueue: DispatchQueue
+        mainQueue.async {
+            Task { @MainActor in
+                self.viewModel.send(action)
+            }
         }
     }
 }

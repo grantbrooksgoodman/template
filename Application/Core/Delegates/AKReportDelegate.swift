@@ -34,7 +34,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
     @Dependency(\.alertKitCore) private var akCore: AKCore
     @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
-    @Dependency(\.britishDateAndTimeFormatter) private var dateFormatter: DateFormatter
+    @Dependency(\.reportDelegateDateFormatter) private var dateFormatter: DateFormatter
     @Dependency(\.fileManager) private var fileManager: FileManager
     @Dependency(\.translatorService) private var translator: TranslatorService
 
@@ -43,17 +43,12 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
     private var commonParams: [String: String] {
         var parameters = [String: String]()
 
-        if let currentFile = RuntimeStorage.currentFile,
-           !currentFile.components(separatedBy: "/").isEmpty {
-            guard let fileName = currentFile.components(separatedBy: "/").last else { return parameters }
-            guard let trimmedFileName = fileName.components(separatedBy: ".").first else { return parameters }
-
-            let snakeCaseFileName = trimmedFileName.firstLowercase.snakeCased
-            parameters["CurrentFile"] = snakeCaseFileName
-        }
-
         if let languageCode = RuntimeStorage.languageCode {
             parameters["LanguageCode"] = languageCode
+        }
+
+        if let presentedView = RuntimeStorage.presentedViewName {
+            parameters["PresentedView"] = presentedView.firstLowercase.snakeCased
         }
 
         return parameters
@@ -342,5 +337,27 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
 
         mutable.extraParams = existingParams
         return mutable
+    }
+}
+
+/* MARK: Date Formatter Dependency */
+
+private enum ReportDelegateDateFormatterDependency: DependencyKey {
+    public static func resolve(_: DependencyValues) -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        formatter.locale = .init(identifier: "en_GB")
+        return formatter
+    }
+}
+
+private extension DependencyValues {
+    var reportDelegateDateFormatter: DateFormatter {
+        get {
+            self[ReportDelegateDateFormatterDependency.self]
+        }
+        set {
+            self[ReportDelegateDateFormatterDependency.self] = newValue
+        }
     }
 }

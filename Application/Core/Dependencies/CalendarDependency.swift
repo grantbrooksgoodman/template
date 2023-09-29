@@ -12,8 +12,8 @@ import Foundation
 import Redux
 
 public enum CalendarDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> Calendar {
-        Calendar.current
+    public static func resolve(_: DependencyValues) -> Calendar {
+        .current
     }
 }
 

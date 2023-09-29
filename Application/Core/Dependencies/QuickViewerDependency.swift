@@ -12,8 +12,8 @@ import Foundation
 import Redux
 
 public enum QuickViewerDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> QuickViewer {
-        QuickViewer()
+    public static func resolve(_: DependencyValues) -> QuickViewer {
+        .init()
     }
 }
 

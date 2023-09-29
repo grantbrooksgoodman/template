@@ -12,8 +12,8 @@ import Foundation
 import Redux
 
 public enum ObservableRegistryDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> ObservableRegistry {
-        ObservableRegistry()
+    public static func resolve(_: DependencyValues) -> ObservableRegistry {
+        .init()
     }
 }
 

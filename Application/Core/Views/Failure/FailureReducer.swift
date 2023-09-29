@@ -78,22 +78,26 @@ public struct FailureReducer: Reducer {
         }
     }
 
+    // MARK: - Init
+
+    public init() { RuntimeStorage.store(#file, as: .core(.presentedViewName)) }
+
     // MARK: - Reduce
 
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.executeRetryHandler):
-            if let effect = state.retryHandler {
-                effect()
-            }
+            guard let effect = state.retryHandler else { return .none }
+            effect()
 
         case .action(.reportBugButtonTapped):
-            if build.isOnline {
-                akCore.reportDelegate().fileReport(error: .init(state.exception))
-                state.didReportBug = true
-            } else {
+            guard build.isOnline else {
                 akCore.connectionAlertDelegate()?.presentConnectionAlert()
+                return .none
             }
+
+            akCore.reportDelegate().fileReport(error: .init(state.exception))
+            state.didReportBug = true
         }
 
         return .none

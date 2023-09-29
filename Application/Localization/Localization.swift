@@ -8,11 +8,15 @@
 /* Native */
 import Foundation
 
+/* 3rd-party */
+import Redux
+
 public enum Localization {
     // MARK: - Properties
 
     private static var localizedStrings: [String: [String: String]] {
-        guard let filePath = Bundle.main.url(forResource: "LocalizedStrings", withExtension: "plist"),
+        @Dependency(\.mainBundle) var mainBundle: Bundle
+        guard let filePath = mainBundle.url(forResource: "LocalizedStrings", withExtension: "plist"),
               let data = try? Data(contentsOf: filePath),
               let dictionary = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: [String: String]] else {
             return .init()
@@ -29,7 +33,7 @@ public enum Localization {
     ) -> String {
         guard !localizedStrings.isEmpty else { return "�" }
 
-        guard let valuesForCase = localizedStrings[`case`.description],
+        guard let valuesForCase = localizedStrings[`case`.referent],
               let localizedString = valuesForCase[code] else {
             guard code != "en" else { return "�" }
             return string(for: `case`, language: "en")

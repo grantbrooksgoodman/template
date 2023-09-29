@@ -13,8 +13,8 @@ import AlertKit
 import Redux
 
 public enum AKCoreDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> AKCore {
-        AKCore.shared
+    public static func resolve(_: DependencyValues) -> AKCore {
+        .shared
     }
 }
 

@@ -44,12 +44,9 @@ public extension Date {
     }
 
     var formattedShortString: String {
+        @Dependency(\.formattedShortStringDateFormatter) var dateFormatter: DateFormatter
+
         let differenceBetweenDates = Date().distance(to: self)
-
-        let stylizedDateFormatter = DateFormatter()
-        stylizedDateFormatter.locale = RuntimeStorage.languageCode == "en" ? .current : Locale(identifier: RuntimeStorage.languageCode!)
-        stylizedDateFormatter.dateStyle = .short
-
         if differenceBetweenDates == 0 {
             return DateFormatter.localizedString(from: self, dateStyle: .none, timeStyle: .short)
         } else if differenceBetweenDates == -86400 {
@@ -57,13 +54,13 @@ public extension Date {
         } else if differenceBetweenDates >= -604_800 {
             guard let weekdayString,
                   weekdayString == Date().weekdayString else {
-                return stylizedDateFormatter.string(from: self)
+                return dateFormatter.string(from: self)
             }
 
             return weekdayString
         }
 
-        return stylizedDateFormatter.string(from: self)
+        return dateFormatter.string(from: self)
     }
 
     var weekdayString: String? {
@@ -93,5 +90,28 @@ public extension Date {
     func seconds(from date: Date) -> Int {
         @Dependency(\.currentCalendar) var calendar: Calendar
         return calendar.dateComponents([.second], from: date, to: self).second ?? 0
+    }
+}
+
+/* MARK: Date Formatter Dependency */
+
+// swiftlint:disable:next type_name
+private enum FormattedShortStringDateFormatterDependency: DependencyKey {
+    public static func resolve(_: DependencyValues) -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = RuntimeStorage.languageCode == "en" ? .current : .init(identifier: RuntimeStorage.languageCode ?? Locale.current.identifier)
+        formatter.dateStyle = .short
+        return formatter
+    }
+}
+
+private extension DependencyValues {
+    var formattedShortStringDateFormatter: DateFormatter {
+        get {
+            self[FormattedShortStringDateFormatterDependency.self]
+        }
+        set {
+            self[FormattedShortStringDateFormatterDependency.self] = newValue
+        }
     }
 }

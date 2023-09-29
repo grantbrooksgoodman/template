@@ -12,8 +12,8 @@ import Foundation
 import Redux
 
 public enum FileManagerDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> FileManager {
-        FileManager.default
+    public static func resolve(_: DependencyValues) -> FileManager {
+        .default
     }
 }
 

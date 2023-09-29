@@ -43,7 +43,11 @@ public class Build {
 
     // MARK: - Dependencies
 
+    @Dependency(\.buildSKUDateFormatter) private var buildSKUDateFormatter: DateFormatter
     @Dependency(\.currentCalendar) private var calendar: Calendar
+    @Dependency(\.expiryInfoStringDateFormatter) private var expiryInfoStringDateFormatter: DateFormatter
+    @Dependency(\.mainBundle) private var mainBundle: Bundle
+    @Dependency(\.projectIDDateFormatter) private var projectIDDateFormatter: DateFormatter
 
     // MARK: - Properties
 
@@ -84,7 +88,7 @@ public class Build {
         return .init(cfBuildDate) ?? .init()
     }
 
-    private var infoDictionary: [String: Any] { Bundle.main.infoDictionary ?? [:] }
+    private var infoDictionary: [String: Any] { mainBundle.infoDictionary ?? [:] }
 
     // MARK: - Init
 
@@ -131,10 +135,7 @@ public class Build {
     }
 
     private func getBuildSKU() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "ddMMyy"
-
-        let formattedBuildDateString = dateFormatter.string(from: Date(timeIntervalSince1970: buildDateUnixDouble))
+        let formattedBuildDateString = buildSKUDateFormatter.string(from: Date(timeIntervalSince1970: buildDateUnixDouble))
 
         var threeLetterID = codeName.uppercased()
         if codeName.count > 3 {
@@ -181,10 +182,6 @@ public class Build {
 
     private func getExpiryInfoString() -> String {
         let expiryDate = getExpiryDate()
-
-        let expiryDateFormatter = DateFormatter()
-        expiryDateFormatter.dateFormat = "yyyy-MM-dd"
-
         let expiryDateComponents = calendar.dateComponents(
             [.day],
             from: Date().comparator,
@@ -193,15 +190,12 @@ public class Build {
 
         guard let daysUntilExpiry = expiryDateComponents.day else { return .init() }
 
-        var expiryInfoString = "The evaluation period for this build will expire on \(expiryDateFormatter.string(from: expiryDate))."
+        var expiryInfoString = "The evaluation period for this build will expire on \(expiryInfoStringDateFormatter.string(from: expiryDate))."
         expiryInfoString += " After this date, the entry of a six-digit expiration override code will be required to continue using this software."
         expiryInfoString += " It is strongly encouraged that the build be updated before the end of the evaluation period."
 
-        if daysUntilExpiry <= 0 {
-            expiryInfoString = "The evaluation period for this build ended on \(expiryDateFormatter.string(from: expiryDate))."
-        }
-
-        return expiryInfoString
+        guard daysUntilExpiry <= 0 else { return expiryInfoString }
+        return "The evaluation period for this build ended on \(expiryInfoStringDateFormatter.string(from: expiryDate))."
     }
 
     private func getNetworkStatus() -> Bool {
@@ -210,10 +204,7 @@ public class Build {
     }
 
     private func getProjectID() -> String {
-        let identifierDateFormatter = DateFormatter()
-        identifierDateFormatter.dateFormat = "ddMMyyyy"
-
-        let firstCompileDate = identifierDateFormatter.date(from: dmyFirstCompileDateString) ?? identifierDateFormatter.date(from: "29062007")!
+        let firstCompileDate = projectIDDateFormatter.date(from: dmyFirstCompileDateString) ?? projectIDDateFormatter.date(from: "29062007")!
 
         let firstLetterPosition = String(codeName.first!).alphabeticalPosition ?? 0
         let lastLetterPosition = String(codeName.last!).alphabeticalPosition ?? 0
@@ -261,5 +252,60 @@ public class Build {
         }
 
         return (Array(NSOrderedSet(array: projectIDComponents)) as? [String] ?? []).joined()
+    }
+}
+
+/* MARK: Date Formatter Dependencies */
+
+private enum BuildSKUDateFormatterDependency: DependencyKey {
+    public static func resolve(_: DependencyValues) -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ddMMyy"
+        return formatter
+    }
+}
+
+private enum ExpiryInfoStringDateFormatterDependency: DependencyKey {
+    public static func resolve(_: DependencyValues) -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }
+}
+
+private enum ProjectIDDateFormatterDependency: DependencyKey {
+    public static func resolve(_: DependencyValues) -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ddMMyyyy"
+        return formatter
+    }
+}
+
+private extension DependencyValues {
+    var buildSKUDateFormatter: DateFormatter {
+        get {
+            self[BuildSKUDateFormatterDependency.self]
+        }
+        set {
+            self[BuildSKUDateFormatterDependency.self] = newValue
+        }
+    }
+
+    var expiryInfoStringDateFormatter: DateFormatter {
+        get {
+            self[ExpiryInfoStringDateFormatterDependency.self]
+        }
+        set {
+            self[ExpiryInfoStringDateFormatterDependency.self] = newValue
+        }
+    }
+
+    var projectIDDateFormatter: DateFormatter {
+        get {
+            self[ProjectIDDateFormatterDependency.self]
+        }
+        set {
+            self[ProjectIDDateFormatterDependency.self] = newValue
+        }
     }
 }

@@ -59,9 +59,9 @@ public struct TranslationOutputMap: Equatable {
     }
 }
 
-public extension Array where Element == TranslationInputMap {
-    var defaultOutputMap: [TranslationOutputMap] {
-        map { $0.defaultOutputMap }
+public extension TranslatedLabelStrings {
+    static var defaultOutputMap: [TranslationOutputMap] {
+        keyPairs.map { $0.defaultOutputMap }
     }
 }
 

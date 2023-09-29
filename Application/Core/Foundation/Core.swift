@@ -39,14 +39,20 @@ public struct CoreKit {
     // MARK: - Core GCD
 
     public struct GCD {
+        /* MARK: Dependencies */
+
+        @Dependency(\.mainQueue) private var mainQueue: DispatchQueue
+
+        /* MARK: Methods */
+
         public func after(milliseconds: Int, do: @escaping () -> Void) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(milliseconds)) {
+            mainQueue.asyncAfter(deadline: .now() + .milliseconds(milliseconds)) {
                 `do`()
             }
         }
 
         public func after(seconds: Int, do: @escaping () -> Void) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds)) {
+            mainQueue.asyncAfter(deadline: .now() + .seconds(seconds)) {
                 `do`()
             }
         }
@@ -61,6 +67,10 @@ public struct CoreKit {
             case success
             case exclamation
         }
+
+        /* MARK: Dependencies */
+
+        @Dependency(\.mainQueue) private var mainQueue: DispatchQueue
 
         /* MARK: Methods */
 
@@ -82,11 +92,11 @@ public struct CoreKit {
 
             guard let alertIcon else {
                 guard let animatedIcon else { return }
-                DispatchQueue.main.async { ProgressHUD.show(text, icon: animatedIcon, interaction: true) }
+                mainQueue.async { ProgressHUD.show(text, icon: animatedIcon, interaction: true) }
                 return
             }
 
-            DispatchQueue.main.async { ProgressHUD.show(text, icon: alertIcon, interaction: true) }
+            mainQueue.async { ProgressHUD.show(text, icon: alertIcon, interaction: true) }
         }
 
         public func hide(delay: Double? = nil) {
@@ -107,7 +117,7 @@ public struct CoreKit {
 
         public func showProgress(delay: Double? = nil, text: String? = nil) {
             guard let delay = delay else {
-                DispatchQueue.main.async {
+                mainQueue.async {
                     ProgressHUD.show(text ?? nil)
                 }
 
@@ -121,7 +131,7 @@ public struct CoreKit {
         }
 
         public func showSuccess(text: String? = nil) {
-            DispatchQueue.main.async { ProgressHUD.showSucceed(text) }
+            mainQueue.async { ProgressHUD.showSucceed(text) }
         }
     }
 
@@ -130,6 +140,7 @@ public struct CoreKit {
     public struct UI {
         /* MARK: Dependencies */
 
+        @Dependency(\.mainQueue) private var mainQueue: DispatchQueue
         @Dependency(\.uiApplication) private var uiApplication: UIApplication
 
         /* MARK: Properties */
@@ -158,7 +169,7 @@ public struct CoreKit {
         public func resignFirstResponder(in view: UIView? = nil) {
             guard let view = view ?? uiApplication.keyViewController?.view,
                   let firstResponder = firstResponder(in: view) else { return }
-            DispatchQueue.main.async { firstResponder.resignFirstResponder() }
+            mainQueue.async { firstResponder.resignFirstResponder() }
         }
 
         /* MARK: Navigation Bar Appearance */
@@ -234,16 +245,12 @@ public struct CoreKit {
             embedded: Bool
         ) {
             guard !isPresentingAlertController else {
-                GCD().after(seconds: 1) {
-                    queuePresentation(of: viewController, animated: animated, embedded: embedded)
-                }
+                GCD().after(seconds: 1) { queuePresentation(of: viewController, animated: animated, embedded: embedded) }
                 return
             }
 
             guard Thread.isMainThread else {
-                DispatchQueue.main.sync {
-                    present(viewController, animated: animated, embedded: embedded)
-                }
+                mainQueue.sync { present(viewController, animated: animated, embedded: embedded) }
                 return
             }
 
@@ -314,7 +321,7 @@ public struct CoreKit {
                 return .init("No language separator key.", metadata: [#file, #function, #line])
             }
 
-            RuntimeStorage.store(components[0], as: .languageCode)
+            RuntimeStorage.store(components[0], as: .core(.languageCode))
 
             guard !akCore.languageCodeIsLocked else {
                 akCore.unlockLanguageCode(andSetTo: components[0])

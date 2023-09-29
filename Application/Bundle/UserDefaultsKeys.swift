@@ -1,5 +1,5 @@
 //
-//  StoredItems.swift
+//  UserDefaultsKeys.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -9,12 +9,12 @@
 /* Native */
 import Foundation
 
-public enum StoredItemDomain {
+public enum UserDefaultsKeyDomain {
     // MARK: - Cases
 
-    /* Add cases here for each new RuntimeStorage domain. */
+    /* Add cases here for each new UserDefaultsKey domain. */
 
-    case core(CoreStoredItem)
+    case core(CoreDefaultsKey)
 
     // MARK: - Properties
 
@@ -24,8 +24,4 @@ public enum StoredItemDomain {
             return key.rawValue
         }
     }
-}
-
-public extension RuntimeStorage {
-    /* Add new static properties here for quick access. */
 }

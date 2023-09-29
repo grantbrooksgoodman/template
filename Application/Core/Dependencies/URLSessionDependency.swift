@@ -12,8 +12,8 @@ import Foundation
 import Redux
 
 public enum URLSessionDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> URLSession {
-        URLSession.shared
+    public static func resolve(_: DependencyValues) -> URLSession {
+        .shared
     }
 }
 

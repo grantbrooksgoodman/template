@@ -12,7 +12,7 @@ import Foundation
 import Redux
 
 public enum BuildInfoOverlayViewServiceDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> BuildInfoOverlayViewService {
+    public static func resolve(_: DependencyValues) -> BuildInfoOverlayViewService {
         BuildInfoOverlayViewService()
     }
 }

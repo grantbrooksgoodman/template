@@ -79,10 +79,8 @@ public struct ThemedReducer: Reducer {
                 titleColor: .navigationBarTitle
             )
             state.objectID = UUID()
-
-            if state.redrawsOnAppearanceChange {
-                state.viewID = UUID()
-            }
+            guard state.redrawsOnAppearanceChange else { return .none }
+            state.viewID = UUID()
         }
 
         return .none

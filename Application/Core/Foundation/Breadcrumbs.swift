@@ -35,7 +35,7 @@ public class Breadcrumbs {
         let timeString = dateFormatter.string(from: Date())
 
         var fileName: String!
-        if let viewName {
+        if let viewName = RuntimeStorage.presentedViewName {
             fileName = "\(build.codeName)_\(viewName) @ \(timeString).png"
         } else {
             let fileNamePrefix = "\(build.codeName)_\(String(build.buildNumber))"
@@ -44,22 +44,6 @@ public class Breadcrumbs {
         }
 
         return documents.appending(path: fileName)
-    }
-
-    private var viewName: String? {
-        guard let path = RuntimeStorage.currentFile else { return nil }
-
-        let slashComponents = path.components(separatedBy: "/")
-        guard !slashComponents.isEmpty,
-              var fileName = slashComponents.last,
-              fileName.hasSuffix(".swift") else { return nil }
-        fileName = fileName.components(separatedBy: ".swift")[0]
-
-        if fileName.hasSuffix("Reducer") {
-            fileName = fileName.replacingOccurrences(of: "Reducer", with: "View")
-        }
-
-        return fileName
     }
 
     // MARK: - Capture
@@ -78,10 +62,10 @@ public class Breadcrumbs {
         isCapturing = true
 
         func continuallyCapture() {
-            @Dependency(\.coreKit) var core: CoreKit
+            @Dependency(\.coreKit.gcd) var coreGCD: CoreKit.GCD
             guard isCapturing else { return }
             capture()
-            core.gcd.after(seconds: 10) { continuallyCapture() }
+            coreGCD.after(seconds: 10) { continuallyCapture() }
         }
 
         continuallyCapture()
@@ -110,17 +94,15 @@ public class Breadcrumbs {
 
             try? pngData.write(to: filePath)
 
-            if savesToPhotos {
-                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-            }
-
-            registry.breadcrumbsDidCapture.trigger()
+            defer { registry.breadcrumbsDidCapture.trigger() }
+            guard savesToPhotos else { return }
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }
 
         guard Int.random(in: 1 ... 1_000_000) % 3 == 0 else { return }
 
         if uniqueViewsOnly {
-            guard let viewName,
+            guard let viewName = RuntimeStorage.presentedViewName,
                   !fileHistory.contains(viewName) else { return }
             fileHistory.append(viewName)
             saveImage()
@@ -133,7 +115,7 @@ public class Breadcrumbs {
 /* MARK: Date Formatter Dependency */
 
 private enum BreadcrumbsDateFormatterDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> DateFormatter {
+    public static func resolve(_: DependencyValues) -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH.mm.ss"
         return formatter

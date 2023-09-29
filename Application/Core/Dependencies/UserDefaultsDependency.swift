@@ -12,8 +12,8 @@ import Foundation
 import Redux
 
 public enum UserDefaultsDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> UserDefaults {
-        UserDefaults.standard
+    public static func resolve(_: DependencyValues) -> UserDefaults {
+        .standard
     }
 }
 

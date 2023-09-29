@@ -9,7 +9,14 @@
 import SwiftUI
 import UIKit
 
+/* 3rd-party */
+import Redux
+
 private struct DeviceShakeViewModifier: ViewModifier {
+    // MARK: - Dependencies
+
+    @Dependency(\.notificationCenter) private var notificationCenter: NotificationCenter
+
     // MARK: - Properties
 
     public let action: () -> Void
@@ -25,7 +32,7 @@ private struct DeviceShakeViewModifier: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .onAppear()
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.deviceDidShakeNotification)) { _ in
+            .onReceive(notificationCenter.publisher(for: UIDevice.deviceDidShakeNotification)) { _ in
                 action()
             }
     }
@@ -37,9 +44,9 @@ private extension UIDevice {
 
 public extension UIWindow {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            NotificationCenter.default.post(name: UIDevice.deviceDidShakeNotification, object: nil)
-        }
+        @Dependency(\.notificationCenter) var notificationCenter: NotificationCenter
+        guard motion == .motionShake else { return }
+        notificationCenter.post(name: UIDevice.deviceDidShakeNotification, object: nil)
     }
 }
 

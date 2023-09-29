@@ -13,8 +13,8 @@ import Redux
 import Translator
 
 public enum TranslatorServiceDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> TranslatorService {
-        TranslatorService.shared
+    public static func resolve(_: DependencyValues) -> TranslatorService {
+        .shared
     }
 }
 

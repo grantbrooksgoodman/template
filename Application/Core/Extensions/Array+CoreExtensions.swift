@@ -46,18 +46,6 @@ public extension Array where Element == String {
     }
 }
 
-public extension Array where Element == LanguagePair {
-    var unique: [LanguagePair] {
-        var uniqueValues = [LanguagePair]()
-
-        for pair in self where !uniqueValues.contains(pair) {
-            uniqueValues.append(pair)
-        }
-
-        return uniqueValues
-    }
-}
-
 public extension Array where Element == Translation {
     // MARK: - Properties
 

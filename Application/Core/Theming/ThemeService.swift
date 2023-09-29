@@ -22,7 +22,7 @@ public enum ThemeService {
             @Dependency(\.colorProvider) var colorProvider: ColorProvider
             @Dependency(\.userDefaults) var defaults: UserDefaults
             @Dependency(\.observableRegistry) var registry: ObservableRegistry
-            defaults.set(currentTheme.name, forKey: .currentTheme)
+            defaults.set(currentTheme.name, forKey: .core(.currentTheme))
             colorProvider.updateColorState()
             registry.themedViewAppearanceChanged.trigger()
         }
@@ -43,13 +43,13 @@ public enum ThemeService {
                 message: "The new appearance will take effect the next time you restart the app.",
                 cancelButtonTitle: "Dismiss"
             ).present { _ in
-                defaults.set(theme.name, forKey: .pendingThemeName)
+                defaults.set(theme.name, forKey: .core(.pendingThemeName))
             }
 
             return
         }
 
-        defaults.set(nil, forKey: .pendingThemeName)
+        defaults.set(nil, forKey: .core(.pendingThemeName))
         currentTheme = theme
     }
 }

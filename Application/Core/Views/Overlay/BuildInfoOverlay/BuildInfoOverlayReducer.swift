@@ -60,17 +60,18 @@ public struct BuildInfoOverlayReducer: Reducer {
         }
     }
 
+    // MARK: - Init
+
+    public init() { RuntimeStorage.store(#file, as: .core(.presentedViewName)) }
+
     // MARK: - Reduce
 
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.viewAppeared):
-            RuntimeStorage.store(#file, as: .currentFile)
-
             state.buildInfoButtonText = "\(build.codeName) \(build.bundleVersion) (\(String(build.buildNumber))\(build.stage.shortString))"
-            if let defaultsValue = defaults.value(forKey: .developerModeEnabled) as? Bool {
-                state.isDeveloperModeEnabled = defaultsValue
-            }
+            guard let defaultsValue = defaults.value(forKey: .core(.developerModeEnabled)) as? Bool else { return .none }
+            state.isDeveloperModeEnabled = defaultsValue
 
         case .action(.buildInfoButtonTapped):
             service.buildInfoButtonTapped()

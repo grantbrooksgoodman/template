@@ -12,7 +12,7 @@ import Foundation
 import Redux
 
 public enum RootNavigationCoordinatorDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> RootNavigationCoordinator {
+    public static func resolve(_: DependencyValues) -> RootNavigationCoordinator {
         RootNavigationCoordinator()
     }
 }

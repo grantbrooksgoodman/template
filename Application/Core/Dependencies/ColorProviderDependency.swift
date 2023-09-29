@@ -12,8 +12,8 @@ import Foundation
 import Redux
 
 public enum ColorProviderDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> ColorProvider {
-        ColorProvider()
+    public static func resolve(_: DependencyValues) -> ColorProvider {
+        .init()
     }
 }
 

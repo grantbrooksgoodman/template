@@ -31,12 +31,16 @@ public struct EmptyReducer: Reducer {
         public init() {}
     }
 
+    // MARK: - Init
+
+    public init() { RuntimeStorage.store(#file, as: .core(.presentedViewName)) }
+
     // MARK: - Reduce
 
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.viewAppeared):
-            RuntimeStorage.store(#file, as: .currentFile)
+            break
         }
 
         return .none

@@ -43,7 +43,7 @@ public struct SampleReducer: Reducer {
 
         /* MARK: Properties */
 
-        public var strings: [TranslationOutputMap] = SampleViewStrings.keyPairs.defaultOutputMap
+        public var strings: [TranslationOutputMap] = SampleViewStrings.defaultOutputMap
         public var viewState: ViewState = .loading
 
         /* MARK: Init */
@@ -51,12 +51,15 @@ public struct SampleReducer: Reducer {
         public init() {}
     }
 
+    // MARK: - Init
+
+    public init() { RuntimeStorage.store(#file, as: .core(.presentedViewName)) }
+
     // MARK: - Reduce
 
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.viewAppeared):
-            RuntimeStorage.store(#file, as: .currentFile)
             state.viewState = .loading
 
             return .task {

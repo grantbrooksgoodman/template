@@ -12,8 +12,8 @@ import Foundation
 import Redux
 
 public enum BreadcrumbsDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> Breadcrumbs {
-        Breadcrumbs()
+    public static func resolve(_: DependencyValues) -> Breadcrumbs {
+        .init()
     }
 }
 

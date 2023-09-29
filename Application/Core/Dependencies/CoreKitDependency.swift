@@ -12,7 +12,7 @@ import Foundation
 import Redux
 
 public enum CoreKitDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> CoreKit {
+    public static func resolve(_: DependencyValues) -> CoreKit {
         .init(
             gcd: .init(),
             hud: .init(),

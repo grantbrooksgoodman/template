@@ -179,14 +179,14 @@ public enum DevModeService {
         @Dependency(\.observableRegistry) var registry: ObservableRegistry
 
         if !enabled,
-           let hidesBuildInfoOverlay = defaults.value(forKey: .hidesBuildInfoOverlay) as? Bool,
+           let hidesBuildInfoOverlay = defaults.value(forKey: .core(.hidesBuildInfoOverlay)) as? Bool,
            hidesBuildInfoOverlay {
-            defaults.set(false, forKey: .hidesBuildInfoOverlay)
+            defaults.set(false, forKey: .core(.hidesBuildInfoOverlay))
             RuntimeStorage.topWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW")?.isHidden = false
         }
 
         build.setDeveloperModeEnabled(to: enabled)
-        defaults.set(enabled, forKey: .developerModeEnabled)
+        defaults.set(enabled, forKey: .core(.hidesBuildInfoOverlay))
         registry.isDeveloperModeEnabled.value = enabled
         coreHUD.showSuccess(text: "Developer Mode \(enabled ? "Enabled" : "Disabled")")
     }

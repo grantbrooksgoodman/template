@@ -12,14 +12,14 @@ import Foundation
 import Redux
 
 public enum BuildDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> Build {
+    public static func resolve(_: DependencyValues) -> Build {
         @Dependency(\.userDefaults) var defaults: UserDefaults
         typealias Config = BuildConfig
 
         var developerModeEnabled = false
-        if let defaultsValue = defaults.value(forKey: .developerModeEnabled) as? Bool {
+        if let defaultsValue = defaults.value(forKey: .core(.developerModeEnabled)) as? Bool {
             developerModeEnabled = Config.stage == .generalRelease ? false : defaultsValue
-            defaults.set(developerModeEnabled, forKey: .developerModeEnabled)
+            defaults.set(developerModeEnabled, forKey: .core(.developerModeEnabled))
         }
 
         return .init(

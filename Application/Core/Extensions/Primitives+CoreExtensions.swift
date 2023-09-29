@@ -53,6 +53,7 @@ public extension Int {
         if (self % 100) > 10 && (self % 100) < 20 {
             suffix = "th"
         }
+
         return String(self) + suffix
     }
 }
@@ -81,27 +82,27 @@ public extension String {
     }
 
     var components: [String] {
-        return map { String($0) }
+        map { String($0) }
     }
 
     var firstLowercase: String {
-        return prefix(1).lowercased() + dropFirst()
+        prefix(1).lowercased() + dropFirst()
     }
 
     var firstUppercase: String {
-        return prefix(1).uppercased() + dropFirst()
+        prefix(1).uppercased() + dropFirst()
     }
 
     var isAlphabetical: Bool {
-        return "A" ... "Z" ~= self || "a" ... "z" ~= self
+        "A" ... "Z" ~= self || "a" ... "z" ~= self
     }
 
     var isLowercase: Bool {
-        return self == lowercased()
+        self == lowercased()
     }
 
     var isUppercase: Bool {
-        return self == uppercased()
+        self == uppercased()
     }
 
     var languageEndonym: String? {
@@ -131,7 +132,7 @@ public extension String {
     }
 
     var lowercasedTrimmingWhitespace: String {
-        return trimmingCharacters(in: .whitespacesAndNewlines).lowercased().trimmingWhitespace
+        trimmingCharacters(in: .whitespacesAndNewlines).lowercased().trimmingWhitespace
     }
 
     var sanitized: String {
@@ -152,7 +153,7 @@ public extension String {
     }
 
     var trimmingBorderedWhitespace: String {
-        return trimmingLeadingWhitespace.trimmingTrailingWhitespace
+        trimmingLeadingWhitespace.trimmingTrailingWhitespace
     }
 
     var trimmingLeadingWhitespace: String {
@@ -176,7 +177,7 @@ public extension String {
     }
 
     var trimmingWhitespace: String {
-        return replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\u{00A0}", with: "")
+        replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\u{00A0}", with: "")
     }
 
     /* MARK: Methods */
