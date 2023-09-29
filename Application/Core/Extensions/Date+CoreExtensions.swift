@@ -19,31 +19,7 @@ public extension Date {
         return calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: self))!
     }
 
-    var weekdayString: String? {
-        @Dependency(\.currentCalendar) var calendar: Calendar
-        switch calendar.component(.weekday, from: self) {
-        case 1:
-            return Localized(.sunday).wrappedValue
-        case 2:
-            return Localized(.monday).wrappedValue
-        case 3:
-            return Localized(.tuesday).wrappedValue
-        case 4:
-            return Localized(.wednesday).wrappedValue
-        case 5:
-            return Localized(.thursday).wrappedValue
-        case 6:
-            return Localized(.friday).wrappedValue
-        case 7:
-            return Localized(.saturday).wrappedValue
-        default:
-            return nil
-        }
-    }
-
-    // MARK: - Methods
-
-    func elapsedString() -> String {
+    var elapsedString: String {
         @Dependency(\.currentCalendar) var calendar: Calendar
         let interval = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: self, to: Date())
 
@@ -67,7 +43,7 @@ public extension Date {
         return "now"
     }
 
-    func formattedShortString() -> String {
+    var formattedShortString: String {
         let differenceBetweenDates = Date().distance(to: self)
 
         let stylizedDateFormatter = DateFormatter()
@@ -89,6 +65,30 @@ public extension Date {
 
         return stylizedDateFormatter.string(from: self)
     }
+
+    var weekdayString: String? {
+        @Dependency(\.currentCalendar) var calendar: Calendar
+        switch calendar.component(.weekday, from: self) {
+        case 1:
+            return Localized(.sunday).wrappedValue
+        case 2:
+            return Localized(.monday).wrappedValue
+        case 3:
+            return Localized(.tuesday).wrappedValue
+        case 4:
+            return Localized(.wednesday).wrappedValue
+        case 5:
+            return Localized(.thursday).wrappedValue
+        case 6:
+            return Localized(.friday).wrappedValue
+        case 7:
+            return Localized(.saturday).wrappedValue
+        default:
+            return nil
+        }
+    }
+
+    // MARK: - Methods
 
     func seconds(from date: Date) -> Int {
         @Dependency(\.currentCalendar) var calendar: Calendar

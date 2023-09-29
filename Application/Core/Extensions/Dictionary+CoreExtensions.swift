@@ -10,20 +10,15 @@ import Foundation
 
 public extension Dictionary {
     mutating func replace(key: Key, with newKey: Key) {
-        if let value = removeValue(forKey: key) {
-            self[newKey] = value
-        }
+        guard let value = removeValue(forKey: key) else { return }
+        self[newKey] = value
     }
 }
 
 public extension Dictionary where Key == String, Value == Any {
     var withCapitalizedKeys: [String: Any] {
         var capitalized = [String: Any]()
-
-        keys.forEach { key in
-            capitalized[key.firstUppercase] = self[key]!
-        }
-
+        keys.forEach { capitalized[$0.firstUppercase] = self[$0]! }
         return capitalized
     }
 }

@@ -53,7 +53,7 @@ public struct Exception: Equatable, Exceptionable {
         metaID = getMetaID(for: metadata)
 
         // #warning("Is the self filter necessary?")
-        self.underlyingExceptions = underlyingExceptions?.unique().filter { $0 != self }
+        self.underlyingExceptions = underlyingExceptions?.unique.filter { $0 != self }
     }
 
     public init(
@@ -91,10 +91,9 @@ public struct Exception: Equatable, Exceptionable {
 
         if let extraParams = extraParams,
            !extraParams.isEmpty {
-            extraParams.forEach { param in
-                if param.key != "NSLocalizedDescription" {
-                    params[param.key] = param.value
-                }
+            for param in extraParams {
+                guard param.key != "NSLocalizedDescription" else { continue }
+                params[param.key] = param.value
             }
         }
 
@@ -103,7 +102,7 @@ public struct Exception: Equatable, Exceptionable {
         hashlet = getHashlet(for: error.staticIdentifier)
         metaID = getMetaID(for: metadata)
 
-        self.underlyingExceptions = underlyingExceptions?.unique().filter { $0 != self }
+        self.underlyingExceptions = underlyingExceptions?.unique.filter { $0 != self }
     }
 
     // MARK: - Append
@@ -120,9 +119,7 @@ public struct Exception: Equatable, Exceptionable {
         }
 
         var params: [String: Any] = currentParams
-        extraParams.forEach { param in
-            params[param.key] = param.value
-        }
+        extraParams.forEach { params[$0.key] = $0.value }
 
         return .init(
             descriptor,
@@ -193,10 +190,11 @@ public struct Exception: Equatable, Exceptionable {
         let lineNumber = metadata[2] as! Int
         // swiftlint:enable force_cast
 
-        var hexChars = fileName.reduce(into: [String]()) { partialResult, character in
-            if let asciiValue = character.asciiValue {
-                partialResult.append(.init(format: "%02X", asciiValue))
-            }
+        var hexChars = [String]()
+
+        for character in fileName {
+            guard let asciiValue = character.asciiValue else { continue }
+            hexChars.append(.init(format: "%02X", asciiValue))
         }
 
         if hexChars.count > 3 {
@@ -263,9 +261,7 @@ public extension AKError {
 
         if let extraParams = exception.extraParams,
            !extraParams.isEmpty {
-            extraParams.forEach { param in
-                params[param.key] = param.value
-            }
+            extraParams.forEach { params[$0.key] = $0.value }
         }
 
         if let underlyingExceptions = exception.underlyingExceptions,
@@ -293,9 +289,7 @@ public extension Array where Element == Exception {
         var finalException = last!
         guard count > 1 else { return finalException }
 
-        Array(reversed()[1 ... count - 1]).unique().forEach { exception in
-            finalException = finalException.appending(underlyingException: exception)
-        }
+        Array(reversed()[1 ... count - 1]).unique.forEach { finalException = finalException.appending(underlyingException: $0) }
 
         return finalException
     }
@@ -310,7 +304,7 @@ public extension Array where Element == Exception {
             let suffix = codes.contains(where: { $0.hasPrefix(exception.hashlet!.lowercased()) }) ? "x\(index)" : ""
             codes.append("\(exception.hashlet!)x\(exception.metaID!)\(suffix)".lowercased())
 
-            exception.allUnderlyingExceptions().enumerated().forEach { index, underlyingException in
+            for (index, underlyingException) in exception.allUnderlyingExceptions().enumerated() {
                 let suffix = codes.contains(where: { $0.hasPrefix(underlyingException.hashlet!.lowercased()) }) ? "x\(index)" : ""
                 codes.append("\(underlyingException.hashlet!)x\(underlyingException.metaID!)\(suffix)".lowercased())
             }
@@ -321,7 +315,7 @@ public extension Array where Element == Exception {
 
     // MARK: - Methods
 
-    func unique() -> [Exception] {
+    var unique: [Exception] {
         var uniqueValues = [Exception]()
 
         for value in self where !uniqueValues.contains(where: { $0 == value }) {
@@ -335,13 +329,11 @@ public extension Array where Element == Exception {
 public extension Error {
     var staticIdentifier: String {
         let nsError = self as NSError
-
         var underlyingIDs = ["[\(nsError.domain):\(nsError.code)]"]
-        for error in nsError.underlyingErrors {
-            let underlyingNsError = error as NSError
-            underlyingIDs.append("[\(underlyingNsError.domain):\(underlyingNsError.code)]")
-        }
-
+        underlyingIDs.append(contentsOf: nsError.underlyingErrors.reduce(into: [String]()) { partialResult, error in
+            let underlyingNSError = error as NSError
+            partialResult.append("[\(underlyingNSError.domain):\(underlyingNSError.code)]")
+        })
         return underlyingIDs.joined(separator: "+")
     }
 }
@@ -353,13 +345,10 @@ public extension Exception {
 
         if let underlying = underlyingExceptions {
             allExceptions = underlying
-
-            for exception in underlying {
-                allExceptions.append(contentsOf: exception.allUnderlyingExceptions(allExceptions))
-            }
+            underlying.forEach { allExceptions.append(contentsOf: $0.allUnderlyingExceptions(allExceptions)) }
         }
 
-        return allExceptions.unique()
+        return allExceptions.unique
     }
 
     static func timedOut(_ metadata: [Any]) -> Exception {

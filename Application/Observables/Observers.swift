@@ -39,8 +39,6 @@ public enum Observers {
     }
 
     public static func register(observers: [Observer]) {
-        for observer in observers {
-            register(observer: observer)
-        }
+        observers.forEach { register(observer: $0) }
     }
 }

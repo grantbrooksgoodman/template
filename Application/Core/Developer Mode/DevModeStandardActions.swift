@@ -33,13 +33,11 @@ public extension DevModeAction {
         private static var changeThemeAction: DevModeAction {
             func changeTheme() {
                 var actions = [AKAction]()
-                var actionIDs = [Int: String]()
-
-                for `case` in AppTheme.allCases where `case`.theme.name != ThemeService.currentTheme.name {
-                    let action = AKAction(title: `case`.theme.name, style: .default)
-                    actions.append(action)
-                    actionIDs[action.identifier] = `case`.theme.name
-                }
+                actions = AppTheme.allCases.map { .init(
+                    title: $0.theme.name,
+                    style: .default,
+                    isEnabled: $0.theme.name != ThemeService.currentTheme.name
+                ) }
 
                 AKActionSheet(
                     message: "Change Theme",
@@ -47,7 +45,7 @@ public extension DevModeAction {
                     shouldTranslate: [.none]
                 ).present { actionID in
                     guard actionID != -1,
-                          let themeName = actionIDs[actionID],
+                          let themeName = actions.first(where: { $0.identifier == actionID })?.title,
                           let correspondingCase = AppTheme.allCases.first(where: { $0.theme.name == themeName }) else { return }
 
                     ThemeService.setTheme(correspondingCase.theme, checkStyle: false)

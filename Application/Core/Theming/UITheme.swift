@@ -44,6 +44,6 @@ public struct UITheme: Equatable {
 
     private func containsDuplicates(items: [ColoredItem]) -> Bool {
         let types = items.map { $0.type }
-        return types.unique().count != types.count
+        return types.unique.count != types.count
     }
 }

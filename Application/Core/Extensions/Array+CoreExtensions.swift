@@ -46,28 +46,37 @@ public extension Array where Element == String {
     }
 }
 
+public extension Array where Element == LanguagePair {
+    var unique: [LanguagePair] {
+        var uniqueValues = [LanguagePair]()
+
+        for pair in self where !uniqueValues.contains(pair) {
+            uniqueValues.append(pair)
+        }
+
+        return uniqueValues
+    }
+}
+
 public extension Array where Element == Translation {
     // MARK: - Properties
 
     var homogeneousLanguagePairs: Bool {
-        !(map { $0.languagePair.asString() }.unique().count > 1)
+        !(uniqueLanguagePairs.count > 1)
+    }
+
+    var uniqueLanguagePairs: [LanguagePair] {
+        map { $0.languagePair }.unique
     }
 
     // MARK: - Methods
 
-    func languagePairs() -> [LanguagePair] {
-        map { $0.languagePair.asString() }.unique().reduce(into: [LanguagePair]()) { partialResult, pairString in
-            if let languagePair = pairString.asLanguagePair() {
-                partialResult.append(languagePair)
-            }
-        }
-    }
-
     func matchedTo(_ inputs: [String: TranslationInput]) -> [String: Translation]? {
-        let matched = reduce(into: [String: Translation]()) { partialResult, translation in
-            if let matchingInput = translation.matchingInput(inputs: inputs) {
-                partialResult[matchingInput.key] = matchingInput.translation
-            }
+        var matched = [String: Translation]()
+
+        for translation in self {
+            guard let matchingInput = translation.matchingInput(inputs: inputs) else { continue }
+            matched[matchingInput.key] = matchingInput.translation
         }
 
         return matched.count != inputs.count ? nil : matched

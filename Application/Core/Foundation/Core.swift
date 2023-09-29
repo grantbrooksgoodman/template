@@ -278,26 +278,24 @@ public struct CoreKit {
 
             let locale = Locale(identifier: languageCode)
 
-            var localizedNames = [String: String]()
-            for (code, name) in languageCodeDictionary {
-                guard let localizedName = locale.localizedString(forLanguageCode: code) else {
-                    localizedNames[code] = name
-                    continue
-                }
+            return languageCodeDictionary.reduce(into: [String: String]()) { partialResult, keyPair in
+                let code = keyPair.key
+                let name = keyPair.value
 
-                let components = name.components(separatedBy: "(")
-                guard components.count == 2 else {
-                    let suffix = localizedName.lowercased() == name.lowercased() ? "" : "(\(name))"
-                    localizedNames[code] = "\(localizedName.firstUppercase) \(suffix)"
-                    continue
+                if let localizedName = locale.localizedString(forLanguageCode: code) {
+                    let components = name.components(separatedBy: "(")
+                    if components.count == 2 {
+                        let endonym = components[1]
+                        let suffix = localizedName.lowercased() == endonym.lowercased().dropSuffix() ? "" : "(\(endonym)"
+                        partialResult[code] = "\(localizedName.firstUppercase) \(suffix)"
+                    } else {
+                        let suffix = localizedName.lowercased() == name.lowercased() ? "" : "(\(name))"
+                        partialResult[code] = "\(localizedName.firstUppercase) \(suffix)"
+                    }
+                } else {
+                    partialResult[code] = name
                 }
-
-                let endonym = components[1]
-                let suffix = localizedName.lowercased() == endonym.lowercased().dropSuffix() ? "" : "(\(endonym)"
-                localizedNames[code] = "\(localizedName.firstUppercase) \(suffix)"
             }
-
-            return localizedNames
         }
 
         /* MARK: Methods */

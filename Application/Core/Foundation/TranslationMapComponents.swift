@@ -71,14 +71,12 @@ public extension TranslatorService {
 
         switch getTranslationsResult {
         case let .success(translations):
-            var outputs = [TranslationOutputMap]()
-            for keyPair in strings.keyPairs {
-                guard let translation = translations.first(where: { $0.input.value() == keyPair.input.value() }) else {
-                    outputs.append(keyPair.defaultOutputMap)
-                    continue
+            let outputs = strings.keyPairs.reduce(into: [TranslationOutputMap]()) { partialResult, keyPair in
+                if let translation = translations.first(where: { $0.input.value() == keyPair.input.value() }) {
+                    partialResult.append(.init(key: keyPair.key, value: translation.output.sanitized))
+                } else {
+                    partialResult.append(keyPair.defaultOutputMap)
                 }
-
-                outputs.append(.init(key: keyPair.key, value: translation.output.sanitized))
             }
             return .success(outputs)
 

@@ -26,9 +26,7 @@ public enum DevModeService {
     }
 
     public static func addActions(_ actions: [DevModeAction]) {
-        actions.forEach { action in
-            addAction(action)
-        }
+        actions.forEach { addAction($0) }
     }
 
     public static func addStandardActions() {
@@ -56,9 +54,7 @@ public enum DevModeService {
         _ actions: [DevModeAction],
         at index: Int
     ) {
-        actions.forEach { action in
-            insertAction(action, at: index)
-        }
+        actions.forEach { insertAction($0, at: index) }
     }
 
     // MARK: - Action Removal
@@ -83,12 +79,7 @@ public enum DevModeService {
               !coreUI.isPresentingAlertController else { return }
 
         var akActions = [AKAction]()
-        for action in actions {
-            akActions.append(AKAction(
-                title: action.title,
-                style: action.isDestructive ? .destructive : .default
-            ))
-        }
+        akActions = actions.map { .init(title: $0.title, style: $0.isDestructive ? .destructive : .default) }
 
         let actionSheet = AKActionSheet(
             message: "Developer Mode Options",

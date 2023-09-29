@@ -338,9 +338,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
             return mutable
         }
 
-        params.forEach { parameter in
-            existingParams[parameter.key] = parameter.value
-        }
+        params.forEach { existingParams[$0.key] = $0.value }
 
         mutable.extraParams = existingParams
         return mutable

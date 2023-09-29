@@ -74,6 +74,12 @@ public extension String {
         return index + 1
     }
 
+    var asLanguagePair: LanguagePair? {
+        let components = self.components(separatedBy: "-")
+        guard components.count > 1 else { return nil }
+        return LanguagePair(from: components[0], to: components[1 ... components.count - 1].joined(separator: "-"))
+    }
+
     var components: [String] {
         return map { String($0) }
     }
@@ -175,12 +181,6 @@ public extension String {
 
     /* MARK: Methods */
 
-    func asLanguagePair() -> LanguagePair? {
-        let components = self.components(separatedBy: "-")
-        guard components.count > 1 else { return nil }
-        return LanguagePair(from: components[0], to: components[1 ... components.count - 1].joined(separator: "-"))
-    }
-
     func attributed(
         mainAttributes: [NSAttributedString.Key: Any],
         alternateAttributes: [NSAttributedString.Key: Any],
@@ -188,7 +188,7 @@ public extension String {
     ) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: self, attributes: mainAttributes)
 
-        for string in alternateAttributeRange {
+        alternateAttributeRange.forEach { string in
             let currentRange = (self as NSString).range(of: (string as NSString) as String)
             attributedString.addAttributes(alternateAttributes, range: currentRange)
         }
@@ -197,16 +197,13 @@ public extension String {
     }
 
     func ciphered(by modifier: Int) -> String {
-        var shiftedCharacters = [Character]()
-
-        for utf8Value in utf8 {
+        String(utf8.reduce(into: [Character]()) { partialResult, utf8Value in
             let shiftedValue = Int(utf8Value) + modifier
             let wrapAroundBy = shiftedValue > 97 + 25 ? -26 : (shiftedValue < 97 ? 26 : 0)
-            guard let scalar = UnicodeScalar(shiftedValue + wrapAroundBy) else { continue }
-            shiftedCharacters.append(Character(scalar))
-        }
-
-        return String(shiftedCharacters)
+            if let scalar = UnicodeScalar(shiftedValue + wrapAroundBy) {
+                partialResult.append(.init(scalar))
+            }
+        })
     }
 
     func containsAnyCharacter(in string: String) -> Bool {
@@ -229,9 +226,7 @@ public extension String {
 
     func removingOccurrences(of excludedStrings: [String]) -> String {
         var mutable = self
-        excludedStrings.forEach { string in
-            mutable = mutable.replacingOccurrences(of: string, with: "")
-        }
+        excludedStrings.forEach { mutable = mutable.replacingOccurrences(of: $0, with: "") }
         return mutable
     }
 }

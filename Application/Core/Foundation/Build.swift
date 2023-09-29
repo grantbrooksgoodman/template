@@ -237,7 +237,8 @@ public class Build {
         for integerString in multipliedConstants {
             projectIDComponents.append(integerString)
 
-            let cipheredMiddleLetter = middleLetter.ciphered(by: Int(integerString)!).uppercased()
+            guard let integer = Int(integerString) else { continue }
+            let cipheredMiddleLetter = middleLetter.ciphered(by: integer).uppercased()
             projectIDComponents.append(cipheredMiddleLetter)
         }
 
@@ -254,9 +255,8 @@ public class Build {
                 guard let position = currentLetter.alphabeticalPosition else { continue }
                 currentLetter = currentLetter.ciphered(by: position)
 
-                if !projectIDComponents.contains(currentLetter) {
-                    projectIDComponents.append(currentLetter)
-                }
+                guard !projectIDComponents.contains(currentLetter) else { continue }
+                projectIDComponents.append(currentLetter)
             }
         }
 

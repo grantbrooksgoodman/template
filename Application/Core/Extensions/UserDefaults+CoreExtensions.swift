@@ -25,10 +25,7 @@ public extension UserDefaults {
             }
         }
 
-        dictionary.keys.forEach { key in
-            removeObject(forKey: key)
-        }
-
+        dictionary.keys.forEach { removeObject(forKey: $0) }
         mappedValues.forEach { key, value in
             set(value, forKey: key)
         }

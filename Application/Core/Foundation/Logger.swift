@@ -38,12 +38,12 @@ public enum Logger {
 
     public static func subscribe(to domain: LoggerDomain) {
         subscribedDomains.append(domain)
-        subscribedDomains = subscribedDomains.unique()
+        subscribedDomains = subscribedDomains.unique
     }
 
     public static func subscribe(to domains: [LoggerDomain]) {
         subscribedDomains.append(contentsOf: domains)
-        subscribedDomains = subscribedDomains.unique()
+        subscribedDomains = subscribedDomains.unique
     }
 
     public static func unsubscribe(from domain: LoggerDomain) {
