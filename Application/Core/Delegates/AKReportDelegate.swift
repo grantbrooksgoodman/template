@@ -78,7 +78,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
                 .init(
                     "Couldn't get log file data!",
                     extraParams: ["OriginalMetadata": injectedError.metadata],
-                    metadata: [#file, #function, #line]
+                    metadata: [self, #file, #function, #line]
                 ),
                 with: .errorAlert
             )
@@ -102,7 +102,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         metadata: [Any]
     ) {
         guard metadata.isValidMetadata else {
-            Logger.log(.init("Improperly formatted metadata.", metadata: [#file, #function, #line]))
+            Logger.log(.init("Improperly formatted metadata.", metadata: [self, #file, #function, #line]))
             return
         }
 
@@ -114,7 +114,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
                 .init(
                     "Couldn't get log file data!",
                     extraParams: ["OriginalMetadata": metadata],
-                    metadata: [#file, #function, #line]
+                    metadata: [self, #file, #function, #line]
                 ),
                 with: .errorAlert
             )
@@ -134,7 +134,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
             hud: (.seconds(2), true)
         ) { translations, exception in
             guard let translations else {
-                Logger.log(exception ?? .init(metadata: [#file, #function, #line]))
+                Logger.log(exception ?? .init(metadata: [self, #file, #function, #line]))
                 return
             }
 
@@ -165,11 +165,9 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         func getJSON(from dictionary: [String: String]) -> Data? {
             do {
                 let encoder = JSONEncoder()
-                let encodedMetadata = try encoder.encode(dictionary)
-
-                return encodedMetadata
+                return try encoder.encode(dictionary)
             } catch {
-                Logger.log(.init(error, metadata: [#file, #function, #line]))
+                Logger.log(.init(error, metadata: [self, #file, #function, #line]))
                 return nil
             }
         }
@@ -177,7 +175,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         guard error != nil || metadata != nil else { return nil }
 
         guard let contextCode = akCore.contextCode(for: type, metadata: error?.metadata ?? metadata!) else {
-            Logger.log(.init("Unable to generate context code.", metadata: [#file, #function, #line]))
+            Logger.log(.init("Unable to generate context code.", metadata: [self, #file, #function, #line]))
             return nil
         }
 
@@ -233,7 +231,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
                 .init(
                     "File already exists.",
                     extraParams: ["FilePath": path],
-                    metadata: [#file, #function, #line]
+                    metadata: [self, #file, #function, #line]
                 ))
             return path
         }
@@ -243,7 +241,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
                 .init(
                     "Couldn't write to path!",
                     extraParams: ["FilePath": path],
-                    metadata: [#file, #function, #line]
+                    metadata: [self, #file, #function, #line]
                 ))
             return path
         }
@@ -269,9 +267,9 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
                     ).present()
 
                 case .failed:
-                    var exception: Exception = .init(metadata: [#file, #function, #line])
+                    var exception: Exception = .init(metadata: [self, #file, #function, #line])
                     if let error {
-                        exception = .init(error, metadata: [#file, #function, #line])
+                        exception = .init(error, metadata: [self, #file, #function, #line])
                     }
 
                     AKErrorAlert(error: .init(exception)).present()
@@ -296,7 +294,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
                 "Device can't send e-mail.",
                 isReportable: false,
                 extraParams: [Exception.CommonParamKeys.userFacingDescriptor.rawValue: userFacingDescriptor],
-                metadata: [#file, #function, #line]
+                metadata: [self, #file, #function, #line]
             )
 
             AKErrorAlert(

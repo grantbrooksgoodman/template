@@ -13,10 +13,11 @@ import Translator
 
 public extension Array where Element == Any {
     var isValidMetadata: Bool {
-        guard count == 3,
-              self[0] is String,
+        guard count == 4,
+              !String.from(self[0]).isEmpty,
               self[1] is String,
-              self[2] is Int else { return false }
+              self[2] is String,
+              self[3] is Int else { return false }
         return true
     }
 }

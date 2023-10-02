@@ -41,7 +41,7 @@ public class TranslationDelegate: AKTranslationDelegate {
         ) { translations, exception in
             guard let translations,
                   !translations.isEmpty else {
-                let exceptionDescriptor = exception?.descriptor ?? Exception(metadata: [#file, #function, #line]).descriptor!
+                let exceptionDescriptor = exception?.descriptor ?? Exception(metadata: [self, #file, #function, #line]).descriptor
                 var descriptorPairs = [String: AlertKit.TranslationInput]()
                 inputs.forEach { descriptorPairs[exceptionDescriptor] = AlertKit.TranslationInput($0.original, alternate: $0.alternate) }
                 completion(nil, descriptorPairs)

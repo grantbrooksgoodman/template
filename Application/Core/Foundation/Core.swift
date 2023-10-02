@@ -313,12 +313,12 @@ public struct CoreKit {
 
             let preferredLanguages = Locale.preferredLanguages
             guard !preferredLanguages.isEmpty else {
-                return .init("No preferred languages.", metadata: [#file, #function, #line])
+                return .init("No preferred languages.", metadata: [self, #file, #function, #line])
             }
 
             let components = preferredLanguages[0].components(separatedBy: "-")
             guard !components.isEmpty else {
-                return .init("No language separator key.", metadata: [#file, #function, #line])
+                return .init("No language separator key.", metadata: [self, #file, #function, #line])
             }
 
             RuntimeStorage.store(components[0], as: .core(.languageCode))

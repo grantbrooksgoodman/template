@@ -48,7 +48,6 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         window.makeKeyAndVisible()
         self.window = window
 
-        defer { RuntimeStorage.store(self.window!, as: .core(.topWindow)) }
         guard build.stage != .generalRelease else { return }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: nil)
@@ -137,8 +136,7 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         UIInterfaceOrientation,
         traitCollection previousTraitCollection: UITraitCollection
     ) {
-        @Dependency(\.observableRegistry) var registry: ObservableRegistry
-        registry.themedViewAppearanceChanged.trigger()
+        Observables.themedViewAppearanceChanged.trigger()
     }
 
     // MARK: - UIGestureRecognizer

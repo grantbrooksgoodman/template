@@ -7,6 +7,7 @@
 
 /* Native */
 import Foundation
+import UIKit
 
 /* 3rd-party */
 import Redux
@@ -29,7 +30,7 @@ public extension TranslatorService {
                 using: platform
             ) { translations, exception in
                 guard let translations else {
-                    continuation.resume(returning: .failure(exception ?? .init(metadata: [#file, #function, #line])))
+                    continuation.resume(returning: .failure(exception ?? .init(metadata: [self, #file, #function, #line])))
                     return
                 }
 
@@ -50,6 +51,7 @@ public extension TranslatorService {
         ) -> Void
     ) {
         @Dependency(\.coreKit) var core: CoreKit
+        @Dependency(\.uiApplication) var uiApplication: UIApplication
         var didComplete = false
 
         if let hudConfig {
@@ -57,7 +59,7 @@ public extension TranslatorService {
                 guard !didComplete else { return }
                 core.hud.showProgress()
                 guard hudConfig.isModal else { return }
-                RuntimeStorage.topWindow?.isUserInteractionEnabled = false
+                uiApplication.keyWindow?.isUserInteractionEnabled = false
             }
         }
 
@@ -66,18 +68,18 @@ public extension TranslatorService {
             didComplete = true
             core.hud.hide()
             guard let hudConfig, hudConfig.isModal else { return true }
-            RuntimeStorage.topWindow?.isUserInteractionEnabled = true
+            uiApplication.keyWindow?.isUserInteractionEnabled = true
             return true
         }
 
         let timeout = Timeout(after: timeoutConfig.duration) {
             guard canComplete else { return }
             guard timeoutConfig.returnsInputs else {
-                completion(nil, .timedOut([#file, #function, #line]))
+                completion(nil, .timedOut([self, #file, #function, #line]))
                 return
             }
 
-            Logger.log(.timedOut([#file, #function, #line]))
+            Logger.log(.timedOut([self, #file, #function, #line]))
 
             let translations = inputs.map { Translation(
                 input: $0,
@@ -98,10 +100,10 @@ public extension TranslatorService {
             guard let translations,
                   !translations.isEmpty else {
                 let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
-                    partialResult.append(.init(keyPair.key, metadata: [#file, #function, #line]))
+                    partialResult.append(.init(keyPair.key, metadata: [self, #file, #function, #line]))
                 }.compiledException
                 guard canComplete else { return }
-                completion(nil, exception ?? .init(metadata: [#file, #function, #line]))
+                completion(nil, exception ?? .init(metadata: [self, #file, #function, #line]))
                 return
             }
 

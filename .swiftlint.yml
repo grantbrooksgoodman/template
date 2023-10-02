@@ -160,7 +160,7 @@ type_body_length:
   error: 250
 type_name:
   min_length:
-    warning: 2
+    warning: 1
   max_length:
     error: 40
 unavailable_condition:

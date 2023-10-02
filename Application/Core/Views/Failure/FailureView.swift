@@ -32,37 +32,41 @@ public struct FailureView: View {
     // MARK: - View
 
     public var body: some View {
-        Image(systemName: Strings.imageSystemName)
-            .renderingMode(.template)
-            .foregroundColor(Colors.imageForegroundColor)
-            .font(.system(size: Floats.imageSystemSize))
-            .padding(.bottom, Floats.imageBottomPadding)
+        ThemedView {
+            VStack {
+                Image(systemName: Strings.imageSystemName)
+                    .renderingMode(.template)
+                    .foregroundColor(Colors.imageForegroundColor)
+                    .font(.system(size: Floats.imageSystemSize))
+                    .padding(.bottom, Floats.imageBottomPadding)
 
-        Text(viewModel.exception.userFacingDescriptor)
-            .font(Font.custom(Strings.exceptionLabelFontName, size: Floats.exceptionLabelFontSize))
-            .foregroundColor(Colors.exceptionLabelFontColor)
-            .padding(.vertical, Floats.exceptionLabelVerticalPadding)
-            .padding(.horizontal, Floats.exceptionLabelHorizontalPadding)
-            .multilineTextAlignment(.center)
+                Text(viewModel.exception.userFacingDescriptor)
+                    .font(Font.custom(Strings.exceptionLabelFontName, size: Floats.exceptionLabelFontSize))
+                    .foregroundStyle(Color.titleText)
+                    .padding(.vertical, Floats.exceptionLabelVerticalPadding)
+                    .padding(.horizontal, Floats.exceptionLabelHorizontalPadding)
+                    .multilineTextAlignment(.center)
 
-        if viewModel.retryHandler != nil {
-            Button {
-                viewModel.send(.executeRetryHandler)
-            } label: {
-                Text(viewModel.retryButtonText)
-                    .font(.system(size: Floats.buttonLabelFontSize, weight: .semibold))
-                    .foregroundColor(Colors.retryButtonColor)
+                if viewModel.retryHandler != nil {
+                    Button {
+                        viewModel.send(.executeRetryHandler)
+                    } label: {
+                        Text(viewModel.retryButtonText)
+                            .font(.system(size: Floats.buttonLabelFontSize, weight: .semibold))
+                            .foregroundColor(.accent)
+                    }
+                }
+
+                Button {
+                    viewModel.send(.reportBugButtonTapped)
+                } label: {
+                    Text(viewModel.reportBugButtonText)
+                        .font(.system(size: Floats.buttonLabelFontSize))
+                        .foregroundColor(viewModel.didReportBug ? Colors.reportBugButtonDisabledColor : .accent)
+                }
+                .padding(.top, Floats.reportBugButtonTopPadding)
+                .disabled(viewModel.didReportBug)
             }
         }
-
-        Button {
-            viewModel.send(.reportBugButtonTapped)
-        } label: {
-            Text(viewModel.reportBugButtonText)
-                .font(.system(size: Floats.buttonLabelFontSize))
-                .foregroundColor(viewModel.didReportBug ? Colors.reportBugButtonDisabledColor : Colors.reportBugButtonEnabledColor)
-        }
-        .padding(.top, Floats.reportBugButtonTopPadding)
-        .disabled(viewModel.didReportBug)
     }
 }

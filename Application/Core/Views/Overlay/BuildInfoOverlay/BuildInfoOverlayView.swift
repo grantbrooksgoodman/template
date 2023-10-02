@@ -16,6 +16,7 @@ public struct BuildInfoOverlayView: View {
     // MARK: - Properties
 
     @StateObject private var viewModel: ViewModel<BuildInfoOverlayReducer>
+    @StateObject private var observer: ViewObserver<BuildInfoOverlayViewObserver>
 
     // MARK: - Constants Accessors
 
@@ -27,6 +28,7 @@ public struct BuildInfoOverlayView: View {
 
     public init(_ viewModel: ViewModel<BuildInfoOverlayReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
+        _observer = .init(wrappedValue: .init(.init(viewModel)))
     }
 
     // MARK: - View
@@ -45,7 +47,6 @@ public struct BuildInfoOverlayView: View {
             }
         }
         .onFirstAppear {
-            Observers.register(observer: BuildInfoOverlayViewObserver(viewModel))
             viewModel.send(.viewAppeared)
         }
     }

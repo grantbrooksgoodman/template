@@ -21,17 +21,17 @@ public struct Exception: Equatable, Exceptionable {
     // MARK: - Properties
 
     // Array
-    public var metadata: [Any]!
+    public var metadata: [Any]
     public var underlyingExceptions: [Exception]?
 
     // String
-    public var descriptor: String!
+    public var descriptor: String
     public var hashlet: String!
     public var metaID: String!
 
     // Other
     public var extraParams: [String: Any]?
-    public var isReportable: Bool!
+    public var isReportable: Bool
 
     // MARK: - Init
 
@@ -125,7 +125,7 @@ public struct Exception: Equatable, Exceptionable {
             descriptor,
             isReportable: isReportable,
             extraParams: params.withCapitalizedKeys,
-            metadata: [#file, #function, #line]
+            metadata: [self, #file, #function, #line]
         )
     }
 
@@ -185,9 +185,9 @@ public struct Exception: Equatable, Exceptionable {
 
     private func getMetaID(for metadata: [Any]) -> String {
         // swiftlint:disable force_cast
-        let unformattedFileName = metadata[0] as! String
+        let unformattedFileName = metadata[1] as! String
         let fileName = unformattedFileName.components(separatedBy: "/").last!.components(separatedBy: ".")[0]
-        let lineNumber = metadata[2] as! Int
+        let lineNumber = metadata[3] as! Int
         // swiftlint:enable force_cast
 
         var hexChars = [String]()
@@ -256,7 +256,7 @@ public struct Exception: Equatable, Exceptionable {
 public extension AKError {
     init(_ exception: Exception) {
         let descriptor = exception.userFacingDescriptor
-        var params: [String: Any] = ["Descriptor": exception.descriptor!,
+        var params: [String: Any] = ["Descriptor": exception.descriptor,
                                      "Hashlet": exception.hashlet!]
 
         if let extraParams = exception.extraParams,

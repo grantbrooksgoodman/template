@@ -35,9 +35,3 @@ public enum SampleViewStrings: TranslatedLabelStrings {
             }
     }
 }
-
-public extension Array where Element == TranslationOutputMap {
-    func value(for key: TranslatedLabelStringCollection.SampleViewStringKey) -> String {
-        (first(where: { $0.key == .sampleView(key) })?.value ?? key.rawValue).sanitized
-    }
-}

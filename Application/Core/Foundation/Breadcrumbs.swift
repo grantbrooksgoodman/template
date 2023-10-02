@@ -54,7 +54,7 @@ public class Breadcrumbs {
         uniqueViewsOnly doesExclude: Bool = true
     ) -> Exception? {
         guard !isCapturing else {
-            return .init("Breadcrumbs capture is already running.", metadata: [#file, #function, #line])
+            return .init("Breadcrumbs capture is already running.", metadata: [self, #file, #function, #line])
         }
 
         savesToPhotos = saveToPhotos
@@ -75,7 +75,7 @@ public class Breadcrumbs {
     @discardableResult
     func stopCapture() -> Exception? {
         guard isCapturing else {
-            return .init("Breadcrumbs capture is not running.", metadata: [#file, #function, #line])
+            return .init("Breadcrumbs capture is not running.", metadata: [self, #file, #function, #line])
         }
 
         isCapturing = false
@@ -86,7 +86,6 @@ public class Breadcrumbs {
 
     private func capture() {
         func saveImage() {
-            @Dependency(\.observableRegistry) var registry: ObservableRegistry
             @Dependency(\.uiApplication) var uiApplication: UIApplication
 
             guard let image = uiApplication.snapshot,
@@ -94,7 +93,7 @@ public class Breadcrumbs {
 
             try? pngData.write(to: filePath)
 
-            defer { registry.breadcrumbsDidCapture.trigger() }
+            defer { Observables.breadcrumbsDidCapture.trigger() }
             guard savesToPhotos else { return }
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }

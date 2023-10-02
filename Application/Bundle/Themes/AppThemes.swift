@@ -30,21 +30,17 @@ public enum AppTheme: CaseIterable {
     // MARK: - Colored Item Accessors
 
     private var defaultColoredItems: [ColoredItem] {
-        let background = ColoredItem(type: .background, set: ColorSet(primary: .white, variant: .black))
+        let accent = ColoredItem(type: .accent, set: .init(primary: .systemBlue))
+        let background = ColoredItem(type: .background, set: .init(primary: .white, variant: .black))
 
-        let navigationBarBackground = ColoredItem(
-            type: .navigationBarBackground,
-            set: ColorSet(
-                primary: UIColor(hex: 0xF8F8F8),
-                variant: UIColor(hex: 0x2A2A2C)
-            )
-        )
-        let navigationBarTitle = ColoredItem(type: .navigationBarTitle, set: ColorSet(primary: .black, variant: .white))
+        let navigationBarBackground = ColoredItem(type: .navigationBarBackground, set: .init(primary: .init(hex: 0xF8F8F8), variant: .init(hex: 0x2A2A2C)))
+        let navigationBarTitle = ColoredItem(type: .navigationBarTitle, set: .init(primary: .black, variant: .white))
 
-        let titleText = ColoredItem(type: .titleText, set: ColorSet(primary: .black, variant: .white))
-        let subtitleText = ColoredItem(type: .subtitleText, set: ColorSet(primary: .black, variant: .white))
+        let titleText = ColoredItem(type: .titleText, set: .init(primary: .black, variant: .white))
+        let subtitleText = ColoredItem(type: .subtitleText, set: .init(primary: .black, variant: .white))
 
         return [
+            accent,
             background,
             navigationBarBackground,
             navigationBarTitle,
@@ -58,6 +54,7 @@ public enum AppTheme: CaseIterable {
  Use this enum to define new color types for specific theme items.
  */
 public enum ColoredItemType: Equatable {
+    case accent
     case background
 
     case navigationBarBackground

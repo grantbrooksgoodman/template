@@ -22,7 +22,7 @@ public enum TEException: String {
 }
 
 /**
- Use this extension to add simplified descriptors commonly encountered errors.
+ Use this extension to add simplified descriptors for commonly encountered errors.
  */
 public extension Exception {
     // MARK: - Properties

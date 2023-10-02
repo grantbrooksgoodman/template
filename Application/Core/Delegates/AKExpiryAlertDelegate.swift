@@ -21,6 +21,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     @Dependency(\.coreKit) private var core: CoreKit
     @Dependency(\.notificationCenter) private var notificationCenter: NotificationCenter
     @Dependency(\.translatorService) private var translator: TranslatorService
+    @Dependency(\.uiApplication) private var uiApplication: UIApplication
 
     // String
     private var continueUseString = ""
@@ -82,8 +83,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
                 if returnedString == self.build.expirationOverrideCode {
                     self.exitTimer?.invalidate()
                     self.exitTimer = nil
-
-                    RuntimeStorage.topWindow?.removeSubviews(for: "EXPIRY_OVERLAY_WINDOW")
+                    self.uiApplication.keyWindow?.removeSubviews(for: "EXPIRY_OVERLAY_WINDOW")
                 } else {
                     let incorrectAlertController = UIAlertController(
                         title: self.incorrectCodeTitle,
@@ -167,7 +167,8 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
 
     // MARK: - Auxiliary
 
-    @objc private func decrementSecond() {
+    @objc
+    private func decrementSecond() {
         remainingSeconds -= 1
 
         guard remainingSeconds < 0 else {
@@ -230,7 +231,7 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
             hud: (.seconds(5), true)
         ) { translations, exception in
             guard let translations else {
-                Logger.log(exception ?? .init(metadata: [#file, #function, #line]))
+                Logger.log(exception ?? .init(metadata: [self, #file, #function, #line]))
                 return
             }
 

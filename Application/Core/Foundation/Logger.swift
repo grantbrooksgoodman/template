@@ -42,8 +42,7 @@ public enum Logger {
     }
 
     public static func subscribe(to domains: [LoggerDomain]) {
-        subscribedDomains.append(contentsOf: domains)
-        subscribedDomains = subscribedDomains.unique
+        domains.forEach { subscribe(to: $0) }
     }
 
     public static func unsubscribe(from domain: LoggerDomain) {
@@ -51,7 +50,7 @@ public enum Logger {
     }
 
     public static func unsubscribe(from domains: [LoggerDomain]) {
-        subscribedDomains.removeAll(where: { domains.contains($0) })
+        domains.forEach { unsubscribe(from: $0) }
     }
 
     // MARK: - Logging
@@ -86,20 +85,19 @@ public enum Logger {
             return
         }
 
-        // swiftlint:disable force_cast
-        let fileName = akCore.fileName(for: exception.metadata[0] as! String)
-        let functionName = (exception.metadata[1] as! String).components(separatedBy: "(")[0]
-        let lineNumber = exception.metadata[2] as! Int
-        // swiftlint:enable force_cast
+        let typeName = String.from(exception.metadata[0]) // swiftlint:disable force_cast
+        let fileName = akCore.fileName(for: exception.metadata[1] as! String)
+        let functionName = (exception.metadata[2] as! String).components(separatedBy: "(")[0]
+        let lineNumber = exception.metadata[3] as! Int // swiftlint:enable force_cast
 
         guard !streamOpen else {
-            logToStream(exception.descriptor!, domain: domain, line: lineNumber)
+            logToStream(exception.descriptor, domain: domain, line: lineNumber)
             return
         }
 
-        let header = "-------------------- \(domain.rawValue.uppercased()) --------------------"
+        let header = "-------------------- \(fileName) | \(domain.rawValue.uppercased()) --------------------"
         let footer = String(repeating: "-", count: header.count)
-        print("\n\(header)\n\(fileName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(exception.descriptor!) (\(exception.hashlet!))")
+        print("\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(exception.descriptor) (\(exception.hashlet!))")
 
         if let params = exception.extraParams {
             printExtraParams(params)
@@ -134,20 +132,19 @@ public enum Logger {
             return
         }
 
-        // swiftlint:disable force_cast
-        let fileName = akCore.fileName(for: metadata[0] as! String)
-        let functionName = (metadata[1] as! String).components(separatedBy: "(")[0]
-        let lineNumber = metadata[2] as! Int
-        // swiftlint:enable force_cast
+        let typeName = String.from(metadata[0]) // swiftlint:disable force_cast
+        let fileName = akCore.fileName(for: metadata[1] as! String)
+        let functionName = (metadata[2] as! String).components(separatedBy: "(")[0]
+        let lineNumber = metadata[3] as! Int // swiftlint:enable force_cast
 
         guard !streamOpen else {
             logToStream(text, domain: domain, line: lineNumber)
             return
         }
 
-        let header = "-------------------- \(domain.rawValue.uppercased()) --------------------"
+        let header = "-------------------- \(fileName) | \(domain.rawValue.uppercased()) --------------------"
         let footer = String(repeating: "-", count: header.count)
-        print("\n\(header)\n\(fileName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n\(footer)\n")
+        print("\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n\(footer)\n")
 
         currentTimeLastCalled = Date()
         showAlertIfNeeded()
@@ -169,27 +166,23 @@ public enum Logger {
 
         guard canLog(to: domain) else { return }
         guard metadata.isValidMetadata else {
-            log(.init(
-                "Improperly formatted metadata.",
-                metadata: [#file, #function, #line]
-            ))
+            fallbackLog(message ?? "Improperly formatted metadata.", domain: domain)
             return
         }
 
-        // swiftlint:disable force_cast
-        let fileName = akCore.fileName(for: metadata[0] as! String)
-        let functionName = (metadata[1] as! String).components(separatedBy: "(")[0]
-        let lineNumber = metadata[2] as! Int
-        // swiftlint:enable force_cast
+        let typeName = String.from(metadata[0]) // swiftlint:disable force_cast
+        let fileName = akCore.fileName(for: metadata[1] as! String)
+        let functionName = (metadata[2] as! String).components(separatedBy: "(")[0]
+        let lineNumber = metadata[3] as! Int // swiftlint:enable force_cast
 
         guard let message else {
             // swiftlint:disable:next line_length
-            print("\n*------------------------STREAM OPENED------------------------*\n[\(domain.rawValue.uppercased())]\n\(fileName).\(functionName)()\(elapsedTime)")
+            print("\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\(elapsedTime)")
             return
         }
 
         // swiftlint:disable:next line_length
-        print("\n*------------------------STREAM OPENED------------------------*\n[\(domain.rawValue.uppercased())]\n\(fileName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)")
+        print("\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)")
 
         streamOpen = true
         currentTimeLastCalled = Date()
@@ -202,7 +195,7 @@ public enum Logger {
     ) {
         guard canLog(to: domain) else { return }
         guard streamOpen else {
-            log(message, metadata: [#file, #function, #line])
+            log(message, metadata: [self, #file, #function, #line])
             return
         }
 
@@ -217,7 +210,7 @@ public enum Logger {
         guard canLog(to: domain) else { return }
         guard streamOpen else {
             guard let message else { return }
-            log(message, metadata: [#file, #function, #line])
+            log(message, metadata: [self, #file, #function, #line])
             return
         }
 
@@ -261,7 +254,7 @@ public enum Logger {
 
         func showAlertIfNeeded() {
             guard let alertType else { return }
-            showAlert(alertType, data: (text, [#file, #function, #line]))
+            showAlert(alertType, data: (text, [self, #file, #function, #line]))
         }
     }
 
@@ -305,7 +298,7 @@ public enum Logger {
 
         core.hud.hide()
 
-        let mockException: Exception = .init(metadata: [#file, #function, #line])
+        let mockException: Exception = .init(metadata: [self, #file, #function, #line])
         var shouldTranslate = userFacingDescriptor != mockException.userFacingDescriptor
 
         switch type {

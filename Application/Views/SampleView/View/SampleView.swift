@@ -30,7 +30,7 @@ public struct SampleView: View {
         Group {
             switch viewModel.viewState {
             case .loading:
-                ProgressView()
+                ThemedProgressView()
             case .loaded:
                 SampleContentView(viewModel)
             case let .error(exception):

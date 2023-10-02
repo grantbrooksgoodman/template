@@ -17,7 +17,6 @@ public extension RuntimeStorage {
     static var languageCode: String? { getLanguageCode() }
     static var languageCodeDictionary: [String: String]? { getLanguageCodeDictionary() }
     static var presentedViewName: String? { getPresentedViewName() }
-    static var topWindow: UIWindow? { getTopWindow() }
 
     /* MARK: Methods */
 
@@ -45,10 +44,6 @@ public extension RuntimeStorage {
 
         return fileName
     }
-
-    private static func getTopWindow() -> UIWindow? {
-        retrieve(.core(.topWindow)) as? UIWindow
-    }
 }
 
 // MARK: - StoredItemDomain
@@ -59,7 +54,6 @@ public extension StoredItemDomain {
         case languageCodeDictionary
         case overriddenLanguageCode
         case presentedViewName
-        case topWindow
     }
 }
 

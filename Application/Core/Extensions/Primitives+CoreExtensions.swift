@@ -182,6 +182,8 @@ public extension String {
 
     /* MARK: Methods */
 
+    // Instance
+
     func attributed(
         mainAttributes: [NSAttributedString.Key: Any],
         alternateAttributes: [NSAttributedString.Key: Any],
@@ -229,5 +231,18 @@ public extension String {
         var mutable = self
         excludedStrings.forEach { mutable = mutable.replacingOccurrences(of: $0, with: "") }
         return mutable
+    }
+
+    // Static
+
+    static func from<T>(_ type: T) -> String {
+        @Dependency(\.mainBundle) var mainBundle: Bundle
+
+        let string = String(describing: type)
+        guard let targetName = mainBundle.infoDictionary?["CFTargetName"] as? String else {
+            return string.components(separatedBy: "(")[0]
+        }
+
+        return string.removingOccurrences(of: ["\(targetName)."]).components(separatedBy: "(")[0]
     }
 }

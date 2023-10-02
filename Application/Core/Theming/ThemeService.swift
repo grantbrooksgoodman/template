@@ -7,8 +7,6 @@
 
 /* Native */
 import Foundation
-import SwiftUI
-import UIKit
 
 /* 3rd-party */
 import AlertKit
@@ -19,12 +17,9 @@ public enum ThemeService {
 
     public private(set) static var currentTheme = AppTheme.default.theme {
         didSet {
-            @Dependency(\.colorProvider) var colorProvider: ColorProvider
             @Dependency(\.userDefaults) var defaults: UserDefaults
-            @Dependency(\.observableRegistry) var registry: ObservableRegistry
             defaults.set(currentTheme.name, forKey: .core(.currentTheme))
-            colorProvider.updateColorState()
-            registry.themedViewAppearanceChanged.trigger()
+            Observables.themedViewAppearanceChanged.trigger()
         }
     }
 

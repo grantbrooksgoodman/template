@@ -12,33 +12,34 @@ import Foundation
 import Redux
 
 public class ThemedViewObserver: Observer {
+    // MARK: - Type Aliases
+
+    public typealias R = ThemedReducer
+
     // MARK: - Properties
 
-    public var type: ObserverType = .themedView
-    private let viewModel: ViewModel<ThemedReducer>
+    public let id = UUID()
+    public let observedValues: [any ObservableProtocol] = [Observables.themedViewAppearanceChanged]
+    public let viewModel: ViewModel<R>
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<ThemedReducer>) {
+    public init(_ viewModel: ViewModel<R>) {
         self.viewModel = viewModel
     }
 
-    // MARK: - On Change
+    // MARK: - Observer Conformance
+
+    public func linkObservables() {
+        Observers.link(observer: ThemedViewObserver.self, with: observedValues)
+    }
 
     public func onChange(of observable: Observable<Any>) {
-        if observable.value as? Nil != nil {
-            Logger.log(
-                "Triggered .\(observable.key.rawValue).",
-                domain: .observer,
-                metadata: [#file, #function, #line]
-            )
-        } else {
-            Logger.log(
-                "Observed change of .\(observable.key.rawValue).",
-                domain: .observer,
-                metadata: [#file, #function, #line]
-            )
-        }
+        Logger.log(
+            "\(observable.value as? Nil != nil ? "Triggered" : "Observed change of") .\(observable.key.rawValue).",
+            domain: .observer,
+            metadata: [self, #file, #function, #line]
+        )
 
         switch observable.key {
         case .themedViewAppearanceChanged:
@@ -47,7 +48,7 @@ public class ThemedViewObserver: Observer {
         }
     }
 
-    private func send(_ action: ThemedReducer.Action) {
+    public func send(_ action: R.Action) {
         @Dependency(\.mainQueue) var mainQueue: DispatchQueue
         mainQueue.async {
             Task { @MainActor in

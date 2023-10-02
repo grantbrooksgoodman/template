@@ -23,7 +23,7 @@ public class ConnectionAlertDelegate: AKConnectionAlertDelegate {
             "The internet connection is offline.",
             isReportable: false,
             extraParams: ["IsConnected": build.isOnline],
-            metadata: [#file, #function, #line]
+            metadata: [self, #file, #function, #line]
         )
 
         var settingsURL: URL?

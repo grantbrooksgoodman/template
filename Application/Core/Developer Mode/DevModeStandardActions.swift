@@ -64,19 +64,34 @@ public extension DevModeAction {
         }
 
         private static var overrideLanguageCodeAction: DevModeAction {
-            @Dependency(\.alertKitCore) var akCore: AKCore
+            func overrideLanguageCode() {
+                @Dependency(\.alertKitCore) var akCore: AKCore
+                @Dependency(\.coreKit) var core: CoreKit
 
-            func setLanguageCode(_ code: String) {
-                guard akCore.languageCodeIsLocked else {
-                    akCore.lockLanguageCode(to: code)
-                    return
+                func setLanguageCode(_ code: String) {
+                    guard akCore.languageCodeIsLocked else {
+                        akCore.lockLanguageCode(to: code)
+                        return
+                    }
+
+                    akCore.unlockLanguageCode(andSetTo: code)
                 }
 
-                akCore.unlockLanguageCode(andSetTo: code)
-            }
-
-            func overrideLanguageCode() {
-                @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
+                guard !akCore.languageCodeIsLocked else {
+                    setLanguageCode("en")
+                    AKConfirmationAlert(
+                        title: "Restore Language Code",
+                        message: "The language code will be unlocked and restored to the device's default.",
+                        confirmationStyle: .preferred,
+                        shouldTranslate: [.none]
+                    ).present { didConfirm in
+                        guard didConfirm == 1 else { return }
+                        RuntimeStorage.remove(.core(.overriddenLanguageCode))
+                        core.utils.restoreDeviceLanguageCode()
+                        core.hud.showSuccess()
+                    }
+                    return
+                }
 
                 setLanguageCode("en")
                 let languageCodePrompt = AKTextFieldAlert(
@@ -134,11 +149,11 @@ public extension DevModeAction {
                     RuntimeStorage.store(inputString, as: .core(.overriddenLanguageCode))
 
                     setLanguageCode(inputString)
-                    coreHUD.showSuccess()
+                    core.hud.showSuccess()
                 }
             }
 
-            return .init(title: "Override Language Code", perform: overrideLanguageCode)
+            return .init(title: "Override/Restore Language Code", perform: overrideLanguageCode)
         }
 
         private static var resetUserDefaultsAction: DevModeAction {
@@ -226,17 +241,12 @@ public extension DevModeAction {
         private static var toggleBuildInfoOverlayAction: DevModeAction {
             func toggleBuildInfoOverlay() {
                 @Dependency(\.userDefaults) var defaults: UserDefaults
+                @Dependency(\.uiApplication) var uiApplication: UIApplication
 
-                guard let overlayWindow = RuntimeStorage.topWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW") as? UIWindow else { return }
-                guard let currentValue = defaults.value(forKey: .core(.hidesBuildInfoOverlay)) as? Bool else {
-                    overlayWindow.isHidden.toggle()
-                    defaults.set(overlayWindow.isHidden, forKey: .core(.hidesBuildInfoOverlay))
-                    return
-                }
+                guard let overlayWindow = uiApplication.keyWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW") as? UIWindow else { return }
 
-                let toggledValue = !currentValue
-                overlayWindow.isHidden = toggledValue
-                defaults.set(toggledValue, forKey: .core(.hidesBuildInfoOverlay))
+                overlayWindow.isHidden.toggle()
+                defaults.set(overlayWindow.isHidden, forKey: .core(.hidesBuildInfoOverlay))
             }
 
             return .init(title: "Show/Hide Build Info Overlay", perform: toggleBuildInfoOverlay)

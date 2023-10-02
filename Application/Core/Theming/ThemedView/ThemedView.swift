@@ -44,11 +44,13 @@ private struct Themed: View {
     // MARK: - Properties
 
     @StateObject private var viewModel: ViewModel<ThemedReducer>
+    @StateObject private var observer: ViewObserver<ThemedViewObserver>
 
     // MARK: - Init
 
     public init(_ viewModel: ViewModel<ThemedReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
+        _observer = .init(wrappedValue: .init(.init(viewModel)))
     }
 
     // MARK: - View
@@ -56,8 +58,5 @@ private struct Themed: View {
     public var body: some View {
         AnyView(viewModel.body())
             .id(viewModel.viewID)
-            .onFirstAppear {
-                Observers.register(observer: ThemedViewObserver(viewModel))
-            }
     }
 }

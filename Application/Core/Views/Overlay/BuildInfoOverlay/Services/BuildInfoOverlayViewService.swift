@@ -83,7 +83,7 @@ public class BuildInfoOverlayViewService {
         // swiftlint:disable:next line_length
         messageToDisplay += "\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorized parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(calendar.dateComponents([.year], from: Date()).year!) NEOTechnica Corporation. All rights reserved."
 
-        let projectTitle = "Project \(build.codeName)"
+        let projectTitle = "Project *\(build.codeName)*"
         let viewBuildInformationString = "View Build Information"
 
         let enableOrDisable = build.developerModeEnabled ? "Disable" : "Enable"
@@ -99,15 +99,15 @@ public class BuildInfoOverlayViewService {
         ) { translations, exception in
             guard let translations else {
                 self.willPresentDisclaimerAlert = false
-                Logger.log(exception ?? .init(metadata: [#file, #function, #line]))
+                Logger.log(exception ?? .init(metadata: [self, #file, #function, #line]))
                 return
             }
 
             let controllerTitle = translations.first(where: { $0.input.value() == projectTitle })?.output ?? projectTitle
-            let controllerMessage = translations.first(where: { $0.input.value() == messageToDisplay })?.output.sanitized ?? messageToDisplay.sanitized
+            let controllerMessage = translations.first(where: { $0.input.value() == messageToDisplay })?.output ?? messageToDisplay
             let alertController = UIAlertController(
-                title: controllerTitle,
-                message: controllerMessage,
+                title: controllerTitle.sanitized,
+                message: controllerMessage.sanitized,
                 preferredStyle: .alert
             )
 
@@ -193,7 +193,8 @@ public class BuildInfoOverlayViewService {
                     forBug: false,
                     body: "Any general feedback is appreciated in the appropriate section.",
                     prompt: "General Feedback",
-                    metadata: [RuntimeStorage.presentedViewName ?? #file,
+                    metadata: [self,
+                               RuntimeStorage.presentedViewName ?? #file,
                                #function,
                                #line]
                 )
@@ -202,7 +203,8 @@ public class BuildInfoOverlayViewService {
                     forBug: true,
                     body: "In the appropriate section, please describe the error encountered and the steps to reproduce it.",
                     prompt: "Description/Steps to Reproduce",
-                    metadata: [RuntimeStorage.presentedViewName ?? #file,
+                    metadata: [self,
+                               RuntimeStorage.presentedViewName ?? #file,
                                #function,
                                #line]
                 )

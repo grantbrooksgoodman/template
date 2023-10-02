@@ -36,7 +36,6 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
         @Dependency(\.build) var build: Build
         @Dependency(\.userDefaults) var defaults: UserDefaults
-        @Dependency(\.mainBundle) var mainBundle: Bundle
 
         /* MARK: Defaults Keys & Logging Setup */
 
@@ -92,17 +91,16 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /* MARK: Localization Setup */
 
-        guard let filePath = mainBundle.url(forResource: "LocalizedStrings", withExtension: "plist"),
-              let data = try? Data(contentsOf: filePath),
-              let localizedStrings = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: [String: String]] else {
-            Logger.log(.init("Missing localized strings.", metadata: [#file, #function, #line]))
+        let localizedStrings = Localization.localizedStrings
+        guard !localizedStrings.isEmpty else {
+            Logger.log(.init("Missing localized strings.", metadata: [self, #file, #function, #line]))
             return
         }
 
         let unsupportedLanguageCodes = ["ba", "ceb", "jv", "la", "mr", "ms", "udm"]
         let supportedLanguages = localizedStrings["language_codes"]?.filter { !unsupportedLanguageCodes.contains($0.key) }
         guard let supportedLanguages else {
-            Logger.log(.init("No supported languages.", metadata: [#file, #function, #line]))
+            Logger.log(.init("No supported languages.", metadata: [self, #file, #function, #line]))
             return
         }
 
@@ -116,7 +114,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
             Logger.log(
                 .init(
                     "Unsupported language code; reverting to English.",
-                    metadata: [#file, #function, #line]
+                    metadata: [self, #file, #function, #line]
                 )
             )
             return

@@ -12,33 +12,34 @@ import Foundation
 import Redux
 
 public class BuildInfoOverlayViewObserver: Observer {
+    // MARK: - Type Aliases
+
+    public typealias R = BuildInfoOverlayReducer
+
     // MARK: - Properties
 
-    public var type: ObserverType = .buildInfoOverlay
-    private let viewModel: ViewModel<BuildInfoOverlayReducer>
+    public let id = UUID()
+    public let observedValues: [any ObservableProtocol] = [Observables.breadcrumbsDidCapture, Observables.isDeveloperModeEnabled]
+    public let viewModel: ViewModel<R>
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<BuildInfoOverlayReducer>) {
+    public init(_ viewModel: ViewModel<R>) {
         self.viewModel = viewModel
     }
 
-    // MARK: - On Change
+    // MARK: - Observer Conformance
+
+    public func linkObservables() {
+        Observers.link(observer: BuildInfoOverlayViewObserver.self, with: observedValues)
+    }
 
     public func onChange(of observable: Observable<Any>) {
-        if observable.value as? Nil != nil {
-            Logger.log(
-                "Triggered .\(observable.key.rawValue).",
-                domain: .observer,
-                metadata: [#file, #function, #line]
-            )
-        } else {
-            Logger.log(
-                "Observed change of .\(observable.key.rawValue).",
-                domain: .observer,
-                metadata: [#file, #function, #line]
-            )
-        }
+        Logger.log(
+            "\(observable.value as? Nil != nil ? "Triggered" : "Observed change of") .\(observable.key.rawValue).",
+            domain: .observer,
+            metadata: [self, #file, #function, #line]
+        )
 
         switch observable.key {
         case .breadcrumbsDidCapture:
@@ -52,7 +53,7 @@ public class BuildInfoOverlayViewObserver: Observer {
         }
     }
 
-    private func send(_ action: BuildInfoOverlayReducer.Action) {
+    public func send(_ action: R.Action) {
         @Dependency(\.mainQueue) var mainQueue: DispatchQueue
         mainQueue.async {
             Task { @MainActor in

@@ -10,7 +10,18 @@ import Foundation
 
 public typealias Nil = NSNull
 
-public class Observable<T> {
+public protocol ObservableProtocol {
+    // MARK: - Properties
+
+    var key: ObservableKey { get }
+
+    // MARK: - Methods
+
+    func clearObservers()
+    func setObservers(_ observers: [any Observer])
+}
+
+public class Observable<T>: ObservableProtocol {
     // MARK: - Properties
 
     public let key: ObservableKey
@@ -20,7 +31,7 @@ public class Observable<T> {
         }
     }
 
-    private var observers: [Observer] = []
+    private var observers: [any Observer] = []
 
     // MARK: - Object Lifecycle
 
@@ -30,28 +41,23 @@ public class Observable<T> {
     }
 
     deinit {
-        removeAllObservers()
-    }
-
-    // MARK: - Addition/Removal
-
-    public func addObserver(_ observer: Observer) {
-        guard !observers.contains(where: { $0.type == observer.type }) else { return }
-        observers.append(observer)
-    }
-
-    public func removeObserver(_ observer: Observer) {
-        observers.removeAll(where: { $0.type == observer.type })
-    }
-
-    public func removeAllObservers() {
-        observers = []
+        clearObservers()
     }
 
     // MARK: - Notification
 
-    private func notify(_ observers: [Observer]) {
+    public func notify(_ observers: [any Observer]) {
         observers.forEach { $0.onChange(of: .init(key, value as Any)) }
+    }
+
+    // MARK: - Setters
+
+    public func clearObservers() {
+        observers = []
+    }
+
+    public func setObservers(_ observers: [any Observer]) {
+        self.observers = observers
     }
 }
 

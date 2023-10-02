@@ -9,10 +9,18 @@
 /* Native */
 import Foundation
 
-public class RootNavigationCoordinator: ObservableObject {
-    @Published var page: RootPage = .sample
-}
-
 public enum RootPage {
     case sample
+}
+
+public class RootNavigationCoordinator: ObservableObject {
+    // MARK: - Properties
+
+    @Published public private(set) var page: RootPage = .sample
+
+    // MARK: - Methods
+
+    public func setPage(_ page: RootPage) {
+        self.page = page
+    }
 }
