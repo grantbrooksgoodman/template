@@ -28,7 +28,7 @@ public struct ExpiryOverlayView: View {
         .background(Color.black)
         .edgesIgnoringSafeArea(.all)
         .onAppear {
-            coreGCD.after(milliseconds: 1500) {
+            coreGCD.after(.milliseconds(1500)) {
                 akCore.present(.expiryAlert)
             }
         }

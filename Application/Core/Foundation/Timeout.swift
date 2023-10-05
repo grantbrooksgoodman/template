@@ -9,7 +9,7 @@
 import AlertKit
 import Redux
 
-public class Timeout {
+public final class Timeout {
     // MARK: - Dependencies
 
     @Dependency(\.build) private var build: Build
@@ -28,7 +28,7 @@ public class Timeout {
         _ callback: @escaping () -> Void = {}
     ) {
         self.callback = callback
-        coreGCD.after(seconds: .init(after.components.seconds)) {
+        coreGCD.after(after) {
             guard self.isValid else { return }
             self.invoke()
         }
@@ -39,7 +39,7 @@ public class Timeout {
         metadata: [Any]
     ) {
         self.metadata = metadata
-        coreGCD.after(seconds: .init(alertingAfter.components.seconds)) {
+        coreGCD.after(alertingAfter) {
             guard self.isValid else { return }
             self.presentTimeoutAlert()
         }

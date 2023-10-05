@@ -13,7 +13,7 @@ import AlertKit
 import Redux
 import Translator
 
-public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
+public final class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     // MARK: - Properties
 
     // Dependencies
@@ -181,16 +181,14 @@ public class ExpiryAlertDelegate: AKExpiryAlertDelegate {
         exitTimer?.invalidate()
         exitTimer = nil
 
-        core.ui.dismissAlertController()
-
         let alertController = UIAlertController(
             title: timeExpiredTitle,
             message: timeExpiredMessage,
             preferredStyle: .alert
         )
 
-        core.ui.present(alertController)
-        core.gcd.after(seconds: 5) { fatalError("Evaluation period ended") }
+        core.ui.present(alertController, forced: true)
+        core.gcd.after(.seconds(5)) { fatalError("Evaluation period ended") }
     }
 
     private func setAttributedExpiryMessage() {

@@ -13,7 +13,7 @@ import AlertKit
 import Redux
 import Translator
 
-public class TranslationDelegate: AKTranslationDelegate {
+public final class TranslationDelegate: AKTranslationDelegate {
     // MARK: - Dependencies
 
     @Dependency(\.translatorService) private var translator: TranslatorService

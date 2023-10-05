@@ -13,7 +13,7 @@ public enum RootPage {
     case sample
 }
 
-public class RootNavigationCoordinator: ObservableObject {
+public final class RootNavigationCoordinator: ObservableObject {
     // MARK: - Properties
 
     @Published public private(set) var page: RootPage = .sample

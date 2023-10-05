@@ -55,7 +55,7 @@ public extension TranslatorService {
         var didComplete = false
 
         if let hudConfig {
-            core.gcd.after(seconds: .init(hudConfig.appearsAfter.components.seconds)) {
+            core.gcd.after(hudConfig.appearsAfter) {
                 guard !didComplete else { return }
                 core.hud.showProgress()
                 guard hudConfig.isModal else { return }

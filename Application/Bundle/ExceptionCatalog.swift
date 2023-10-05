@@ -15,7 +15,7 @@ import Redux
 /**
  Use this enum to catalog application-specific ``Exception`` types and their corresponding hashlet values.
  */
-public enum TEException: String {
+public enum AppException: String {
     /* Add new cases here. */
 
     case timedOut = "DE75"
@@ -43,11 +43,11 @@ public extension Exception {
 
     // MARK: - Methods
 
-    func isEqual(to cataloggedException: TEException) -> Bool {
+    func isEqual(to cataloggedException: AppException) -> Bool {
         hashlet == cataloggedException.rawValue
     }
 
-    func isEqual(toAny in: [TEException]) -> Bool {
+    func isEqual(toAny in: [AppException]) -> Bool {
         !`in`.filter { $0.rawValue == hashlet }.isEmpty
     }
 }

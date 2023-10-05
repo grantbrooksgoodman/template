@@ -28,7 +28,7 @@ public struct LogFile {
     }
 }
 
-public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeViewControllerDelegate {
+public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeViewControllerDelegate {
     // MARK: - Dependencies
 
     @Dependency(\.alertKitCore) private var akCore: AKCore
@@ -70,14 +70,12 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
     // MARK: - AKReportDelegate Conformance
 
     public func fileReport(error: AKError) {
-        var injectedError = error
-        injectedError = inject(params: commonParams, into: error)
-
-        guard let data = getLogFileData(type: .error, error: injectedError) else {
+        let error = error.injecting(commonParams)
+        guard let data = getLogFileData(type: .error, error: error) else {
             Logger.log(
                 .init(
                     "Couldn't get log file data!",
-                    extraParams: ["OriginalMetadata": injectedError.metadata],
+                    extraParams: ["OriginalMetadata": error.metadata],
                     metadata: [self, #file, #function, #line]
                 ),
                 with: .errorAlert
@@ -188,6 +186,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
                         "project_id": build.projectID]
 
         guard let error = error else {
+            sections["extra_parameters"] = (commonParams as [String: Any]).withCapitalizedKeys.description.replacingOccurrences(of: "\"", with: "'")
             if let json = getJSON(from: sections) {
                 return json
             }
@@ -222,33 +221,6 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         return nil
     }
 
-    private func putFile(_ logFile: LogFile) -> String {
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let path = documentDirectory.appending("/\(logFile.fileName).log")
-
-        guard !fileManager.fileExists(atPath: path) else {
-            Logger.log(
-                .init(
-                    "File already exists.",
-                    extraParams: ["FilePath": path],
-                    metadata: [self, #file, #function, #line]
-                ))
-            return path
-        }
-
-        guard NSData(data: logFile.data).write(toFile: path, atomically: true) else {
-            Logger.log(
-                .init(
-                    "Couldn't write to path!",
-                    extraParams: ["FilePath": path],
-                    metadata: [self, #file, #function, #line]
-                ))
-            return path
-        }
-
-        return path
-    }
-
     // MARK: - MFMailComposeViewControllerDelegate Conformance
 
     public func mailComposeController(
@@ -257,7 +229,7 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         error: Error?
     ) {
         controller.dismiss(animated: true) {
-            self.core.gcd.after(seconds: 1) {
+            self.core.gcd.after(.seconds(1)) {
                 switch result {
                 case .sent:
                     AKAlert(
@@ -321,20 +293,6 @@ public class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeVi
         }
 
         core.ui.present(composeController)
-    }
-
-    private func inject(params: [String: Any], into akError: AKError) -> AKError {
-        var mutable = akError
-
-        guard var existingParams = mutable.extraParams else {
-            mutable.extraParams = params
-            return mutable
-        }
-
-        params.forEach { existingParams[$0.key] = $0.value }
-
-        mutable.extraParams = existingParams
-        return mutable
     }
 }
 

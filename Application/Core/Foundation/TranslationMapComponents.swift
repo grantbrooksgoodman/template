@@ -61,13 +61,13 @@ public struct TranslationOutputMap: Equatable {
 
 public extension TranslatedLabelStrings {
     static var defaultOutputMap: [TranslationOutputMap] {
-        keyPairs.map { $0.defaultOutputMap }
+        keyPairs.map(\.defaultOutputMap)
     }
 }
 
 public extension TranslatorService {
     func resolve(_ strings: TranslatedLabelStrings.Type) async -> Callback<[TranslationOutputMap], Exception> {
-        let getTranslationsResult = await getTranslations(for: strings.keyPairs.map { $0.input }, languagePair: .system)
+        let getTranslationsResult = await getTranslations(for: strings.keyPairs.map(\.input), languagePair: .system)
 
         switch getTranslationsResult {
         case let .success(translations):

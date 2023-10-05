@@ -85,7 +85,7 @@ public enum Logger {
             return
         }
 
-        let typeName = String.from(exception.metadata[0]) // swiftlint:disable force_cast
+        let typeName = String(exception.metadata[0]) // swiftlint:disable force_cast
         let fileName = akCore.fileName(for: exception.metadata[1] as! String)
         let functionName = (exception.metadata[2] as! String).components(separatedBy: "(")[0]
         let lineNumber = exception.metadata[3] as! Int // swiftlint:enable force_cast
@@ -132,7 +132,7 @@ public enum Logger {
             return
         }
 
-        let typeName = String.from(metadata[0]) // swiftlint:disable force_cast
+        let typeName = String(metadata[0]) // swiftlint:disable force_cast
         let fileName = akCore.fileName(for: metadata[1] as! String)
         let functionName = (metadata[2] as! String).components(separatedBy: "(")[0]
         let lineNumber = metadata[3] as! Int // swiftlint:enable force_cast
@@ -170,7 +170,7 @@ public enum Logger {
             return
         }
 
-        let typeName = String.from(metadata[0]) // swiftlint:disable force_cast
+        let typeName = String(metadata[0]) // swiftlint:disable force_cast
         let fileName = akCore.fileName(for: metadata[1] as! String)
         let functionName = (metadata[2] as! String).components(separatedBy: "(")[0]
         let lineNumber = metadata[3] as! Int // swiftlint:enable force_cast
@@ -338,7 +338,7 @@ public enum Logger {
             ).present()
 
         case let .toast(icon: icon):
-            core.gcd.after(seconds: 1) { core.hud.flash(userFacingDescriptor, image: icon) }
+            core.gcd.after(.seconds(1)) { core.hud.flash(userFacingDescriptor, image: icon) }
         }
     }
 }

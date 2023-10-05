@@ -26,8 +26,8 @@ public struct ColoredItem: Equatable {
 public struct ColorSet: Equatable {
     // MARK: - Properties
 
-    public private(set) var primary: UIColor!
-    public private(set) var variant: UIColor?
+    public let primary: UIColor!
+    public let variant: UIColor?
 
     // MARK: - Init
 

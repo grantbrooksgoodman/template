@@ -8,7 +8,7 @@
 /* Native */
 import Foundation
 
-public class ViewObserver<O: Observer>: ObservableObject {
+public final class ViewObserver<O: Observer>: ObservableObject {
     // MARK: - Properties
 
     private let observer: O

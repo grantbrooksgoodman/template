@@ -17,8 +17,8 @@ public enum ThemeService {
 
     public private(set) static var currentTheme = AppTheme.default.theme {
         didSet {
-            @Dependency(\.userDefaults) var defaults: UserDefaults
-            defaults.set(currentTheme.name, forKey: .core(.currentTheme))
+            @Persistent(.core(.currentThemeID)) var currentThemeID: String?
+            currentThemeID = currentTheme.hash
             Observables.themedViewAppearanceChanged.trigger()
         }
     }
@@ -26,7 +26,7 @@ public enum ThemeService {
     // MARK: - Setter
 
     public static func setTheme(_ theme: UITheme, checkStyle: Bool = true) {
-        @Dependency(\.userDefaults) var defaults: UserDefaults
+        @Persistent(.core(.pendingThemeID)) var pendingThemeID: String?
 
         guard checkStyle else {
             currentTheme = theme
@@ -38,13 +38,13 @@ public enum ThemeService {
                 message: "The new appearance will take effect the next time you restart the app.",
                 cancelButtonTitle: "Dismiss"
             ).present { _ in
-                defaults.set(theme.name, forKey: .core(.pendingThemeName))
+                pendingThemeID = theme.hash
             }
 
             return
         }
 
-        defaults.set(nil, forKey: .core(.pendingThemeName))
+        pendingThemeID = nil
         currentTheme = theme
     }
 }

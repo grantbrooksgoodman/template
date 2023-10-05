@@ -21,7 +21,7 @@ public protocol ObservableProtocol {
     func setObservers(_ observers: [any Observer])
 }
 
-public class Observable<T>: ObservableProtocol {
+public final class Observable<T>: ObservableProtocol {
     // MARK: - Properties
 
     public let key: ObservableKey

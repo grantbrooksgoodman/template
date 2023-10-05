@@ -14,7 +14,7 @@ import AlertKit
 import Redux
 import Translator
 
-public class BuildInfoOverlayViewService {
+public final class BuildInfoOverlayViewService {
     // MARK: - Dependencies
 
     @Dependency(\.alertKitCore) private var akCore: AKCore

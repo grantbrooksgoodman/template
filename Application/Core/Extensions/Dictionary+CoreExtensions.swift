@@ -25,6 +25,6 @@ public extension Dictionary where Key == String, Value == Any {
 
 public extension Dictionary where Value: Equatable {
     func keys(for value: Value) -> [Key] {
-        filter { $1 == value }.map { $0.0 }
+        filter { $1 == value }.map(\.0)
     }
 }

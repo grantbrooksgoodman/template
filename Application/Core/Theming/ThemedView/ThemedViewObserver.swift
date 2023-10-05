@@ -11,7 +11,7 @@ import Foundation
 /* 3rd-party */
 import Redux
 
-public class ThemedViewObserver: Observer {
+public struct ThemedViewObserver: Observer {
     // MARK: - Type Aliases
 
     public typealias R = ThemedReducer
@@ -31,7 +31,7 @@ public class ThemedViewObserver: Observer {
     // MARK: - Observer Conformance
 
     public func linkObservables() {
-        Observers.link(observer: ThemedViewObserver.self, with: observedValues)
+        Observers.link(ThemedViewObserver.self, with: observedValues)
     }
 
     public func onChange(of observable: Observable<Any>) {

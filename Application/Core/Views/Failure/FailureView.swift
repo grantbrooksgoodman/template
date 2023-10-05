@@ -36,7 +36,7 @@ public struct FailureView: View {
             VStack {
                 Image(systemName: Strings.imageSystemName)
                     .renderingMode(.template)
-                    .foregroundColor(Colors.imageForegroundColor)
+                    .foregroundStyle(Colors.imageForegroundColor)
                     .font(.system(size: Floats.imageSystemSize))
                     .padding(.bottom, Floats.imageBottomPadding)
 
@@ -53,7 +53,7 @@ public struct FailureView: View {
                     } label: {
                         Text(viewModel.retryButtonText)
                             .font(.system(size: Floats.buttonLabelFontSize, weight: .semibold))
-                            .foregroundColor(.accent)
+                            .foregroundStyle(Color.accent)
                     }
                 }
 
@@ -62,7 +62,7 @@ public struct FailureView: View {
                 } label: {
                     Text(viewModel.reportBugButtonText)
                         .font(.system(size: Floats.buttonLabelFontSize))
-                        .foregroundColor(viewModel.didReportBug ? Colors.reportBugButtonDisabledColor : .accent)
+                        .foregroundStyle(viewModel.didReportBug ? Colors.reportBugButtonDisabledColor : Color.accent)
                 }
                 .padding(.top, Floats.reportBugButtonTopPadding)
                 .disabled(viewModel.didReportBug)

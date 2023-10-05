@@ -45,15 +45,9 @@ public struct CoreKit {
 
         /* MARK: Methods */
 
-        public func after(milliseconds: Int, do: @escaping () -> Void) {
-            mainQueue.asyncAfter(deadline: .now() + .milliseconds(milliseconds)) {
-                `do`()
-            }
-        }
-
-        public func after(seconds: Int, do: @escaping () -> Void) {
-            mainQueue.asyncAfter(deadline: .now() + .seconds(seconds)) {
-                `do`()
+        public func after(_ duration: Duration, do effect: @escaping () -> Void) {
+            mainQueue.asyncAfter(deadline: .now() + .milliseconds(.init(duration.milliseconds))) {
+                effect()
             }
         }
     }
@@ -74,7 +68,7 @@ public struct CoreKit {
 
         /* MARK: Methods */
 
-        public func flash(_ text: String, image: HUDImage) {
+        public func flash(_ text: String? = nil, image: HUDImage) {
             var alertIcon: AlertIcon?
             var animatedIcon: AnimatedIcon?
 
@@ -85,49 +79,43 @@ public struct CoreKit {
                 alertIcon = .exclamation
             }
 
-            var text = text
-            if text.hasSuffix(".") {
-                text = text.dropSuffix()
+            var resolvedText: String?
+            if let text,
+               text.hasSuffix(".") {
+                resolvedText = text.dropSuffix()
             }
 
             guard let alertIcon else {
                 guard let animatedIcon else { return }
-                mainQueue.async { ProgressHUD.show(text, icon: animatedIcon, interaction: true) }
+                mainQueue.async { ProgressHUD.show(resolvedText, icon: animatedIcon, interaction: true) }
                 return
             }
 
-            mainQueue.async { ProgressHUD.show(text, icon: alertIcon, interaction: true) }
+            mainQueue.async { ProgressHUD.show(resolvedText, icon: alertIcon, interaction: true) }
         }
 
-        public func hide(delay: Double? = nil) {
+        public func hide(after delay: Duration? = nil) {
             let gcd: GCD = .init()
 
-            guard let delay = delay else {
+            guard let delay else {
                 ProgressHUD.dismiss()
-                gcd.after(milliseconds: 250) { ProgressHUD.remove() }
+                gcd.after(.milliseconds(250)) { ProgressHUD.remove() }
                 return
             }
 
-            let millisecondDelay = Int(delay * 1000)
-            gcd.after(milliseconds: millisecondDelay) {
+            gcd.after(delay) {
                 ProgressHUD.dismiss()
-                gcd.after(milliseconds: 250) { ProgressHUD.remove() }
+                gcd.after(.milliseconds(250)) { ProgressHUD.remove() }
             }
         }
 
-        public func showProgress(delay: Double? = nil, text: String? = nil) {
-            guard let delay = delay else {
-                mainQueue.async {
-                    ProgressHUD.show(text ?? nil)
-                }
-
+        public func showProgress(after delay: Duration? = nil, text: String? = nil) {
+            guard let delay else {
+                mainQueue.async { ProgressHUD.show(text) }
                 return
             }
 
-            let millisecondDelay = Int(delay * 1000)
-            GCD().after(milliseconds: millisecondDelay) {
-                ProgressHUD.show(text ?? nil)
-            }
+            GCD().after(delay) { ProgressHUD.show(text) }
         }
 
         public func showSuccess(text: String? = nil) {
@@ -245,7 +233,7 @@ public struct CoreKit {
             embedded: Bool
         ) {
             guard !isPresentingAlertController else {
-                GCD().after(seconds: 1) { queuePresentation(of: viewController, animated: animated, embedded: embedded) }
+                GCD().after(.seconds(1)) { queuePresentation(of: viewController, animated: animated, embedded: embedded) }
                 return
             }
 

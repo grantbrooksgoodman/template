@@ -13,7 +13,7 @@ import Redux
 
 public enum BuildInfoOverlayViewServiceDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> BuildInfoOverlayViewService {
-        BuildInfoOverlayViewService()
+        .init()
     }
 }
 

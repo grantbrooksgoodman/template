@@ -12,7 +12,7 @@ import UIKit
 import AlertKit
 import Redux
 
-public class ConnectionAlertDelegate: AKConnectionAlertDelegate {
+public final class ConnectionAlertDelegate: AKConnectionAlertDelegate {
     // MARK: - AKConnectionAlertDelegate Conformance
 
     public func presentConnectionAlert() {

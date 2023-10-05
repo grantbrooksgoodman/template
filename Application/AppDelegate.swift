@@ -14,7 +14,7 @@ import AlertKit
 import Redux
 
 @main
-public class AppDelegate: UIResponder, UIApplicationDelegate {
+public final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - UIApplication
 
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -35,24 +35,26 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         @Dependency(\.alertKitCore) var akCore: AKCore
         @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
         @Dependency(\.build) var build: Build
-        @Dependency(\.userDefaults) var defaults: UserDefaults
 
         /* MARK: Defaults Keys & Logging Setup */
 
         RuntimeStorage.store(BuildConfig.languageCode, as: .core(.languageCode))
         Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
 
+        @Persistent(.core(.breadcrumbsCaptureEnabled)) var breadcrumbsCaptureEnabled: Bool?
+        @Persistent(.core(.breadcrumbsCapturesAllViews)) var breadcrumbsCapturesAllViews: Bool?
         if build.stage == .generalRelease {
-            defaults.set(false, forKey: .core(.breadcrumbsCaptureEnabled))
-            defaults.removeObject(forKey: .core(.breadcrumbsCapturesAllViews))
-        } else if let breadcrumbsCaptureEnabled = defaults.value(forKey: .core(.breadcrumbsCaptureEnabled)) as? Bool,
-                  let breadcrumbsCapturesAllViews = defaults.value(forKey: .core(.breadcrumbsCapturesAllViews)) as? Bool,
+            breadcrumbsCaptureEnabled = false
+            breadcrumbsCapturesAllViews = nil
+        } else if let breadcrumbsCaptureEnabled,
+                  let breadcrumbsCapturesAllViews,
                   breadcrumbsCaptureEnabled {
             breadcrumbs.startCapture(uniqueViewsOnly: !breadcrumbsCapturesAllViews)
         }
 
-        if defaults.value(forKey: .core(.hidesBuildInfoOverlay)) as? Bool == nil {
-            defaults.set(false, forKey: .core(.hidesBuildInfoOverlay))
+        @Persistent(.core(.hidesBuildInfoOverlay)) var hidesBuildInfoOverlay: Bool?
+        if hidesBuildInfoOverlay == nil {
+            hidesBuildInfoOverlay = false
         }
 
         /* MARK: Developer Mode Setup */
@@ -62,16 +64,18 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /* MARK: Theme Setup */
 
-        if let themeName = defaults.value(forKey: .core(.pendingThemeName)) as? String,
-           let correspondingCase = AppTheme.allCases.first(where: { $0.theme.name == themeName }) {
+        @Persistent(.core(.pendingThemeID)) var pendingThemeID: String?
+        @Persistent(.core(.currentThemeID)) var currentThemeID: String?
+
+        if let themeID = pendingThemeID,
+           let correspondingCase = AppTheme.allCases.first(where: { $0.theme.hash == themeID }) {
             ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
-            defaults.removeObject(forKey: .core(.pendingThemeName))
-        } else if let themeName = defaults.value(forKey: .core(.currentTheme)) as? String,
-                  let correspondingCase = AppTheme.allCases.first(where: { $0.theme.name == themeName }) {
+            pendingThemeID = nil
+        } else if let currentThemeID,
+                  let correspondingCase = AppTheme.allCases.first(where: { $0.theme.hash == currentThemeID }) {
             ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
         } else {
-            defaults.set(AppTheme.default.theme.name, forKey: .core(.currentTheme))
-            ThemeService.setTheme(AppTheme.default.theme, checkStyle: false)
+            currentThemeID = AppTheme.default.theme.hash
         }
 
         /* MARK: AlertKit Setup */

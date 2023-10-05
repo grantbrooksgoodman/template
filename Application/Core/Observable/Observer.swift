@@ -37,9 +37,9 @@ public enum Observers {
 
     // MARK: - Association
 
-    public static func link<O: Observer>(observer: O.Type, with observables: [any ObservableProtocol]) {
-        let keys = observables.map { $0.key.rawValue }
-        guard let observers = instances.filter({ Swift.type(of: $0) == observer }) as? [O],
+    public static func link<O: Observer>(_ observerType: O.Type, with observables: [any ObservableProtocol]) {
+        let keys = observables.map(\.key.rawValue)
+        guard let observers = instances.filter({ Swift.type(of: $0) == observerType }) as? [O],
               !observers.isEmpty else {
             logClearedObservers(keys)
             observables.forEach { $0.clearObservers() }

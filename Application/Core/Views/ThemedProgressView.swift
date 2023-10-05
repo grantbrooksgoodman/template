@@ -13,7 +13,7 @@ import SwiftUI
 import Redux
 
 public struct ThemedProgressView: View {
-    // MARK: - Init
+    // MARK: - View
 
     public var body: some View {
         ThemedView {

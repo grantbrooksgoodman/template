@@ -11,7 +11,7 @@ import Foundation
 /* 3rd-party */
 import Redux
 
-public class Build {
+public final class Build {
     // MARK: - Types
 
     public enum Stage: String {

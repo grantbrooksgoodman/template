@@ -53,7 +53,7 @@ public enum AppTheme: CaseIterable {
 /**
  Use this enum to define new color types for specific theme items.
  */
-public enum ColoredItemType: Equatable {
+public enum ColoredItemType: String, Equatable {
     case accent
     case background
 

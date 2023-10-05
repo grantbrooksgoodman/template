@@ -16,7 +16,6 @@ public struct BuildInfoOverlayReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.build) private var build: Build
-    @Dependency(\.userDefaults) private var defaults: UserDefaults
     @Dependency(\.buildInfoOverlayViewService) private var service: BuildInfoOverlayViewService
 
     // MARK: - Actions
@@ -45,7 +44,6 @@ public struct BuildInfoOverlayReducer: Reducer {
 
         // String
         @Localized(.sendFeedback) public var sendFeedbackButtonText: String
-
         public var buildInfoButtonText = ""
 
         // Other
@@ -70,7 +68,9 @@ public struct BuildInfoOverlayReducer: Reducer {
         switch event {
         case .action(.viewAppeared):
             state.buildInfoButtonText = "\(build.codeName) \(build.bundleVersion) (\(String(build.buildNumber))\(build.stage.shortString))"
-            guard let defaultsValue = defaults.value(forKey: .core(.developerModeEnabled)) as? Bool else { return .none }
+
+            @Persistent(.core(.developerModeEnabled)) var defaultsValue: Bool?
+            guard let defaultsValue else { return .none }
             state.isDeveloperModeEnabled = defaultsValue
 
         case .action(.buildInfoButtonTapped):

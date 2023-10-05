@@ -12,12 +12,23 @@ import UIKit
 /* 3rd-party */
 import Redux
 
-public struct UITheme: Equatable {
+public struct UITheme: Equatable, CompressedHashable {
     // MARK: - Properties
 
-    public private(set) var name: String
-    public private(set) var items: [ColoredItem]
-    public private(set) var style: UIUserInterfaceStyle
+    public let name: String
+    public let items: [ColoredItem]
+    public let style: UIUserInterfaceStyle
+
+    // MARK: - CompressedHashable Conformance
+
+    public var hashFactors: [String] {
+        var factors = [String]()
+        factors.append(name)
+        factors.append(contentsOf: items.map { ($0.set.variant ?? $0.set.primary).accessibilityName })
+        factors.append(contentsOf: items.map(\.type.rawValue))
+        factors.append(.init(style.rawValue))
+        return factors
+    }
 
     // MARK: - Init
 
@@ -43,7 +54,7 @@ public struct UITheme: Equatable {
     // MARK: - Auxiliary
 
     private func containsDuplicates(items: [ColoredItem]) -> Bool {
-        let types = items.map { $0.type }
+        let types = items.map(\.type)
         return types.unique.count != types.count
     }
 }

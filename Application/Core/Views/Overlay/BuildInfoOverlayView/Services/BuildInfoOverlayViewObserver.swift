@@ -11,7 +11,7 @@ import Foundation
 /* 3rd-party */
 import Redux
 
-public class BuildInfoOverlayViewObserver: Observer {
+public struct BuildInfoOverlayViewObserver: Observer {
     // MARK: - Type Aliases
 
     public typealias R = BuildInfoOverlayReducer
@@ -31,7 +31,7 @@ public class BuildInfoOverlayViewObserver: Observer {
     // MARK: - Observer Conformance
 
     public func linkObservables() {
-        Observers.link(observer: BuildInfoOverlayViewObserver.self, with: observedValues)
+        Observers.link(BuildInfoOverlayViewObserver.self, with: observedValues)
     }
 
     public func onChange(of observable: Observable<Any>) {

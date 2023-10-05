@@ -175,18 +175,20 @@ public enum DevModeService {
     private static func toggleDeveloperMode(enabled: Bool) {
         @Dependency(\.build) var build: Build
         @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
-        @Dependency(\.userDefaults) var defaults: UserDefaults
         @Dependency(\.uiApplication) var uiApplication: UIApplication
 
+        @Persistent(.core(.hidesBuildInfoOverlay)) var hidesBuildInfoOverlay: Bool?
         if !enabled,
-           let hidesBuildInfoOverlay = defaults.value(forKey: .core(.hidesBuildInfoOverlay)) as? Bool,
-           hidesBuildInfoOverlay {
+           let hidesOverlay = hidesBuildInfoOverlay,
+           hidesOverlay {
             uiApplication.keyWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW")?.isHidden = false
-            defaults.set(false, forKey: .core(.hidesBuildInfoOverlay))
+            hidesBuildInfoOverlay = false
         }
 
+        @Persistent(.core(.developerModeEnabled)) var developerModeEnabled: Bool?
+        developerModeEnabled = enabled
+
         build.setDeveloperModeEnabled(to: enabled)
-        defaults.set(enabled, forKey: .core(.developerModeEnabled))
         Observables.isDeveloperModeEnabled.value = enabled
         coreHUD.showSuccess(text: "Developer Mode \(enabled ? "Enabled" : "Disabled")")
     }

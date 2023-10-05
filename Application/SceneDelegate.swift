@@ -13,7 +13,7 @@ import UIKit
 /* 3rd-party */
 import Redux
 
-public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecognizerDelegate {
+public final class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecognizerDelegate {
     // MARK: - Properties
 
     // UIWindow
@@ -34,7 +34,6 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
 
         @Dependency(\.build) var build: Build
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
-        @Dependency(\.userDefaults) var defaults: UserDefaults
         @Dependency(\.uiApplication) var uiApplication: UIApplication
 
         // Create the SwiftUI view that provides the window contents.
@@ -69,10 +68,11 @@ public class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecogni
         window.addGestureRecognizer(tapGesture)
         window.addSubview(buildInfoOverlayWindow)
 
-        if let shouldHide = defaults.value(forKey: .core(.hidesBuildInfoOverlay)) as? Bool,
+        @Persistent(.core(.hidesBuildInfoOverlay)) var hidesBuildInfoOverlay: Bool?
+        if let shouldHide = hidesBuildInfoOverlay,
            shouldHide {
             guard build.developerModeEnabled else {
-                defaults.set(false, forKey: .core(.hidesBuildInfoOverlay))
+                hidesBuildInfoOverlay = false
                 return
             }
 

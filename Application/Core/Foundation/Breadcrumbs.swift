@@ -12,7 +12,7 @@ import UIKit
 /* 3rd-party */
 import Redux
 
-public class Breadcrumbs {
+public final class Breadcrumbs {
     // MARK: - Properties
 
     // Array
@@ -65,7 +65,7 @@ public class Breadcrumbs {
             @Dependency(\.coreKit.gcd) var coreGCD: CoreKit.GCD
             guard isCapturing else { return }
             capture()
-            coreGCD.after(seconds: 10) { continuallyCapture() }
+            coreGCD.after(.seconds(10)) { continuallyCapture() }
         }
 
         continuallyCapture()

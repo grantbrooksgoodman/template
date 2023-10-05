@@ -212,7 +212,7 @@ public extension UIView {
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
         @Dependency(\.mainQueue) var mainQueue: DispatchQueue
 
-        subviews.filter { $0.tag == coreUI.semTag(for: string) }.forEach { subview in
+        for subview in subviews where subview.tag == coreUI.semTag(for: string) {
             mainQueue.async {
                 guard animated else {
                     subview.removeFromSuperview()

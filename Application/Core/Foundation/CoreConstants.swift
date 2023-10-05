@@ -63,9 +63,9 @@ public extension UserDefaultsKeyDomain {
     enum CoreDefaultsKey: String {
         case breadcrumbsCaptureEnabled
         case breadcrumbsCapturesAllViews
-        case currentTheme
+        case currentThemeID
         case developerModeEnabled
         case hidesBuildInfoOverlay
-        case pendingThemeName
+        case pendingThemeID
     }
 }

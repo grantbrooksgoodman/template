@@ -49,7 +49,8 @@ public struct Exception: Equatable, Exceptionable {
         self.extraParams = extraParams
         self.metadata = metadata
 
-        hashlet = getHashlet(for: self.descriptor)
+        guard let hashlet = getHashlet(for: self.descriptor) else { fatalError("Failed to generate hashlet") }
+        self.hashlet = hashlet
         metaID = getMetaID(for: metadata)
 
         // #warning("Is the self filter necessary?")
@@ -99,7 +100,8 @@ public struct Exception: Equatable, Exceptionable {
 
         self.extraParams = params.withCapitalizedKeys
 
-        hashlet = getHashlet(for: error.staticIdentifier)
+        guard let hashlet = getHashlet(for: error.staticIdentifier) else { fatalError("Failed to generate hashlet") }
+        self.hashlet = hashlet
         metaID = getMetaID(for: metadata)
 
         self.underlyingExceptions = underlyingExceptions?.unique.filter { $0 != self }
@@ -155,7 +157,7 @@ public struct Exception: Equatable, Exceptionable {
 
     // MARK: - Auxiliary
 
-    private func getHashlet(for descriptor: String) -> String {
+    private func getHashlet(for descriptor: String) -> String? {
         var hashlet = ""
 
         let stripWords = ["a", "an", "is", "that", "the", "this", "was"]
@@ -175,6 +177,9 @@ public struct Exception: Equatable, Exceptionable {
         } else {
             hashlet = SHA256.hash(data: Data(hashlet.utf8)).compactMap { String(format: "%02x", $0) }.joined()
         }
+
+        guard !hashlet.isEmpty,
+              hashlet.count > 2 else { return nil }
 
         let count = hashlet.components.count
         let prefix = hashlet.components[0 ... 1]
@@ -253,31 +258,6 @@ public struct Exception: Equatable, Exceptionable {
     }
 }
 
-public extension AKError {
-    init(_ exception: Exception) {
-        let descriptor = exception.userFacingDescriptor
-        var params: [String: Any] = ["Descriptor": exception.descriptor,
-                                     "Hashlet": exception.hashlet!]
-
-        if let extraParams = exception.extraParams,
-           !extraParams.isEmpty {
-            extraParams.forEach { params[$0.key] = $0.value }
-        }
-
-        if let underlyingExceptions = exception.underlyingExceptions,
-           !underlyingExceptions.isEmpty {
-            params["UnderlyingExceptions"] = underlyingExceptions.referenceCodes
-        }
-
-        self.init(
-            descriptor,
-            isReportable: exception.isReportable,
-            extraParams: params.withCapitalizedKeys,
-            metadata: exception.metadata
-        )
-    }
-}
-
 public extension Array where Element == Exception {
     // MARK: - Properties
 
@@ -288,9 +268,7 @@ public extension Array where Element == Exception {
         guard !isEmpty else { return nil }
         var finalException = last!
         guard count > 1 else { return finalException }
-
         Array(reversed()[1 ... count - 1]).unique.forEach { finalException = finalException.appending(underlyingException: $0) }
-
         return finalException
     }
 

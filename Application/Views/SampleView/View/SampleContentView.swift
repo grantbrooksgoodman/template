@@ -31,11 +31,11 @@ public struct SampleContentView: View {
             VStack {
                 Text(viewModel.strings.value(for: .titleLabelText))
                     .font(.headline)
-                    .foregroundColor(.titleText)
+                    .foregroundStyle(Color.titleText)
 
                 Text(viewModel.strings.value(for: .subtitleLabelText))
                     .font(.subheadline)
-                    .foregroundColor(.subtitleText)
+                    .foregroundStyle(Color.subtitleText)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)

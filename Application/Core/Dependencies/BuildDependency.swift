@@ -13,13 +13,13 @@ import Redux
 
 public enum BuildDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> Build {
-        @Dependency(\.userDefaults) var defaults: UserDefaults
         typealias Config = BuildConfig
 
         var developerModeEnabled = false
-        if let defaultsValue = defaults.value(forKey: .core(.developerModeEnabled)) as? Bool {
-            developerModeEnabled = Config.stage == .generalRelease ? false : defaultsValue
-            defaults.set(developerModeEnabled, forKey: .core(.developerModeEnabled))
+        @Persistent(.core(.developerModeEnabled)) var defaultsValue: Bool?
+        if let value = defaultsValue {
+            developerModeEnabled = Config.stage == .generalRelease ? false : value
+            defaultsValue = developerModeEnabled
         }
 
         return .init(

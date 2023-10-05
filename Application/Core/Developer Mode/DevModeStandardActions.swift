@@ -163,7 +163,7 @@ public extension DevModeAction {
 
                 defaults.reset(keeping: [.core(.breadcrumbsCaptureEnabled),
                                          .core(.breadcrumbsCapturesAllViews),
-                                         .core(.currentTheme),
+                                         .core(.currentThemeID),
                                          .core(.developerModeEnabled),
                                          .core(.hidesBuildInfoOverlay)])
                 defaults.set(true, forKey: .core(.developerModeEnabled))
@@ -178,7 +178,9 @@ public extension DevModeAction {
 
             func toggleBreadcrumbs() {
                 @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
-                @Dependency(\.userDefaults) var defaults: UserDefaults
+
+                @Persistent(.core(.breadcrumbsCaptureEnabled)) var breadcrumbsCaptureEnabled: Bool?
+                @Persistent(.core(.breadcrumbsCapturesAllViews)) var breadcrumbsCapturesAllViews: Bool?
 
                 guard !breadcrumbs.isCapturing else {
                     AKConfirmationAlert(
@@ -187,7 +189,7 @@ public extension DevModeAction {
                         shouldTranslate: [.none]
                     ).present { didConfirm in
                         guard didConfirm == 1 else { return }
-                        defaults.set(false, forKey: .core(.breadcrumbsCaptureEnabled))
+                        breadcrumbsCaptureEnabled = false
 
                         if let exception = breadcrumbs.stopCapture() {
                             Logger.log(exception, with: .errorAlert)
@@ -214,14 +216,14 @@ public extension DevModeAction {
                 alert.present { actionID in
                     guard actionID != -1 else { return }
 
-                    defaults.set(true, forKey: .core(.breadcrumbsCaptureEnabled))
+                    breadcrumbsCaptureEnabled = true
 
                     var uniqueViewsOnly = true
                     if actionID == alert.actions.first(where: { $0.title == "All Views" })?.identifier {
-                        defaults.set(true, forKey: .core(.breadcrumbsCapturesAllViews))
+                        breadcrumbsCapturesAllViews = true
                         uniqueViewsOnly = false
                     } else {
-                        defaults.set(false, forKey: .core(.breadcrumbsCapturesAllViews))
+                        breadcrumbsCapturesAllViews = false
                     }
 
                     if let exception = breadcrumbs.startCapture(uniqueViewsOnly: uniqueViewsOnly) {
@@ -240,13 +242,13 @@ public extension DevModeAction {
 
         private static var toggleBuildInfoOverlayAction: DevModeAction {
             func toggleBuildInfoOverlay() {
-                @Dependency(\.userDefaults) var defaults: UserDefaults
                 @Dependency(\.uiApplication) var uiApplication: UIApplication
 
                 guard let overlayWindow = uiApplication.keyWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW") as? UIWindow else { return }
 
                 overlayWindow.isHidden.toggle()
-                defaults.set(overlayWindow.isHidden, forKey: .core(.hidesBuildInfoOverlay))
+                @Persistent(.core(.hidesBuildInfoOverlay)) var hidesBuildInfoOverlay: Bool?
+                hidesBuildInfoOverlay = overlayWindow.isHidden
             }
 
             return .init(title: "Show/Hide Build Info Overlay", perform: toggleBuildInfoOverlay)

@@ -47,7 +47,7 @@ public extension Color {
 /**
  This class can be used to access your custom `UIColors` in SwiftUI and keep them in sync.
  */
-public class ColorProvider: ObservableObject {
+public final class ColorProvider: ObservableObject {
     // MARK: - Properties
 
     @Published public var accentColor = binding(with: .accent)
@@ -85,7 +85,7 @@ public class ColorProvider: ObservableObject {
         @Dependency(\.uiApplication) var uiApplication: UIApplication
 
         guard uiApplication.applicationState == .active else {
-            coreGCD.after(milliseconds: 10) { self.setStyle() }
+            coreGCD.after(.milliseconds(10)) { self.setStyle() }
             return
         }
 
@@ -93,7 +93,7 @@ public class ColorProvider: ObservableObject {
         guard uiApplication.interfaceStyle != currentThemeStyle else { return }
         uiApplication.overrideUserInterfaceStyle(currentThemeStyle)
 
-        coreGCD.after(milliseconds: 10) {
+        coreGCD.after(.milliseconds(10)) {
             guard uiApplication.interfaceStyle != currentThemeStyle else { return }
             self.setStyle()
         }

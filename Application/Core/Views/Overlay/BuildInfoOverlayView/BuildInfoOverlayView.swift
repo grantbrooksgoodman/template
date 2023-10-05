@@ -57,7 +57,7 @@ public struct BuildInfoOverlayView: View {
         }, label: {
             if viewModel.isDeveloperModeEnabled {
                 Circle()
-                    .foregroundColor(viewModel.developerModeIndicatorDotColor)
+                    .foregroundStyle(viewModel.developerModeIndicatorDotColor)
                     .frame(
                         width: Floats.developerModeIndicatorFrameWidth,
                         height: Floats.developerModeIndicatorFrameHeight,
@@ -71,7 +71,7 @@ public struct BuildInfoOverlayView: View {
                     Strings.buildInfoButtonLabelFontName,
                     size: Floats.buildInfoButtonLabelFontSize
                 ))
-                .foregroundColor(Colors.buildInfoButtonLabelForeground)
+                .foregroundStyle(Colors.buildInfoButtonLabelForeground)
         })
         .padding(.all, Floats.buildInfoButtonPadding)
         .frame(height: Floats.buildInfoButtonFrameHeight)
@@ -92,7 +92,7 @@ public struct BuildInfoOverlayView: View {
                     Strings.sendFeedbackButtonLabelFontName,
                     size: Floats.sendFeedbackButtonLabelFontSize
                 ))
-                .foregroundColor(Colors.sendFeedbackButtonLabelForeground)
+                .foregroundStyle(Colors.sendFeedbackButtonLabelForeground)
                 .underline()
         })
         .padding(.horizontal, Floats.sendFeedbackButtonHorizontalPadding)
