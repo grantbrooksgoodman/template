@@ -17,9 +17,11 @@ public enum ThemeService {
 
     public private(set) static var currentTheme = AppTheme.default.theme {
         didSet {
+            @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
             @Persistent(.currentThemeID) var currentThemeID: String?
             currentThemeID = currentTheme.hash
             Observables.themedViewAppearanceChanged.trigger()
+            coreUI.setCurrentThemeStyle()
         }
     }
 

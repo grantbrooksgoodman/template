@@ -35,6 +35,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         @Dependency(\.alertKitCore) var akCore: AKCore
         @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
         @Dependency(\.build) var build: Build
+        @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
 
         /* MARK: Defaults Keys & Logging Setup */
 
@@ -77,6 +78,8 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             currentThemeID = AppTheme.default.theme.hash
         }
+
+        coreUI.setCurrentThemeStyle()
 
         /* MARK: AlertKit Setup */
 

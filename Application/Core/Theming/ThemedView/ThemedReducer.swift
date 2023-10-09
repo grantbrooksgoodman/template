@@ -15,7 +15,6 @@ import Redux
 public struct ThemedReducer: Reducer {
     // MARK: - Dependencies
 
-    @Dependency(\.colorProvider) private var colorProvider: ColorProvider
     @Dependency(\.coreKit.ui) private var coreUI: CoreKit.UI
 
     // MARK: - Actions
@@ -73,7 +72,6 @@ public struct ThemedReducer: Reducer {
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.appearanceChanged):
-            colorProvider.updateColorState()
             coreUI.setNavigationBarAppearance(
                 backgroundColor: .navigationBarBackground,
                 titleColor: .navigationBarTitle

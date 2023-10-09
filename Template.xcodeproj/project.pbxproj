@@ -65,7 +65,6 @@
 		B94149572A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */; };
 		B94657692AABBC740091193B /* UserDefaultsDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94657682AABBC740091193B /* UserDefaultsDependency.swift */; };
 		B946576B2AABBD420091193B /* AKCoreDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946576A2AABBD420091193B /* AKCoreDependency.swift */; };
-		B946576D2AABC3F30091193B /* ColorProviderDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946576C2AABC3F30091193B /* ColorProviderDependency.swift */; };
 		B946576F2AABC5570091193B /* RootNavigationCoordinatorDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946576E2AABC5570091193B /* RootNavigationCoordinatorDependency.swift */; };
 		B94657722AABC6320091193B /* RootNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94657712AABC6320091193B /* RootNavigationCoordinator.swift */; };
 		B94657752AABC66F0091193B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94657742AABC66F0091193B /* RootView.swift */; };
@@ -288,7 +287,6 @@
 		B941496A2A4F7A8F0097DAE5 /* Redux */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Redux; path = ../../XCFrameworks/Redux; sourceTree = "<group>"; };
 		B94657682AABBC740091193B /* UserDefaultsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDependency.swift; sourceTree = "<group>"; };
 		B946576A2AABBD420091193B /* AKCoreDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKCoreDependency.swift; sourceTree = "<group>"; };
-		B946576C2AABC3F30091193B /* ColorProviderDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProviderDependency.swift; sourceTree = "<group>"; };
 		B946576E2AABC5570091193B /* RootNavigationCoordinatorDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationCoordinatorDependency.swift; sourceTree = "<group>"; };
 		B94657712AABC6320091193B /* RootNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationCoordinator.swift; sourceTree = "<group>"; };
 		B94657742AABC66F0091193B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -557,7 +555,6 @@
 				B92409822AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift */,
 				B9260BB92AC4105C00824A7C /* BuildDependency.swift */,
 				B9E7D4552AAD0D8100FAF2A9 /* CalendarDependency.swift */,
-				B946576C2AABC3F30091193B /* ColorProviderDependency.swift */,
 				B9E7D4712AAD163B00FAF2A9 /* CoreKitDependency.swift */,
 				B9E7D4192AAC0FC500FAF2A9 /* FileManagerDependency.swift */,
 				B9AF12512ACE4DAD0045C54C /* JSONDependencies.swift */,
@@ -1136,7 +1133,6 @@
 				B92409812AB2C5AB004CF4C0 /* Breadcrumbs.swift in Sources */,
 				B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */,
 				B992BCD82A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift in Sources */,
-				B946576D2AABC3F30091193B /* ColorProviderDependency.swift in Sources */,
 				B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */,
 				B99B1DC229E4C49C00117D42 /* UITheme.swift in Sources */,
 				B94657752AABC66F0091193B /* RootView.swift in Sources */,

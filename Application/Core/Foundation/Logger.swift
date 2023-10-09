@@ -5,6 +5,9 @@
 //  Copyright © NEOTechnica Corporation. All rights reserved.
 //
 
+/* Native */
+import Foundation
+
 /* 3rd-party */
 import AlertKit
 import Redux
