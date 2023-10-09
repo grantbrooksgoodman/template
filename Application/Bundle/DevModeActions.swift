@@ -8,11 +8,6 @@
 
 /* Native */
 import Foundation
-import UIKit
-
-/* 3rd-party */
-import AlertKit
-import Redux
 
 /**
  Use this extension to add new actions to the Developer Mode menu.

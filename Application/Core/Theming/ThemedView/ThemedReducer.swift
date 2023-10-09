@@ -58,8 +58,8 @@ public struct ThemedReducer: Reducer {
             let sameViewID = left.viewID == right.viewID
 
             guard sameObjectID,
-                  sameViewID,
-                  sameRedrawsOnAppearanceChange else {
+                  sameRedrawsOnAppearanceChange,
+                  sameViewID else {
                 return false
             }
 
