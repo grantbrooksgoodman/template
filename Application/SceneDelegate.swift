@@ -68,7 +68,7 @@ public final class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureR
         window.addGestureRecognizer(tapGesture)
         window.addSubview(buildInfoOverlayWindow)
 
-        @Persistent(.core(.hidesBuildInfoOverlay)) var hidesBuildInfoOverlay: Bool?
+        @Persistent(.hidesBuildInfoOverlay) var hidesBuildInfoOverlay: Bool?
         if let shouldHide = hidesBuildInfoOverlay,
            shouldHide {
             guard build.developerModeEnabled else {

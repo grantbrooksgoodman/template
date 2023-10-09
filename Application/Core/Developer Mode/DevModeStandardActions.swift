@@ -86,7 +86,7 @@ public extension DevModeAction {
                         shouldTranslate: [.none]
                     ).present { didConfirm in
                         guard didConfirm == 1 else { return }
-                        RuntimeStorage.remove(.core(.overriddenLanguageCode))
+                        RuntimeStorage.remove(.overriddenLanguageCode)
                         core.utils.restoreDeviceLanguageCode()
                         core.hud.showSuccess()
                     }
@@ -145,8 +145,8 @@ public extension DevModeAction {
                         return
                     }
 
-                    RuntimeStorage.store(inputString, as: .core(.languageCode))
-                    RuntimeStorage.store(inputString, as: .core(.overriddenLanguageCode))
+                    RuntimeStorage.store(inputString, as: .languageCode)
+                    RuntimeStorage.store(inputString, as: .overriddenLanguageCode)
 
                     setLanguageCode(inputString)
                     core.hud.showSuccess()
@@ -179,8 +179,8 @@ public extension DevModeAction {
             func toggleBreadcrumbs() {
                 @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
 
-                @Persistent(.core(.breadcrumbsCaptureEnabled)) var breadcrumbsCaptureEnabled: Bool?
-                @Persistent(.core(.breadcrumbsCapturesAllViews)) var breadcrumbsCapturesAllViews: Bool?
+                @Persistent(.breadcrumbsCaptureEnabled) var breadcrumbsCaptureEnabled: Bool?
+                @Persistent(.breadcrumbsCapturesAllViews) var breadcrumbsCapturesAllViews: Bool?
 
                 guard !breadcrumbs.isCapturing else {
                     AKConfirmationAlert(
@@ -247,7 +247,7 @@ public extension DevModeAction {
                 guard let overlayWindow = uiApplication.keyWindow?.firstSubview(for: "BUILD_INFO_OVERLAY_WINDOW") as? UIWindow else { return }
 
                 overlayWindow.isHidden.toggle()
-                @Persistent(.core(.hidesBuildInfoOverlay)) var hidesBuildInfoOverlay: Bool?
+                @Persistent(.hidesBuildInfoOverlay) var hidesBuildInfoOverlay: Bool?
                 hidesBuildInfoOverlay = overlayWindow.isHidden
             }
 

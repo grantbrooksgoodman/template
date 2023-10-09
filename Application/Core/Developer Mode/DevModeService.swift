@@ -177,7 +177,7 @@ public enum DevModeService {
         @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
         @Dependency(\.uiApplication) var uiApplication: UIApplication
 
-        @Persistent(.core(.hidesBuildInfoOverlay)) var hidesBuildInfoOverlay: Bool?
+        @Persistent(.hidesBuildInfoOverlay) var hidesBuildInfoOverlay: Bool?
         if !enabled,
            let hidesOverlay = hidesBuildInfoOverlay,
            hidesOverlay {
@@ -185,7 +185,7 @@ public enum DevModeService {
             hidesBuildInfoOverlay = false
         }
 
-        @Persistent(.core(.developerModeEnabled)) var developerModeEnabled: Bool?
+        @Persistent(.developerModeEnabled) var developerModeEnabled: Bool?
         developerModeEnabled = enabled
 
         build.setDeveloperModeEnabled(to: enabled)

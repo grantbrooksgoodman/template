@@ -60,7 +60,7 @@ public struct BuildInfoOverlayReducer: Reducer {
 
     // MARK: - Init
 
-    public init() { RuntimeStorage.store(#file, as: .core(.presentedViewName)) }
+    public init() { RuntimeStorage.store(#file, as: .presentedViewName) }
 
     // MARK: - Reduce
 
@@ -69,7 +69,7 @@ public struct BuildInfoOverlayReducer: Reducer {
         case .action(.viewAppeared):
             state.buildInfoButtonText = "\(build.codeName) \(build.bundleVersion) (\(String(build.buildNumber))\(build.stage.shortString))"
 
-            @Persistent(.core(.developerModeEnabled)) var defaultsValue: Bool?
+            @Persistent(.developerModeEnabled) var defaultsValue: Bool?
             guard let defaultsValue else { return .none }
             state.isDeveloperModeEnabled = defaultsValue
 

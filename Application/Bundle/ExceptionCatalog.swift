@@ -22,32 +22,16 @@ public enum AppException: String {
 }
 
 /**
- Use this extension to add simplified descriptors for commonly encountered errors.
+ Use this method to add simplified descriptors for commonly encountered errors.
  */
 public extension Exception {
-    // MARK: - Properties
-
-    var userFacingDescriptor: String {
+    func userFacingDescriptor(for hashlet: String) -> String {
         @Dependency(\.build) var build: Build
-        if let params = extraParams,
-           let laymanDescriptor = params[Exception.CommonParamKeys.userFacingDescriptor.rawValue] as? String {
-            return laymanDescriptor
-        }
 
         switch hashlet {
-        /* Add simplified error strings here. */
+        /* Add simplified error descriptors here. */
         default:
             return build.stage == .generalRelease ? Localized(.somethingWentWrong).wrappedValue : descriptor
         }
-    }
-
-    // MARK: - Methods
-
-    func isEqual(to cataloggedException: AppException) -> Bool {
-        hashlet == cataloggedException.rawValue
-    }
-
-    func isEqual(toAny in: [AppException]) -> Bool {
-        !`in`.filter { $0.rawValue == hashlet }.isEmpty
     }
 }

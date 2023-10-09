@@ -21,16 +21,16 @@ public extension RuntimeStorage {
     /* MARK: Methods */
 
     private static func getLanguageCode() -> String? {
-        guard let overridden = retrieve(.core(.overriddenLanguageCode)) as? String else { return retrieve(.core(.languageCode)) as? String }
+        guard let overridden = retrieve(.overriddenLanguageCode) as? String else { return retrieve(.languageCode) as? String }
         return overridden
     }
 
     private static func getLanguageCodeDictionary() -> [String: String]? {
-        retrieve(.core(.languageCodeDictionary)) as? [String: String]
+        retrieve(.languageCodeDictionary) as? [String: String]
     }
 
     private static func getPresentedViewName() -> String? {
-        guard let path = retrieve(.core(.presentedViewName)) as? String else { return nil }
+        guard let path = retrieve(.presentedViewName) as? String else { return nil }
 
         let slashComponents = path.components(separatedBy: "/")
         guard !slashComponents.isEmpty,
@@ -46,10 +46,10 @@ public extension RuntimeStorage {
     }
 }
 
-// MARK: - StoredItemDomain
+// MARK: - StoredItemKeyDomain
 
-public extension StoredItemDomain {
-    enum CoreStoredItem: String {
+public extension StoredItemKeyDomain {
+    enum CoreStoredItemKey: String {
         case languageCode
         case languageCodeDictionary
         case overriddenLanguageCode

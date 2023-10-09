@@ -6,6 +6,7 @@
 //  Copyright © 2013-20YY NEOTechnica Corporation. All rights reserved.
 //
 
+/* Native */
 import Foundation
 
 public enum AppConstants {

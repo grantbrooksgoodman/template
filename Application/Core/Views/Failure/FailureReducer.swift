@@ -5,10 +5,10 @@
 //  Copyright © NEOTechnica Corporation. All rights reserved.
 //
 
-/* First-party Frameworks */
+/* Native */
 import Foundation
 
-/* Third-party Frameworks */
+/* 3rd-party */
 import AlertKit
 import Redux
 
@@ -80,7 +80,7 @@ public struct FailureReducer: Reducer {
 
     // MARK: - Init
 
-    public init() { RuntimeStorage.store(#file, as: .core(.presentedViewName)) }
+    public init() { RuntimeStorage.store(#file, as: .presentedViewName) }
 
     // MARK: - Reduce
 

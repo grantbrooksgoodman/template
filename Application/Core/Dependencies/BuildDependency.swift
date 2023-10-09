@@ -16,7 +16,7 @@ public enum BuildDependency: DependencyKey {
         typealias Config = BuildConfig
 
         var developerModeEnabled = false
-        @Persistent(.core(.developerModeEnabled)) var defaultsValue: Bool?
+        @Persistent(.developerModeEnabled) var defaultsValue: Bool?
         if let value = defaultsValue {
             developerModeEnabled = Config.stage == .generalRelease ? false : value
             defaultsValue = developerModeEnabled

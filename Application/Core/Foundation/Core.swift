@@ -309,7 +309,7 @@ public struct CoreKit {
                 return .init("No language separator key.", metadata: [self, #file, #function, #line])
             }
 
-            RuntimeStorage.store(components[0], as: .core(.languageCode))
+            RuntimeStorage.store(components[0], as: .languageCode)
 
             guard !akCore.languageCodeIsLocked else {
                 akCore.unlockLanguageCode(andSetTo: components[0])

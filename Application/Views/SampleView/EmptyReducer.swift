@@ -33,7 +33,7 @@ public struct EmptyReducer: Reducer {
 
     // MARK: - Init
 
-    public init() { RuntimeStorage.store(#file, as: .core(.presentedViewName)) }
+    public init() { RuntimeStorage.store(#file, as: .presentedViewName) }
 
     // MARK: - Reduce
 

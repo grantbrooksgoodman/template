@@ -11,6 +11,7 @@ import Foundation
 /* 3rd-party */
 import Redux
 
+/// Property wrapper for persisting values in `UserDefaults`.
 @propertyWrapper
 public final class Persistent<T: Codable> {
     // MARK: - Dependencies
@@ -27,6 +28,14 @@ public final class Persistent<T: Codable> {
 
     public init(_ key: UserDefaultsKeyDomain) {
         self.key = key
+    }
+
+    public convenience init(_ appKey: UserDefaultsKeyDomain.AppDefaultsKey) {
+        self.init(.app(appKey))
+    }
+
+    public convenience init(_ coreKey: UserDefaultsKeyDomain.CoreDefaultsKey) {
+        self.init(.core(coreKey))
     }
 
     // MARK: - WrappedValue

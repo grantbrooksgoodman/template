@@ -5,11 +5,11 @@
 //  Copyright © NEOTechnica Corporation. All rights reserved.
 //
 
-/* First-party Frameworks */
+/* Native */
 import Foundation
 import SwiftUI
 
-/* Third-party Frameworks */
+/* 3rd-party */
 import Redux
 
 public struct FailureView: View {

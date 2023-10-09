@@ -33,6 +33,17 @@ public struct Exception: Equatable, Exceptionable {
     public var extraParams: [String: Any]?
     public var isReportable: Bool
 
+    // MARK: - Computed Properties
+
+    public var userFacingDescriptor: String {
+        if let params = extraParams,
+           let laymanDescriptor = params[Exception.CommonParamKeys.userFacingDescriptor.rawValue] as? String {
+            return laymanDescriptor
+        }
+
+        return userFacingDescriptor(for: hashlet)
+    }
+
     // MARK: - Init
 
     public init(
@@ -155,6 +166,62 @@ public struct Exception: Equatable, Exceptionable {
         )
     }
 
+    // MARK: - AppException Equality Comparison
+
+    public func isEqual(to cataloggedException: AppException) -> Bool {
+        hashlet == cataloggedException.rawValue
+    }
+
+    public func isEqual(toAny in: [AppException]) -> Bool {
+        !`in`.filter { $0.rawValue == hashlet }.isEmpty
+    }
+
+    // MARK: - Equatable Conformance
+
+    public static func == (left: Exception, right: Exception) -> Bool {
+        let leftMetaID = left.metaID
+        let leftHashlet = left.hashlet
+        let leftDescriptor = left.descriptor
+        let leftIsReportable = left.isReportable
+        let leftUnderlyingExceptions = left.underlyingExceptions
+        let leftAllUnderlyingExceptions = left.allUnderlyingExceptions()
+
+        let rightMetaID = right.metaID
+        let rightHashlet = right.hashlet
+        let rightDescriptor = right.descriptor
+        let rightIsReportable = right.isReportable
+        let rightUnderlyingExceptions = right.underlyingExceptions
+        let rightAllUnderlyingExceptions = right.allUnderlyingExceptions()
+
+        var leftStringBasedParams = [String: String]()
+        left.extraParams?.forEach { parameter in
+            if let stringValue = parameter.value as? String {
+                leftStringBasedParams[parameter.key] = stringValue
+            }
+        }
+
+        var rightStringBasedParams = [String: String]()
+        right.extraParams?.forEach { parameter in
+            if let stringValue = parameter.value as? String {
+                rightStringBasedParams[parameter.key] = stringValue
+            }
+        }
+
+        let leftNonStringBasedParamsCount = (left.extraParams?.count ?? 0) - leftStringBasedParams.count
+        let rightNonStringBasedParamsCount = (right.extraParams?.count ?? 0) - rightStringBasedParams.count
+
+        guard leftMetaID == rightMetaID,
+              leftHashlet == rightHashlet,
+              leftDescriptor == rightDescriptor,
+              leftIsReportable == rightIsReportable,
+              leftUnderlyingExceptions == rightUnderlyingExceptions,
+              leftAllUnderlyingExceptions == rightAllUnderlyingExceptions,
+              leftStringBasedParams == rightStringBasedParams,
+              leftNonStringBasedParamsCount == rightNonStringBasedParamsCount else { return false }
+
+        return true
+    }
+
     // MARK: - Auxiliary
 
     private func getHashlet(for descriptor: String) -> String? {
@@ -209,52 +276,6 @@ public struct Exception: Equatable, Exceptionable {
         }
 
         return "\(hexChars.joined(separator: ""))x\(lineNumber)".lowercased()
-    }
-
-    // MARK: - Equatable Conformance
-
-    public static func == (left: Exception, right: Exception) -> Bool {
-        let leftMetaID = left.metaID
-        let leftHashlet = left.hashlet
-        let leftDescriptor = left.descriptor
-        let leftIsReportable = left.isReportable
-        let leftUnderlyingExceptions = left.underlyingExceptions
-        let leftAllUnderlyingExceptions = left.allUnderlyingExceptions()
-
-        let rightMetaID = right.metaID
-        let rightHashlet = right.hashlet
-        let rightDescriptor = right.descriptor
-        let rightIsReportable = right.isReportable
-        let rightUnderlyingExceptions = right.underlyingExceptions
-        let rightAllUnderlyingExceptions = right.allUnderlyingExceptions()
-
-        var leftStringBasedParams = [String: String]()
-        left.extraParams?.forEach { parameter in
-            if let stringValue = parameter.value as? String {
-                leftStringBasedParams[parameter.key] = stringValue
-            }
-        }
-
-        var rightStringBasedParams = [String: String]()
-        right.extraParams?.forEach { parameter in
-            if let stringValue = parameter.value as? String {
-                rightStringBasedParams[parameter.key] = stringValue
-            }
-        }
-
-        let leftNonStringBasedParamsCount = (left.extraParams?.count ?? 0) - leftStringBasedParams.count
-        let rightNonStringBasedParamsCount = (right.extraParams?.count ?? 0) - rightStringBasedParams.count
-
-        guard leftMetaID == rightMetaID,
-              leftHashlet == rightHashlet,
-              leftDescriptor == rightDescriptor,
-              leftIsReportable == rightIsReportable,
-              leftUnderlyingExceptions == rightUnderlyingExceptions,
-              leftAllUnderlyingExceptions == rightAllUnderlyingExceptions,
-              leftStringBasedParams == rightStringBasedParams,
-              leftNonStringBasedParamsCount == rightNonStringBasedParamsCount else { return false }
-
-        return true
     }
 }
 

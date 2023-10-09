@@ -18,14 +18,16 @@ import Redux
  Use this extension to create custom `UIColors` based on the current theme.
  */
 public extension UIColor {
-    static var accent: UIColor { ThemeService.currentTheme.color(for: .accent) }
-    static var background: UIColor { ThemeService.currentTheme.color(for: .background) }
+    static var accent: UIColor { theme.color(for: .accent) }
+    static var background: UIColor { theme.color(for: .background) }
 
-    static var navigationBarBackground: UIColor { ThemeService.currentTheme.color(for: .navigationBarBackground) }
-    static var navigationBarTitle: UIColor { ThemeService.currentTheme.color(for: .navigationBarTitle) }
+    static var navigationBarBackground: UIColor { theme.color(for: .navigationBarBackground) }
+    static var navigationBarTitle: UIColor { theme.color(for: .navigationBarTitle) }
 
-    static var subtitleText: UIColor { ThemeService.currentTheme.color(for: .subtitleText) }
-    static var titleText: UIColor { ThemeService.currentTheme.color(for: .titleText) }
+    static var subtitleText: UIColor { theme.color(for: .subtitleText) }
+    static var titleText: UIColor { theme.color(for: .titleText) }
+
+    private static var theme: UITheme { ThemeService.currentTheme }
 }
 
 /**

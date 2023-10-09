@@ -38,11 +38,11 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /* MARK: Defaults Keys & Logging Setup */
 
-        RuntimeStorage.store(BuildConfig.languageCode, as: .core(.languageCode))
+        RuntimeStorage.store(BuildConfig.languageCode, as: .languageCode)
         Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
 
-        @Persistent(.core(.breadcrumbsCaptureEnabled)) var breadcrumbsCaptureEnabled: Bool?
-        @Persistent(.core(.breadcrumbsCapturesAllViews)) var breadcrumbsCapturesAllViews: Bool?
+        @Persistent(.breadcrumbsCaptureEnabled) var breadcrumbsCaptureEnabled: Bool?
+        @Persistent(.breadcrumbsCapturesAllViews) var breadcrumbsCapturesAllViews: Bool?
         if build.stage == .generalRelease {
             breadcrumbsCaptureEnabled = false
             breadcrumbsCapturesAllViews = nil
@@ -52,7 +52,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             breadcrumbs.startCapture(uniqueViewsOnly: !breadcrumbsCapturesAllViews)
         }
 
-        @Persistent(.core(.hidesBuildInfoOverlay)) var hidesBuildInfoOverlay: Bool?
+        @Persistent(.hidesBuildInfoOverlay) var hidesBuildInfoOverlay: Bool?
         if hidesBuildInfoOverlay == nil {
             hidesBuildInfoOverlay = false
         }
@@ -64,8 +64,8 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /* MARK: Theme Setup */
 
-        @Persistent(.core(.pendingThemeID)) var pendingThemeID: String?
-        @Persistent(.core(.currentThemeID)) var currentThemeID: String?
+        @Persistent(.pendingThemeID) var pendingThemeID: String?
+        @Persistent(.currentThemeID) var currentThemeID: String?
 
         if let themeID = pendingThemeID,
            let correspondingCase = AppTheme.allCases.first(where: { $0.theme.hash == themeID }) {
@@ -108,11 +108,11 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
 
-        RuntimeStorage.store(supportedLanguages, as: .core(.languageCodeDictionary))
+        RuntimeStorage.store(supportedLanguages, as: .languageCodeDictionary)
         guard let languageCodeDictionary = RuntimeStorage.languageCodeDictionary else { return }
 
         guard languageCodeDictionary[RuntimeStorage.languageCode!] != nil else {
-            RuntimeStorage.store("en", as: .core(.languageCode))
+            RuntimeStorage.store("en", as: .languageCode)
             akCore.setLanguageCode("en")
 
             Logger.log(

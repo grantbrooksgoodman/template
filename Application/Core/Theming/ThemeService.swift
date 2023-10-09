@@ -17,7 +17,7 @@ public enum ThemeService {
 
     public private(set) static var currentTheme = AppTheme.default.theme {
         didSet {
-            @Persistent(.core(.currentThemeID)) var currentThemeID: String?
+            @Persistent(.currentThemeID) var currentThemeID: String?
             currentThemeID = currentTheme.hash
             Observables.themedViewAppearanceChanged.trigger()
         }
@@ -26,7 +26,7 @@ public enum ThemeService {
     // MARK: - Setter
 
     public static func setTheme(_ theme: UITheme, checkStyle: Bool = true) {
-        @Persistent(.core(.pendingThemeID)) var pendingThemeID: String?
+        @Persistent(.pendingThemeID) var pendingThemeID: String?
 
         guard checkStyle else {
             currentTheme = theme
