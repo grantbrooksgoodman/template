@@ -17,7 +17,7 @@ import Redux
  */
 public enum AppException: String {
     /* Add new cases here. */
-    
+
     case timedOut = "DE75"
 }
 
@@ -27,7 +27,7 @@ public enum AppException: String {
 public extension Exception {
     func userFacingDescriptor(for hashlet: String) -> String? {
         switch hashlet {
-            /* Add simplified error descriptors here. */
+        /* Add simplified error descriptors here. */
         default:
             return nil
         }

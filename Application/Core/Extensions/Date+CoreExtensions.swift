@@ -13,16 +13,16 @@ import Redux
 
 public extension Date {
     // MARK: - Properties
-    
+
     var comparator: Date {
         @Dependency(\.currentCalendar) var calendar: Calendar
         return calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: self))!
     }
-    
+
     var elapsedString: String {
         @Dependency(\.currentCalendar) var calendar: Calendar
         let interval = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: self, to: Date())
-        
+
         if let yearsPassed = interval.year,
            yearsPassed > 0 {
             return "\(yearsPassed)y"
@@ -39,31 +39,33 @@ public extension Date {
                   minutesPassed > 0 {
             return "\(minutesPassed)m"
         }
-        
+
         return "now"
     }
-    
+
     var formattedShortString: String {
         @Dependency(\.currentCalendar) var calendar: Calendar
         @Dependency(\.formattedShortStringDateFormatter) var dateFormatter: DateFormatter
-        
+
         let currentDate = Date()
         let distance = currentDate.distance(to: self)
-        
+
         if calendar.isDateInToday(self) {
             return DateFormatter.localizedString(from: self, dateStyle: .none, timeStyle: .short)
         } else if calendar.isDateInYesterday(self) {
             return Localized(.yesterday).wrappedValue
-        } else if calendar.isDate(self,
-                                  equalTo: currentDate,
-                                  toGranularity: .weekOfYear) || distance >= -604_800 {
+        } else if calendar.isDate(
+            self,
+            equalTo: currentDate,
+            toGranularity: .weekOfYear
+        ) || distance >= -604_800 {
             guard let weekdayString else { return dateFormatter.string(from: self) }
             return weekdayString
         }
-        
+
         return dateFormatter.string(from: self)
     }
-    
+
     var weekdayString: String? {
         @Dependency(\.currentCalendar) var calendar: Calendar
         switch calendar.component(.weekday, from: self) {
@@ -85,9 +87,9 @@ public extension Date {
             return nil
         }
     }
-    
+
     // MARK: - Methods
-    
+
     func seconds(from date: Date) -> Int {
         @Dependency(\.currentCalendar) var calendar: Calendar
         return calendar.dateComponents([.second], from: date, to: self).second ?? 0

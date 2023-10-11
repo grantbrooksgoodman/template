@@ -11,18 +11,18 @@ import Redux
 
 public final class Timeout {
     // MARK: - Dependencies
-    
+
     @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit.gcd) private var coreGCD: CoreKit.GCD
-    
+
     // MARK: - Properties
-    
+
     private var callback: (() -> Void)?
     private var isValid = true
     private var metadata: [Any]?
-    
+
     // MARK: - Object Lifecycle
-    
+
     public init(
         after: Duration,
         _ callback: @escaping () -> Void = {}
@@ -33,7 +33,7 @@ public final class Timeout {
             self.invoke()
         }
     }
-    
+
     public init(
         alertingAfter: Duration,
         metadata: [Any]
@@ -45,28 +45,28 @@ public final class Timeout {
             self.presentTimeoutAlert()
         }
     }
-    
+
     deinit {
         cancel()
     }
-    
+
     // MARK: - Cancellation
-    
+
     public func cancel() {
         callback = nil
         isValid = false
     }
-    
+
     // MARK: - Auxiliary
-    
+
     private func invoke() {
         callback?()
         cancel()
     }
-    
+
     private func presentTimeoutAlert() {
         cancel()
-        
+
         AKErrorAlert(
             error: .init(.timedOut(metadata!)),
             shouldTranslate: [build.isOnline ? .actions(indices: nil) : .none]

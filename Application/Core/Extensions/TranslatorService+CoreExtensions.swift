@@ -33,12 +33,12 @@ public extension TranslatorService {
                     continuation.resume(returning: .failure(exception ?? .init(metadata: [self, #file, #function, #line])))
                     return
                 }
-                
+
                 continuation.resume(returning: .success(translations))
             }
         }
     }
-    
+
     func getTranslations(
         for inputs: [TranslationInput],
         languagePair: LanguagePair,
@@ -53,7 +53,7 @@ public extension TranslatorService {
         @Dependency(\.coreKit) var core: CoreKit
         @Dependency(\.uiApplication) var uiApplication: UIApplication
         var didComplete = false
-        
+
         if let hudConfig {
             core.gcd.after(hudConfig.appearsAfter) {
                 guard !didComplete else { return }
@@ -62,7 +62,7 @@ public extension TranslatorService {
                 uiApplication.keyWindow?.isUserInteractionEnabled = false
             }
         }
-        
+
         var canComplete: Bool {
             guard !didComplete else { return false }
             didComplete = true
@@ -71,16 +71,16 @@ public extension TranslatorService {
             uiApplication.keyWindow?.isUserInteractionEnabled = true
             return true
         }
-        
+
         let timeout = Timeout(after: timeoutConfig.duration) {
             guard canComplete else { return }
             guard timeoutConfig.returnsInputs else {
                 completion(nil, .timedOut([self, #file, #function, #line]))
                 return
             }
-            
+
             Logger.log(.timedOut([self, #file, #function, #line]))
-            
+
             let translations = inputs.map { Translation(
                 input: $0,
                 output: $0.original.sanitized,
@@ -88,7 +88,7 @@ public extension TranslatorService {
             ) }
             completion(translations, nil)
         }
-        
+
         getTranslations(
             for: inputs,
             languagePair: languagePair,
@@ -96,7 +96,7 @@ public extension TranslatorService {
             fetchFromArchive: true
         ) { translations, errorDescriptors in
             timeout.cancel()
-            
+
             guard let translations,
                   !translations.isEmpty else {
                 let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
@@ -106,12 +106,12 @@ public extension TranslatorService {
                 completion(nil, exception ?? .init(metadata: [self, #file, #function, #line]))
                 return
             }
-            
+
             guard canComplete else { return }
             completion(translations, nil)
         }
     }
-    
+
     func translate(
         _ input: TranslationInput,
         with languagePair: LanguagePair,
@@ -126,11 +126,11 @@ public extension TranslatorService {
             timeout: timeoutConfig,
             using: platform
         )
-        
+
         switch getTranslationsResult {
         case let .success(translations):
             return .success(translations[0])
-            
+
         case let .failure(exception):
             return .failure(exception)
         }
