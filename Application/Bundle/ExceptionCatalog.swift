@@ -13,11 +13,11 @@ import Foundation
 import Redux
 
 /**
- Use this enum to catalog application-specific ``Exception`` types and their corresponding hashlet values.
+ Use this enum to catalog application-specific `Exception` types and their corresponding hashlet values.
  */
 public enum AppException: String {
     /* Add new cases here. */
-
+    
     case timedOut = "DE75"
 }
 
@@ -25,13 +25,11 @@ public enum AppException: String {
  Use this method to add simplified descriptors for commonly encountered errors.
  */
 public extension Exception {
-    func userFacingDescriptor(for hashlet: String) -> String {
-        @Dependency(\.build) var build: Build
-
+    func userFacingDescriptor(for hashlet: String) -> String? {
         switch hashlet {
-        /* Add simplified error descriptors here. */
+            /* Add simplified error descriptors here. */
         default:
-            return build.stage == .generalRelease ? Localized(.somethingWentWrong).wrappedValue : descriptor
+            return nil
         }
     }
 }
