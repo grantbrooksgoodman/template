@@ -21,6 +21,6 @@ extension LanguagePair: Equatable {
 
 public extension LanguagePair {
     static var system: LanguagePair {
-        .init(from: "en", to: RuntimeStorage.languageCode ?? "en")
+        .init(from: "en", to: RuntimeStorage.languageCode)
     }
 }

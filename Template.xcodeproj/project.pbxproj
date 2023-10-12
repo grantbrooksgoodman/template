@@ -41,6 +41,9 @@
 		B91688ED2904913E004C80A2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91688EC2904913D004C80A2 /* Logger.swift */; };
 		B91689072AC75FFB00AF403D /* MainBundleDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91689062AC75FFB00AF403D /* MainBundleDependency.swift */; };
 		B91689092AC760AA00AF403D /* MainQueueDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91689082AC760AA00AF403D /* MainQueueDependency.swift */; };
+		B920F1872AD77128002FC1C2 /* Calendar+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920F1862AD77128002FC1C2 /* Calendar+CoreExtensions.swift */; };
+		B920F1892AD7C243002FC1C2 /* Locale+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920F1882AD7C243002FC1C2 /* Locale+CoreExtensions.swift */; };
+		B920F18B2AD7C93A002FC1C2 /* LocaleDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920F18A2AD7C93A002FC1C2 /* LocaleDependency.swift */; };
 		B92409812AB2C5AB004CF4C0 /* Breadcrumbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409802AB2C5AB004CF4C0 /* Breadcrumbs.swift */; };
 		B92409832AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409822AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift */; };
 		B92409852AB2DFC0004CF4C0 /* LoggerDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */; };
@@ -124,7 +127,7 @@
 		B9E7D4462AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4452AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift */; };
 		B9E7D4482AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4472AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift */; };
 		B9E7D44C2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D44B2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift */; };
-		B9E7D4562AAD0D8100FAF2A9 /* CalendarDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4552AAD0D8100FAF2A9 /* CalendarDependency.swift */; };
+		B9E7D4562AAD0D8100FAF2A9 /* CalendarDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4552AAD0D8100FAF2A9 /* CalendarDependencies.swift */; };
 		B9E7D46E2AAD117A00FAF2A9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D46D2AAD117A00FAF2A9 /* Core.swift */; };
 		B9E7D4722AAD163B00FAF2A9 /* CoreKitDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4712AAD163B00FAF2A9 /* CoreKitDependency.swift */; };
 		B9E7D4742AAD359000FAF2A9 /* Array+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4732AAD359000FAF2A9 /* Array+CoreExtensions.swift */; };
@@ -261,6 +264,9 @@
 		B91688EC2904913D004C80A2 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B91689062AC75FFB00AF403D /* MainBundleDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBundleDependency.swift; sourceTree = "<group>"; };
 		B91689082AC760AA00AF403D /* MainQueueDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDependency.swift; sourceTree = "<group>"; };
+		B920F1862AD77128002FC1C2 /* Calendar+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+CoreExtensions.swift"; sourceTree = "<group>"; };
+		B920F1882AD7C243002FC1C2 /* Locale+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+CoreExtensions.swift"; sourceTree = "<group>"; };
+		B920F18A2AD7C93A002FC1C2 /* LocaleDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleDependency.swift; sourceTree = "<group>"; };
 		B92409802AB2C5AB004CF4C0 /* Breadcrumbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breadcrumbs.swift; sourceTree = "<group>"; };
 		B92409822AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadcrumbsDependency.swift; sourceTree = "<group>"; };
 		B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerDomains.swift; sourceTree = "<group>"; };
@@ -343,7 +349,7 @@
 		B9E7D4452AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewServiceDependency.swift; sourceTree = "<group>"; };
 		B9E7D4472AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewService.swift; sourceTree = "<group>"; };
 		B9E7D44B2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+BuildInfoOverlayView.swift"; sourceTree = "<group>"; };
-		B9E7D4552AAD0D8100FAF2A9 /* CalendarDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDependency.swift; sourceTree = "<group>"; };
+		B9E7D4552AAD0D8100FAF2A9 /* CalendarDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDependencies.swift; sourceTree = "<group>"; };
 		B9E7D46D2AAD117A00FAF2A9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		B9E7D4712AAD163B00FAF2A9 /* CoreKitDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreKitDependency.swift; sourceTree = "<group>"; };
 		B9E7D4732AAD359000FAF2A9 /* Array+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+CoreExtensions.swift"; sourceTree = "<group>"; };
@@ -554,10 +560,11 @@
 				B946576A2AABBD420091193B /* AKCoreDependency.swift */,
 				B92409822AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift */,
 				B9260BB92AC4105C00824A7C /* BuildDependency.swift */,
-				B9E7D4552AAD0D8100FAF2A9 /* CalendarDependency.swift */,
+				B9E7D4552AAD0D8100FAF2A9 /* CalendarDependencies.swift */,
 				B9E7D4712AAD163B00FAF2A9 /* CoreKitDependency.swift */,
 				B9E7D4192AAC0FC500FAF2A9 /* FileManagerDependency.swift */,
 				B9AF12512ACE4DAD0045C54C /* JSONDependencies.swift */,
+				B920F18A2AD7C93A002FC1C2 /* LocaleDependency.swift */,
 				B91689062AC75FFB00AF403D /* MainBundleDependency.swift */,
 				B91689082AC760AA00AF403D /* MainQueueDependency.swift */,
 				B9EA3A892AC6BB3700674147 /* NotificationCenterDependency.swift */,
@@ -638,11 +645,13 @@
 			children = (
 				B946D87B2ACC8A59001D2424 /* AKError+CoreExtensions.swift */,
 				B9E7D4732AAD359000FAF2A9 /* Array+CoreExtensions.swift */,
+				B920F1862AD77128002FC1C2 /* Calendar+CoreExtensions.swift */,
 				B9E7D4752AAD35CE00FAF2A9 /* Date+CoreExtensions.swift */,
 				B93BCDCF2AAD8B1900AA16FE /* Dictionary+CoreExtensions.swift */,
 				B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */,
 				B93BCDF62AAF937500AA16FE /* FileManager+CoreExtensions.swift */,
 				B93BCDEA2AAD9D9D00AA16FE /* LanguagePair+CoreExtensions.swift */,
+				B920F1882AD7C243002FC1C2 /* Locale+CoreExtensions.swift */,
 				B93BCDD12AAD8BBF00AA16FE /* Primitives+CoreExtensions.swift */,
 				B93BCDD52AAD8BD700AA16FE /* Sequence+CoreExtensions.swift */,
 				B93BCDEC2AAD9DAC00AA16FE /* Task+CoreExtensions.swift */,
@@ -1088,6 +1097,7 @@
 				B9E7D43D2AAC222600FAF2A9 /* Observable.swift in Sources */,
 				B99B1DC829E4C4BD00117D42 /* ThemeComponents.swift in Sources */,
 				B992BCD52A159479003BFF2E /* AKConnectionAlertDelegate.swift in Sources */,
+				B920F18B2AD7C93A002FC1C2 /* LocaleDependency.swift in Sources */,
 				B94149572A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift in Sources */,
 				B94657692AABBC740091193B /* UserDefaultsDependency.swift in Sources */,
 				B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */,
@@ -1097,8 +1107,9 @@
 				B93BCDCE2AAD854B00AA16FE /* URLSessionDependency.swift in Sources */,
 				B9C582FF29BECA8D009DCE29 /* Timeout.swift in Sources */,
 				B9E7D42B2AAC1F4000FAF2A9 /* AppConstants.swift in Sources */,
-				B9E7D4562AAD0D8100FAF2A9 /* CalendarDependency.swift in Sources */,
+				B9E7D4562AAD0D8100FAF2A9 /* CalendarDependencies.swift in Sources */,
 				B9E7D4172AAC06D000FAF2A9 /* TranslatorServiceDependency.swift in Sources */,
+				B920F1892AD7C243002FC1C2 /* Locale+CoreExtensions.swift in Sources */,
 				B91688DA28FE0E4C004C80A2 /* ExceptionCatalog.swift in Sources */,
 				B99B1DBE29E4C43400117D42 /* ThemeService.swift in Sources */,
 				B946D87E2ACC966E001D2424 /* Duration+CoreExtensions.swift in Sources */,
@@ -1115,6 +1126,7 @@
 				B9E7D4202AAC1ED700FAF2A9 /* SampleContentView.swift in Sources */,
 				A286879C28A4A09600A34912 /* Reachability.swift in Sources */,
 				B9E7D4222AAC1ED700FAF2A9 /* SampleReducer.swift in Sources */,
+				B920F1872AD77128002FC1C2 /* Calendar+CoreExtensions.swift in Sources */,
 				B9988BFF2AC4C72800C4924C /* RuntimeStorage.swift in Sources */,
 				B93BCDED2AAD9DAC00AA16FE /* Task+CoreExtensions.swift in Sources */,
 				B9CC831B2AB0F6B800255116 /* QuickViewerDependency.swift in Sources */,

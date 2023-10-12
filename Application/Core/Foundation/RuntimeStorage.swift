@@ -8,7 +8,7 @@
 /* Native */
 import Foundation
 
-public enum RuntimeStorage {
+public actor RuntimeStorage {
     // MARK: - Properties
 
     private static var storedItems = [String: Any]()

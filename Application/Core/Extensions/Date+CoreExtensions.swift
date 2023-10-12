@@ -12,35 +12,19 @@ import Foundation
 import Redux
 
 public extension Date {
+    // MARK: - Types
+
+    enum WeekdaySymbolLength {
+        case full
+        case short
+        case veryShort
+    }
+
     // MARK: - Properties
 
     var comparator: Date {
         @Dependency(\.currentCalendar) var calendar: Calendar
         return calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: self))!
-    }
-
-    var elapsedString: String {
-        @Dependency(\.currentCalendar) var calendar: Calendar
-        let interval = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: self, to: Date())
-
-        if let yearsPassed = interval.year,
-           yearsPassed > 0 {
-            return "\(yearsPassed)y"
-        } else if let monthsPassed = interval.month,
-                  monthsPassed > 0 {
-            return "\(monthsPassed)mo"
-        } else if let daysPassed = interval.day,
-                  daysPassed > 0 {
-            return "\(daysPassed)d"
-        } else if let hoursPassed = interval.hour,
-                  hoursPassed > 0 {
-            return "\(hoursPassed)h"
-        } else if let minutesPassed = interval.minute,
-                  minutesPassed > 0 {
-            return "\(minutesPassed)m"
-        }
-
-        return "now"
     }
 
     var formattedShortString: String {
@@ -59,40 +43,87 @@ public extension Date {
             equalTo: currentDate,
             toGranularity: .weekOfYear
         ) || distance >= -604_800 {
-            guard let weekdayString else { return dateFormatter.string(from: self) }
-            return weekdayString
+            return weekdayString()
         }
 
         return dateFormatter.string(from: self)
     }
 
-    var weekdayString: String? {
-        @Dependency(\.currentCalendar) var calendar: Calendar
-        switch calendar.component(.weekday, from: self) {
-        case 1:
-            return Localized(.sunday).wrappedValue
-        case 2:
-            return Localized(.monday).wrappedValue
-        case 3:
-            return Localized(.tuesday).wrappedValue
-        case 4:
-            return Localized(.wednesday).wrappedValue
-        case 5:
-            return Localized(.thursday).wrappedValue
-        case 6:
-            return Localized(.friday).wrappedValue
-        case 7:
-            return Localized(.saturday).wrappedValue
-        default:
-            return nil
-        }
-    }
-
     // MARK: - Methods
+
+    func elapsedString(
+        style: DateComponentsFormatter.UnitsStyle = .abbreviated,
+        granularity: [Calendar.LocalizableComponent] = Calendar.LocalizableComponent.allCases
+    ) -> String? {
+        @Dependency(\.systemLocalizedCalendar) var calendar: Calendar
+
+        let currentDate = Date()
+        guard currentDate > self else { return nil }
+
+        let components = granularity.map(\.asComponent)
+        let dateComponents = calendar.dateComponents(Set(components), from: self, to: currentDate)
+
+        var elapsedMap = DateComponents()
+        for component in components {
+            guard let value = dateComponents.value(for: component),
+                  value > 0 else { continue }
+            elapsedMap.setValue(value, for: component)
+        }
+
+        func string(_ component: Calendar.LocalizableComponent) -> String? {
+            calendar.localizedString(for: component, plural: true, style: style)
+        }
+
+        if let years = elapsedMap.year,
+           let component = string(.year) {
+            return "\(years) \(component)"
+        } else if let months = elapsedMap.month,
+                  let component = string(.month) {
+            return "\(months) \(component)"
+        } else if let weeks = elapsedMap.weekOfMonth,
+                  let component = string(.week) {
+            return "\(weeks) \(component)"
+        } else if let days = elapsedMap.day,
+                  let component = string(.day) {
+            return "\(days) \(component)"
+        } else if let hours = elapsedMap.hour,
+                  let component = string(.hour) {
+            return "\(hours) \(component)"
+        } else if let minutes = elapsedMap.minute,
+                  let component = string(.minute) {
+            return "\(minutes) \(component)"
+        } else if let seconds = elapsedMap.second,
+                  let component = string(.second) {
+            return "\(seconds) \(component)"
+        }
+
+        return nil
+    }
 
     func seconds(from date: Date) -> Int {
         @Dependency(\.currentCalendar) var calendar: Calendar
         return calendar.dateComponents([.second], from: date, to: self).second ?? 0
+    }
+
+    func weekdayString(
+        _ length: WeekdaySymbolLength = .full,
+        standalone: Bool = false
+    ) -> String {
+        @Dependency(\.systemLocalizedCalendar) var calendar: Calendar
+        var symbols: [String]
+        switch length {
+        case .full:
+            symbols = standalone ? calendar.standaloneWeekdaySymbols : calendar.weekdaySymbols
+        case .short:
+            symbols = standalone ? calendar.shortStandaloneWeekdaySymbols : calendar.shortWeekdaySymbols
+        case .veryShort:
+            symbols = standalone ? calendar.veryShortStandaloneWeekdaySymbols : calendar.veryShortWeekdaySymbols
+        }
+
+        let dayPosition = calendar.component(.weekday, from: self) - 1
+        guard dayPosition > 0,
+              symbols.count > dayPosition else { return .init() }
+        return symbols[dayPosition]
     }
 }
 
@@ -102,7 +133,7 @@ public extension Date {
 private enum FormattedShortStringDateFormatterDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> DateFormatter {
         let formatter = DateFormatter()
-        formatter.locale = RuntimeStorage.languageCode == "en" ? .current : .init(identifier: RuntimeStorage.languageCode ?? Locale.current.identifier)
+        formatter.locale = RuntimeStorage.languageCode == "en" ? .current : .init(languageCode: .init(RuntimeStorage.languageCode))
         formatter.dateStyle = .short
         return formatter
     }

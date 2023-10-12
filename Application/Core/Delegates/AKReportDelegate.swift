@@ -41,11 +41,7 @@ public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailCom
     // MARK: - Properties
 
     private var commonParams: [String: String] {
-        var parameters = [String: String]()
-
-        if let languageCode = RuntimeStorage.languageCode {
-            parameters["LanguageCode"] = languageCode
-        }
+        var parameters = ["LanguageCode": RuntimeStorage.languageCode]
 
         if let presentedView = RuntimeStorage.presentedViewName {
             parameters["PresentedView"] = presentedView.firstLowercase.snakeCased

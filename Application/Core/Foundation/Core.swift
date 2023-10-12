@@ -298,10 +298,9 @@ public struct CoreKit {
         /* MARK: Properties */
 
         public var localizedLanguageCodeDictionary: [String: String]? {
-            guard let languageCode = RuntimeStorage.languageCode,
-                  let languageCodeDictionary = RuntimeStorage.languageCodeDictionary else { return nil }
+            guard let languageCodeDictionary = RuntimeStorage.languageCodeDictionary else { return nil }
 
-            let locale = Locale(identifier: languageCode)
+            let locale = Locale(languageCode: .init(RuntimeStorage.languageCode))
 
             return languageCodeDictionary.reduce(into: [String: String]()) { partialResult, keyPair in
                 let code = keyPair.key

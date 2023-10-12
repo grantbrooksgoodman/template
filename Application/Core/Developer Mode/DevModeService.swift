@@ -108,8 +108,8 @@ public enum DevModeService {
         @Dependency(\.alertKitCore) var akCore: AKCore
         @Dependency(\.build) var build: Build
 
-        guard build.stage != .generalRelease,
-              let previousLanguage = RuntimeStorage.languageCode else { return }
+        guard build.stage != .generalRelease else { return }
+        let previousLanguage = RuntimeStorage.languageCode
 
         if akCore.languageCodeIsLocked {
             akCore.unlockLanguageCode(andSetTo: "en")

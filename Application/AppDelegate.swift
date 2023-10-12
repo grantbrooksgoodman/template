@@ -88,7 +88,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         let reportDelegate = ReportDelegate()
         let translationDelegate = TranslationDelegate()
 
-        akCore.setLanguageCode(RuntimeStorage.languageCode!)
+        akCore.setLanguageCode(RuntimeStorage.languageCode)
         akCore.register(
             connectionAlertDelegate: connectionAlertDelegate,
             expiryAlertDelegate: expiryAlertDelegate,
@@ -114,7 +114,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         RuntimeStorage.store(supportedLanguages, as: .languageCodeDictionary)
         guard let languageCodeDictionary = RuntimeStorage.languageCodeDictionary else { return }
 
-        guard languageCodeDictionary[RuntimeStorage.languageCode!] != nil else {
+        guard languageCodeDictionary[RuntimeStorage.languageCode] != nil else {
             RuntimeStorage.store("en", as: .languageCode)
             akCore.setLanguageCode("en")
 

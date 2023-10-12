@@ -28,6 +28,6 @@ public enum BuildConfig {
 
     // MARK: - Other
 
-    public static let languageCode = Locale.preferredLanguages[0].components(separatedBy: "-")[0]
+    public static let languageCode = Locale.systemLanguageCode
     public static let loggerDomainSubscriptions: [LoggerDomain] = [.general]
 }

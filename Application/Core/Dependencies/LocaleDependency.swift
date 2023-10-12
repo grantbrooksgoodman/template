@@ -1,5 +1,5 @@
 //
-//  CalendarDependency.swift
+//  LocaleDependency.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -11,19 +11,19 @@ import Foundation
 /* 3rd-party */
 import Redux
 
-public enum CalendarDependency: DependencyKey {
-    public static func resolve(_: DependencyValues) -> Calendar {
+public enum LocaleDependency: DependencyKey {
+    public static func resolve(_: DependencyValues) -> Locale {
         .current
     }
 }
 
 public extension DependencyValues {
-    var currentCalendar: Calendar {
+    var currentLocale: Locale {
         get {
-            self[CalendarDependency.self]
+            self[LocaleDependency.self]
         }
         set {
-            self[CalendarDependency.self] = newValue
+            self[LocaleDependency.self] = newValue
         }
     }
 }

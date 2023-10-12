@@ -14,14 +14,14 @@ import UIKit
 public extension RuntimeStorage {
     /* MARK: Properties */
 
-    static var languageCode: String? { getLanguageCode() }
+    static var languageCode: String { getLanguageCode() }
     static var languageCodeDictionary: [String: String]? { getLanguageCodeDictionary() }
     static var presentedViewName: String? { getPresentedViewName() }
 
     /* MARK: Methods */
 
-    private static func getLanguageCode() -> String? {
-        guard let overridden = retrieve(.overriddenLanguageCode) as? String else { return retrieve(.languageCode) as? String }
+    private static func getLanguageCode() -> String {
+        guard let overridden = retrieve(.overriddenLanguageCode) as? String else { return retrieve(.languageCode) as? String ?? Locale.systemLanguageCode }
         return overridden
     }
 

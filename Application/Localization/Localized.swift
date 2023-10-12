@@ -19,7 +19,7 @@ public struct Localized: Equatable {
 
     public init(
         _ key: LocalizedStringKey,
-        languageCode: String = RuntimeStorage.languageCode ?? "en"
+        languageCode: String = RuntimeStorage.languageCode
     ) {
         self.key = key
         self.languageCode = languageCode
