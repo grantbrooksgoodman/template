@@ -28,7 +28,7 @@ public extension Calendar {
 
         /* MARK: Properties */
 
-        var asComponent: Component {
+        public var asComponent: Component {
             switch self {
             case .day:
                 return .day
@@ -47,7 +47,7 @@ public extension Calendar {
             }
         }
 
-        var asNSCalendarUnit: NSCalendar.Unit {
+        public var asNSCalendarUnit: NSCalendar.Unit {
             switch self {
             case .day:
                 return .day
