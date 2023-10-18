@@ -45,7 +45,7 @@ public struct Exception: Equatable, Exceptionable {
             return laymanDescriptor
         }
 
-        guard let descriptor = userFacingDescriptor(for: hashlet) else {
+        guard let descriptor = userFacingDescriptor(for: descriptor) else {
             return build.stage == .generalRelease ? Localized(.somethingWentWrong).wrappedValue : descriptor
         }
 

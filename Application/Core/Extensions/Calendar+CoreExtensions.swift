@@ -67,13 +67,6 @@ public extension Calendar {
         }
     }
 
-    static var systemLocalized: Calendar {
-        @Dependency(\.currentCalendar) var calendar: Calendar
-        var mutable = calendar
-        mutable.locale = .init(languageCode: .init(RuntimeStorage.languageCode))
-        return mutable
-    }
-
     // MARK: - Methods
 
     func localizedString(

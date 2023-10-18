@@ -19,7 +19,9 @@ public enum CurrentCalendarDependency: DependencyKey {
 
 public enum SystemLocalizedCalendarDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> Calendar {
-        .systemLocalized
+        var calendar: Calendar = .current
+        calendar.locale = .init(languageCode: .init(RuntimeStorage.languageCode))
+        return calendar
     }
 }
 

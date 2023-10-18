@@ -55,7 +55,7 @@ public extension Array where Element == Translation {
     }
 
     var uniqueLanguagePairs: [LanguagePair] {
-        map { $0.languagePair }.unique
+        map(\.languagePair).unique
     }
 
     // MARK: - Methods

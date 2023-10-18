@@ -25,8 +25,8 @@ public enum AppException: String {
  Use this method to add simplified descriptors for commonly encountered errors.
  */
 public extension Exception {
-    func userFacingDescriptor(for hashlet: String) -> String? {
-        switch hashlet {
+    func userFacingDescriptor(for descriptor: String) -> String? {
+        switch descriptor {
         /* Add simplified error descriptors here. */
         default:
             return nil

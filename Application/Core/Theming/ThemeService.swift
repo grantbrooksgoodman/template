@@ -7,6 +7,7 @@
 
 /* Native */
 import Foundation
+import UIKit
 
 /* 3rd-party */
 import AlertKit
@@ -21,7 +22,7 @@ public enum ThemeService {
             @Persistent(.currentThemeID) var currentThemeID: String?
             currentThemeID = currentTheme.hash
             Observables.themedViewAppearanceChanged.trigger()
-            coreUI.setCurrentThemeStyle()
+            setStyle()
         }
     }
 
@@ -48,5 +49,24 @@ public enum ThemeService {
 
         pendingThemeID = nil
         currentTheme = theme
+    }
+
+    public static func setStyle() {
+        @Dependency(\.coreKit.gcd) var coreGCD: CoreKit.GCD
+        @Dependency(\.uiApplication) var uiApplication: UIApplication
+
+        guard uiApplication.applicationState == .active else {
+            coreGCD.after(.milliseconds(10)) { self.setStyle() }
+            return
+        }
+
+        let currentThemeStyle = currentTheme.style
+        guard uiApplication.interfaceStyle != currentThemeStyle else { return }
+        uiApplication.overrideUserInterfaceStyle(currentThemeStyle)
+
+        coreGCD.after(.milliseconds(10)) {
+            guard uiApplication.interfaceStyle != currentThemeStyle else { return }
+            self.setStyle()
+        }
     }
 }

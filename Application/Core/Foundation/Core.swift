@@ -186,27 +186,6 @@ public struct CoreKit {
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
 
-        /* MARK: Theming */
-
-        func setCurrentThemeStyle() {
-            @Dependency(\.uiApplication) var uiApplication: UIApplication
-
-            let gcd: GCD = .init()
-            guard uiApplication.applicationState == .active else {
-                gcd.after(.milliseconds(10)) { self.setCurrentThemeStyle() }
-                return
-            }
-
-            let currentThemeStyle = ThemeService.currentTheme.style
-            guard uiApplication.interfaceStyle != currentThemeStyle else { return }
-            uiApplication.overrideUserInterfaceStyle(currentThemeStyle)
-
-            gcd.after(.milliseconds(10)) {
-                guard uiApplication.interfaceStyle != currentThemeStyle else { return }
-                self.setCurrentThemeStyle()
-            }
-        }
-
         /* MARK: View Controller Presentation */
 
         // Public
