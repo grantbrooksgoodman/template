@@ -20,9 +20,9 @@ public struct BuildInfoOverlayView: View {
 
     // MARK: - Constants Accessors
 
-    private typealias Colors = AppConstants.Colors.BuildInfoOverlayView
-    private typealias Floats = AppConstants.CGFloats.BuildInfoOverlayView
-    private typealias Strings = AppConstants.Strings.BuildInfoOverlayView
+    private typealias Colors = CoreConstants.Colors.BuildInfoOverlayView
+    private typealias Floats = CoreConstants.CGFloats.BuildInfoOverlayView
+    private typealias Strings = CoreConstants.Strings.BuildInfoOverlayView
 
     // MARK: - Init
 

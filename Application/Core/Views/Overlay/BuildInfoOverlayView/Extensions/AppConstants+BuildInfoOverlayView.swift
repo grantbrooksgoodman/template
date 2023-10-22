@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - CGFloat
 
-public extension AppConstants.CGFloats {
+public extension CoreConstants.CGFloats {
     enum BuildInfoOverlayView {
         public static let buildInfoButtonFrameHeight: CGFloat = 15
         public static let buildInfoButtonPadding: CGFloat = 1
@@ -35,7 +35,7 @@ public extension AppConstants.CGFloats {
 
 // MARK: - Color
 
-public extension AppConstants.Colors {
+public extension CoreConstants.Colors {
     enum BuildInfoOverlayView {
         public static let buildInfoButtonBackground: Color = .black
         public static let buildInfoButtonLabelForeground: Color = .white
@@ -47,7 +47,7 @@ public extension AppConstants.Colors {
 
 // MARK: - String
 
-public extension AppConstants.Strings {
+public extension CoreConstants.Strings {
     enum BuildInfoOverlayView {
         public static let buildInfoButtonLabelFontName = "SFUIText-Bold"
         public static let sendFeedbackButtonLabelFontName = "Arial"

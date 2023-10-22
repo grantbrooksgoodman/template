@@ -1,5 +1,5 @@
 //
-//  AppConstants+FailureView.swift
+//  CoreConstants+FailureView.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - CGFloat
 
-public extension AppConstants.CGFloats {
+public extension CoreConstants.CGFloats {
     enum FailureView {
         public static let buttonLabelFontSize: CGFloat = 14
 
@@ -28,7 +28,7 @@ public extension AppConstants.CGFloats {
 
 // MARK: - Color
 
-public extension AppConstants.Colors {
+public extension CoreConstants.Colors {
     enum FailureView {
         public static let imageForegroundColor: Color = .red
         public static let reportBugButtonDisabledColor: Color = .init(uiColor: .systemGray)
@@ -37,7 +37,7 @@ public extension AppConstants.Colors {
 
 // MARK: - String
 
-public extension AppConstants.Strings {
+public extension CoreConstants.Strings {
     enum FailureView {
         public static let exceptionLabelFontName = "SFUIText-Semibold"
         public static let imageSystemName = "exclamationmark.octagon.fill"

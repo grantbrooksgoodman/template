@@ -9,16 +9,28 @@
 import Foundation
 import UIKit
 
-// MARK: - RuntimeStorage
+public enum CoreConstants {
+    // MARK: - CGFloat
+
+    public enum CGFloats {}
+
+    // MARK: - Color
+
+    public enum Colors {}
+
+    // MARK: - String
+
+    public enum Strings {}
+}
 
 public extension RuntimeStorage {
-    /* MARK: Properties */
+    // MARK: - Properties
 
     static var languageCode: String { getLanguageCode() }
     static var languageCodeDictionary: [String: String]? { getLanguageCodeDictionary() }
     static var presentedViewName: String? { getPresentedViewName() }
 
-    /* MARK: Methods */
+    // MARK: - Functions
 
     private static func getLanguageCode() -> String {
         guard let overridden = retrieve(.overriddenLanguageCode) as? String else { return retrieve(.languageCode) as? String ?? Locale.systemLanguageCode }
@@ -46,8 +58,6 @@ public extension RuntimeStorage {
     }
 }
 
-// MARK: - StoredItemKeyDomain
-
 public extension StoredItemKeyDomain {
     enum CoreStoredItemKey: String {
         case languageCode
@@ -56,8 +66,6 @@ public extension StoredItemKeyDomain {
         case presentedViewName
     }
 }
-
-// MARK: - UserDefaultsKeyDomain
 
 public extension UserDefaultsKeyDomain {
     enum CoreDefaultsKey: String {

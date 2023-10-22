@@ -19,9 +19,9 @@ public struct FailureView: View {
 
     // MARK: - Constants Accessors
 
-    private typealias Colors = AppConstants.Colors.FailureView
-    private typealias Floats = AppConstants.CGFloats.FailureView
-    private typealias Strings = AppConstants.Strings.FailureView
+    private typealias Colors = CoreConstants.Colors.FailureView
+    private typealias Floats = CoreConstants.CGFloats.FailureView
+    private typealias Strings = CoreConstants.Strings.FailureView
 
     // MARK: - Init
 
