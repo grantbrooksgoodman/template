@@ -130,7 +130,7 @@
 		B9E7D4412AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4402AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift */; };
 		B9E7D4462AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4452AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift */; };
 		B9E7D4482AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4472AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift */; };
-		B9E7D44C2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D44B2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift */; };
+		B9E7D44C2AAC2EDD00FAF2A9 /* CoreConstants+BuildInfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D44B2AAC2EDD00FAF2A9 /* CoreConstants+BuildInfoOverlayView.swift */; };
 		B9E7D4562AAD0D8100FAF2A9 /* CalendarDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4552AAD0D8100FAF2A9 /* CalendarDependencies.swift */; };
 		B9E7D46E2AAD117A00FAF2A9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D46D2AAD117A00FAF2A9 /* Core.swift */; };
 		B9E7D4722AAD163B00FAF2A9 /* CoreKitDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4712AAD163B00FAF2A9 /* CoreKitDependency.swift */; };
@@ -356,7 +356,7 @@
 		B9E7D4402AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewObserver.swift; sourceTree = "<group>"; };
 		B9E7D4452AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewServiceDependency.swift; sourceTree = "<group>"; };
 		B9E7D4472AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfoOverlayViewService.swift; sourceTree = "<group>"; };
-		B9E7D44B2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+BuildInfoOverlayView.swift"; sourceTree = "<group>"; };
+		B9E7D44B2AAC2EDD00FAF2A9 /* CoreConstants+BuildInfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreConstants+BuildInfoOverlayView.swift"; sourceTree = "<group>"; };
 		B9E7D4552AAD0D8100FAF2A9 /* CalendarDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDependencies.swift; sourceTree = "<group>"; };
 		B9E7D46D2AAD117A00FAF2A9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		B9E7D4712AAD163B00FAF2A9 /* CoreKitDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreKitDependency.swift; sourceTree = "<group>"; };
@@ -559,7 +559,7 @@
 		B93BCDF12AADA34800AA16FE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B9E7D44B2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift */,
+				B9E7D44B2AAC2EDD00FAF2A9 /* CoreConstants+BuildInfoOverlayView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1136,7 +1136,7 @@
 				B946D87E2ACC966E001D2424 /* Duration+CoreExtensions.swift in Sources */,
 				B9E7D4282AAC1F0400FAF2A9 /* FailureReducer.swift in Sources */,
 				B946576B2AABBD420091193B /* AKCoreDependency.swift in Sources */,
-				B9E7D44C2AAC2EDD00FAF2A9 /* AppConstants+BuildInfoOverlayView.swift in Sources */,
+				B9E7D44C2AAC2EDD00FAF2A9 /* CoreConstants+BuildInfoOverlayView.swift in Sources */,
 				B92409832AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift in Sources */,
 				B93BCDD02AAD8B1900AA16FE /* Dictionary+CoreExtensions.swift in Sources */,
 				B9E7D43B2AAC221F00FAF2A9 /* Observer.swift in Sources */,
