@@ -109,7 +109,7 @@ public struct Exception: Equatable, Exceptionable {
         params["NSErrorCode"] = error.code
         params["NSErrorDomain"] = error.domain
 
-        if let extraParams = extraParams,
+        if let extraParams,
            !extraParams.isEmpty {
             for param in extraParams {
                 guard param.key != "NSLocalizedDescription" else { continue }
@@ -283,7 +283,7 @@ public struct Exception: Equatable, Exceptionable {
             hexChars = subsequence
         }
 
-        return "\(hexChars.joined(separator: ""))x\(lineNumber)".lowercased()
+        return "\(hexChars.joined())x\(lineNumber)".lowercased()
     }
 }
 

@@ -75,12 +75,6 @@ public extension String {
         return index + 1
     }
 
-    var asLanguagePair: LanguagePair? {
-        let components = self.components(separatedBy: "-")
-        guard components.count > 1 else { return nil }
-        return LanguagePair(from: components[0], to: components[1 ... components.count - 1].joined(separator: "-"))
-    }
-
     var components: [String] {
         map { String($0) }
     }

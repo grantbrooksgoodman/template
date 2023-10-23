@@ -21,11 +21,14 @@ public struct RootView: View {
     // MARK: - View
 
     public var body: some View {
-        Group {
-            switch navigationCoordinator.page {
-            case .sample:
-                withTransition { SampleView(.init(initialState: .init(), reducer: SampleReducer())) }
+        GeometryReader { proxy in
+            Group {
+                switch navigationCoordinator.page {
+                case .sample:
+                    withTransition { SampleView(.init(initialState: .init(), reducer: SampleReducer())) }
+                }
             }
+            .environment(\.keyWindowSize, proxy.size)
         }
     }
 }

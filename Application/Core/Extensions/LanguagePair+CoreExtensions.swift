@@ -20,7 +20,17 @@ extension LanguagePair: Equatable {
 }
 
 public extension LanguagePair {
+    // MARK: - Properties
+
     static var system: LanguagePair {
         .init(from: "en", to: RuntimeStorage.languageCode)
+    }
+
+    // MARK: - Methods
+
+    convenience init?(_ string: String) {
+        let components = string.components(separatedBy: "-")
+        guard components.count > 1 else { return nil }
+        self.init(from: components[0], to: components[1 ... components.count - 1].joined())
     }
 }

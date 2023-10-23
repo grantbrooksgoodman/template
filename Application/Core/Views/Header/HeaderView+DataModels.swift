@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 public extension HeaderView {
+    // MARK: - Image Attributes
+
     struct ImageAttributes {
         /* MARK: Properties */
 
@@ -30,6 +32,8 @@ public extension HeaderView {
         }
     }
 
+    // MARK: - Image Button Attributes
+
     struct ImageButtonAttributes {
         /* MARK: Properties */
 
@@ -45,13 +49,9 @@ public extension HeaderView {
             image = attributes
             self.action = action
         }
-
-        /* MARK: Default Value */
-
-        public static var empty: ImageButtonAttributes {
-            .init(image: .init(image: .init(uiImage: .init()))) {}
-        }
     }
+
+    // MARK: - Text Attributes
 
     struct TextAttributes {
         /* MARK: Properties */
@@ -60,24 +60,24 @@ public extension HeaderView {
         public let foregroundColor: Color
         public let string: String
 
+        /* MARK: Constants Accessors */
+
+        public typealias Floats = CoreConstants.CGFloats.HeaderView
+
         /* MARK: Init */
 
         public init(
             _ string: String,
-            font: Font = .system(size: 17, weight: .semibold),
+            font: Font = .system(size: Floats.textAttributesDefaultSystemFontSize, weight: .semibold),
             foregroundColor: Color = .titleText
         ) {
             self.string = string
             self.font = font
             self.foregroundColor = foregroundColor
         }
-
-        /* MARK: Default Value */
-
-        public static var empty: TextAttributes {
-            .init(.init())
-        }
     }
+
+    // MARK: - Text Button Attributes
 
     struct TextButtonAttributes {
         /* MARK: Properties */
@@ -93,12 +93,6 @@ public extension HeaderView {
         ) {
             text = attributes
             self.action = action
-        }
-
-        /* MARK: Default Value */
-
-        public static var empty: TextButtonAttributes {
-            .init(text: .init(.init())) {}
         }
     }
 }

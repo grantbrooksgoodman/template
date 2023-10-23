@@ -38,36 +38,32 @@ private struct HeaderViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         if isThemed {
-            ZStack {
-                VStack {
-                    ThemedView {
-                        HeaderView(
-                            leftItem: leftItem,
-                            centerItem: centerItem,
-                            rightItem: rightItem,
-                            isThemed: true
-                        )
-                        .background(Color.navigationBarBackground)
-                    }
-
-                    Spacer()
-                }
-
-                content
-            }
-        } else {
-            ZStack {
-                VStack {
+            VStack {
+                ThemedView {
                     HeaderView(
                         leftItem: leftItem,
                         centerItem: centerItem,
-                        rightItem: rightItem
+                        rightItem: rightItem,
+                        isThemed: true
                     )
-
-                    Spacer()
+                    .background(Color.navigationBarBackground)
                 }
 
+                Spacer()
                 content
+                Spacer()
+            }
+        } else {
+            VStack {
+                HeaderView(
+                    leftItem: leftItem,
+                    centerItem: centerItem,
+                    rightItem: rightItem
+                )
+
+                Spacer()
+                content
+                Spacer()
             }
         }
     }

@@ -28,26 +28,19 @@ public struct HeaderView: View {
 
     // MARK: - Properties
 
-    // Dependencies
-    @Dependency(\.uiApplication) private var uiApplication: UIApplication
-
-    // Property Wrappers
+    // Environment
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    @Environment(\.keyWindowSize) private var keyWindowSize: CGSize
 
-    // PeripheralButtonType
+    // Instance
+    public let centerItem: CenterItemType?
+    public let isThemed: Bool
     public let leftItem: PeripheralButtonType?
     public let rightItem: PeripheralButtonType?
 
-    // Other
-    public let centerItem: CenterItemType?
-    public let isThemed: Bool
-
     // MARK: - Computed Properties
 
-    private var centerItemImageMaxWidth: CGFloat {
-        guard let mainScreen = uiApplication.mainScreen else { return 0 }
-        return mainScreen.bounds.width / 3
-    }
+    private var centerItemImageMaxWidth: CGFloat { keyWindowSize.width / Floats.keyWindowSizeWidthDivisor }
 
     // MARK: - Constants Accessors
 
@@ -90,17 +83,13 @@ public struct HeaderView: View {
         }
     }
 
+    // MARK: - Content
+
     private var contentView: some View {
         ZStack {
             HStack {
                 if let leftItem {
-                    switch leftItem {
-                    case let .image(imageButtonAttributes):
-                        imageButton(imageButtonAttributes)
-
-                    case let .text(textButtonAttributes):
-                        textButton(textButtonAttributes)
-                    }
+                    peripheralButton(for: leftItem)
                 }
 
                 Spacer()
@@ -110,42 +99,13 @@ public struct HeaderView: View {
                 if let centerItem {
                     switch centerItem {
                     case let .image(imageAttributes):
-                        if let size = imageAttributes.size {
-                            imageAttributes.image
-                                .renderingMode(.template)
-                                .resizable()
-                                .foregroundStyle(isThemed ? .navigationBarTitle : imageAttributes.foregroundColor)
-                                .frame(
-                                    width: size.width > centerItemImageMaxWidth ? nil : size.width,
-                                    height: size.height > Floats.centerItemImageMaxHeight ? nil : size.height
-                                )
-                                .frame(
-                                    maxWidth: centerItemImageMaxWidth,
-                                    maxHeight: Floats.centerItemImageMaxHeight,
-                                    alignment: .center
-                                )
-                        } else {
-                            imageAttributes.image
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundStyle(isThemed ? .navigationBarTitle : imageAttributes.foregroundColor)
-                                .frame(
-                                    maxWidth: centerItemImageMaxWidth,
-                                    maxHeight: Floats.centerItemImageMaxHeight,
-                                    alignment: .center
-                                )
-                        }
+                        centerImage(for: imageAttributes)
 
                     case let .text(titleAttributes, subtitle: subtitleAttributes):
-                        Text(titleAttributes.string)
-                            .font(titleAttributes.font)
-                            .foregroundStyle(isThemed ? .navigationBarTitle : titleAttributes.foregroundColor)
+                        centerText(for: titleAttributes)
 
                         if let subtitleAttributes {
-                            Text(subtitleAttributes.string)
-                                .font(subtitleAttributes.font)
-                                .foregroundStyle(isThemed ? .navigationBarTitle : subtitleAttributes.foregroundColor)
+                            centerText(for: subtitleAttributes)
                         }
                     }
                 } else {
@@ -159,13 +119,7 @@ public struct HeaderView: View {
                 Spacer()
 
                 if let rightItem {
-                    switch rightItem {
-                    case let .image(imageButtonAttributes):
-                        imageButton(imageButtonAttributes)
-
-                    case let .text(textButtonAttributes):
-                        textButton(textButtonAttributes)
-                    }
+                    peripheralButton(for: rightItem)
                 }
             }
         }
@@ -173,30 +127,78 @@ public struct HeaderView: View {
         .padding(.horizontal, Floats.horizontalPadding)
     }
 
-    private func imageButton(_ attributes: ImageButtonAttributes) -> some View {
-        Button {
-            attributes.action()
-        } label: {
-            if let size = attributes.image.size {
-                attributes.image.image
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(isThemed ? .accent : attributes.image.foregroundColor)
-                    .frame(width: size.width, height: size.height)
-            } else {
-                attributes.image.image
-                    .foregroundStyle(isThemed ? .accent : attributes.image.foregroundColor)
-            }
+    // MARK: - Center Image
+
+    private func centerImage(for attributes: ImageAttributes) -> some View {
+        let image = attributes.image
+            .renderingMode(.template)
+            .resizable()
+            .foregroundStyle(isThemed ? .navigationBarTitle : attributes.foregroundColor)
+
+        if let size = attributes.size {
+            return AnyView(
+                image
+                    .frame(
+                        width: size.width > centerItemImageMaxWidth ? nil : size.width,
+                        height: size.height > Floats.centerItemImageMaxHeight ? nil : size.height
+                    )
+                    .frame(
+                        maxWidth: centerItemImageMaxWidth,
+                        maxHeight: Floats.centerItemImageMaxHeight,
+                        alignment: .center
+                    )
+            )
         }
+
+        return AnyView(
+            image
+                .scaledToFit()
+                .frame(
+                    maxWidth: centerItemImageMaxWidth,
+                    maxHeight: Floats.centerItemImageMaxHeight,
+                    alignment: .center
+                )
+        )
     }
 
-    private func textButton(_ attributes: TextButtonAttributes) -> some View {
-        Button {
-            attributes.action()
-        } label: {
-            Text(attributes.text.string)
-                .font(attributes.text.font)
-                .foregroundStyle(isThemed ? .accent : attributes.text.foregroundColor)
+    // MARK: - Center Text
+
+    private func centerText(for attributes: TextAttributes) -> some View {
+        Text(attributes.string)
+            .font(attributes.font)
+            .foregroundStyle(isThemed ? .navigationBarTitle : attributes.foregroundColor)
+    }
+
+    // MARK: - Peripheral Button
+
+    private func peripheralButton(for type: PeripheralButtonType) -> some View {
+        Group {
+            switch type {
+            case let .image(attributes):
+                Button {
+                    attributes.action()
+                } label: {
+                    if let size = attributes.image.size {
+                        attributes.image.image
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundStyle(isThemed ? .accent : attributes.image.foregroundColor)
+                            .frame(width: size.width, height: size.height)
+                    } else {
+                        attributes.image.image
+                            .foregroundStyle(isThemed ? .accent : attributes.image.foregroundColor)
+                    }
+                }
+
+            case let .text(attributes):
+                Button {
+                    attributes.action()
+                } label: {
+                    Text(attributes.text.string)
+                        .font(attributes.text.font)
+                        .foregroundStyle(isThemed ? .accent : attributes.text.foregroundColor)
+                }
+            }
         }
     }
 }
