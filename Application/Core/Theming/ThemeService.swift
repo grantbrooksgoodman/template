@@ -20,7 +20,7 @@ public enum ThemeService {
         didSet {
             @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
             @Persistent(.currentThemeID) var currentThemeID: String?
-            currentThemeID = currentTheme.hash
+            currentThemeID = currentTheme.compressedHash
             Observables.themedViewAppearanceChanged.trigger()
             setStyle()
         }
@@ -41,7 +41,7 @@ public enum ThemeService {
                 message: "The new appearance will take effect the next time you restart the app.",
                 cancelButtonTitle: "Dismiss"
             ).present { _ in
-                pendingThemeID = theme.hash
+                pendingThemeID = theme.compressedHash
             }
 
             return

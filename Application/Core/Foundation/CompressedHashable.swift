@@ -17,7 +17,7 @@ public protocol CompressedHashable {
 }
 
 public extension CompressedHashable {
-    var hash: String {
+    var compressedHash: String {
         @Dependency(\.jsonEncoder) var jsonEncoder: JSONEncoder
         do {
             return try jsonEncoder.encode(hashFactors).compressedHash
@@ -28,7 +28,7 @@ public extension CompressedHashable {
     }
 }
 
-public extension Data {
+private extension Data {
     var compressedHash: String {
         guard let compressedData = try? (self as NSData).compressed(using: .lzfse) else {
             return SHA256.hash(data: self).compactMap { String(format: "%02x", $0) }.joined()
