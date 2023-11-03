@@ -54,15 +54,15 @@ public extension HeaderView {
     // MARK: - Text Attributes
 
     struct TextAttributes {
+        /* MARK: Constants Accessors */
+
+        public typealias Floats = CoreConstants.CGFloats.HeaderView
+
         /* MARK: Properties */
 
         public let font: Font
         public let foregroundColor: Color
         public let string: String
-
-        /* MARK: Constants Accessors */
-
-        public typealias Floats = CoreConstants.CGFloats.HeaderView
 
         /* MARK: Init */
 

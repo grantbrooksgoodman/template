@@ -13,16 +13,16 @@ import SwiftUI
 import Redux
 
 public struct BuildInfoOverlayView: View {
-    // MARK: - Properties
-
-    @StateObject private var viewModel: ViewModel<BuildInfoOverlayReducer>
-    @StateObject private var observer: ViewObserver<BuildInfoOverlayViewObserver>
-
     // MARK: - Constants Accessors
 
     private typealias Colors = CoreConstants.Colors.BuildInfoOverlayView
     private typealias Floats = CoreConstants.CGFloats.BuildInfoOverlayView
     private typealias Strings = CoreConstants.Strings.BuildInfoOverlayView
+
+    // MARK: - Properties
+
+    @StateObject private var viewModel: ViewModel<BuildInfoOverlayReducer>
+    @StateObject private var observer: ViewObserver<BuildInfoOverlayViewObserver>
 
     // MARK: - Init
 

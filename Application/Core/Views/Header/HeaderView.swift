@@ -26,6 +26,11 @@ public struct HeaderView: View {
         case text(TextButtonAttributes)
     }
 
+    // MARK: - Constants Accessors
+
+    private typealias Colors = CoreConstants.Colors.HeaderView
+    private typealias Floats = CoreConstants.CGFloats.HeaderView
+
     // MARK: - Properties
 
     // Environment
@@ -41,11 +46,6 @@ public struct HeaderView: View {
     // MARK: - Computed Properties
 
     private var centerItemImageMaxWidth: CGFloat { keyWindowSize.width / Floats.keyWindowSizeWidthDivisor }
-
-    // MARK: - Constants Accessors
-
-    private typealias Colors = CoreConstants.Colors.HeaderView
-    private typealias Floats = CoreConstants.CGFloats.HeaderView
 
     // MARK: - Init
 

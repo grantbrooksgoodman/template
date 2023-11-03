@@ -68,6 +68,12 @@
 		B93BCDEF2AAD9F8E00AA16FE /* TranslatorService+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCDEE2AAD9F8E00AA16FE /* TranslatorService+CoreExtensions.swift */; };
 		B93BCDF32AADA47400AA16FE /* BuildConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCDF22AADA47400AA16FE /* BuildConfig.swift */; };
 		B93BCDF72AAF937500AA16FE /* FileManager+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCDF62AAF937500AA16FE /* FileManager+CoreExtensions.swift */; };
+		B93CAEA52AF461C800C03BF4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CAEA42AF461C800C03BF4 /* Toast.swift */; };
+		B93CAEA72AF4620700C03BF4 /* Toast+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CAEA62AF4620700C03BF4 /* Toast+Type.swift */; };
+		B93CAEAA2AF4621C00C03BF4 /* Toast+PerpetuationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CAEA92AF4621C00C03BF4 /* Toast+PerpetuationStrategy.swift */; };
+		B93CAEAC2AF4622500C03BF4 /* Toast+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CAEAB2AF4622500C03BF4 /* Toast+Style.swift */; };
+		B93CAEAE2AF4623700C03BF4 /* Toast+AppearanceEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CAEAD2AF4623700C03BF4 /* Toast+AppearanceEdge.swift */; };
+		B93CAEB02AF4624000C03BF4 /* Toast+ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CAEAF2AF4624000C03BF4 /* Toast+ColorPalette.swift */; };
 		B94149572A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */; };
 		B94657692AABBC740091193B /* UserDefaultsDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94657682AABBC740091193B /* UserDefaultsDependency.swift */; };
 		B946576B2AABBD420091193B /* AKCoreDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946576A2AABBD420091193B /* AKCoreDependency.swift */; };
@@ -82,6 +88,11 @@
 		B961A8EF2ACA8346007508EC /* ViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A8EE2ACA8346007508EC /* ViewObserver.swift */; };
 		B96A04FB2AC7C0530003FDB0 /* ThemedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A04FA2AC7C0530003FDB0 /* ThemedProgressView.swift */; };
 		B97381092ACE8A2000ADB173 /* Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97381082ACE8A2000ADB173 /* Persistent.swift */; };
+		B97DB56D2AF45F11002C2679 /* SwipeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB56C2AF45F11002C2679 /* SwipeViewModifier.swift */; };
+		B97DB56F2AF45F5E002C2679 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB56E2AF45F5E002C2679 /* ToastView.swift */; };
+		B97DB5732AF45F6C002C2679 /* ToastViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5722AF45F6C002C2679 /* ToastViewModifier.swift */; };
+		B97DB5752AF45FBA002C2679 /* CoreConstants+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5742AF45FBA002C2679 /* CoreConstants+ToastView.swift */; };
+		B97DB5772AF4602B002C2679 /* Font+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5762AF4602B002C2679 /* Font+CoreExtensions.swift */; };
 		B992BCD02A159121003BFF2E /* ThemedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCCF2A159121003BFF2E /* ThemedView.swift */; };
 		B992BCD52A159479003BFF2E /* AKConnectionAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCD42A159479003BFF2E /* AKConnectionAlertDelegate.swift */; };
 		B992BCD82A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCD72A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift */; };
@@ -297,6 +308,12 @@
 		B93BCDEE2AAD9F8E00AA16FE /* TranslatorService+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TranslatorService+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B93BCDF22AADA47400AA16FE /* BuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfig.swift; sourceTree = "<group>"; };
 		B93BCDF62AAF937500AA16FE /* FileManager+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+CoreExtensions.swift"; sourceTree = "<group>"; };
+		B93CAEA42AF461C800C03BF4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		B93CAEA62AF4620700C03BF4 /* Toast+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Type.swift"; sourceTree = "<group>"; };
+		B93CAEA92AF4621C00C03BF4 /* Toast+PerpetuationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+PerpetuationStrategy.swift"; sourceTree = "<group>"; };
+		B93CAEAB2AF4622500C03BF4 /* Toast+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Style.swift"; sourceTree = "<group>"; };
+		B93CAEAD2AF4623700C03BF4 /* Toast+AppearanceEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+AppearanceEdge.swift"; sourceTree = "<group>"; };
+		B93CAEAF2AF4624000C03BF4 /* Toast+ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+ColorPalette.swift"; sourceTree = "<group>"; };
 		B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		B941496A2A4F7A8F0097DAE5 /* Redux */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Redux; path = ../../XCFrameworks/Redux; sourceTree = "<group>"; };
 		B94657682AABBC740091193B /* UserDefaultsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDependency.swift; sourceTree = "<group>"; };
@@ -311,6 +328,11 @@
 		B961A8EE2ACA8346007508EC /* ViewObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
 		B96A04FA2AC7C0530003FDB0 /* ThemedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedProgressView.swift; sourceTree = "<group>"; };
 		B97381082ACE8A2000ADB173 /* Persistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistent.swift; sourceTree = "<group>"; };
+		B97DB56C2AF45F11002C2679 /* SwipeViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewModifier.swift; sourceTree = "<group>"; };
+		B97DB56E2AF45F5E002C2679 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		B97DB5722AF45F6C002C2679 /* ToastViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastViewModifier.swift; sourceTree = "<group>"; };
+		B97DB5742AF45FBA002C2679 /* CoreConstants+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreConstants+ToastView.swift"; sourceTree = "<group>"; };
+		B97DB5762AF4602B002C2679 /* Font+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B992BCCF2A159121003BFF2E /* ThemedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemedView.swift; sourceTree = "<group>"; };
 		B992BCD42A159479003BFF2E /* AKConnectionAlertDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKConnectionAlertDelegate.swift; sourceTree = "<group>"; };
 		B992BCD72A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+CoreExtensions.swift"; sourceTree = "<group>"; };
@@ -386,8 +408,8 @@
 		A206F7D328AC38D2008FFE18 /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
-				A206F7D428AC38DD008FFE18 /* ExpiryOverlayView.swift */,
 				B9C582FB29BEC703009DCE29 /* BuildInfoOverlayView */,
+				A206F7D428AC38DD008FFE18 /* ExpiryOverlayView.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -550,10 +572,11 @@
 		B93BCDF02AADA30A00AA16FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B96A04FA2AC7C0530003FDB0 /* ThemedProgressView.swift */,
 				B9E7D4232AAC1F0400FAF2A9 /* Failure */,
 				B90F331C2AE4D408002A9284 /* Header */,
 				A206F7D328AC38D2008FFE18 /* Overlay */,
+				B97DB56B2AF45EDA002C2679 /* Toast */,
+				B96A04FA2AC7C0530003FDB0 /* ThemedProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -562,6 +585,27 @@
 			isa = PBXGroup;
 			children = (
 				B9E7D44B2AAC2EDD00FAF2A9 /* CoreConstants+BuildInfoOverlayView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B93CAEA32AF461BB00C03BF4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B93CAEA42AF461C800C03BF4 /* Toast.swift */,
+				B93CAEAD2AF4623700C03BF4 /* Toast+AppearanceEdge.swift */,
+				B93CAEAF2AF4624000C03BF4 /* Toast+ColorPalette.swift */,
+				B93CAEA92AF4621C00C03BF4 /* Toast+PerpetuationStrategy.swift */,
+				B93CAEAB2AF4622500C03BF4 /* Toast+Style.swift */,
+				B93CAEA62AF4620700C03BF4 /* Toast+Type.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B93CAEB12AF4637300C03BF4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B97DB5742AF45FBA002C2679 /* CoreConstants+ToastView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -608,6 +652,16 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		B97DB56B2AF45EDA002C2679 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				B93CAEB12AF4637300C03BF4 /* Extensions */,
+				B93CAEA32AF461BB00C03BF4 /* Models */,
+				B97DB56E2AF45F5E002C2679 /* ToastView.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		B992BCD62A159483003BFF2E /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,10 +676,10 @@
 		B99B1DB629E4C0BD00117D42 /* Theming */ = {
 			isa = PBXGroup;
 			children = (
+				B9C5E9112AB15F76004D79DA /* ThemedView */,
 				B99B1DC729E4C4BD00117D42 /* ThemeComponents.swift */,
 				B99B1DBD29E4C43400117D42 /* ThemeService.swift */,
 				B99B1DC129E4C49C00117D42 /* UITheme.swift */,
-				B9C5E9112AB15F76004D79DA /* ThemedView */,
 			);
 			path = Theming;
 			sourceTree = "<group>";
@@ -672,6 +726,7 @@
 				B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */,
 				B9BEC8392AE6F9EC0040FB1F /* EnvironmentValues+CoreExtensions.swift */,
 				B93BCDF62AAF937500AA16FE /* FileManager+CoreExtensions.swift */,
+				B97DB5762AF4602B002C2679 /* Font+CoreExtensions.swift */,
 				B93BCDEA2AAD9D9D00AA16FE /* LanguagePair+CoreExtensions.swift */,
 				B920F1882AD7C243002FC1C2 /* Locale+CoreExtensions.swift */,
 				B93BCDD12AAD8BBF00AA16FE /* Primitives+CoreExtensions.swift */,
@@ -799,6 +854,8 @@
 				B9C5830029BECB0C009DCE29 /* DeviceShakeViewModifier.swift */,
 				B90F33212AE4D463002A9284 /* HeaderViewModifier.swift */,
 				B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */,
+				B97DB56C2AF45F11002C2679 /* SwipeViewModifier.swift */,
+				B97DB5722AF45F6C002C2679 /* ToastViewModifier.swift */,
 			);
 			path = "View Modifiers";
 			sourceTree = "<group>";
@@ -1108,9 +1165,14 @@
 				B9E7D4292AAC1F0400FAF2A9 /* CoreConstants+FailureView.swift in Sources */,
 				B9E7D41A2AAC0FC500FAF2A9 /* FileManagerDependency.swift in Sources */,
 				B9E7D4742AAD359000FAF2A9 /* Array+CoreExtensions.swift in Sources */,
+				B93CAEAC2AF4622500C03BF4 /* Toast+Style.swift in Sources */,
 				B9260BBA2AC4105C00824A7C /* BuildDependency.swift in Sources */,
+				B93CAEAE2AF4623700C03BF4 /* Toast+AppearanceEdge.swift in Sources */,
+				B97DB5752AF45FBA002C2679 /* CoreConstants+ToastView.swift in Sources */,
+				B97DB56F2AF45F5E002C2679 /* ToastView.swift in Sources */,
 				B93457092AABFB3700944602 /* Localized.swift in Sources */,
 				B93BCDD62AAD8BD700AA16FE /* Sequence+CoreExtensions.swift in Sources */,
+				B93CAEA52AF461C800C03BF4 /* Toast.swift in Sources */,
 				B93BCDD22AAD8BBF00AA16FE /* Primitives+CoreExtensions.swift in Sources */,
 				B9E7D4482AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift in Sources */,
 				B9C5E9132AB161B6004D79DA /* EmptyReducer.swift in Sources */,
@@ -1137,6 +1199,7 @@
 				B920F1892AD7C243002FC1C2 /* Locale+CoreExtensions.swift in Sources */,
 				B91688DA28FE0E4C004C80A2 /* ExceptionCatalog.swift in Sources */,
 				B99B1DBE29E4C43400117D42 /* ThemeService.swift in Sources */,
+				B93CAEAA2AF4621C00C03BF4 /* Toast+PerpetuationStrategy.swift in Sources */,
 				B946D87E2ACC966E001D2424 /* Duration+CoreExtensions.swift in Sources */,
 				B9E7D4282AAC1F0400FAF2A9 /* FailureReducer.swift in Sources */,
 				B946576B2AABBD420091193B /* AKCoreDependency.swift in Sources */,
@@ -1145,6 +1208,7 @@
 				B93BCDD02AAD8B1900AA16FE /* Dictionary+CoreExtensions.swift in Sources */,
 				B9E7D43B2AAC221F00FAF2A9 /* Observer.swift in Sources */,
 				B9AF12522ACE4DAD0045C54C /* JSONDependencies.swift in Sources */,
+				B97DB56D2AF45F11002C2679 /* SwipeViewModifier.swift in Sources */,
 				B9C5830129BECB0C009DCE29 /* DeviceShakeViewModifier.swift in Sources */,
 				B992BCD02A159121003BFF2E /* ThemedView.swift in Sources */,
 				B9E7D4722AAD163B00FAF2A9 /* CoreKitDependency.swift in Sources */,
@@ -1153,9 +1217,11 @@
 				B9E7D4222AAC1ED700FAF2A9 /* SampleReducer.swift in Sources */,
 				B920F1872AD77128002FC1C2 /* Calendar+CoreExtensions.swift in Sources */,
 				B9988BFF2AC4C72800C4924C /* RuntimeStorage.swift in Sources */,
+				B97DB5772AF4602B002C2679 /* Font+CoreExtensions.swift in Sources */,
 				B93BCDED2AAD9DAC00AA16FE /* Task+CoreExtensions.swift in Sources */,
 				B9CC831B2AB0F6B800255116 /* QuickViewerDependency.swift in Sources */,
 				B961A8EF2ACA8346007508EC /* ViewObserver.swift in Sources */,
+				B93CAEB02AF4624000C03BF4 /* Toast+ColorPalette.swift in Sources */,
 				B90F33222AE4D463002A9284 /* HeaderViewModifier.swift in Sources */,
 				A206F7DF28AC552D008FFE18 /* Build.swift in Sources */,
 				B9CC83202AB11E7F00255116 /* ThemedReducer.swift in Sources */,
@@ -1170,6 +1236,7 @@
 				B9E7D4302AAC20D900FAF2A9 /* BuildInfoOverlayView.swift in Sources */,
 				B92409812AB2C5AB004CF4C0 /* Breadcrumbs.swift in Sources */,
 				B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */,
+				B97DB5732AF45F6C002C2679 /* ToastViewModifier.swift in Sources */,
 				B992BCD82A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift in Sources */,
 				B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */,
 				B99B1DC229E4C49C00117D42 /* UITheme.swift in Sources */,
@@ -1199,6 +1266,7 @@
 				B91689092AC760AA00AF403D /* MainQueueDependency.swift in Sources */,
 				B9C582F329BEC263009DCE29 /* DevModeAction.swift in Sources */,
 				B92409852AB2DFC0004CF4C0 /* LoggerDomains.swift in Sources */,
+				B93CAEA72AF4620700C03BF4 /* Toast+Type.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

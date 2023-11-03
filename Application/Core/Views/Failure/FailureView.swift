@@ -13,15 +13,15 @@ import SwiftUI
 import Redux
 
 public struct FailureView: View {
-    // MARK: - Properties
-
-    @StateObject private var viewModel: ViewModel<FailureReducer>
-
     // MARK: - Constants Accessors
 
     private typealias Colors = CoreConstants.Colors.FailureView
     private typealias Floats = CoreConstants.CGFloats.FailureView
     private typealias Strings = CoreConstants.Strings.FailureView
+
+    // MARK: - Properties
+
+    @StateObject private var viewModel: ViewModel<FailureReducer>
 
     // MARK: - Init
 
