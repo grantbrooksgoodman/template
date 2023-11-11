@@ -18,13 +18,16 @@ public enum ThemeService {
 
     public private(set) static var currentTheme = AppTheme.default.theme {
         didSet {
-            @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
+            @Dependency(\.coreKit.gcd) var coreGCD: CoreKit.GCD
             @Persistent(.currentThemeID) var currentThemeID: String?
             currentThemeID = currentTheme.compressedHash
             Observables.themedViewAppearanceChanged.trigger()
             setStyle()
+            coreGCD.after(.seconds(1)) { didReachSetStyleTimeoutThreshold = true }
         }
     }
+
+    private static var didReachSetStyleTimeoutThreshold = false
 
     // MARK: - Setter
 
@@ -55,6 +58,7 @@ public enum ThemeService {
         @Dependency(\.coreKit.gcd) var coreGCD: CoreKit.GCD
         @Dependency(\.uiApplication) var uiApplication: UIApplication
 
+        guard !didReachSetStyleTimeoutThreshold else { return }
         guard uiApplication.applicationState == .active else {
             coreGCD.after(.milliseconds(10)) { self.setStyle() }
             return
