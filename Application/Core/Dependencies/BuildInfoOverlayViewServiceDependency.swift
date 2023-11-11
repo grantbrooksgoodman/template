@@ -19,11 +19,7 @@ public enum BuildInfoOverlayViewServiceDependency: DependencyKey {
 
 public extension DependencyValues {
     var buildInfoOverlayViewService: BuildInfoOverlayViewService {
-        get {
-            self[BuildInfoOverlayViewServiceDependency.self]
-        }
-        set {
-            self[BuildInfoOverlayViewServiceDependency.self] = newValue
-        }
+        get { self[BuildInfoOverlayViewServiceDependency.self] }
+        set { self[BuildInfoOverlayViewServiceDependency.self] = newValue }
     }
 }

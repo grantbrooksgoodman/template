@@ -19,11 +19,7 @@ public enum UserDefaultsDependency: DependencyKey {
 
 public extension DependencyValues {
     var userDefaults: UserDefaults {
-        get {
-            self[UserDefaultsDependency.self]
-        }
-        set {
-            self[UserDefaultsDependency.self] = newValue
-        }
+        get { self[UserDefaultsDependency.self] }
+        set { self[UserDefaultsDependency.self] = newValue }
     }
 }

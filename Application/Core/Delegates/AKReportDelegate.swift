@@ -292,7 +292,7 @@ public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailCom
     }
 }
 
-/* MARK: Date Formatter Dependency */
+/* MARK: DateFormatter Dependency */
 
 private enum ReportDelegateDateFormatterDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> DateFormatter {
@@ -305,11 +305,7 @@ private enum ReportDelegateDateFormatterDependency: DependencyKey {
 
 private extension DependencyValues {
     var reportDelegateDateFormatter: DateFormatter {
-        get {
-            self[ReportDelegateDateFormatterDependency.self]
-        }
-        set {
-            self[ReportDelegateDateFormatterDependency.self] = newValue
-        }
+        get { self[ReportDelegateDateFormatterDependency.self] }
+        set { self[ReportDelegateDateFormatterDependency.self] = newValue }
     }
 }

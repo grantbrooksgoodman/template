@@ -37,6 +37,14 @@ public struct Exception: Equatable, Exceptionable {
 
     // MARK: - Computed Properties
 
+    /// The recursively traversed value of all underlying `Exception`s for this instance.
+    public var traversedUnderlyingExceptions: [Exception] {
+        guard let underlyingExceptions else { return [] }
+        var allExceptions = underlyingExceptions
+        underlyingExceptions.forEach { allExceptions.append(contentsOf: $0.traversedUnderlyingExceptions) }
+        return allExceptions
+    }
+
     public var userFacingDescriptor: String {
         @Dependency(\.build) var build: Build
 
@@ -72,7 +80,6 @@ public struct Exception: Equatable, Exceptionable {
         self.hashlet = hashlet
         metaID = getMetaID(for: metadata)
 
-        // #warning("Is the self filter necessary?")
         self.underlyingExceptions = underlyingExceptions?.unique.filter { $0 != self }
     }
 
@@ -192,14 +199,14 @@ public struct Exception: Equatable, Exceptionable {
         let leftDescriptor = left.descriptor
         let leftIsReportable = left.isReportable
         let leftUnderlyingExceptions = left.underlyingExceptions
-        let leftAllUnderlyingExceptions = left.allUnderlyingExceptions()
+        let leftTraversedUnderlyingExceptions = left.traversedUnderlyingExceptions
 
         let rightMetaID = right.metaID
         let rightHashlet = right.hashlet
         let rightDescriptor = right.descriptor
         let rightIsReportable = right.isReportable
         let rightUnderlyingExceptions = right.underlyingExceptions
-        let rightAllUnderlyingExceptions = right.allUnderlyingExceptions()
+        let rightTraversedUnderlyingExceptions = right.traversedUnderlyingExceptions
 
         var leftStringBasedParams = [String: String]()
         left.extraParams?.forEach { parameter in
@@ -223,7 +230,7 @@ public struct Exception: Equatable, Exceptionable {
               leftDescriptor == rightDescriptor,
               leftIsReportable == rightIsReportable,
               leftUnderlyingExceptions == rightUnderlyingExceptions,
-              leftAllUnderlyingExceptions == rightAllUnderlyingExceptions,
+              leftTraversedUnderlyingExceptions == rightTraversedUnderlyingExceptions,
               leftStringBasedParams == rightStringBasedParams,
               leftNonStringBasedParamsCount == rightNonStringBasedParamsCount else { return false }
 
@@ -291,7 +298,7 @@ public extension Array where Element == Exception {
     // MARK: - Properties
 
     /**
-     Returns a single `Exception` from an array of `Exception` instances by appending each as an underlying `Exception` to the final item in the array.
+     Returns a single `Exception` by appending each as an underlying `Exception` to the final item in the array.
      */
     var compiledException: Exception? {
         guard !isEmpty else { return nil }
@@ -311,7 +318,7 @@ public extension Array where Element == Exception {
             let suffix = codes.contains(where: { $0.hasPrefix(exception.hashlet!.lowercased()) }) ? "x\(index)" : ""
             codes.append("\(exception.hashlet!)x\(exception.metaID!)\(suffix)".lowercased())
 
-            for (index, underlyingException) in exception.allUnderlyingExceptions().enumerated() {
+            for (index, underlyingException) in exception.traversedUnderlyingExceptions.enumerated() {
                 let suffix = codes.contains(where: { $0.hasPrefix(underlyingException.hashlet!.lowercased()) }) ? "x\(index)" : ""
                 codes.append("\(underlyingException.hashlet!)x\(underlyingException.metaID!)\(suffix)".lowercased())
             }
@@ -334,18 +341,6 @@ public extension Error {
 }
 
 public extension Exception {
-    // #warning("This is better, but might still be wonky. Think about the recursion...")
-    func allUnderlyingExceptions(_ with: [Exception]? = nil) -> [Exception] {
-        var allExceptions = [Exception]()
-
-        if let underlying = underlyingExceptions {
-            allExceptions = underlying
-            underlying.forEach { allExceptions.append(contentsOf: $0.allUnderlyingExceptions(allExceptions)) }
-        }
-
-        return allExceptions.unique
-    }
-
     static func timedOut(_ metadata: [Any]) -> Exception {
         @Localized(.timedOut) var timedOutString: String
         let exception = Exception(

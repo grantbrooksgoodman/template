@@ -19,11 +19,7 @@ public enum RootNavigationCoordinatorDependency: DependencyKey {
 
 public extension DependencyValues {
     var rootNavigationCoordinator: RootNavigationCoordinator {
-        get {
-            self[RootNavigationCoordinatorDependency.self]
-        }
-        set {
-            self[RootNavigationCoordinatorDependency.self] = newValue
-        }
+        get { self[RootNavigationCoordinatorDependency.self] }
+        set { self[RootNavigationCoordinatorDependency.self] = newValue }
     }
 }

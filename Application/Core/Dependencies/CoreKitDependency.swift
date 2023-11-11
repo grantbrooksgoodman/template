@@ -24,11 +24,7 @@ public enum CoreKitDependency: DependencyKey {
 
 public extension DependencyValues {
     var coreKit: CoreKit {
-        get {
-            self[CoreKitDependency.self]
-        }
-        set {
-            self[CoreKitDependency.self] = newValue
-        }
+        get { self[CoreKitDependency.self] }
+        set { self[CoreKitDependency.self] = newValue }
     }
 }

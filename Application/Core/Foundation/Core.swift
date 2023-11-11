@@ -131,14 +131,6 @@ public struct CoreKit {
         @Dependency(\.mainQueue) private var mainQueue: DispatchQueue
         @Dependency(\.uiApplication) private var uiApplication: UIApplication
 
-        /* MARK: Properties */
-
-        public var isPresentingAlertController: Bool {
-            guard let keyVC = uiApplication.keyViewController,
-                  keyVC.isKind(of: UIAlertController.self) else { return false }
-            return true
-        }
-
         /* MARK: First Responder */
 
         public func firstResponder(in view: UIView? = nil) -> UIView? {
@@ -190,7 +182,7 @@ public struct CoreKit {
 
         // Public
         public func dismissAlertController(animated: Bool = true) {
-            guard isPresentingAlertController else { return }
+            guard uiApplication.isPresentingAlertController else { return }
             uiApplication.keyViewController?.dismiss(animated: animated)
         }
 
@@ -219,6 +211,10 @@ public struct CoreKit {
             queuePresentation(of: viewController, animated: animated, embedded: embedded)
         }
 
+        public func overrideUserInterfaceStyle(_ style: UIUserInterfaceStyle) {
+            uiApplication.keyWindow?.overrideUserInterfaceStyle = style
+        }
+
         // Private
         private func present(
             _ viewController: UIViewController,
@@ -241,7 +237,7 @@ public struct CoreKit {
             animated: Bool,
             embedded: Bool
         ) {
-            guard !isPresentingAlertController else {
+            guard !uiApplication.isPresentingAlertController else {
                 GCD().after(.seconds(1)) { queuePresentation(of: viewController, animated: animated, embedded: embedded) }
                 return
             }

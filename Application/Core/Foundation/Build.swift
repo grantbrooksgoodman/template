@@ -283,29 +283,17 @@ private enum ProjectIDDateFormatterDependency: DependencyKey {
 
 private extension DependencyValues {
     var buildSKUDateFormatter: DateFormatter {
-        get {
-            self[BuildSKUDateFormatterDependency.self]
-        }
-        set {
-            self[BuildSKUDateFormatterDependency.self] = newValue
-        }
+        get { self[BuildSKUDateFormatterDependency.self] }
+        set { self[BuildSKUDateFormatterDependency.self] = newValue }
     }
 
     var expiryInfoStringDateFormatter: DateFormatter {
-        get {
-            self[ExpiryInfoStringDateFormatterDependency.self]
-        }
-        set {
-            self[ExpiryInfoStringDateFormatterDependency.self] = newValue
-        }
+        get { self[ExpiryInfoStringDateFormatterDependency.self] }
+        set { self[ExpiryInfoStringDateFormatterDependency.self] = newValue }
     }
 
     var projectIDDateFormatter: DateFormatter {
-        get {
-            self[ProjectIDDateFormatterDependency.self]
-        }
-        set {
-            self[ProjectIDDateFormatterDependency.self] = newValue
-        }
+        get { self[ProjectIDDateFormatterDependency.self] }
+        set { self[ProjectIDDateFormatterDependency.self] = newValue }
     }
 }

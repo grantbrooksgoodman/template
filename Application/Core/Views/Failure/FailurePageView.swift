@@ -1,5 +1,5 @@
 //
-//  FailureView.swift
+//  FailurePageView.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -12,7 +12,7 @@ import SwiftUI
 /* 3rd-party */
 import Redux
 
-public struct FailureView: View {
+public struct FailurePageView: View {
     // MARK: - Constants Accessors
 
     private typealias Colors = CoreConstants.Colors.FailureView
@@ -21,11 +21,11 @@ public struct FailureView: View {
 
     // MARK: - Properties
 
-    @StateObject private var viewModel: ViewModel<FailureReducer>
+    @StateObject private var viewModel: ViewModel<FailurePageReducer>
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<FailureReducer>) {
+    public init(_ viewModel: ViewModel<FailurePageReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
     }
 

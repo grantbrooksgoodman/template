@@ -1,5 +1,5 @@
 //
-//  FailureReducer.swift
+//  FailurePageReducer.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -12,7 +12,7 @@ import Foundation
 import AlertKit
 import Redux
 
-public struct FailureReducer: Reducer {
+public struct FailurePageReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.alertKitCore) private var akCore: AKCore
@@ -55,22 +55,18 @@ public struct FailureReducer: Reducer {
 
         /* MARK: Equatable Conformance */
 
-        public static func == (left: FailureReducer.State, right: FailureReducer.State) -> Bool {
+        public static func == (left: State, right: State) -> Bool {
             let sameDidReportBug = left.didReportBug == right.didReportBug
             let sameException = left.exception == right.exception
             let sameReportBugButtonText = left.reportBugButtonText == right.reportBugButtonText
             let sameRetryButtonText = left.retryButtonText == right.retryButtonText
-
-            // #warning("Is this solid logic?")
-            let leftRetryHandlerNotNil = left.retryHandler != nil
-            let rightRetryHandlerNotNil = right.retryHandler != nil
-            let bothNonNilRetryHandlers = leftRetryHandlerNotNil && rightRetryHandlerNotNil
+            let bothNilRetryHandlers = left.retryHandler == nil && right.retryHandler == nil
 
             guard sameDidReportBug,
                   sameException,
                   sameReportBugButtonText,
                   sameRetryButtonText,
-                  bothNonNilRetryHandlers else {
+                  bothNilRetryHandlers else {
                 return false
             }
 

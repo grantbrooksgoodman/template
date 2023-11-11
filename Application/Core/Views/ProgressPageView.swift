@@ -1,5 +1,5 @@
 //
-//  ThemedProgressView.swift
+//  ProgressPageView.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -12,7 +12,7 @@ import SwiftUI
 /* 3rd-party */
 import Redux
 
-public struct ThemedProgressView: View {
+public struct ProgressPageView: View {
     // MARK: - View
 
     public var body: some View {

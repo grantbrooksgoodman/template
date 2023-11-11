@@ -62,7 +62,7 @@ public struct HeaderView: View {
         self.isThemed = isThemed
     }
 
-    // MARK: - View
+    // MARK: - Body
 
     public var body: some View {
         Group {
@@ -83,7 +83,7 @@ public struct HeaderView: View {
         }
     }
 
-    // MARK: - Content
+    // MARK: - Content View
 
     private var contentView: some View {
         ZStack {

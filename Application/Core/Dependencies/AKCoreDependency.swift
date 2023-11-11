@@ -20,11 +20,7 @@ public enum AKCoreDependency: DependencyKey {
 
 public extension DependencyValues {
     var alertKitCore: AKCore {
-        get {
-            self[AKCoreDependency.self]
-        }
-        set {
-            self[AKCoreDependency.self] = newValue
-        }
+        get { self[AKCoreDependency.self] }
+        set { self[AKCoreDependency.self] = newValue }
     }
 }

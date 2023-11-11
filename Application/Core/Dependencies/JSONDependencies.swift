@@ -25,20 +25,12 @@ public enum JSONEncoderDependency: DependencyKey {
 
 public extension DependencyValues {
     var jsonDecoder: JSONDecoder {
-        get {
-            self[JSONDecoderDependency.self]
-        }
-        set {
-            self[JSONDecoderDependency.self] = newValue
-        }
+        get { self[JSONDecoderDependency.self] }
+        set { self[JSONDecoderDependency.self] = newValue }
     }
 
     var jsonEncoder: JSONEncoder {
-        get {
-            self[JSONEncoderDependency.self]
-        }
-        set {
-            self[JSONEncoderDependency.self] = newValue
-        }
+        get { self[JSONEncoderDependency.self] }
+        set { self[JSONEncoderDependency.self] = newValue }
     }
 }

@@ -19,11 +19,7 @@ public enum MainBundleDependency: DependencyKey {
 
 public extension DependencyValues {
     var mainBundle: Bundle {
-        get {
-            self[MainBundleDependency.self]
-        }
-        set {
-            self[MainBundleDependency.self] = newValue
-        }
+        get { self[MainBundleDependency.self] }
+        set { self[MainBundleDependency.self] = newValue }
     }
 }

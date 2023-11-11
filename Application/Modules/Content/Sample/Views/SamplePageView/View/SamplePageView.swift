@@ -1,5 +1,5 @@
 //
-//  SampleView.swift
+//  SamplePageView.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -13,14 +13,14 @@ import SwiftUI
 /* 3rd-party */
 import Redux
 
-public struct SampleView: View {
+public struct SamplePageView: View {
     // MARK: - Properties
 
-    @StateObject private var viewModel: ViewModel<SampleReducer>
+    @StateObject private var viewModel: ViewModel<SamplePageReducer>
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<SampleReducer>) {
+    public init(_ viewModel: ViewModel<SamplePageReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
     }
 
@@ -30,11 +30,11 @@ public struct SampleView: View {
         Group {
             switch viewModel.viewState {
             case .loading:
-                ThemedProgressView()
+                ProgressPageView()
             case .loaded:
-                SampleContentView(viewModel)
+                SampleContentPageView(viewModel)
             case let .error(exception):
-                FailureView(.init(initialState: .init(exception), reducer: FailureReducer()))
+                FailurePageView(.init(initialState: .init(exception), reducer: FailurePageReducer()))
             }
         }
         .onFirstAppear {

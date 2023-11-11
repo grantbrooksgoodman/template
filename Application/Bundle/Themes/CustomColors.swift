@@ -29,7 +29,7 @@ public enum ColoredItemType: String, Equatable {
 }
 
 /**
- Use this extension to create custom `UIColors` based on the current theme.
+ Use this extension to create custom `UIColor`s based on the current theme.
  */
 public extension UIColor {
     static var accent: UIColor { theme.color(for: .accent) }
@@ -45,7 +45,7 @@ public extension UIColor {
 }
 
 /**
- Provided to create convenience initializers for custom `Colors`.
+ Provided to create convenience initializers for custom `Color`s.
  */
 public extension Color {
     static var accent: Color { .init(uiColor: .accent) }

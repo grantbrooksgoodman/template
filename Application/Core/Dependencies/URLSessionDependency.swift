@@ -19,11 +19,7 @@ public enum URLSessionDependency: DependencyKey {
 
 public extension DependencyValues {
     var urlSession: URLSession {
-        get {
-            self[URLSessionDependency.self]
-        }
-        set {
-            self[URLSessionDependency.self] = newValue
-        }
+        get { self[URLSessionDependency.self] }
+        set { self[URLSessionDependency.self] = newValue }
     }
 }

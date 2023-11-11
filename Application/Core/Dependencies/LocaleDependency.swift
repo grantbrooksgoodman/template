@@ -19,11 +19,7 @@ public enum LocaleDependency: DependencyKey {
 
 public extension DependencyValues {
     var currentLocale: Locale {
-        get {
-            self[LocaleDependency.self]
-        }
-        set {
-            self[LocaleDependency.self] = newValue
-        }
+        get { self[LocaleDependency.self] }
+        set { self[LocaleDependency.self] = newValue }
     }
 }

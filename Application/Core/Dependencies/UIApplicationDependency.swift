@@ -20,11 +20,7 @@ public enum UIApplicationDependency: DependencyKey {
 
 public extension DependencyValues {
     var uiApplication: UIApplication {
-        get {
-            self[UIApplicationDependency.self]
-        }
-        set {
-            self[UIApplicationDependency.self] = newValue
-        }
+        get { self[UIApplicationDependency.self] }
+        set { self[UIApplicationDependency.self] = newValue }
     }
 }

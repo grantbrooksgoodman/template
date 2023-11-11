@@ -19,11 +19,7 @@ public enum QuickViewerDependency: DependencyKey {
 
 public extension DependencyValues {
     var quickViewer: QuickViewer {
-        get {
-            self[QuickViewerDependency.self]
-        }
-        set {
-            self[QuickViewerDependency.self] = newValue
-        }
+        get { self[QuickViewerDependency.self] }
+        set { self[QuickViewerDependency.self] = newValue }
     }
 }

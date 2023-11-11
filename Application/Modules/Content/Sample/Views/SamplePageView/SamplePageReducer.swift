@@ -1,5 +1,5 @@
 //
-//  SampleReducer.swift
+//  SamplePageReducer.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -13,7 +13,7 @@ import Foundation
 import Redux
 import Translator
 
-public struct SampleReducer: Reducer {
+public struct SamplePageReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.translatorService) private var translator: TranslatorService

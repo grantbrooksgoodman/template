@@ -127,7 +127,7 @@ public extension Date {
     }
 }
 
-/* MARK: Date Formatter Dependency */
+/* MARK: DateFormatter Dependency */
 
 // swiftlint:disable:next type_name
 private enum FormattedShortStringDateFormatterDependency: DependencyKey {
@@ -141,11 +141,7 @@ private enum FormattedShortStringDateFormatterDependency: DependencyKey {
 
 private extension DependencyValues {
     var formattedShortStringDateFormatter: DateFormatter {
-        get {
-            self[FormattedShortStringDateFormatterDependency.self]
-        }
-        set {
-            self[FormattedShortStringDateFormatterDependency.self] = newValue
-        }
+        get { self[FormattedShortStringDateFormatterDependency.self] }
+        set { self[FormattedShortStringDateFormatterDependency.self] = newValue }
     }
 }

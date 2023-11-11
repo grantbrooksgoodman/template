@@ -37,11 +37,7 @@ public enum BuildDependency: DependencyKey {
 
 public extension DependencyValues {
     var build: Build {
-        get {
-            self[BuildDependency.self]
-        }
-        set {
-            self[BuildDependency.self] = newValue
-        }
+        get { self[BuildDependency.self] }
+        set { self[BuildDependency.self] = newValue }
     }
 }

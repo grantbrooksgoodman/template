@@ -17,8 +17,10 @@ public extension CoreConstants.CGFloats {
         public static let frameMinHeight: CGFloat = 54
         public static let horizontalPadding: CGFloat = 16
         public static let keyWindowSizeWidthDivisor: CGFloat = 3
+
         public static let separatorMaxHeight: CGFloat = 0.3
         public static let separatorTopPadding: CGFloat = -8
+
         public static let textAttributesDefaultSystemFontSize: CGFloat = 17
     }
 }

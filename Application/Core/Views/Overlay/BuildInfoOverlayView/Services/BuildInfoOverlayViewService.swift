@@ -22,6 +22,7 @@ public final class BuildInfoOverlayViewService {
     @Dependency(\.currentCalendar) private var calendar: Calendar
     @Dependency(\.coreKit.ui) private var coreUI: CoreKit.UI
     @Dependency(\.translatorService) private var translator: TranslatorService
+    @Dependency(\.uiApplication) private var uiApplication: UIApplication
 
     // MARK: - Properties
 
@@ -65,7 +66,7 @@ public final class BuildInfoOverlayViewService {
     // MARK: - Disclaimer Alert
 
     public func buildInfoButtonTapped() {
-        guard !coreUI.isPresentingAlertController,
+        guard !uiApplication.isPresentingAlertController,
               !willPresentDisclaimerAlert else { return }
         willPresentDisclaimerAlert = true
 

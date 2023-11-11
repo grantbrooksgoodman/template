@@ -25,7 +25,7 @@ public struct RootView: View {
             Group {
                 switch navigationCoordinator.page {
                 case .sample:
-                    withTransition { SampleView(.init(initialState: .init(), reducer: SampleReducer())) }
+                    withTransition { SamplePageView(.init(initialState: .init(), reducer: SamplePageReducer())) }
                 }
             }
             .environment(\.keyWindowSize, proxy.size)

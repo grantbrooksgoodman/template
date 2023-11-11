@@ -1,5 +1,5 @@
 //
-//  SampleContentView.swift
+//  SampleContentPageView.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -13,14 +13,14 @@ import SwiftUI
 /* 3rd-party */
 import Redux
 
-public struct SampleContentView: View {
+public struct SampleContentPageView: View {
     // MARK: - Properties
 
-    @ObservedObject private var viewModel: ViewModel<SampleReducer>
+    @ObservedObject private var viewModel: ViewModel<SamplePageReducer>
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<SampleReducer>) {
+    public init(_ viewModel: ViewModel<SamplePageReducer>) {
         self.viewModel = viewModel
     }
 

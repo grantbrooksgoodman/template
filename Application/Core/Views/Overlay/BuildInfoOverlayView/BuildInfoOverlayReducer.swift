@@ -16,7 +16,7 @@ public struct BuildInfoOverlayReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.build) private var build: Build
-    @Dependency(\.buildInfoOverlayViewService) private var service: BuildInfoOverlayViewService
+    @Dependency(\.buildInfoOverlayViewService) private var viewService: BuildInfoOverlayViewService
 
     // MARK: - Actions
 
@@ -74,7 +74,7 @@ public struct BuildInfoOverlayReducer: Reducer {
             state.isDeveloperModeEnabled = defaultsValue
 
         case .action(.buildInfoButtonTapped):
-            service.buildInfoButtonTapped()
+            viewService.buildInfoButtonTapped()
 
         case .action(.didShakeDevice):
             guard build.developerModeEnabled else { return .none }
@@ -90,7 +90,7 @@ public struct BuildInfoOverlayReducer: Reducer {
             state.isDeveloperModeEnabled = developerModeEnabled
 
         case .action(.sendFeedbackButtonTapped):
-            service.sendFeedbackButtonTapped()
+            viewService.sendFeedbackButtonTapped()
 
         case .feedback(.restoreIndicatorColor):
             state.developerModeIndicatorDotColor = .orange

@@ -1,5 +1,5 @@
 //
-//  TranslationMapComponents.swift
+//  TranslationMap.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.

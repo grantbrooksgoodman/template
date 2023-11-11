@@ -19,11 +19,7 @@ public enum BreadcrumbsDependency: DependencyKey {
 
 public extension DependencyValues {
     var breadcrumbs: Breadcrumbs {
-        get {
-            self[BreadcrumbsDependency.self]
-        }
-        set {
-            self[BreadcrumbsDependency.self] = newValue
-        }
+        get { self[BreadcrumbsDependency.self] }
+        set { self[BreadcrumbsDependency.self] = newValue }
     }
 }

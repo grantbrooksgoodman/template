@@ -19,11 +19,7 @@ public enum MainQueueDependency: DependencyKey {
 
 public extension DependencyValues {
     var mainQueue: DispatchQueue {
-        get {
-            self[MainQueueDependency.self]
-        }
-        set {
-            self[MainQueueDependency.self] = newValue
-        }
+        get { self[MainQueueDependency.self] }
+        set { self[MainQueueDependency.self] = newValue }
     }
 }

@@ -20,11 +20,7 @@ public enum TranslatorServiceDependency: DependencyKey {
 
 public extension DependencyValues {
     var translatorService: TranslatorService {
-        get {
-            self[TranslatorServiceDependency.self]
-        }
-        set {
-            self[TranslatorServiceDependency.self] = newValue
-        }
+        get { self[TranslatorServiceDependency.self] }
+        set { self[TranslatorServiceDependency.self] = newValue }
     }
 }

@@ -19,11 +19,7 @@ public enum NotificationCenterDependency: DependencyKey {
 
 public extension DependencyValues {
     var notificationCenter: NotificationCenter {
-        get {
-            self[NotificationCenterDependency.self]
-        }
-        set {
-            self[NotificationCenterDependency.self] = newValue
-        }
+        get { self[NotificationCenterDependency.self] }
+        set { self[NotificationCenterDependency.self] = newValue }
     }
 }

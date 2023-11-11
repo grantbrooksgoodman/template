@@ -65,7 +65,7 @@ public struct ToastView: View {
         }
     }
 
-    // MARK: - Content
+    // MARK: - Banner Content View
 
     private func bannerContentView(
         style: Toast.Style,
@@ -130,6 +130,8 @@ public struct ToastView: View {
         )
         .padding(.horizontal, Floats.bannerHorizontalPadding)
     }
+
+    // MARK: - Capsule Content View
 
     private func capsuleContentView(style: Toast.Style) -> some View {
         VStack {
@@ -202,7 +204,7 @@ public struct ToastView: View {
         .padding(.horizontal, Floats.capsuleSecondaryHorizontalPadding)
     }
 
-    // MARK: - Auxiliary
+    // MARK: - Overlay
 
     private func overlay(_ fillColor: Color?) -> some View {
         if let fillColor {
@@ -216,6 +218,8 @@ public struct ToastView: View {
 
         return AnyView(EmptyView())
     }
+
+    // MARK: - Auxiliary
 
     private func vibrate() {
         uiSelectionFeedbackGenerator.selectionChanged()

@@ -49,7 +49,7 @@ public final class Breadcrumbs {
     // MARK: - Capture
 
     @discardableResult
-    func startCapture(
+    public func startCapture(
         saveToPhotos: Bool = true,
         uniqueViewsOnly doesExclude: Bool = true
     ) -> Exception? {
@@ -73,7 +73,7 @@ public final class Breadcrumbs {
     }
 
     @discardableResult
-    func stopCapture() -> Exception? {
+    public func stopCapture() -> Exception? {
         guard isCapturing else {
             return .init("Breadcrumbs capture is not running.", metadata: [self, #file, #function, #line])
         }
@@ -111,7 +111,7 @@ public final class Breadcrumbs {
     }
 }
 
-/* MARK: Date Formatter Dependency */
+/* MARK: DateFormatter Dependency */
 
 private enum BreadcrumbsDateFormatterDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> DateFormatter {
@@ -123,11 +123,7 @@ private enum BreadcrumbsDateFormatterDependency: DependencyKey {
 
 private extension DependencyValues {
     var breadcrumbsDateFormatter: DateFormatter {
-        get {
-            self[BreadcrumbsDateFormatterDependency.self]
-        }
-        set {
-            self[BreadcrumbsDateFormatterDependency.self] = newValue
-        }
+        get { self[BreadcrumbsDateFormatterDependency.self] }
+        set { self[BreadcrumbsDateFormatterDependency.self] = newValue }
     }
 }

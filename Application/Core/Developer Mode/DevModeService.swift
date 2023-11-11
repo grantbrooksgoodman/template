@@ -74,9 +74,9 @@ public enum DevModeService {
     // MARK: - Menu Presentation
 
     public static func presentActionSheet() {
-        @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
+        @Dependency(\.uiApplication) var uiApplication: UIApplication
         guard !actions.isEmpty,
-              !coreUI.isPresentingAlertController else { return }
+              !uiApplication.isPresentingAlertController else { return }
 
         var akActions = [AKAction]()
         akActions = actions.map { .init(title: $0.title, style: $0.isDestructive ? .destructive : .default) }

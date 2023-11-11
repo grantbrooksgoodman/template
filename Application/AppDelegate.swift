@@ -75,10 +75,8 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                   let correspondingCase = AppTheme.allCases.first(where: { $0.theme.compressedHash == currentThemeID }) {
             ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
         } else {
-            currentThemeID = AppTheme.default.theme.compressedHash
+            ThemeService.setTheme(AppTheme.default.theme, checkStyle: false)
         }
-
-        ThemeService.setStyle()
 
         /* MARK: AlertKit Setup */
 

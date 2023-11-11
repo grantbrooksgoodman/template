@@ -27,20 +27,12 @@ public enum SystemLocalizedCalendarDependency: DependencyKey {
 
 public extension DependencyValues {
     var currentCalendar: Calendar {
-        get {
-            self[CurrentCalendarDependency.self]
-        }
-        set {
-            self[CurrentCalendarDependency.self] = newValue
-        }
+        get { self[CurrentCalendarDependency.self] }
+        set { self[CurrentCalendarDependency.self] = newValue }
     }
 
     var systemLocalizedCalendar: Calendar {
-        get {
-            self[SystemLocalizedCalendarDependency.self]
-        }
-        set {
-            self[SystemLocalizedCalendarDependency.self] = newValue
-        }
+        get { self[SystemLocalizedCalendarDependency.self] }
+        set { self[SystemLocalizedCalendarDependency.self] = newValue }
     }
 }

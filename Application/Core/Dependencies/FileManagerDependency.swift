@@ -19,11 +19,7 @@ public enum FileManagerDependency: DependencyKey {
 
 public extension DependencyValues {
     var fileManager: FileManager {
-        get {
-            self[FileManagerDependency.self]
-        }
-        set {
-            self[FileManagerDependency.self] = newValue
-        }
+        get { self[FileManagerDependency.self] }
+        set { self[FileManagerDependency.self] = newValue }
     }
 }

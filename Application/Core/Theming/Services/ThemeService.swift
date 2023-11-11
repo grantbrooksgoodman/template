@@ -54,21 +54,21 @@ public enum ThemeService {
         currentTheme = theme
     }
 
-    public static func setStyle() {
-        @Dependency(\.coreKit.gcd) var coreGCD: CoreKit.GCD
+    private static func setStyle() {
+        @Dependency(\.coreKit) var core: CoreKit
         @Dependency(\.uiApplication) var uiApplication: UIApplication
 
         guard !didReachSetStyleTimeoutThreshold else { return }
         guard uiApplication.applicationState == .active else {
-            coreGCD.after(.milliseconds(10)) { self.setStyle() }
+            core.gcd.after(.milliseconds(10)) { self.setStyle() }
             return
         }
 
         let currentThemeStyle = currentTheme.style
         guard uiApplication.interfaceStyle != currentThemeStyle else { return }
-        uiApplication.overrideUserInterfaceStyle(currentThemeStyle)
+        core.ui.overrideUserInterfaceStyle(currentThemeStyle)
 
-        coreGCD.after(.milliseconds(10)) {
+        core.gcd.after(.milliseconds(10)) {
             guard uiApplication.interfaceStyle != currentThemeStyle else { return }
             self.setStyle()
         }

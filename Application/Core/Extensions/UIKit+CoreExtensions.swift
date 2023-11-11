@@ -21,6 +21,12 @@ public extension UIApplication {
         keyWindow?.overrideUserInterfaceStyle
     }
 
+    var isPresentingAlertController: Bool {
+        guard let keyViewController,
+              keyViewController.isKind(of: UIAlertController.self) else { return false }
+        return true
+    }
+
     var keyViewController: UIViewController? {
         keyViewController(keyWindow?.rootViewController)
     }
@@ -63,10 +69,6 @@ public extension UIApplication {
     }
 
     /* MARK: Methods */
-
-    func overrideUserInterfaceStyle(_ style: UIUserInterfaceStyle) {
-        keyWindow?.overrideUserInterfaceStyle = style
-    }
 
     private func keyViewController(_ baseVC: UIViewController?) -> UIViewController? {
         if let navigationController = baseVC as? UINavigationController {
