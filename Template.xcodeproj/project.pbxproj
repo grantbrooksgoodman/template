@@ -1520,7 +1520,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A9B1E9D904D7BFD358EAC0D /* Pods-Template.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Gray Icon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Application Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1545,7 +1545,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF52460DFCE5E62E30711A79 /* Pods-Template.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Gray Icon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Application Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
