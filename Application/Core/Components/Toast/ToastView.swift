@@ -21,7 +21,7 @@ public struct ToastView: View {
 
     // MARK: - Dependencies
 
-    @Dependency(\.uiSelectionFeedbackGenerator) var uiSelectionFeedbackGenerator: UISelectionFeedbackGenerator
+    @Dependency(\.uiSelectionFeedbackGenerator) private var uiSelectionFeedbackGenerator: UISelectionFeedbackGenerator
 
     // MARK: - Properties
 
@@ -85,11 +85,13 @@ public struct ToastView: View {
                         Text(title)
                             .font(.sanFrancisco(.semibold, size: Floats.bannerTitleLabelFontSize))
                             .foregroundStyle(colorPalette?.text ?? .titleText.opacity(Floats.bannerTitleLabelForegroundColorOpacity))
+                            .multilineTextAlignment(.leading)
                     }
 
                     Text(message)
                         .font(.sanFrancisco(title == nil ? .semibold : .regular, size: Floats.bannerMessageLabelFontSize))
                         .foregroundStyle(colorPalette?.text ?? .titleText.opacity(Floats.bannerMessageLabelForegroundColorOpacity))
+                        .multilineTextAlignment(.leading)
                 }
 
                 if let onTap {
