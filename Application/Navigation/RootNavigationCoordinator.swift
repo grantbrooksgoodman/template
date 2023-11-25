@@ -9,7 +9,7 @@
 /* Native */
 import Foundation
 
-public enum RootPage {
+public enum RootPage: String, CaseIterable {
     case sample
 }
 

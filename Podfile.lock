@@ -1,24 +1,20 @@
 PODS:
-  - ProgressHUD (13.7.3)
   - SwiftFormat/CLI (0.52.4)
   - SwiftLint (0.53.0)
 
 DEPENDENCIES:
-  - ProgressHUD
   - SwiftFormat/CLI (~> 0.49)
   - SwiftLint
 
 SPEC REPOS:
   trunk:
-    - ProgressHUD
     - SwiftFormat
     - SwiftLint
 
 SPEC CHECKSUMS:
-  ProgressHUD: 642c2b959606955dd717e936f474cd8f7aa2a8d8
   SwiftFormat: 3471ff966ddb724bd7acd091c865aaa6582dde08
   SwiftLint: 5ce4d6a8ff83f1b5fd5ad5dbf30965d35af65e44
 
-PODFILE CHECKSUM: a686e03a378c1cf82667f77756620ab05a09b5f7
+PODFILE CHECKSUM: 17e63e5d7277e9bc59574a6764624068dcf6491b
 
 COCOAPODS: 1.13.0

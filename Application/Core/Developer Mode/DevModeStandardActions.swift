@@ -19,6 +19,7 @@ public extension DevModeAction {
 
         public static var available: [DevModeAction] {
             var availableActions: [DevModeAction] = [.Standard.toggleBuildInfoOverlayAction,
+                                                     .Standard.navigateToPageAction,
                                                      .Standard.overrideLanguageCodeAction,
                                                      .Standard.resetUserDefaultsAction,
                                                      .Standard.toggleBreadcrumbsAction,
@@ -61,6 +62,35 @@ public extension DevModeAction {
                 perform: DevModeService.promptToToggle,
                 isDestructive: true
             )
+        }
+
+        private static var navigateToPageAction: DevModeAction {
+            func navigateToPage() {
+                @Dependency(\.rootNavigationCoordinator) var rootNavigationCoordinator: RootNavigationCoordinator
+
+                var actions = [AKAction]()
+                actions = RootPage.allCases.map { .init(
+                    title: $0.rawValue.camelCaseToHumanReadable.firstUppercase,
+                    style: .default,
+                    isEnabled: $0 != rootNavigationCoordinator.page
+                ) }
+
+                AKActionSheet(
+                    title: "Navigate to Page",
+                    actions: actions,
+                    shouldTranslate: [.none]
+                ).present { actionID in
+                    func format(_ pageName: String) -> String { pageName.camelCaseToHumanReadable.firstUppercase }
+                    guard actionID != -1,
+                          let pageName = actions.first(where: { $0.identifier == actionID })?.title,
+                          let correspondingCase = RootPage.allCases.first(where: { format($0.rawValue) == pageName }) else { return }
+
+                    rootNavigationCoordinator.setPage(correspondingCase)
+                    navigateToPage()
+                }
+            }
+
+            return .init(title: "Navigate to Page", perform: navigateToPage)
         }
 
         private static var overrideLanguageCodeAction: DevModeAction {
@@ -253,5 +283,17 @@ public extension DevModeAction {
 
             return .init(title: "Show/Hide Build Info Overlay", perform: toggleBuildInfoOverlay)
         }
+    }
+}
+
+private extension String {
+    var camelCaseToHumanReadable: String {
+        components.reduce(into: [String]()) { partialResult, component in
+            if component.isLowercase {
+                partialResult.append(component)
+            } else {
+                partialResult.append(" \(component)")
+            }
+        }.joined()
     }
 }
