@@ -19,13 +19,19 @@ public extension DevModeAction {
 
         public static var available: [DevModeAction] {
             var availableActions: [DevModeAction] = [.Standard.toggleBuildInfoOverlayAction,
-                                                     .Standard.navigateToPageAction,
                                                      .Standard.overrideLanguageCodeAction,
                                                      .Standard.resetUserDefaultsAction,
                                                      .Standard.toggleBreadcrumbsAction,
                                                      .Standard.disableDeveloperModeAction]
-            guard AppTheme.allCases.count > 1 else { return availableActions }
-            availableActions.insert(.Standard.changeThemeAction, at: 0)
+
+            if RootPage.allCases.count > 1 {
+                availableActions.insert(.Standard.navigateToPageAction, at: 0)
+            }
+
+            if AppTheme.allCases.count > 1 {
+                availableActions.insert(.Standard.changeThemeAction, at: 0)
+            }
+
             return availableActions
         }
 
