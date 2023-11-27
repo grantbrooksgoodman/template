@@ -153,7 +153,7 @@ public struct Exception: Equatable, Exceptionable {
             descriptor,
             isReportable: isReportable,
             extraParams: params.withCapitalizedKeys,
-            metadata: [self, #file, #function, #line]
+            metadata: metadata
         )
     }
 

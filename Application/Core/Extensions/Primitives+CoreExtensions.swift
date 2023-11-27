@@ -115,11 +115,11 @@ public extension String {
     }
 
     var languageName: String? {
-        @Dependency(\.coreKit.utils) var utils: CoreKit.Utilities
+        @Dependency(\.coreKit.utils) var coreUtilities: CoreKit.Utilities
 
         guard self != "",
               lowercasedTrimmingWhitespace != "",
-              let languageCodes = utils.localizedLanguageCodeDictionary,
+              let languageCodes = coreUtilities.localizedLanguageCodeDictionary,
               let name = languageCodes[self] ?? languageCodes[lowercasedTrimmingWhitespace] else { return nil }
 
         return name.trimmingBorderedWhitespace

@@ -302,24 +302,14 @@ public struct CoreKit {
         public func restoreDeviceLanguageCode() -> Exception? {
             @Dependency(\.alertKitCore) var akCore: AKCore
 
-            let preferredLanguages = Locale.preferredLanguages
-            guard !preferredLanguages.isEmpty else {
-                return .init("No preferred languages.", metadata: [self, #file, #function, #line])
+            RuntimeStorage.store(BuildConfig.languageCode, as: .languageCode)
+
+            if akCore.languageCodeIsLocked {
+                akCore.unlockLanguageCode(andSetTo: BuildConfig.languageCode)
+            } else {
+                akCore.setLanguageCode(BuildConfig.languageCode)
             }
 
-            let components = preferredLanguages[0].components(separatedBy: "-")
-            guard !components.isEmpty else {
-                return .init("No language separator key.", metadata: [self, #file, #function, #line])
-            }
-
-            RuntimeStorage.store(components[0], as: .languageCode)
-
-            guard !akCore.languageCodeIsLocked else {
-                akCore.unlockLanguageCode(andSetTo: components[0])
-                return nil
-            }
-
-            akCore.setLanguageCode(components[0])
             return nil
         }
     }

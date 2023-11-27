@@ -301,8 +301,12 @@ public enum Logger {
 
         core.hud.hide()
 
-        let mockException: Exception = .init(metadata: [self, #file, #function, #line])
-        var shouldTranslate = userFacingDescriptor != mockException.userFacingDescriptor
+        let mockGenericException: Exception = .init(metadata: [self, #file, #function, #line])
+        let mockTimedOutException: Exception = .timedOut([self, #file, #function, #line])
+        let notGenericDescriptor = userFacingDescriptor != mockGenericException.userFacingDescriptor
+        let notTimedOutDescriptor = userFacingDescriptor != mockTimedOutException.userFacingDescriptor
+
+        var shouldTranslate = notGenericDescriptor && notTimedOutDescriptor
 
         switch type {
         case .errorAlert:
@@ -318,7 +322,9 @@ public enum Logger {
                 return
             }
 
-            shouldTranslate = akError.description != mockException.userFacingDescriptor
+            let notGenericDescription = akError.description != mockGenericException.userFacingDescriptor
+            let notTimedOutDescription = akError.description != mockTimedOutException.userFacingDescriptor
+            shouldTranslate = notGenericDescription && notTimedOutDescription
 
             AKErrorAlert(
                 error: akError,
