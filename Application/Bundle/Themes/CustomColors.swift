@@ -11,9 +11,6 @@ import Foundation
 import SwiftUI
 import UIKit
 
-/* 3rd-party */
-import Redux
-
 /**
  Use this enum to define new color types for specific theme items.
  */

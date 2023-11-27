@@ -43,7 +43,7 @@ public struct SamplePageReducer: Reducer {
 
         /* MARK: Properties */
 
-        public var strings: [TranslationOutputMap] = SampleViewStrings.defaultOutputMap
+        public var strings: [TranslationOutputMap] = SamplePageViewStrings.defaultOutputMap
         public var viewState: ViewState = .loading
 
         /* MARK: Init */
@@ -63,7 +63,7 @@ public struct SamplePageReducer: Reducer {
             state.viewState = .loading
 
             return .task {
-                let result = await translator.resolve(SampleViewStrings.self)
+                let result = await translator.resolve(SamplePageViewStrings.self)
                 return .resolveReturned(result)
             }
 
