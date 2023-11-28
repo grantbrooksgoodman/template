@@ -11,14 +11,20 @@ import Foundation
 import Redux
 
 public enum ObservableKey: String {
+    // MARK: - App Cases
+
+    /* Add cases here to define new values for Observer instances. */
+
+    // MARK: - Core Cases
+
     case breadcrumbsDidCapture
     case isDeveloperModeEnabled
+    case rootViewToast
+    case rootViewToastAction
     case themedViewAppearanceChanged
 }
 
 /// For sending and accessing observed values between scopes.
 public enum Observables {
-    public static let breadcrumbsDidCapture: Observable<Nil> = .init(key: .breadcrumbsDidCapture)
-    public static let isDeveloperModeEnabled: Observable<Bool> = .init(.isDeveloperModeEnabled, false)
-    public static let themedViewAppearanceChanged: Observable<Nil> = .init(key: .themedViewAppearanceChanged)
+    /* Add new properties conforming to Observable here. */
 }

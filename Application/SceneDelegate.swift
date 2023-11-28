@@ -37,7 +37,7 @@ public final class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureR
         @Dependency(\.uiApplication) var uiApplication: UIApplication
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = RootView()
+        let contentView = RootView(.init(initialState: .init(), reducer: RootReducer()))
 
         // Use a UIHostingController as window root view controller.
         guard let windowScene = scene as? UIWindowScene else { return }

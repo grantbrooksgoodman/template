@@ -100,6 +100,9 @@
 		B992BCD02A159121003BFF2E /* ThemedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCCF2A159121003BFF2E /* ThemedView.swift */; };
 		B992BCD52A159479003BFF2E /* AKConnectionAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCD42A159479003BFF2E /* AKConnectionAlertDelegate.swift */; };
 		B992BCD82A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCD72A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift */; };
+		B994419E2B1566E200F3B99D /* RootReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B994419D2B1566E200F3B99D /* RootReducer.swift */; };
+		B99441A02B1567DE00F3B99D /* RootViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B994419F2B1567DE00F3B99D /* RootViewObserver.swift */; };
+		B99441A32B15747400F3B99D /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99441A22B15747400F3B99D /* RootNavigationView.swift */; };
 		B99652DD2AC525EA00C9CD69 /* Redux in Frameworks */ = {isa = PBXBuildFile; productRef = B99652DC2AC525EA00C9CD69 /* Redux */; };
 		B99875EF2ACB41F30024E6EF /* AlertKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99875EE2ACB41F30024E6EF /* AlertKit.xcframework */; };
 		B99875F02ACB41F30024E6EF /* AlertKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B99875EE2ACB41F30024E6EF /* AlertKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -345,6 +348,9 @@
 		B992BCCF2A159121003BFF2E /* ThemedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemedView.swift; sourceTree = "<group>"; };
 		B992BCD42A159479003BFF2E /* AKConnectionAlertDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKConnectionAlertDelegate.swift; sourceTree = "<group>"; };
 		B992BCD72A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+CoreExtensions.swift"; sourceTree = "<group>"; };
+		B994419D2B1566E200F3B99D /* RootReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootReducer.swift; sourceTree = "<group>"; };
+		B994419F2B1567DE00F3B99D /* RootViewObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewObserver.swift; sourceTree = "<group>"; };
+		B99441A22B15747400F3B99D /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		B99875EE2ACB41F30024E6EF /* AlertKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AlertKit.xcframework; path = "../../XCFrameworks/AlertKit + Translation/build/AlertKit.xcframework"; sourceTree = "<group>"; };
 		B9988BFE2AC4C72800C4924C /* RuntimeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeStorage.swift; sourceTree = "<group>"; };
 		B99B1DB929E4C2AF00117D42 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
@@ -645,19 +651,12 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		B93BCDE32AAD99F800AA16FE /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		B93BCDF02AADA30A00AA16FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				B9E7D4232AAC1F0400FAF2A9 /* Failure */,
 				A206F7D328AC38D2008FFE18 /* Overlay */,
+				B99441A12B15712000F3B99D /* Root */,
 				B96A04FA2AC7C0530003FDB0 /* ProgressPageView.swift */,
 			);
 			path = Views;
@@ -701,6 +700,7 @@
 				B91689082AC760AA00AF403D /* MainQueueDependency.swift */,
 				B9EA3A892AC6BB3700674147 /* NotificationCenterDependency.swift */,
 				B9CC831A2AB0F6B800255116 /* QuickViewerDependency.swift */,
+				B946576E2AABC5570091193B /* RootNavigationCoordinatorDependency.swift */,
 				B9E7D4162AAC06D000FAF2A9 /* TranslatorServiceDependency.swift */,
 				B93457112AAC015200944602 /* UIApplicationDependency.swift */,
 				B93BCDCD2AAD854B00AA16FE /* URLSessionDependency.swift */,
@@ -713,8 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				B94657712AABC6320091193B /* RootNavigationCoordinator.swift */,
-				B946576E2AABC5570091193B /* RootNavigationCoordinatorDependency.swift */,
-				B94657742AABC66F0091193B /* RootView.swift */,
+				B99441A22B15747400F3B99D /* RootNavigationView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -737,6 +736,16 @@
 				B9BB3CF62AC1486D0077D1BC /* AKTranslationDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		B99441A12B15712000F3B99D /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				B994419D2B1566E200F3B99D /* RootReducer.swift */,
+				B94657742AABC66F0091193B /* RootView.swift */,
+				B994419F2B1567DE00F3B99D /* RootViewObserver.swift */,
+			);
+			path = Root;
 			sourceTree = "<group>";
 		};
 		B99B1DB629E4C0BD00117D42 /* Theming */ = {
@@ -824,11 +833,11 @@
 		B9E7D41B2AAC1ED700FAF2A9 /* SamplePageView */ = {
 			isa = PBXGroup;
 			children = (
-				B93BCDE32AAD99F800AA16FE /* Models */,
 				B9E7D41C2AAC1ED700FAF2A9 /* View */,
 				B91A10F92AFF364700E3C1A0 /* EmptyPageView.swift */,
 				B9C5E9122AB161B6004D79DA /* EmptyReducer.swift */,
 				B9E7D41F2AAC1ED700FAF2A9 /* SamplePageReducer.swift */,
+				B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */,
 			);
 			path = SamplePageView;
 			sourceTree = "<group>";
@@ -1203,10 +1212,12 @@
 				B97DB56F2AF45F5E002C2679 /* ToastView.swift in Sources */,
 				B93457092AABFB3700944602 /* Localized.swift in Sources */,
 				B93BCDD62AAD8BD700AA16FE /* Sequence+CoreExtensions.swift in Sources */,
+				B99441A32B15747400F3B99D /* RootNavigationView.swift in Sources */,
 				B93CAEA52AF461C800C03BF4 /* Toast.swift in Sources */,
 				B93BCDD22AAD8BBF00AA16FE /* Primitives+CoreExtensions.swift in Sources */,
 				B9E7D4482AAC258500FAF2A9 /* BuildInfoOverlayViewService.swift in Sources */,
 				B9C5E9132AB161B6004D79DA /* EmptyReducer.swift in Sources */,
+				B994419E2B1566E200F3B99D /* RootReducer.swift in Sources */,
 				A2DF2C5528199B660089DEA1 /* AppDelegate.swift in Sources */,
 				B90F33202AE4D41A002A9284 /* HeaderView+DataModels.swift in Sources */,
 				A2DF2C5728199B660089DEA1 /* SceneDelegate.swift in Sources */,
@@ -1254,6 +1265,7 @@
 				B9CC831B2AB0F6B800255116 /* QuickViewerDependency.swift in Sources */,
 				B961A8EF2ACA8346007508EC /* ViewObserver.swift in Sources */,
 				B93CAEB02AF4624000C03BF4 /* Toast+ColorPalette.swift in Sources */,
+				B99441A02B1567DE00F3B99D /* RootViewObserver.swift in Sources */,
 				B91A11002AFF398B00E3C1A0 /* Cacheable.swift in Sources */,
 				B90F33222AE4D463002A9284 /* HeaderViewModifier.swift in Sources */,
 				A206F7DF28AC552D008FFE18 /* Build.swift in Sources */,

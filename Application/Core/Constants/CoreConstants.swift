@@ -23,6 +23,14 @@ public enum CoreConstants {
     public enum Strings {}
 }
 
+public extension Observables {
+    static let breadcrumbsDidCapture: Observable<Nil> = .init(key: .breadcrumbsDidCapture)
+    static let isDeveloperModeEnabled: Observable<Bool> = .init(.isDeveloperModeEnabled, false)
+    static let rootViewToast: Observable<Toast?> = .init(.rootViewToast, nil)
+    static let rootViewToastAction: Observable<() -> Void> = .init(.rootViewToastAction) {}
+    static let themedViewAppearanceChanged: Observable<Nil> = .init(key: .themedViewAppearanceChanged)
+}
+
 public extension RuntimeStorage {
     // MARK: - Properties
 
