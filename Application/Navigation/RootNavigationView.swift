@@ -15,9 +15,7 @@ import Redux
 
 public extension RootView {
     var rootPage: some View {
-        @ObservedDependency(\.rootNavigationCoordinator) var navigationCoordinator: RootNavigationCoordinator
-
-        return Group {
+        Group {
             switch navigationCoordinator.page {
             case .sample:
                 withTransition { SamplePageView(.init(initialState: .init(), reducer: SamplePageReducer())) }

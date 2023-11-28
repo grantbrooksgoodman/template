@@ -3007,80 +3007,80 @@ Hãy kết nối với Internet và cố gắng một lần nữa.</string>
 		<string>ಏನೋ ತಪ್ಪಾಗಿದೆ, ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
 		<key>ko</key>
 		<string>문제가 발생했습니다. 나중에 다시 시도해 주세요.</string>
-        <key>ky</key>
-        <string>Бир жерден ката кетти, бир аздан кийин кайталап көрүңүз.</string>
-        <key>lt</key>
-        <string>Kažkas ne taip, bandykite dar kartą vėliau.</string>
-        <key>mg</key>
-        <string>Nisy tsy nety, andramo indray rahatrizay.</string>
-        <key>mi</key>
-        <string>Kua he, me ngana ano i muri mai.</string>
-        <key>mk</key>
-        <string>Нешто тргна наопаку, обидете се повторно подоцна.</string>
-        <key>ml</key>
-        <string>എന്തോ കുഴപ്പം സംഭവിച്ചു, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
-        <key>mn</key>
-        <string>Алдаа гарлаа, дараа дахин оролдоно уу.</string>
-        <key>mt</key>
-        <string>Xi ħaġa marret ħażin, jekk jogħġbok erġa' pprova aktar tard.</string>
-        <key>ne</key>
-        <string>केही गडबड भयो, कृपया पछि फेरि प्रयास गर्नुहोस्।</string>
-        <key>nl</key>
-        <string>Er is iets misgegaan. Probeer het later opnieuw.</string>
-        <key>no</key>
-        <string>Noe gikk galt. Prøv igjen senere.</string>
-        <key>pa</key>
-        <string>ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ, ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
-        <key>pl</key>
-        <string>Coś poszło nie tak. proszę spróbować później.</string>
-        <key>pt</key>
-        <string>Algo deu errado. tente novamente mais tarde.</string>
-        <key>ro</key>
-        <string>Vă rugăm să încercați din nou mai târziu.</string>
-        <key>ru</key>
-        <string>Что-то пошло не так. Пожалуйста, повторите попытку позже.</string>
-        <key>si</key>
-        <string>යම් දෙයක් වැරදී ඇත, කරුණාකර පසුව නැවත උත්සාහ කරන්න.</string>
-        <key>sk</key>
-        <string>Niečo sa pokazilo. Prosím skús to znovu neskôr.</string>
-        <key>sl</key>
-        <string>Nekaj je šlo narobe, poskusite znova pozneje.</string>
-        <key>sq</key>
-        <string>Ndodhi një gabim. provo sërish më vonë.</string>
-        <key>sr</key>
-        <string>Нешто није у реду. молимо покушајте касније.</string>
-        <key>su</key>
-        <string>Aya nu lepat, mangga cobian deui engké.</string>
-        <key>sv</key>
-        <string>Försök igen senare.</string>
-        <key>sw</key>
-        <string>Hitilafu fulani imetokea, tafadhali jaribu tena baadaye.</string>
-        <key>ta</key>
-        <string>ஏதோ தவறு நடந்துவிட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.</string>
-        <key>te</key>
-        <string>ఏదో తప్పు జరిగినది. దయచేసి కాసేపు ఆగక ప్రయత్నించండి.</string>
-        <key>tg</key>
-        <string>Чизе хато кард, лутфан дертар аз нав кӯшиш кунед.</string>
-        <key>th</key>
-        <string>มีข้อผิดพลาดเกิดขึ้น โปรดลองอีกครั้งในภายหลัง</string>
-        <key>tl</key>
-        <string>Nagkaproblema, pakisubukang muli sa ibang pagkakataon.</string>
-        <key>tr</key>
-        <string>Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.</string>
-        <key>tt</key>
-        <string>Нәрсәдер дөрес булмаган, соңрак кабатлап карагыз.</string>
-        <key>uk</key>
-        <string>Щось пішло не так, спробуйте пізніше.</string>
-        <key>ur</key>
-        <string>کچھ غلط ہو گیا. براہ کرم کچھ دیر بعد کوشش کریں.</string>
-        <key>uz</key>
-        <string>Nimadir xato ketdi, keyinroq qayta urinib ko‘ring.</string>
-        <key>vi</key>
-        <string>Đã xảy ra lỗi, vui lòng thử lại sau.</string>
-        <key>yi</key>
-        <string>עפּעס איז פאַלש, ביטע פּרובירן ווידער שפּעטער.</string>
-        <key>zh</key>
-        <string>发生错误。请稍后再试。</string>
+		<key>ky</key>
+		<string>Бир жерден ката кетти, бир аздан кийин кайталап көрүңүз.</string>
+		<key>lt</key>
+		<string>Kažkas ne taip, bandykite dar kartą vėliau.</string>
+		<key>mg</key>
+		<string>Nisy tsy nety, andramo indray rahatrizay.</string>
+		<key>mi</key>
+		<string>Kua he, me ngana ano i muri mai.</string>
+		<key>mk</key>
+		<string>Нешто тргна наопаку, обидете се повторно подоцна.</string>
+		<key>ml</key>
+		<string>എന്തോ കുഴപ്പം സംഭവിച്ചു, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
+		<key>mn</key>
+		<string>Алдаа гарлаа, дараа дахин оролдоно уу.</string>
+		<key>mt</key>
+		<string>Xi ħaġa marret ħażin, jekk jogħġbok erġa&apos; pprova aktar tard.</string>
+		<key>ne</key>
+		<string>केही गडबड भयो, कृपया पछि फेरि प्रयास गर्नुहोस्।</string>
+		<key>nl</key>
+		<string>Er is iets misgegaan. Probeer het later opnieuw.</string>
+		<key>no</key>
+		<string>Noe gikk galt. Prøv igjen senere.</string>
+		<key>pa</key>
+		<string>ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ, ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+		<key>pl</key>
+		<string>Coś poszło nie tak. proszę spróbować później.</string>
+		<key>pt</key>
+		<string>Algo deu errado. tente novamente mais tarde.</string>
+		<key>ro</key>
+		<string>Vă rugăm să încercați din nou mai târziu.</string>
+		<key>ru</key>
+		<string>Что-то пошло не так. Пожалуйста, повторите попытку позже.</string>
+		<key>si</key>
+		<string>යම් දෙයක් වැරදී ඇත, කරුණාකර පසුව නැවත උත්සාහ කරන්න.</string>
+		<key>sk</key>
+		<string>Niečo sa pokazilo. Prosím skús to znovu neskôr.</string>
+		<key>sl</key>
+		<string>Nekaj je šlo narobe, poskusite znova pozneje.</string>
+		<key>sq</key>
+		<string>Ndodhi një gabim. provo sërish më vonë.</string>
+		<key>sr</key>
+		<string>Нешто није у реду. молимо покушајте касније.</string>
+		<key>su</key>
+		<string>Aya nu lepat, mangga cobian deui engké.</string>
+		<key>sv</key>
+		<string>Försök igen senare.</string>
+		<key>sw</key>
+		<string>Hitilafu fulani imetokea, tafadhali jaribu tena baadaye.</string>
+		<key>ta</key>
+		<string>ஏதோ தவறு நடந்துவிட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.</string>
+		<key>te</key>
+		<string>ఏదో తప్పు జరిగినది. దయచేసి కాసేపు ఆగక ప్రయత్నించండి.</string>
+		<key>tg</key>
+		<string>Чизе хато кард, лутфан дертар аз нав кӯшиш кунед.</string>
+		<key>th</key>
+		<string>มีข้อผิดพลาดเกิดขึ้น โปรดลองอีกครั้งในภายหลัง</string>
+		<key>tl</key>
+		<string>Nagkaproblema, pakisubukang muli sa ibang pagkakataon.</string>
+		<key>tr</key>
+		<string>Bir şeyler yanlış oldu. Lütfen sonra tekrar deneyiniz.</string>
+		<key>tt</key>
+		<string>Нәрсәдер дөрес булмаган, соңрак кабатлап карагыз.</string>
+		<key>uk</key>
+		<string>Щось пішло не так, спробуйте пізніше.</string>
+		<key>ur</key>
+		<string>کچھ غلط ہو گیا. براہ کرم کچھ دیر بعد کوشش کریں.</string>
+		<key>uz</key>
+		<string>Nimadir xato ketdi, keyinroq qayta urinib ko‘ring.</string>
+		<key>vi</key>
+		<string>Đã xảy ra lỗi, vui lòng thử lại sau.</string>
+		<key>yi</key>
+		<string>עפּעס איז פאַלש, ביטע פּרובירן ווידער שפּעטער.</string>
+		<key>zh</key>
+		<string>发生错误。请稍后再试。</string>
 	</dict>
 	<key>sunday</key>
 	<dict>
@@ -3236,6 +3236,161 @@ Hãy kết nối với Internet và cố gắng một lần nữa.</string>
 		<string>זונטיק</string>
 		<key>zh</key>
 		<string>星期日</string>
+	</dict>
+	<key>tap_to_report</key>
+	<dict>
+		<key>af</key>
+		<string>Tik om hierdie fout te rapporteer.</string>
+		<key>ar</key>
+		<string>اضغط على الإبلاغ عن هذا الخطأ.</string>
+		<key>az</key>
+		<string>Bu səhv barədə məlumat vermək üçün vurun.</string>
+		<key>be</key>
+		<string>Націсніце, каб паведаміць пра гэтую памылку.</string>
+		<key>bg</key>
+		<string>Докоснете, за да докладвате тази грешка.</string>
+		<key>bn</key>
+		<string>এই ত্রুটিটি প্রতিবেদন করতে আলতো চাপুন।</string>
+		<key>bs</key>
+		<string>Dodirnite da biste prijavili ovu grešku.</string>
+		<key>ca</key>
+		<string>Toqueu per informar d&apos;aquest error.</string>
+		<key>cs</key>
+		<string>Klepnutím nahlásíte tuto chybu.</string>
+		<key>cy</key>
+		<string>Tap i riportio&apos;r gwall hwn.</string>
+		<key>da</key>
+		<string>Tryk for at rapportere denne fejl.</string>
+		<key>de</key>
+		<string>Tippen Sie auf, um diesen Fehler zu melden.</string>
+		<key>el</key>
+		<string>Πατήστε για να αναφέρετε αυτό το σφάλμα.</string>
+		<key>en</key>
+		<string>Tap to report this error.</string>
+		<key>eo</key>
+		<string>Frapu por raporti ĉi tiun eraron.</string>
+		<key>es</key>
+		<string>Toque para informar este error.</string>
+		<key>et</key>
+		<string>Puudutage sellest veast teatamiseks.</string>
+		<key>eu</key>
+		<string>Punteatu errore honen berri emateko.</string>
+		<key>fa</key>
+		<string>برای گزارش این خطا ضربه بزنید.</string>
+		<key>fi</key>
+		<string>Napauta ilmoittaaksesi tästä virheestä.</string>
+		<key>fr</key>
+		<string>Appuyez pour signaler cette erreur.</string>
+		<key>ga</key>
+		<string>Beartaíonn chun an earráid seo a thuairisciú.</string>
+		<key>gd</key>
+		<string>Tap air gus cunntas a thoirt air a’ mhearachd seo.</string>
+		<key>gl</key>
+		<string>Toca para informar deste erro.</string>
+		<key>gu</key>
+		<string>આ ભૂલની જાણ કરવા માટે ટેપ કરો.</string>
+		<key>he</key>
+		<string>הקש כדי לדווח על שגיאה זו.</string>
+		<key>hi</key>
+		<string>इस त्रुटि की रिपोर्ट करने के लिए टैप करें।</string>
+		<key>hr</key>
+		<string>Dodirnite da biste prijavili ovu pogrešku.</string>
+		<key>ht</key>
+		<string>Tape pou rapòte erè sa a.</string>
+		<key>hu</key>
+		<string>Koppintson a hiba jelentéséhez.</string>
+		<key>hy</key>
+		<string>Հպեք այս սխալը հաղորդելու համար:</string>
+		<key>id</key>
+		<string>Ketuk untuk melaporkan kesalahan ini.</string>
+		<key>is</key>
+		<string>Pikkaðu á til að tilkynna þessa villu.</string>
+		<key>it</key>
+		<string>Tocca per segnalare questo errore.</string>
+		<key>ja</key>
+		<string>タップして、このエラーを報告します。</string>
+		<key>ka</key>
+		<string>შეეხეთ ამ შეცდომის შესახებ.</string>
+		<key>kk</key>
+		<string>Бұл қате туралы хабарлау үшін түртіңіз.</string>
+		<key>kn</key>
+		<string>ಈ ದೋಷವನ್ನು ವರದಿ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+		<key>ko</key>
+		<string>이 오류를보고하려면 탭합니다.</string>
+		<key>ky</key>
+		<string>Бул ката жөнүндө кабарлоо үчүн таптаңыз.</string>
+		<key>lt</key>
+		<string>Bakstelėkite, kad praneštumėte apie šią klaidą.</string>
+		<key>mg</key>
+		<string>Tsindrio raha hitatitra ity hadisoana ity.</string>
+		<key>mi</key>
+		<string>Tap ki te ripoata i tenei hapa.</string>
+		<key>mk</key>
+		<string>Допрете за да ја пријавите оваа грешка.</string>
+		<key>ml</key>
+		<string>ഈ പിശക് റിപ്പോർട്ടുചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
+		<key>mn</key>
+		<string>Энэ алдааг мэдээлэхийн тулд товшино уу.</string>
+		<key>mt</key>
+		<string>Tektek biex tirrapporta dan l-iżball.</string>
+		<key>ne</key>
+		<string>यो त्रुटि रिपोर्ट गर्न ट्याप गर्नुहोस्।</string>
+		<key>nl</key>
+		<string>Tik om deze fout te melden.</string>
+		<key>no</key>
+		<string>Trykk for å rapportere denne feilen.</string>
+		<key>pa</key>
+		<string>ਇਸ ਗਲਤੀ ਦੀ ਰਿਪੋਰਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ.</string>
+		<key>pl</key>
+		<string>Stuknij, aby zgłosić ten błąd.</string>
+		<key>pt</key>
+		<string>Toque para relatar este erro.</string>
+		<key>ro</key>
+		<string>Atingeți pentru a raporta această eroare.</string>
+		<key>ru</key>
+		<string>Нажмите, чтобы сообщить об этой ошибке.</string>
+		<key>si</key>
+		<string>මෙම දෝෂය වාර්තා කිරීමට තට්ටු කරන්න.</string>
+		<key>sk</key>
+		<string>Klepnutím nahlásite túto chybu.</string>
+		<key>sl</key>
+		<string>Tapnite, da prijavite to napako.</string>
+		<key>sq</key>
+		<string>Trokitni lehtë mbi për të raportuar këtë gabim.</string>
+		<key>sr</key>
+		<string>Тапните да пријавите ову грешку.</string>
+		<key>su</key>
+		<string>Ketok pikeun ngalaporkeun kasalahan ieu.</string>
+		<key>sv</key>
+		<string>Tryck för att rapportera detta fel.</string>
+		<key>sw</key>
+		<string>Gonga kuripoti kosa hili.</string>
+		<key>ta</key>
+		<string>இந்த பிழையைப் புகாரளிக்க தட்டவும்.</string>
+		<key>te</key>
+		<string>ఈ లోపాన్ని నివేదించడానికి నొక్కండి.</string>
+		<key>tg</key>
+		<string>Барои гузориш додани ин хатогӣ клик кунед.</string>
+		<key>th</key>
+		<string>แตะเพื่อรายงานข้อผิดพลาดนี้</string>
+		<key>tl</key>
+		<string>Tapikin upang iulat ang error na ito.</string>
+		<key>tr</key>
+		<string>Bu hatayı bildirmek için dokunun.</string>
+		<key>tt</key>
+		<string>Бу хатаны хәбәр итү өчен басыгыз.</string>
+		<key>uk</key>
+		<string>Торкніться, щоб повідомити про цю помилку.</string>
+		<key>ur</key>
+		<string>اس غلطی کی اطلاع دینے کے لئے ٹیپ کریں۔</string>
+		<key>uz</key>
+		<string>Ushbu xato haqida xabar berish uchun bosing.</string>
+		<key>vi</key>
+		<string>Nhấn để báo cáo lỗi này.</string>
+		<key>yi</key>
+		<string>צאַפּן צו באַריכט דעם טעות.</string>
+		<key>zh</key>
+		<string>点击以报告此错误。</string>
 	</dict>
 	<key>thursday</key>
 	<dict>

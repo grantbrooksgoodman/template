@@ -13,6 +13,10 @@ import SwiftUI
 import Redux
 
 public struct RootView: View {
+    // MARK: - Dependencies
+
+    @Dependency(\.rootNavigationCoordinator) public var navigationCoordinator: RootNavigationCoordinator
+
     // MARK: - Properties
 
     @StateObject private var viewModel: ViewModel<RootReducer>

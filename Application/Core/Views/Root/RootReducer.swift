@@ -61,6 +61,7 @@ public struct RootReducer: Reducer {
 
         case let .action(.toastChanged(toast)):
             state.toast = toast
+            state.toastAction = nil
 
         case .action(.toastTapped):
             state.toastAction?()

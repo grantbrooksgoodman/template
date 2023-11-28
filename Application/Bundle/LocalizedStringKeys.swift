@@ -27,6 +27,7 @@ public enum LocalizedStringKey: String {
 
     case reportBug
     case somethingWentWrong
+    case tapToReport
     case timedOut
     case tryAgain
 

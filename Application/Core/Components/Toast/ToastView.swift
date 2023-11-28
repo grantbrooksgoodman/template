@@ -156,15 +156,18 @@ public struct ToastView: View {
                         Text(title)
                             .font(.sanFrancisco(.semibold, size: Floats.capsuleTitleLabelFontSize))
                             .foregroundStyle(Color.titleText)
+                            .multilineTextAlignment(.leading)
 
                         Text(message)
                             .font(.sanFrancisco(size: Floats.capsuleMessageLabelFontSize))
                             .foregroundStyle(Colors.capsuleMessageLabelForeground)
+                            .multilineTextAlignment(.leading)
                     }
                 } else {
                     Text(message)
                         .font(.sanFrancisco(.semibold, size: Floats.capsuleTitleLabelFontSize))
                         .foregroundStyle(Color.titleText)
+                        .multilineTextAlignment(.leading)
                         .padding(.horizontal, Floats.capsuleMessageLabelHorizontalPadding)
                         .padding(.vertical, Floats.capsuleMessageLabelVerticalPadding)
                 }

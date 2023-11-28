@@ -20,7 +20,7 @@ public enum Logger {
         case errorAlert
         case fatalAlert
         case normalAlert
-        case toast(icon: CoreKit.HUD.HUDImage)
+        case toast(style: Toast.Style? = nil, isPersistent: Bool = true)
     }
 
     // MARK: - Properties
@@ -178,6 +178,9 @@ public enum Logger {
         let functionName = (metadata[2] as! String).components(separatedBy: "(")[0]
         let lineNumber = metadata[3] as! Int // swiftlint:enable force_cast
 
+        streamOpen = true
+        currentTimeLastCalled = Date()
+
         guard let message else {
             // swiftlint:disable:next line_length
             print("\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\(elapsedTime)")
@@ -186,9 +189,6 @@ public enum Logger {
 
         // swiftlint:disable:next line_length
         print("\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)")
-
-        streamOpen = true
-        currentTimeLastCalled = Date()
     }
 
     public static func logToStream(
@@ -346,8 +346,21 @@ public enum Logger {
                 shouldTranslate: shouldTranslate ? [.message] : [.none]
             ).present()
 
-        case let .toast(icon: icon):
-            core.gcd.after(.seconds(1)) { core.hud.flash(userFacingDescriptor, image: icon) }
+        case let .toast(style: style, isPersistent: isPersistent):
+            let style = style ?? (exception == nil ? .info : .error)
+
+            Observables.rootViewToast.value = .init(
+                isPersistent ? .banner(style: style) : .capsule(style: style),
+                title: exception == nil ? nil : userFacingDescriptor,
+                message: exception == nil ? userFacingDescriptor : Localized(.tapToReport).wrappedValue,
+                perpetuation: isPersistent ? .persistent : .ephemeral(.seconds(10))
+            )
+
+            if let exception {
+                Observables.rootViewToastAction.value = {
+                    akCore.reportDelegate().fileReport(error: .init(exception))
+                }
+            }
         }
     }
 }
