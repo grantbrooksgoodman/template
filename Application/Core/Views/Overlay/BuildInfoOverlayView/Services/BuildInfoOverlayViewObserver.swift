@@ -54,11 +54,8 @@ public struct BuildInfoOverlayViewObserver: Observer {
     }
 
     public func send(_ action: R.Action) {
-        @Dependency(\.mainQueue) var mainQueue: DispatchQueue
-        mainQueue.async {
-            Task { @MainActor in
-                self.viewModel.send(action)
-            }
+        Task { @MainActor in
+            viewModel.send(action)
         }
     }
 }

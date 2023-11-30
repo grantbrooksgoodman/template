@@ -110,7 +110,9 @@ public struct CoreKit {
 
         public func showProgress(after delay: Duration? = nil, text: String? = nil) {
             guard let delay else {
-                mainQueue.async { ProgressHUD.show(text) }
+                Task { @MainActor in
+                    ProgressHUD.show(text)
+                }
                 return
             }
 
@@ -118,7 +120,9 @@ public struct CoreKit {
         }
 
         public func showSuccess(text: String? = nil) {
-            mainQueue.async { ProgressHUD.showSucceed(text) }
+            Task { @MainActor in
+                ProgressHUD.showSucceed(text)
+            }
         }
     }
 
@@ -148,7 +152,9 @@ public struct CoreKit {
         public func resignFirstResponder(in view: UIView? = nil) {
             guard let view = view ?? uiApplication.keyViewController?.view,
                   let firstResponder = firstResponder(in: view) else { return }
-            mainQueue.async { firstResponder.resignFirstResponder() }
+            Task { @MainActor in
+                firstResponder.resignFirstResponder()
+            }
         }
 
         /* MARK: Navigation Bar Appearance */
