@@ -146,7 +146,7 @@ public extension DevModeAction {
                     akCore.unlockLanguageCode()
                     guard actionID != -1 else { return }
                     guard let inputString,
-                          inputString.lowercasedTrimmingWhitespace != "" else {
+                          inputString.lowercasedTrimmingWhitespaceAndNewlines != "" else {
                         setLanguageCode("en")
                         AKConfirmationAlert(
                             title: "Override Language Code",
@@ -164,7 +164,7 @@ public extension DevModeAction {
                     }
 
                     guard let languageCodes = RuntimeStorage.languageCodeDictionary,
-                          languageCodes.keys.contains(inputString.lowercasedTrimmingWhitespace) else {
+                          languageCodes.keys.contains(inputString.lowercasedTrimmingWhitespaceAndNewlines) else {
                         setLanguageCode("en")
                         AKConfirmationAlert(
                             title: "Override Language Code",

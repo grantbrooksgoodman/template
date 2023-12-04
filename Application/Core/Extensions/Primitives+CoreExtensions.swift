@@ -118,15 +118,15 @@ public extension String {
         @Dependency(\.coreKit.utils) var coreUtilities: CoreKit.Utilities
 
         guard self != "",
-              lowercasedTrimmingWhitespace != "",
+              lowercasedTrimmingWhitespaceAndNewlines != "",
               let languageCodes = coreUtilities.localizedLanguageCodeDictionary,
-              let name = languageCodes[self] ?? languageCodes[lowercasedTrimmingWhitespace] else { return nil }
+              let name = languageCodes[self] ?? languageCodes[lowercasedTrimmingWhitespaceAndNewlines] else { return nil }
 
         return name.trimmingBorderedWhitespace
     }
 
-    var lowercasedTrimmingWhitespace: String {
-        trimmingCharacters(in: .whitespacesAndNewlines).lowercased().trimmingWhitespace
+    var lowercasedTrimmingWhitespaceAndNewlines: String {
+        lowercased().trimmingWhitespace.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     var sanitized: String {

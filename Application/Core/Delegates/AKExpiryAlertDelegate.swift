@@ -121,7 +121,7 @@ public final class ExpiryAlertDelegate: AKExpiryAlertDelegate {
                 object: expiryAlertController.textFields![0],
                 queue: .main
             ) { _ in
-                continueUseAction.isEnabled = self.expiryAlertController.textFields![0].text!.lowercasedTrimmingWhitespace.count == 6
+                continueUseAction.isEnabled = self.expiryAlertController.textFields![0].text!.lowercasedTrimmingWhitespaceAndNewlines.count == 6
             }
 
             expiryAlertController.addAction(UIAlertAction(
@@ -221,7 +221,7 @@ public final class ExpiryAlertDelegate: AKExpiryAlertDelegate {
                                                                 .init(timeExpiredTitle),
                                                                 .init(timeExpiredMessage)]
 
-        inputsToTranslate = inputsToTranslate.filter { $0.value().lowercasedTrimmingWhitespace != "" }
+        inputsToTranslate = inputsToTranslate.filter { $0.value().lowercasedTrimmingWhitespaceAndNewlines != "" }
         dispatchGroup.enter()
         translator.getTranslations(
             for: inputsToTranslate,
