@@ -33,7 +33,7 @@ public struct ToastView: View {
     private let message: String
     private let title: String?
 
-    // Other
+    // ToastType
     private let type: Toast.ToastType
 
     // MARK: - Init

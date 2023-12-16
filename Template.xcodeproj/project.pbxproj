@@ -469,19 +469,19 @@
 				B93457052AABF9E400944602 /* Localization */,
 				B91A0E242AFF2F8600E3C1A0 /* Modules */,
 				B94657702AABC6200091193B /* Navigation */,
-				A2DF2C6F28199BF40089DEA1 /* Supporting Files */,
+				A2DF2C6F28199BF40089DEA1 /* Resources */,
 			);
 			path = Application;
 			sourceTree = "<group>";
 		};
-		A2DF2C6F28199BF40089DEA1 /* Supporting Files */ = {
+		A2DF2C6F28199BF40089DEA1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				A2DF2C7128199C260089DEA1 /* Audio */,
 				A2DF2CAE28199CE90089DEA1 /* Images */,
 				B9E7D4522AAC3E0300FAF2A9 /* Other */,
 			);
-			path = "Supporting Files";
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A2DF2C7128199C260089DEA1 /* Audio */ = {
@@ -1533,7 +1533,7 @@
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 7R4R2FSWH9;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Application/Supporting Files/Other/Info.plist";
+				INFOPLIST_FILE = Application/Resources/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1558,7 +1558,7 @@
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 7R4R2FSWH9;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Application/Supporting Files/Other/Info.plist";
+				INFOPLIST_FILE = Application/Resources/Other/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

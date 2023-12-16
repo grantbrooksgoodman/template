@@ -76,10 +76,14 @@ public struct Exception: Equatable, Exceptionable {
         self.extraParams = extraParams
         self.metadata = metadata
 
-        guard let hashlet = getHashlet(for: self.descriptor) else { fatalError("Failed to generate hashlet") }
-        self.hashlet = hashlet
-        metaID = getMetaID(for: metadata)
+        if let staticHashlet = extraParams?["StaticHashlet"] as? String {
+            hashlet = staticHashlet
+        } else {
+            guard let hashlet = getHashlet(for: self.descriptor) else { fatalError("Failed to generate hashlet") }
+            self.hashlet = hashlet
+        }
 
+        metaID = getMetaID(for: metadata)
         self.underlyingExceptions = underlyingExceptions?.unique.filter { $0 != self }
     }
 
@@ -124,11 +128,12 @@ public struct Exception: Equatable, Exceptionable {
             }
         }
 
-        self.extraParams = params.withCapitalizedKeys
-
         guard let hashlet = getHashlet(for: error.staticIdentifier) else { fatalError("Failed to generate hashlet") }
         self.hashlet = hashlet
         metaID = getMetaID(for: metadata)
+
+        params["StaticHashlet"] = self.hashlet
+        self.extraParams = params.withCapitalizedKeys
 
         self.underlyingExceptions = underlyingExceptions?.unique.filter { $0 != self }
     }
