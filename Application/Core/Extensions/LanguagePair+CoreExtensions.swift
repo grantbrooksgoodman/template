@@ -30,7 +30,15 @@ public extension LanguagePair {
 
     convenience init?(_ string: String) {
         let components = string.components(separatedBy: "-")
-        guard components.count > 1 else { return nil }
-        self.init(from: components[0], to: components[1 ... components.count - 1].joined())
+        guard !components.isEmpty else { return nil }
+
+        let fromValue = components[0].lowercasedTrimmingWhitespaceAndNewlines
+        guard components.count > 1 else {
+            self.init(from: fromValue, to: fromValue)
+            return
+        }
+
+        let toValue = components[1 ... components.count - 1].joined().lowercasedTrimmingWhitespaceAndNewlines
+        self.init(from: fromValue, to: toValue)
     }
 }

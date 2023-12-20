@@ -7,6 +7,7 @@
 //
 
 /* Native */
+import Foundation
 import UIKit
 
 /* 3rd-party */

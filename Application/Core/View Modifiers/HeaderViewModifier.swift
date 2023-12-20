@@ -36,7 +36,7 @@ private struct HeaderViewModifier: ViewModifier {
 
     // MARK: - Body
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         if isThemed {
             VStack {
                 ThemedView {

@@ -18,18 +18,18 @@ public extension DevModeAction {
         // MARK: - Available Actions Getter
 
         public static var available: [DevModeAction] {
-            var availableActions: [DevModeAction] = [.Standard.toggleBuildInfoOverlayAction,
-                                                     .Standard.overrideLanguageCodeAction,
-                                                     .Standard.resetUserDefaultsAction,
-                                                     .Standard.toggleBreadcrumbsAction,
-                                                     .Standard.disableDeveloperModeAction]
+            var availableActions: [DevModeAction] = [toggleBuildInfoOverlayAction,
+                                                     overrideLanguageCodeAction,
+                                                     resetUserDefaultsAction,
+                                                     toggleBreadcrumbsAction,
+                                                     disableDeveloperModeAction]
 
             if RootPage.allCases.count > 1 {
-                availableActions.insert(.Standard.navigateToPageAction, at: 0)
+                availableActions.insert(navigateToPageAction, at: 0)
             }
 
             if AppTheme.allCases.count > 1 {
-                availableActions.insert(.Standard.changeThemeAction, at: 0)
+                availableActions.insert(changeThemeAction, at: 0)
             }
 
             return availableActions
@@ -76,9 +76,9 @@ public extension DevModeAction {
 
                 var actions = [AKAction]()
                 actions = RootPage.allCases.map { .init(
-                    title: $0.rawValue.camelCaseToHumanReadable.firstUppercase,
+                    title: $0.rawValue.camelCaseToHumanReadable.capitalizingWords,
                     style: .default,
-                    isEnabled: $0 != rootNavigationCoordinator.page
+                    isEnabled: $0.rawValue != rootNavigationCoordinator.page.rawValue
                 ) }
 
                 AKActionSheet(
@@ -232,7 +232,7 @@ public extension DevModeAction {
                         } else {
                             coreHUD.showSuccess()
                             DevModeService.removeAction(withTitle: "Stop Breadcrumbs Capture")
-                            DevModeService.insertAction(.Standard.toggleBreadcrumbsAction, at: DevModeService.actions.count - 1)
+                            DevModeService.insertAction(toggleBreadcrumbsAction, at: DevModeService.actions.count - 1)
                         }
                     }
 
@@ -267,7 +267,7 @@ public extension DevModeAction {
                     } else {
                         coreHUD.showSuccess()
                         DevModeService.removeAction(withTitle: "Start Breadcrumbs Capture")
-                        DevModeService.insertAction(.Standard.toggleBreadcrumbsAction, at: DevModeService.actions.count - 1)
+                        DevModeService.insertAction(toggleBreadcrumbsAction, at: DevModeService.actions.count - 1)
                     }
                 }
             }
@@ -301,5 +301,11 @@ private extension String {
                 partialResult.append(" \(component)")
             }
         }.joined()
+    }
+
+    var capitalizingWords: String {
+        let components = components(separatedBy: ": ")
+        guard components.count > 1 else { return firstUppercase }
+        return "\(components[0].firstUppercase): \(components[1].firstUppercase)"
     }
 }

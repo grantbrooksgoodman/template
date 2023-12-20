@@ -30,7 +30,7 @@ private struct InterfaceStyleViewModifier: ViewModifier {
 
     // MARK: - Body
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .onAppear { overrideStyle() }
     }

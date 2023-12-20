@@ -6,6 +6,7 @@
 //
 
 /* Native */
+import Foundation
 import SwiftUI
 
 /* 3rd-party */

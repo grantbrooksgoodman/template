@@ -24,7 +24,7 @@ private struct OnFirstAppearViewModifier: ViewModifier {
 
     // MARK: - Body
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content.onAppear {
             guard !didAppear else { return }
             didAppear = true
