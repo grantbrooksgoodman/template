@@ -17,6 +17,10 @@ public extension AKError {
         var params: [String: Any] = ["Descriptor": exception.descriptor,
                                      "Hashlet": exception.hashlet!]
 
+        if exception.descriptor != descriptor {
+            params[Exception.CommonParamKeys.userFacingDescriptor.rawValue] = descriptor
+        }
+
         if let extraParams = exception.extraParams,
            !extraParams.isEmpty {
             extraParams.forEach { params[$0.key] = $0.value }

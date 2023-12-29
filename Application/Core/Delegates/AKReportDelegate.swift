@@ -280,12 +280,31 @@ public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailCom
         composeController.setSubject(subject)
         composeController.setToRecipients(recipients)
 
-        if let body = messageBody {
-            composeController.setMessageBody(body.message, isHTML: body.isHTML)
+        if let messageBody {
+            composeController.setMessageBody(messageBody.message, isHTML: messageBody.isHTML)
         }
 
-        if let file = logFile {
-            composeController.addAttachmentData(file.data, mimeType: "application/json", fileName: "\(file.fileName).log")
+        if let logFile {
+            composeController.addAttachmentData(
+                logFile.data,
+                mimeType: "application/json",
+                fileName: "\(logFile.fileName).log"
+            )
+        }
+
+        let loggerSessionRecordFilePathString = Logger.sessionRecordFilePath.path()
+
+        if let loggerSessionRecordData = fileManager.contents(atPath: loggerSessionRecordFilePathString),
+           let loggerSessionRecordFileName = loggerSessionRecordFilePathString
+           .components(separatedBy: "/")
+           .last?
+           .components(separatedBy: ".")
+           .first {
+            composeController.addAttachmentData(
+                loggerSessionRecordData,
+                mimeType: "text/plain",
+                fileName: "logger_session_\(loggerSessionRecordFileName).txt"
+            )
         }
 
         core.ui.present(composeController)

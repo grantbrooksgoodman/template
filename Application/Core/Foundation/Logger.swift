@@ -5,6 +5,8 @@
 //  Copyright © NEOTechnica Corporation. All rights reserved.
 //
 
+// swiftlint:disable file_length type_body_length
+
 /* Native */
 import Foundation
 
@@ -12,7 +14,6 @@ import Foundation
 import AlertKit
 import Redux
 
-// swiftlint:disable:next type_body_length
 public enum Logger {
     // MARK: - Types
 
@@ -23,14 +24,27 @@ public enum Logger {
         case toast(style: Toast.Style? = nil, isPersistent: Bool = true)
     }
 
+    private enum NewlinePlacement {
+        case preceding
+        case succeeding
+        case surrounding
+    }
+
     // MARK: - Properties
 
     public private(set) static var subscribedDomains: [LoggerDomain] = [.general]
+
+    private static let sessionID = UUID()
 
     private static var currentTimeLastCalled = Date()
     private static var streamOpen = false
 
     // MARK: - Computed Properties
+
+    public static var sessionRecordFilePath: URL {
+        @Dependency(\.fileManager) var fileManager: FileManager
+        return fileManager.documentsDirectoryURL.appending(path: "\(sessionID.uuidString).txt")
+    }
 
     private static var elapsedTime: String {
         let time = String(abs(currentTimeLastCalled.seconds(from: Date())))
@@ -83,11 +97,6 @@ public enum Logger {
     ) {
         @Dependency(\.alertKitCore) var akCore: AKCore
 
-        guard canLog(to: domain) else {
-            showAlertIfNeeded()
-            return
-        }
-
         let typeName = String(exception.metadata[0]) // swiftlint:disable force_cast
         let fileName = akCore.fileName(for: exception.metadata[1] as! String)
         let functionName = (exception.metadata[2] as! String).components(separatedBy: "(")[0]
@@ -100,13 +109,19 @@ public enum Logger {
 
         let header = "-------------------- \(fileName) | \(domain.rawValue.uppercased()) --------------------"
         let footer = String(repeating: "-", count: header.count)
-        print("\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(exception.descriptor) (\(exception.hashlet!))")
+        log(
+            "\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(exception.descriptor) (\(exception.hashlet!))",
+            domain: domain
+        )
 
         if let params = exception.extraParams {
-            printExtraParams(params)
+            printExtraParams(params, domain: domain)
         }
 
-        print("\(footer)\n")
+        log(
+            "\(footer)\n",
+            domain: domain
+        )
 
         currentTimeLastCalled = Date()
         showAlertIfNeeded()
@@ -130,11 +145,6 @@ public enum Logger {
             return
         }
 
-        guard canLog(to: domain) else {
-            showAlertIfNeeded()
-            return
-        }
-
         let typeName = String(metadata[0]) // swiftlint:disable force_cast
         let fileName = akCore.fileName(for: metadata[1] as! String)
         let functionName = (metadata[2] as! String).components(separatedBy: "(")[0]
@@ -147,7 +157,10 @@ public enum Logger {
 
         let header = "-------------------- \(fileName) | \(domain.rawValue.uppercased()) --------------------"
         let footer = String(repeating: "-", count: header.count)
-        print("\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n\(footer)\n")
+        log(
+            "\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n\(footer)\n",
+            domain: domain
+        )
 
         currentTimeLastCalled = Date()
         showAlertIfNeeded()
@@ -167,7 +180,6 @@ public enum Logger {
     ) {
         @Dependency(\.alertKitCore) var akCore: AKCore
 
-        guard canLog(to: domain) else { return }
         guard metadata.isValidMetadata else {
             fallbackLog(message ?? "Improperly formatted metadata.", domain: domain)
             return
@@ -182,13 +194,17 @@ public enum Logger {
         currentTimeLastCalled = Date()
 
         guard let message else {
-            // swiftlint:disable:next line_length
-            print("\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\(elapsedTime)")
+            log( // swiftlint:disable:next line_length
+                "\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\(elapsedTime)",
+                domain: domain
+            )
             return
         }
 
-        // swiftlint:disable:next line_length
-        print("\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)")
+        log( // swiftlint:disable:next line_length
+            "\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)",
+            domain: domain
+        )
     }
 
     public static func logToStream(
@@ -196,13 +212,12 @@ public enum Logger {
         domain: LoggerDomain = .general,
         line: Int
     ) {
-        guard canLog(to: domain) else { return }
         guard streamOpen else {
             log(message, metadata: [self, #file, #function, #line])
             return
         }
 
-        print("[\(line)]: \(message)\(elapsedTime)")
+        log("[\(line)]: \(message)\(elapsedTime)", domain: domain)
     }
 
     public static func closeStream(
@@ -210,7 +225,6 @@ public enum Logger {
         domain: LoggerDomain = .general,
         onLine: Int? = nil
     ) {
-        guard canLog(to: domain) else { return }
         guard streamOpen else {
             guard let message else { return }
             log(message, metadata: [self, #file, #function, #line])
@@ -219,11 +233,17 @@ public enum Logger {
 
         guard let message,
               let onLine else {
-            print("*------------------------STREAM CLOSED------------------------*\n")
+            log(
+                "*------------------------STREAM CLOSED------------------------*\n",
+                domain: domain
+            )
             return
         }
 
-        print("[\(onLine)]: \(message)\(elapsedTime)\n*------------------------STREAM CLOSED------------------------*\n")
+        log(
+            "[\(onLine)]: \(message)\(elapsedTime)\n*------------------------STREAM CLOSED------------------------*\n",
+            domain: domain
+        )
 
         streamOpen = false
         currentTimeLastCalled = Date()
@@ -243,14 +263,12 @@ public enum Logger {
         domain: LoggerDomain = .general,
         with alertType: AlertType? = .none
     ) {
-        guard canLog(to: domain) else {
-            showAlertIfNeeded()
-            return
-        }
-
         let header = "-------------------- \(domain.rawValue.uppercased()) --------------------"
         let footer = String(repeating: "-", count: header.count)
-        print("\n\(header)\n[IMPROPERLY FORMATTED METADATA]\n\(text)\n\(footer)\n")
+        log(
+            "\n\(header)\n[IMPROPERLY FORMATTED METADATA]\n\(text)\n\(footer)\n",
+            domain: domain
+        )
 
         currentTimeLastCalled = Date()
         showAlertIfNeeded()
@@ -261,21 +279,54 @@ public enum Logger {
         }
     }
 
-    private static func printExtraParams(_ parameters: [String: Any]) {
+    private static func log(
+        _ text: String,
+        domain: LoggerDomain,
+        addingNewline placement: NewlinePlacement? = nil
+    ) {
+        if canLog(to: domain) {
+            print(text)
+        }
+
+        var text = text
+        if let placement {
+            switch placement {
+            case .preceding:
+                text = "\n\(text)"
+            case .succeeding:
+                text = "\(text)\n"
+            case .surrounding:
+                text = "\n\(text)\n"
+            }
+        }
+
+        let data = Data(text.utf8)
+
+        do {
+            let fileHandle = try FileHandle(forWritingTo: sessionRecordFilePath)
+            try fileHandle.seekToEnd()
+            try fileHandle.write(contentsOf: data)
+            try fileHandle.close()
+        } catch let error as NSError where error.domain == NSCocoaErrorDomain && error.code == NSFileNoSuchFileError {
+            try? data.write(to: sessionRecordFilePath, options: .atomic)
+        } catch { return }
+    }
+
+    private static func printExtraParams(_ parameters: [String: Any], domain: LoggerDomain) {
         guard !parameters.isEmpty else { return }
         guard parameters.count > 1 else {
-            print("[\(parameters.first!.key): \(parameters.first!.value)]")
+            log("[\(parameters.first!.key): \(parameters.first!.value)]", domain: domain, addingNewline: .surrounding)
             return
         }
 
         for (index, param) in parameters.enumerated() {
             switch index {
             case 0:
-                print("[\(param.key): \(param.value),")
+                log("[\(param.key): \(param.value),", domain: domain, addingNewline: .preceding)
             case parameters.count - 1:
-                print("\(param.key): \(param.value)]")
+                log("\(param.key): \(param.value)]", domain: domain, addingNewline: .surrounding)
             default:
-                print("\(param.key): \(param.value),")
+                log("\(param.key): \(param.value),", domain: domain, addingNewline: .preceding)
             }
         }
     }
@@ -305,8 +356,9 @@ public enum Logger {
         let mockTimedOutException: Exception = .timedOut([self, #file, #function, #line])
         let notGenericDescriptor = userFacingDescriptor != mockGenericException.userFacingDescriptor
         let notTimedOutDescriptor = userFacingDescriptor != mockTimedOutException.userFacingDescriptor
+        let hasUserFacingDescriptor = exception?.descriptor != exception?.userFacingDescriptor
 
-        var shouldTranslate = notGenericDescriptor && notTimedOutDescriptor
+        var shouldTranslate = hasUserFacingDescriptor && notGenericDescriptor && notTimedOutDescriptor
 
         switch type {
         case .errorAlert:
@@ -324,7 +376,8 @@ public enum Logger {
 
             let notGenericDescription = akError.description != mockGenericException.userFacingDescriptor
             let notTimedOutDescription = akError.description != mockTimedOutException.userFacingDescriptor
-            shouldTranslate = notGenericDescription && notTimedOutDescription
+            let hasUserFacingDescriptor = akError.extraParams?.keys.contains(Exception.CommonParamKeys.userFacingDescriptor.rawValue) ?? false
+            shouldTranslate = hasUserFacingDescriptor && notGenericDescription && notTimedOutDescription
 
             AKErrorAlert(
                 error: akError,
@@ -349,18 +402,30 @@ public enum Logger {
         case let .toast(style: style, isPersistent: isPersistent):
             let style = style ?? (exception == nil ? .info : .error)
 
+            var title: String?
+            var message: String?
+
+            if let exception,
+               exception.isReportable {
+                title = userFacingDescriptor
+                message = Localized(.tapToReport).wrappedValue
+            }
+
             Observables.rootViewToast.value = .init(
                 isPersistent ? .banner(style: style) : .capsule(style: style),
-                title: exception == nil ? nil : userFacingDescriptor,
-                message: exception == nil ? userFacingDescriptor : Localized(.tapToReport).wrappedValue,
+                title: title,
+                message: message ?? userFacingDescriptor,
                 perpetuation: isPersistent ? .persistent : .ephemeral(.seconds(10))
             )
 
-            if let exception {
-                Observables.rootViewToastAction.value = {
-                    akCore.reportDelegate().fileReport(error: .init(exception))
-                }
+            guard let exception,
+                  exception.isReportable else { return }
+
+            Observables.rootViewToastAction.value = {
+                akCore.reportDelegate().fileReport(error: .init(exception))
             }
         }
     }
 }
+
+// swiftlint:enable file_length type_body_length

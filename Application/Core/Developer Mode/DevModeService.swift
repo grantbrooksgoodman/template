@@ -37,6 +37,14 @@ public enum DevModeService {
 
     public static func insertAction(
         _ action: DevModeAction,
+        after precedingAction: DevModeAction
+    ) {
+        guard let index = actions.firstIndex(where: { $0.metadata(isEqual: precedingAction) }) else { return }
+        insertAction(action, at: index + 1)
+    }
+
+    public static func insertAction(
+        _ action: DevModeAction,
         at index: Int
     ) {
         guard index < actions.count else {
@@ -55,6 +63,14 @@ public enum DevModeService {
         at index: Int
     ) {
         actions.forEach { insertAction($0, at: index) }
+    }
+
+    public static func insertAction(
+        _ action: DevModeAction,
+        before succeedingAction: DevModeAction
+    ) {
+        guard let index = actions.firstIndex(where: { $0.metadata(isEqual: succeedingAction) }) else { return }
+        insertAction(action, at: index)
     }
 
     // MARK: - Action Removal
