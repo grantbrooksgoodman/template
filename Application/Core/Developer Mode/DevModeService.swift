@@ -62,7 +62,7 @@ public enum DevModeService {
         _ actions: [DevModeAction],
         at index: Int
     ) {
-        actions.forEach { insertAction($0, at: index) }
+        actions.reversed().forEach { insertAction($0, at: index) }
     }
 
     public static func insertAction(
