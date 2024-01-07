@@ -28,7 +28,7 @@ public struct TranslationInputMap: Equatable {
     // MARK: - Computed Properties
 
     public var defaultOutputMap: TranslationOutputMap {
-        .init(key: key, value: input.value().sanitized)
+        .init(key: key, value: RuntimeStorage.languageCode == "en" ? input.original.sanitized : input.value().sanitized)
     }
 
     // MARK: - Init

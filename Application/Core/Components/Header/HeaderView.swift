@@ -33,15 +33,17 @@ public struct HeaderView: View {
 
     // MARK: - Properties
 
-    // Environment
-    @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @Environment(\.keyWindowSize) private var keyWindowSize: CGSize
-
-    // Instance
-    public let centerItem: CenterItemType?
+    // Bool
     public let isThemed: Bool
+    public let showsDivider: Bool
+
+    // Other
+    public let centerItem: CenterItemType?
     public let leftItem: PeripheralButtonType?
     public let rightItem: PeripheralButtonType?
+
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    @Environment(\.keyWindowSize) private var keyWindowSize: CGSize
 
     // MARK: - Computed Properties
 
@@ -54,11 +56,13 @@ public struct HeaderView: View {
         leftItem: PeripheralButtonType? = nil,
         centerItem: CenterItemType? = nil,
         rightItem: PeripheralButtonType? = nil,
+        showsDivider: Bool = true,
         isThemed: Bool = false
     ) {
         self.leftItem = leftItem
         self.centerItem = centerItem
         self.rightItem = rightItem
+        self.showsDivider = showsDivider
         self.isThemed = isThemed
     }
 
@@ -72,13 +76,11 @@ public struct HeaderView: View {
                         contentView
                     }
 
-                    Rectangle()
-                        .frame(maxWidth: .infinity, maxHeight: Floats.separatorMaxHeight)
-                        .foregroundStyle(colorScheme == .dark ? Colors.separatorDarkForeground : Colors.separatorLightForeground)
-                        .padding(.top, Floats.separatorTopPadding)
+                    dividerView
                 }
             } else {
                 contentView
+                dividerView
             }
         }
     }
@@ -167,6 +169,18 @@ public struct HeaderView: View {
         Text(attributes.string)
             .font(attributes.font)
             .foregroundStyle(isThemed ? .navigationBarTitle : attributes.foregroundColor)
+    }
+
+    // MARK: - Divider View
+
+    @ViewBuilder
+    private var dividerView: some View {
+        if showsDivider {
+            Rectangle()
+                .frame(maxWidth: .infinity, maxHeight: Floats.separatorMaxHeight)
+                .foregroundStyle(colorScheme == .dark ? Colors.separatorDarkForeground : Colors.separatorLightForeground)
+                .padding(.top, Floats.separatorTopPadding)
+        }
     }
 
     // MARK: - Peripheral Button

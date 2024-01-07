@@ -12,13 +12,16 @@ import SwiftUI
 private struct HeaderViewModifier: ViewModifier {
     // MARK: - Properties
 
+    // Bool
+    private let isThemed: Bool
+    private let showsDivider: Bool
+
+    // CenterItemType
+    private let centerItem: HeaderView.CenterItemType?
+
     // PeripheralButtonType
     private let leftItem: HeaderView.PeripheralButtonType?
     private let rightItem: HeaderView.PeripheralButtonType?
-
-    // Other
-    private let centerItem: HeaderView.CenterItemType?
-    private let isThemed: Bool
 
     // MARK: - Init
 
@@ -26,11 +29,13 @@ private struct HeaderViewModifier: ViewModifier {
         leftItem: HeaderView.PeripheralButtonType?,
         centerItem: HeaderView.CenterItemType?,
         rightItem: HeaderView.PeripheralButtonType?,
+        showsDivider: Bool,
         isThemed: Bool
     ) {
         self.leftItem = leftItem
         self.centerItem = centerItem
         self.rightItem = rightItem
+        self.showsDivider = showsDivider
         self.isThemed = isThemed
     }
 
@@ -44,6 +49,7 @@ private struct HeaderViewModifier: ViewModifier {
                         leftItem: leftItem,
                         centerItem: centerItem,
                         rightItem: rightItem,
+                        showsDivider: showsDivider,
                         isThemed: true
                     )
                     .background(Color.navigationBarBackground)
@@ -58,7 +64,8 @@ private struct HeaderViewModifier: ViewModifier {
                 HeaderView(
                     leftItem: leftItem,
                     centerItem: centerItem,
-                    rightItem: rightItem
+                    rightItem: rightItem,
+                    showsDivider: showsDivider
                 )
 
                 Spacer()
@@ -75,6 +82,7 @@ public extension View {
         leftItem: HeaderView.PeripheralButtonType? = nil,
         _ centerItem: HeaderView.CenterItemType? = nil,
         rightItem: HeaderView.PeripheralButtonType? = nil,
+        showsDivider: Bool = true,
         isThemed: Bool = false
     ) -> some View {
         modifier(
@@ -82,6 +90,7 @@ public extension View {
                 leftItem: leftItem,
                 centerItem: centerItem,
                 rightItem: rightItem,
+                showsDivider: showsDivider,
                 isThemed: isThemed
             )
         )

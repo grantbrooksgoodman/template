@@ -14,8 +14,12 @@ import Translator
 
 public extension TranslatedLabelStringCollection {
     enum SamplePageViewStringKey: String, Equatable, CaseIterable, TranslatedLabelStringKey {
+        // MARK: - Cases
+
         case titleLabelText = "Hello World"
         case subtitleLabelText = "In Redux!"
+
+        // MARK: - Properties
 
         public var alternate: String? { nil }
     }

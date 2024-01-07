@@ -77,7 +77,7 @@ public struct ToastView: View {
                 if let iconSystemImageName = style.bannerIconSystemImageName,
                    let defaultColor = style.defaultColor {
                     Image(systemName: iconSystemImageName)
-                        .foregroundColor(colorPalette?.accent ?? defaultColor)
+                        .foregroundStyle(colorPalette?.accent ?? defaultColor)
                 }
 
                 let labelView = VStack(alignment: .leading) {
@@ -148,7 +148,7 @@ public struct ToastView: View {
                             maxHeight: Floats.capsuleImageFrameMaxHeight,
                             alignment: .center
                         )
-                        .foregroundColor(defaultColor)
+                        .foregroundStyle(defaultColor)
                 }
 
                 if let title {
