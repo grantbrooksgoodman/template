@@ -24,6 +24,7 @@ public enum LocalizedStringKey: String {
     case noEmail
     case noInternetMessage
     case noInternetTitle
+    case noResults
 
     case reportBug
     case somethingWentWrong

@@ -303,16 +303,6 @@ public extension DevModeAction {
 }
 
 private extension String {
-    var camelCaseToHumanReadable: String {
-        components.reduce(into: [String]()) { partialResult, component in
-            if component.isLowercase {
-                partialResult.append(component)
-            } else {
-                partialResult.append(" \(component)")
-            }
-        }.joined()
-    }
-
     var capitalizingWords: String {
         let components = components(separatedBy: ": ")
         guard components.count > 1 else { return firstUppercase }

@@ -107,7 +107,7 @@ public enum Logger {
             return
         }
 
-        let header = "-------------------- \(fileName) | \(domain.rawValue.uppercased()) --------------------"
+        let header = "-------------------- \(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased()) --------------------"
         let footer = String(repeating: "-", count: header.count)
         log(
             "\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(exception.descriptor) (\(exception.hashlet!))",
@@ -156,7 +156,7 @@ public enum Logger {
             return
         }
 
-        let header = "-------------------- \(fileName) | \(domain.rawValue.uppercased()) --------------------"
+        let header = "-------------------- \(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased()) --------------------"
         let footer = String(repeating: "-", count: header.count)
         log(
             "\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n\(footer)\n",
@@ -196,14 +196,14 @@ public enum Logger {
 
         guard let message else {
             log( // swiftlint:disable:next line_length
-                "\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\(elapsedTime)",
+                "\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased())]\n\(typeName).\(functionName)()\(elapsedTime)",
                 domain: domain
             )
             return
         }
 
         log( // swiftlint:disable:next line_length
-            "\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.uppercased())]\n\(typeName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)",
+            "\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased())]\n\(typeName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)",
             domain: domain
         )
     }
@@ -264,7 +264,7 @@ public enum Logger {
         domain: LoggerDomain = .general,
         with alertType: AlertType? = .none
     ) {
-        let header = "-------------------- \(domain.rawValue.uppercased()) --------------------"
+        let header = "-------------------- \(domain.rawValue.camelCaseToHumanReadable.uppercased()) --------------------"
         let footer = String(repeating: "-", count: header.count)
         log(
             "\n\(header)\n[IMPROPERLY FORMATTED METADATA]\n\(text)\n\(footer)\n",
@@ -310,7 +310,7 @@ public enum Logger {
             try fileHandle.seekToEnd()
             try fileHandle.write(contentsOf: data)
             try fileHandle.close()
-        } catch let error as NSError where error.domain == NSCocoaErrorDomain && error.code == NSFileNoSuchFileError {
+        } catch let error as NSError where error.code == NSFileNoSuchFileError && error.domain == NSCocoaErrorDomain {
             try? data.write(to: sessionRecordFilePath, options: .atomic)
         } catch { return }
     }

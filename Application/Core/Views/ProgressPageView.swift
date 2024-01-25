@@ -9,9 +9,6 @@
 import Foundation
 import SwiftUI
 
-/* 3rd-party */
-import Redux
-
 public struct ProgressPageView: View {
     // MARK: - View
 

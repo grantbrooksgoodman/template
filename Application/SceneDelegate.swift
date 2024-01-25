@@ -61,8 +61,9 @@ public final class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureR
             width: bounds.size.width,
             height: 100
         )
-        let view = BuildInfoOverlayView(.init(initialState: .init(), reducer: BuildInfoOverlayReducer()))
-        buildInfoOverlayWindow.rootViewController = UIHostingController(rootView: view)
+
+        let buildInfoOverlayView = BuildInfoOverlayView(.init(initialState: .init(), reducer: BuildInfoOverlayReducer()))
+        buildInfoOverlayWindow.rootViewController = UIHostingController(rootView: buildInfoOverlayView)
         buildInfoOverlayWindow.isHidden = false
         buildInfoOverlayWindow.tag = coreUI.semTag(for: "BUILD_INFO_OVERLAY_WINDOW")
 

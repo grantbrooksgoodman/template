@@ -75,6 +75,16 @@ public extension String {
         return index + 1
     }
 
+    var camelCaseToHumanReadable: String {
+        components.reduce(into: [String]()) { partialResult, component in
+            if component.isLowercase {
+                partialResult.append(component)
+            } else {
+                partialResult.append(" \(component)")
+            }
+        }.joined()
+    }
+
     var components: [String] {
         map { String($0) }
     }
