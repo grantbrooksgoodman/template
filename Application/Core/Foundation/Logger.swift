@@ -96,6 +96,7 @@ public enum Logger {
         with alertType: AlertType? = .none
     ) {
         @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.loggerDateFormatter) var dateFormatter: DateFormatter
 
         let typeName = String(exception.metadata[0]) // swiftlint:disable force_cast
         let fileName = akCore.fileName(for: exception.metadata[1] as! String)
@@ -107,7 +108,7 @@ public enum Logger {
             return
         }
 
-        let header = "-------------------- \(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased()) --------------------"
+        let header = "----- \(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased()) | \(dateFormatter.string(from: Date())) -----"
         let footer = String(repeating: "-", count: header.count)
         log(
             "\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(exception.descriptor) (\(exception.hashlet!))",
@@ -140,6 +141,7 @@ public enum Logger {
         metadata: [Any]
     ) {
         @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.loggerDateFormatter) var dateFormatter: DateFormatter
 
         guard metadata.isValidMetadata else {
             fallbackLog(text, domain: domain, with: alertType)
@@ -156,7 +158,7 @@ public enum Logger {
             return
         }
 
-        let header = "-------------------- \(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased()) --------------------"
+        let header = "----- \(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased()) | \(dateFormatter.string(from: Date())) -----"
         let footer = String(repeating: "-", count: header.count)
         log(
             "\n\(header)\n\(typeName).\(functionName)() [\(lineNumber)]\(elapsedTime)\n\(text)\n\(footer)\n",
@@ -180,6 +182,7 @@ public enum Logger {
         metadata: [Any]
     ) {
         @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.loggerDateFormatter) var dateFormatter: DateFormatter
 
         guard metadata.isValidMetadata else {
             fallbackLog(message ?? "Improperly formatted metadata.", domain: domain)
@@ -196,14 +199,14 @@ public enum Logger {
 
         guard let message else {
             log( // swiftlint:disable:next line_length
-                "\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased())]\n\(typeName).\(functionName)()\(elapsedTime)",
+                "\n*---------- STREAM OPENED @ \(dateFormatter.string(from: Date())) ----------*\n[\(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased())]\n\(typeName).\(functionName)()\(elapsedTime)",
                 domain: domain
             )
             return
         }
 
         log( // swiftlint:disable:next line_length
-            "\n*------------------------STREAM OPENED------------------------*\n[\(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased())]\n\(typeName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)",
+            "\n*---------- STREAM OPENED @ \(dateFormatter.string(from: Date())) ----------*\n[\(fileName) | \(domain.rawValue.camelCaseToHumanReadable.uppercased())]\n\(typeName).\(functionName)()\n[\(lineNumber)]: \(message)\(elapsedTime)",
             domain: domain
         )
     }
@@ -226,6 +229,8 @@ public enum Logger {
         domain: LoggerDomain = .general,
         onLine: Int? = nil
     ) {
+        @Dependency(\.loggerDateFormatter) var dateFormatter: DateFormatter
+
         guard streamOpen else {
             guard let message else { return }
             log(message, metadata: [self, #file, #function, #line])
@@ -235,14 +240,14 @@ public enum Logger {
         guard let message,
               let onLine else {
             log(
-                "*------------------------STREAM CLOSED------------------------*\n",
+                "*---------- STREAM CLOSED @ \(dateFormatter.string(from: Date())) ----------*\n",
                 domain: domain
             )
             return
         }
 
         log(
-            "[\(onLine)]: \(message)\(elapsedTime)\n*------------------------STREAM CLOSED------------------------*\n",
+            "[\(onLine)]: \(message)\(elapsedTime)\n*---------- STREAM CLOSED @ \(dateFormatter.string(from: Date())) ----------*\n",
             domain: domain
         )
 
@@ -264,7 +269,9 @@ public enum Logger {
         domain: LoggerDomain = .general,
         with alertType: AlertType? = .none
     ) {
-        let header = "-------------------- \(domain.rawValue.camelCaseToHumanReadable.uppercased()) --------------------"
+        @Dependency(\.loggerDateFormatter) var dateFormatter: DateFormatter
+
+        let header = "----- \(domain.rawValue.camelCaseToHumanReadable.uppercased()) | \(dateFormatter.string(from: Date())) -----"
         let footer = String(repeating: "-", count: header.count)
         log(
             "\n\(header)\n[IMPROPERLY FORMATTED METADATA]\n\(text)\n\(footer)\n",
@@ -428,6 +435,23 @@ public enum Logger {
                 akCore.reportDelegate().fileReport(error: .init(exception))
             }
         }
+    }
+}
+
+/* MARK: DateFormatter Dependency */
+
+private enum LoggerDateFormatterDependency: DependencyKey {
+    public static func resolve(_: DependencyValues) -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "H:mm:ss.SSSS"
+        return formatter
+    }
+}
+
+private extension DependencyValues {
+    var loggerDateFormatter: DateFormatter {
+        get { self[LoggerDateFormatterDependency.self] }
+        set { self[LoggerDateFormatterDependency.self] = newValue }
     }
 }
 

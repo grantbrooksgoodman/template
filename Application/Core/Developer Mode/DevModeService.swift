@@ -160,13 +160,13 @@ public enum DevModeService {
             shouldTranslate: [.none]
         )
 
-        passwordPrompt.presentTextFieldAlert { returnedString, actionID in
+        passwordPrompt.presentTextFieldAlert { inputString, actionID in
             akCore.unlockLanguageCode(andSetTo: previousLanguage)
 
             guard actionID != -1 else { return }
 
-            guard let returnedString,
-                  returnedString == build.expirationOverrideCode else {
+            guard let inputString,
+                  inputString == build.expirationOverrideCode else {
                 akCore.lockLanguageCode(to: "en")
                 AKAlert(
                     title: "Enable Developer Mode",

@@ -970,7 +970,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					A2DF2C5028199B660089DEA1 = {
 						CreatedOnToolsVersion = 12.2;
@@ -1119,7 +1119,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n\nreleaseBuildNumber=$((($buildNumber + 1) - 0))\n\nbuildNumber=$(($buildNumber + 1))\nminorReleaseNumber=$((releaseBuildNumber/150))\nbugFixReleaseNumber=$((releaseBuildNumber/50))\nCFBundleVersionINCR=0.$((minorReleaseNumber)).$((bugFixReleaseNumber))\n\nbuildDate=`date +%s`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $buildDate\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleReleaseVersion $releaseBuildNumber\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $CFBundleVersionINCR\" \"$INFOPLIST_FILE\"\n";
+			shellScript = "#!/bin/bash\napp_store_release_version=0\ncurrent_app_store_build_number=0\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nIS_RELEASE_BUILD=$(/usr/libexec/PlistBuddy -c \"Print IsReleaseBuild\" \"$INFOPLIST_FILE\")\n\nBUILD_NUMBER=$(($BUILD_NUMBER + 1))\nrelease_build_number=$((($BUILD_NUMBER) - current_app_store_build_number))\nbuild_date=`date +%s`\n\nif [ \"$IS_RELEASE_BUILD\" = true ] ; then\n    RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortReleaseVersionString\" \"$INFOPLIST_FILE\")\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $RELEASE_VERSION\" \"$INFOPLIST_FILE\"\nelse\n    minor_release_number=$((release_build_number / 150))\n    bug_fix_release_number=$((release_build_number / 50))\n    bundle_version=\"$((app_store_release_version)).$((minor_release_number)).$((bug_fix_release_number))\"\n        \n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $bundle_version\" \"$INFOPLIST_FILE\"\nfi\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $build_date\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleReleaseVersion $release_build_number\" \"$INFOPLIST_FILE\"\n";
 		};
 		B98145F22AB4F34100937D37 /* Run SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1408,6 +1408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1442,6 +1443,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1470,6 +1472,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1504,6 +1507,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

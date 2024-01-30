@@ -74,6 +74,8 @@ public final class Build {
     public var expiryInfoString: String { getExpiryInfoString() }
     public var projectID: String { getProjectID() }
 
+    private var isReleaseBuild: Bool { getIsReleaseBuild() }
+
     // Other
     public var buildNumber: Int { getBuildNumber() }
     public var expiryDate: Date { getExpiryDate() }
@@ -149,6 +151,11 @@ public final class Build {
     }
 
     private func getBundleVersion() -> String {
+        guard !isReleaseBuild else {
+            guard let shortReleaseVersionString = infoDictionary["CFBundleShortReleaseVersionString"] as? String else { return .init() }
+            return shortReleaseVersionString
+        }
+
         guard let bundleReleaseVersionString = infoDictionary["CFBundleReleaseVersion"] as? String,
               let currentReleaseBuildNumber = Int(bundleReleaseVersionString) else { return .init() }
         return "\(String(appStoreReleaseVersion)).\(String(currentReleaseBuildNumber / 150)).\(String(currentReleaseBuildNumber / 50))"
@@ -173,6 +180,11 @@ public final class Build {
                 partialResult.append(.init(format: "%02d", position))
             }
         }.joined()
+    }
+
+    private func getIsReleaseBuild() -> Bool {
+        guard let isReleaseBuild = infoDictionary["IsReleaseBuild"] as? Bool else { return true }
+        return isReleaseBuild
     }
 
     private func getExpiryDate() -> Date {

@@ -18,12 +18,16 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleReleaseVersion</key>
 	<string>0</string>
+	<key>CFBundleShortReleaseVersionString</key>
+	<string>0.0.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.0.0</string>
 	<key>CFBundleVersion</key>
 	<string>0</string>
 	<key>CFTargetName</key>
 	<string>$(TARGET_NAME)</string>
+	<key>IsReleaseBuild</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>

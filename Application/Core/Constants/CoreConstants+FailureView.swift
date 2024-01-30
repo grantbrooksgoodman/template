@@ -39,7 +39,6 @@ public extension CoreConstants.Colors {
 
 public extension CoreConstants.Strings {
     enum FailureView {
-        public static let exceptionLabelFontName = "SFUIText-Semibold"
         public static let imageSystemName = "exclamationmark.octagon.fill"
     }
 }

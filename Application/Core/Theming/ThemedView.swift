@@ -21,8 +21,8 @@ public struct ThemedView: View {
     // MARK: - Init
 
     public init(
-        _ body: @escaping () -> any View,
-        redrawsOnAppearanceChange: Bool = false
+        redrawsOnAppearanceChange: Bool = false,
+        _ body: @escaping () -> any View
     ) {
         viewBody = body
         self.redrawsOnAppearanceChange = redrawsOnAppearanceChange

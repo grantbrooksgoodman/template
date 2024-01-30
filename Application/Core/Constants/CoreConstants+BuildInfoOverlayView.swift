@@ -49,7 +49,6 @@ public extension CoreConstants.Colors {
 
 public extension CoreConstants.Strings {
     enum BuildInfoOverlayView {
-        public static let buildInfoButtonLabelFontName = "SFUIText-Bold"
         public static let sendFeedbackButtonLabelFontName = "Arial"
     }
 }

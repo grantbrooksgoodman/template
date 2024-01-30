@@ -41,7 +41,7 @@ public struct FailurePageView: View {
                     .padding(.bottom, Floats.imageBottomPadding)
 
                 Text(viewModel.exception.userFacingDescriptor)
-                    .font(Font.custom(Strings.exceptionLabelFontName, size: Floats.exceptionLabelFontSize))
+                    .font(.sanFrancisco(.semibold, size: Floats.exceptionLabelFontSize))
                     .foregroundStyle(Color.titleText)
                     .padding(.vertical, Floats.exceptionLabelVerticalPadding)
                     .padding(.horizontal, Floats.exceptionLabelHorizontalPadding)
