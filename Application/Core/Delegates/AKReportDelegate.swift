@@ -36,7 +36,6 @@ public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailCom
     @Dependency(\.coreKit) private var core: CoreKit
     @Dependency(\.reportDelegateDateFormatter) private var dateFormatter: DateFormatter
     @Dependency(\.fileManager) private var fileManager: FileManager
-    @Dependency(\.translatorService) private var translator: TranslatorService
 
     // MARK: - Properties
 
@@ -52,14 +51,7 @@ public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailCom
 
     private var dateHashlet: String {
         var dateHash = dateFormatter.string(from: Date())
-
-        let compressedData = try? (Data(dateHash.utf8) as NSData).compressed(using: .lzfse)
-        if let data = compressedData {
-            dateHash = SHA256.hash(data: data).compactMap { String(format: "%02x", $0) }.joined()
-        } else {
-            dateHash = SHA256.hash(data: Data(dateHash.utf8)).compactMap { String(format: "%02x", $0) }.joined()
-        }
-
+        dateHash = SHA256.hash(data: Data(dateHash.utf8)).compactMap { String(format: "%02x", $0) }.joined()
         return dateHash.components[0 ... dateHash.count / 4].joined()
     }
 
@@ -121,13 +113,23 @@ public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailCom
         var translatedBody = body
         var translatedPrompt = prompt
 
-        translator.getTranslations(
-            for: [.init(body),
-                  .init(prompt)],
-            languagePair: .system,
-            hud: (.seconds(2), true)
-        ) { translations, exception in
+        akCore.translationDelegate().getTranslations(
+            for: [
+                .init(body),
+                .init(prompt),
+            ],
+            languagePair: .init(
+                from: Translator.LanguagePair.system.from,
+                to: Translator.LanguagePair.system.to
+            ),
+            requiresHUD: nil,
+            using: nil,
+            fetchFromArchive: true
+        ) { translations, errorDescriptors in
             guard let translations else {
+                let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
+                    partialResult.append(.init(keyPair.key, metadata: [self, #file, #function, #line]))
+                }.compiledException
                 Logger.log(exception ?? .init(metadata: [self, #file, #function, #line]))
                 return
             }

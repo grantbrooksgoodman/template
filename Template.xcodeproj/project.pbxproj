@@ -113,7 +113,7 @@
 		B99B1DC229E4C49C00117D42 /* UITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DC129E4C49C00117D42 /* UITheme.swift */; };
 		B99B1DC829E4C4BD00117D42 /* UITheme+DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DC729E4C4BD00117D42 /* UITheme+DataModels.swift */; };
 		B99F13F42A280A0500B9FCE2 /* AppDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F13F32A280A0500B9FCE2 /* AppDefaultsKeys.swift */; };
-		B9AF12502ACE4AF50045C54C /* CompressedHashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AF124F2ACE4AF50045C54C /* CompressedHashable.swift */; };
+		B9AF12502ACE4AF50045C54C /* EncodedHashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AF124F2ACE4AF50045C54C /* EncodedHashable.swift */; };
 		B9AF12522ACE4DAD0045C54C /* JSONDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AF12512ACE4DAD0045C54C /* JSONDependencies.swift */; };
 		B9BB3CF12AC0C5F00077D1BC /* TranslationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF02AC0C5F00077D1BC /* TranslationMap.swift */; };
 		B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */; };
@@ -359,7 +359,7 @@
 		B99B1DC129E4C49C00117D42 /* UITheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITheme.swift; sourceTree = "<group>"; };
 		B99B1DC729E4C4BD00117D42 /* UITheme+DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITheme+DataModels.swift"; sourceTree = "<group>"; };
 		B99F13F32A280A0500B9FCE2 /* AppDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaultsKeys.swift; sourceTree = "<group>"; };
-		B9AF124F2ACE4AF50045C54C /* CompressedHashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressedHashable.swift; sourceTree = "<group>"; };
+		B9AF124F2ACE4AF50045C54C /* EncodedHashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodedHashable.swift; sourceTree = "<group>"; };
 		B9AF12512ACE4DAD0045C54C /* JSONDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDependencies.swift; sourceTree = "<group>"; };
 		B9BB3CF02AC0C5F00077D1BC /* TranslationMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationMap.swift; sourceTree = "<group>"; };
 		B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedLabelStringCollection.swift; sourceTree = "<group>"; };
@@ -877,8 +877,8 @@
 				A206F7DE28AC552D008FFE18 /* Build.swift */,
 				B91A10FF2AFF398B00E3C1A0 /* Cacheable.swift */,
 				B93BCDE82AAD9B5300AA16FE /* Callback.swift */,
-				B9AF124F2ACE4AF50045C54C /* CompressedHashable.swift */,
 				B9E7D46D2AAD117A00FAF2A9 /* Core.swift */,
+				B9AF124F2ACE4AF50045C54C /* EncodedHashable.swift */,
 				B91688EA290490CD004C80A2 /* Exception.swift */,
 				B91688EC2904913D004C80A2 /* Logger.swift */,
 				B97381082ACE8A2000ADB173 /* Persistent.swift */,
@@ -1303,7 +1303,7 @@
 				B9DB71072AD3891700EAC88B /* UserDefaultsKeyDomain.swift in Sources */,
 				B90F331F2AE4D41A002A9284 /* HeaderView.swift in Sources */,
 				B9CC83172AB0DCA700255116 /* DevModeStandardActions.swift in Sources */,
-				B9AF12502ACE4AF50045C54C /* CompressedHashable.swift in Sources */,
+				B9AF12502ACE4AF50045C54C /* EncodedHashable.swift in Sources */,
 				B9CC83222AB121E600255116 /* ThemedViewObserver.swift in Sources */,
 				B93BCDEF2AAD9F8E00AA16FE /* TranslatorService+CoreExtensions.swift in Sources */,
 				A206F7D528AC38DD008FFE18 /* ExpiryOverlayView.swift in Sources */,

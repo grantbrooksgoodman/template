@@ -12,14 +12,14 @@ import UIKit
 /* 3rd-party */
 import Redux
 
-public struct UITheme: Equatable, CompressedHashable {
+public struct UITheme: Equatable, EncodedHashable {
     // MARK: - Properties
 
     public let name: String
     public let items: [ColoredItem]
     public let style: UIUserInterfaceStyle
 
-    // MARK: - CompressedHashable Conformance
+    // MARK: - EncodedHashable Conformance
 
     public var hashFactors: [String] {
         var factors = [String]()

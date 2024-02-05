@@ -257,13 +257,7 @@ public struct Exception: Equatable, Exceptionable {
 
         hashlet = hashlet.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         hashlet = hashlet.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\u{00A0}", with: "")
-
-        let compressedData = try? (Data(hashlet.utf8) as NSData).compressed(using: .lzfse)
-        if let data = compressedData {
-            hashlet = SHA256.hash(data: data).compactMap { String(format: "%02x", $0) }.joined()
-        } else {
-            hashlet = SHA256.hash(data: Data(hashlet.utf8)).compactMap { String(format: "%02x", $0) }.joined()
-        }
+        hashlet = SHA256.hash(data: Data(hashlet.utf8)).compactMap { String(format: "%02x", $0) }.joined()
 
         guard !hashlet.isEmpty,
               hashlet.count > 2 else { return nil }

@@ -13,6 +13,7 @@ import Foundation
 /* 3rd-party */
 import AlertKit
 import Redux
+import Translator
 
 public enum Logger {
     // MARK: - Types
@@ -410,29 +411,76 @@ public enum Logger {
             ).present()
 
         case let .toast(style: style, isPersistent: isPersistent):
-            let style = style ?? (exception == nil ? .info : .error)
+            @Sendable
+            func showToast(_ userFacingDescriptor: String) {
+                let style = style ?? (exception == nil ? .info : .error)
 
-            var title: String?
-            var message: String?
+                var title: String?
+                var message: String?
 
-            if let exception,
-               exception.isReportable {
-                title = userFacingDescriptor
-                message = Localized(.tapToReport).wrappedValue
+                if let exception,
+                   exception.isReportable {
+                    title = userFacingDescriptor
+                    message = Localized(.tapToReport).wrappedValue
+                }
+
+                Observables.rootViewToast.value = .init(
+                    isPersistent ? .banner(style: style) : .capsule(style: style),
+                    title: title,
+                    message: message ?? userFacingDescriptor,
+                    perpetuation: isPersistent ? .persistent : .ephemeral(.seconds(10))
+                )
+
+                guard let exception,
+                      exception.isReportable else { return }
+
+                Observables.rootViewToastAction.value = {
+                    akCore.reportDelegate().fileReport(error: .init(exception))
+                }
             }
 
-            Observables.rootViewToast.value = .init(
-                isPersistent ? .banner(style: style) : .capsule(style: style),
-                title: title,
-                message: message ?? userFacingDescriptor,
-                perpetuation: isPersistent ? .persistent : .ephemeral(.seconds(10))
-            )
+            guard !shouldTranslate else {
+                Task {
+                    let translateWithSystemLanguagePairResult = await translateWithSystemLanguagePair(userFacingDescriptor)
 
-            guard let exception,
-                  exception.isReportable else { return }
+                    switch translateWithSystemLanguagePairResult {
+                    case let .success(translatedUserFacingDescriptor):
+                        showToast(translatedUserFacingDescriptor)
 
-            Observables.rootViewToastAction.value = {
-                akCore.reportDelegate().fileReport(error: .init(exception))
+                    case .failure:
+                        showToast(userFacingDescriptor)
+                    }
+                }
+
+                return
+            }
+
+            showToast(userFacingDescriptor)
+        }
+    }
+
+    private static func translateWithSystemLanguagePair(_ text: String) async -> Callback<String, Exception> {
+        await withCheckedContinuation { continuation in
+            @Dependency(\.alertKitCore) var akCore: AKCore
+            akCore.translationDelegate().getTranslations(
+                for: [.init(text)],
+                languagePair: .init(
+                    from: Translator.LanguagePair.system.from,
+                    to: Translator.LanguagePair.system.to
+                ),
+                requiresHUD: nil,
+                using: nil,
+                fetchFromArchive: true
+            ) { translations, errorDescriptors in
+                guard let translation = translations?.first else {
+                    let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
+                        partialResult.append(.init(keyPair.key, metadata: [self, #file, #function, #line]))
+                    }.compiledException
+                    continuation.resume(returning: .failure(exception ?? .init(metadata: [self, #file, #function, #line])))
+                    return
+                }
+
+                continuation.resume(returning: .success(translation.output))
             }
         }
     }

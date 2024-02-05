@@ -69,11 +69,11 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         @Persistent(.currentThemeID) var currentThemeID: String?
 
         if let themeID = pendingThemeID,
-           let correspondingCase = AppTheme.allCases.first(where: { $0.theme.compressedHash == themeID }) {
+           let correspondingCase = AppTheme.allCases.first(where: { $0.theme.encodedHash == themeID }) {
             ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
             pendingThemeID = nil
         } else if let currentThemeID,
-                  let correspondingCase = AppTheme.allCases.first(where: { $0.theme.compressedHash == currentThemeID }) {
+                  let correspondingCase = AppTheme.allCases.first(where: { $0.theme.encodedHash == currentThemeID }) {
             ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
         } else {
             ThemeService.setTheme(AppTheme.default.theme, checkStyle: false)

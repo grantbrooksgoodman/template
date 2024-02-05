@@ -21,7 +21,6 @@ public final class BuildInfoOverlayViewService {
     @Dependency(\.build) private var build: Build
     @Dependency(\.currentCalendar) private var calendar: Calendar
     @Dependency(\.coreKit.ui) private var coreUI: CoreKit.UI
-    @Dependency(\.translatorService) private var translator: TranslatorService
     @Dependency(\.uiApplication) private var uiApplication: UIApplication
 
     // MARK: - Properties
@@ -90,15 +89,24 @@ public final class BuildInfoOverlayViewService {
         let enableOrDisable = build.developerModeEnabled ? "Disable" : "Enable"
         let developerModeString = "\(enableOrDisable) Developer Mode"
 
-        translator.getTranslations(
-            for: [.init(messageToDisplay),
-                  .init(projectTitle),
-                  .init(viewBuildInformationString)],
-            languagePair: .system,
-            hud: (.seconds(2), true),
-            timeout: (.seconds(5), true)
-        ) { translations, exception in
+        akCore.translationDelegate().getTranslations(
+            for: [
+                .init(messageToDisplay),
+                .init(projectTitle),
+                .init(viewBuildInformationString),
+            ],
+            languagePair: .init(
+                from: Translator.LanguagePair.system.from,
+                to: Translator.LanguagePair.system.to
+            ),
+            requiresHUD: nil,
+            using: nil,
+            fetchFromArchive: true
+        ) { translations, errorDescriptors in
             guard let translations else {
+                let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
+                    partialResult.append(.init(keyPair.key, metadata: [self, #file, #function, #line]))
+                }.compiledException
                 self.willPresentDisclaimerAlert = false
                 Logger.log(exception ?? .init(metadata: [self, #file, #function, #line]))
                 return

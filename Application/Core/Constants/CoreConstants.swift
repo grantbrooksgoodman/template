@@ -58,8 +58,8 @@ public extension RuntimeStorage {
               fileName.hasSuffix(".swift") else { return path }
         fileName = fileName.components(separatedBy: ".swift")[0]
 
-        guard !fileName.hasSuffix("Reducer") else {
-            return fileName.replacingOccurrences(of: "Reducer", with: "View")
+        guard !(fileName.hasSuffix("Controller") || fileName.hasSuffix("Reducer")) else {
+            return fileName.replacingOccurrences(of: "Reducer", with: "View").removingOccurrences(of: ["Controller"])
         }
 
         return fileName

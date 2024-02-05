@@ -56,8 +56,8 @@ public struct ToastView: View {
 
     public var body: some View {
         switch type {
-        case let .banner(style: style, appearanceEdge: appearanceEdge, colorPalette: colorPalette):
-            bannerContentView(style: style, appearanceEdge: appearanceEdge, colorPalette: colorPalette)
+        case let .banner(style: style, appearanceEdge: _, colorPalette: colorPalette, showsDismissButton: showsDismissButton):
+            bannerContentView(style: style, colorPalette: colorPalette, showsDismissButton: showsDismissButton)
 
         case let .capsule(style: style):
             capsuleContentView(style: style)
@@ -69,8 +69,8 @@ public struct ToastView: View {
 
     private func bannerContentView(
         style: Toast.Style,
-        appearanceEdge: Toast.AppearanceEdge,
-        colorPalette: Toast.ColorPalette?
+        colorPalette: Toast.ColorPalette?,
+        showsDismissButton: Bool
     ) -> some View {
         VStack(alignment: .leading) {
             HStack(alignment: title == nil ? .center : .top) {
@@ -108,11 +108,13 @@ public struct ToastView: View {
 
                 Spacer(minLength: Floats.bannerSpacerMinLength)
 
-                Button {
-                    onDismiss()
-                } label: {
-                    Image(systemName: Strings.bannerDismissButtonImageSystemName)
-                        .foregroundStyle(colorPalette?.dismissButton ?? .titleText.opacity(Floats.bannerDismissButtonForegroundColorOpacity))
+                if showsDismissButton {
+                    Button {
+                        onDismiss()
+                    } label: {
+                        Image(systemName: Strings.bannerDismissButtonImageSystemName)
+                            .foregroundStyle(colorPalette?.dismissButton ?? .titleText.opacity(Floats.bannerDismissButtonForegroundColorOpacity))
+                    }
                 }
             }
             .padding()

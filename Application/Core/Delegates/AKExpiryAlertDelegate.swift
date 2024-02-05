@@ -18,10 +18,10 @@ public final class ExpiryAlertDelegate: AKExpiryAlertDelegate {
     // MARK: - Properties
 
     // Dependencies
+    @Dependency(\.alertKitCore) private var akCore: AKCore
     @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
     @Dependency(\.notificationCenter) private var notificationCenter: NotificationCenter
-    @Dependency(\.translatorService) private var translator: TranslatorService
     @Dependency(\.uiApplication) private var uiApplication: UIApplication
 
     // String
@@ -212,24 +212,34 @@ public final class ExpiryAlertDelegate: AKExpiryAlertDelegate {
         let dispatchGroup = DispatchGroup()
         var leftDispatchGroup = false
 
-        var inputsToTranslate: [Translator.TranslationInput] = [.init(expiryTitle),
-                                                                .init(expiryMessage),
-                                                                .init(continueUseString),
-                                                                .init(incorrectCodeTitle),
-                                                                .init(incorrectCodeMessage),
-                                                                .init(tryAgainString),
-                                                                .init(exitApplicationString),
-                                                                .init(timeExpiredTitle),
-                                                                .init(timeExpiredMessage)]
+        var inputsToTranslate: [AlertKit.TranslationInput] = [
+            .init(expiryTitle),
+            .init(expiryMessage),
+            .init(continueUseString),
+            .init(incorrectCodeTitle),
+            .init(incorrectCodeMessage),
+            .init(tryAgainString),
+            .init(exitApplicationString),
+            .init(timeExpiredTitle),
+            .init(timeExpiredMessage),
+        ]
 
         inputsToTranslate = inputsToTranslate.filter { $0.value().lowercasedTrimmingWhitespaceAndNewlines != "" }
         dispatchGroup.enter()
-        translator.getTranslations(
+        akCore.translationDelegate().getTranslations(
             for: inputsToTranslate,
-            languagePair: .system,
-            hud: (.seconds(5), true)
-        ) { translations, exception in
+            languagePair: .init(
+                from: Translator.LanguagePair.system.from,
+                to: Translator.LanguagePair.system.to
+            ),
+            requiresHUD: nil,
+            using: nil,
+            fetchFromArchive: true
+        ) { translations, errorDescriptors in
             guard let translations else {
+                let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
+                    partialResult.append(.init(keyPair.key, metadata: [self, #file, #function, #line]))
+                }.compiledException
                 Logger.log(exception ?? .init(metadata: [self, #file, #function, #line]))
                 return
             }
