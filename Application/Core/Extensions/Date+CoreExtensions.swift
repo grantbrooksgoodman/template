@@ -121,9 +121,7 @@ public extension Date {
         }
 
         let dayPosition = calendar.component(.weekday, from: self) - 1
-        guard dayPosition > 0,
-              symbols.count > dayPosition else { return .init() }
-        return symbols[dayPosition]
+        return symbols.itemAt(dayPosition) ?? .init()
     }
 }
 

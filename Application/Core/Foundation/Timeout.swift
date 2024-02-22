@@ -66,10 +66,6 @@ public final class Timeout {
 
     private func presentTimeoutAlert() {
         cancel()
-
-        AKErrorAlert(
-            error: .init(.timedOut(metadata!)),
-            shouldTranslate: [build.isOnline ? .actions(indices: nil) : .none]
-        ).present()
+        Logger.log(.timedOut(metadata!), with: .errorAlert)
     }
 }

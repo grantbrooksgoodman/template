@@ -8,6 +8,8 @@
 
 /* Native */
 import Foundation
+
+/* 3rd-party */
 import Redux
 
 public enum ObservableKey: String {
@@ -19,6 +21,7 @@ public enum ObservableKey: String {
 
     case breadcrumbsDidCapture
     case isDeveloperModeEnabled
+    case rootViewSheet
     case rootViewToast
     case rootViewToastAction
     case themedViewAppearanceChanged

@@ -162,7 +162,7 @@ public struct CoreKit {
         public func resetNavigationBarAppearance() {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithTransparentBackground()
-            appearance.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+            appearance.backgroundColor = ThemeService.isDarkModeActive ? .black : .white
 
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance

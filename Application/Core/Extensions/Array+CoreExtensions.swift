@@ -11,6 +11,14 @@ import Foundation
 /* 3rd-party */
 import Translator
 
+public extension Array {
+    /// Convenience method which eliminates the need to guard against out of bounds errors.
+    func itemAt(_ index: Int) -> Element? {
+        guard index > -1, count > index else { return nil }
+        return self[index]
+    }
+}
+
 public extension Array where Element == Any {
     var isValidMetadata: Bool {
         guard count == 4,

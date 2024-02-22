@@ -189,7 +189,7 @@ public extension UIView {
 
     func firstSubview(for string: String) -> UIView? {
         @Dependency(\.coreKit.ui) var coreUI: CoreKit.UI
-        return subviews.filter { $0.tag == coreUI.semTag(for: string) }.first
+        return subviews.first(where: { $0.tag == coreUI.semTag(for: string) })
     }
 
     func removeOverlay(name tag: String? = nil, animated: Bool = true) {

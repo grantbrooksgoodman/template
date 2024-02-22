@@ -1,5 +1,5 @@
 //
-//  RootViewObserver.swift
+//  RootWindowObserver.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -7,11 +7,12 @@
 
 /* Native */
 import Foundation
+import SwiftUI
 
 /* 3rd-party */
 import Redux
 
-public struct RootViewObserver: Observer {
+public struct RootWindowObserver: Observer {
     // MARK: - Type Aliases
 
     public typealias R = RootReducer
@@ -19,7 +20,11 @@ public struct RootViewObserver: Observer {
     // MARK: - Properties
 
     public let id = UUID()
-    public let observedValues: [any ObservableProtocol] = [Observables.rootViewToast, Observables.rootViewToastAction]
+    public let observedValues: [any ObservableProtocol] = [
+        Observables.rootViewSheet,
+        Observables.rootViewToast,
+        Observables.rootViewToastAction,
+    ]
     public let viewModel: ViewModel<R>
 
     // MARK: - Init
@@ -31,7 +36,7 @@ public struct RootViewObserver: Observer {
     // MARK: - Observer Conformance
 
     public func linkObservables() {
-        Observers.link(RootViewObserver.self, with: observedValues)
+        Observers.link(RootWindowObserver.self, with: observedValues)
     }
 
     public func onChange(of observable: Observable<Any>) {
@@ -42,6 +47,9 @@ public struct RootViewObserver: Observer {
         )
 
         switch observable.key {
+        case .rootViewSheet:
+            send(.sheetChanged(observable.value as? AnyView))
+
         case .rootViewToast:
             guard let value = observable.value as? Toast else { return }
             send(.toastChanged(value))

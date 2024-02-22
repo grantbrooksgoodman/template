@@ -48,7 +48,7 @@ public struct UITheme: Equatable, EncodedHashable {
     /// - Warning: Returns `UIColor.clear` if item is not themed.
     public func color(for itemType: ColoredItemType) -> UIColor {
         guard let item = items.first(where: { $0.type == itemType }) else { return .clear }
-        return UITraitCollection.current.userInterfaceStyle == .dark ? (item.set.variant ?? item.set.primary) : item.set.primary
+        return ThemeService.isDarkModeActive ? (item.set.variant ?? item.set.primary) : item.set.primary
     }
 
     // MARK: - Auxiliary
