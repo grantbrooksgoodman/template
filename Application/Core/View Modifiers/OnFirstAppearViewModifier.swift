@@ -12,7 +12,7 @@ import SwiftUI
 private struct OnFirstAppearViewModifier: ViewModifier {
     // MARK: - Properties
 
-    public var action: () -> Void
+    private var action: () -> Void
     @State private var didAppear = false
 
     // MARK: - Init

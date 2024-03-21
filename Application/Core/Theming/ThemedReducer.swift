@@ -72,10 +72,7 @@ public struct ThemedReducer: Reducer {
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.appearanceChanged):
-            coreUI.setNavigationBarAppearance(
-                backgroundColor: .navigationBarBackground,
-                titleColor: .navigationBarTitle
-            )
+            coreUI.setNavigationBarAppearance()
             state.objectID = UUID()
             guard state.redrawsOnAppearanceChange else { return .none }
             state.viewID = UUID()

@@ -157,6 +157,8 @@ public final class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureR
         UIInterfaceOrientation,
         traitCollection previousTraitCollection: UITraitCollection
     ) {
+        @Dependency(\.notificationCenter) var notificationCenter: NotificationCenter
+        notificationCenter.post(.init(name: .traitCollectionChangedNotification))
         Observables.themedViewAppearanceChanged.trigger()
     }
 

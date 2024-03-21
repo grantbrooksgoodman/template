@@ -29,6 +29,7 @@ private struct StatusBarStyleViewModifier: ViewModifier {
 
     // MARK: - Computed Properties
 
+    private var defaultStatusBarStyle: UIStatusBarStyle { ThemeService.isDarkModeActive ? .lightContent : .darkContent }
     private var statusBarViewController: StatusBarViewController? { statusBarWindow?.rootViewController as? StatusBarViewController }
 
     // MARK: - Init
@@ -49,7 +50,10 @@ private struct StatusBarStyleViewModifier: ViewModifier {
             }
             .onDisappear {
                 guard isPresented else { return }
-                statusBarViewController?.statusBarStyle = ThemeService.isDarkModeActive ? .lightContent : .darkContent
+                statusBarViewController?.statusBarStyle = defaultStatusBarStyle
+            }
+            .onTraitCollectionChange {
+                statusBarViewController?.statusBarStyle = isPresented ? preferredStatusBarStyle : defaultStatusBarStyle
             }
     }
 

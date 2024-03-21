@@ -42,7 +42,6 @@ public struct HeaderView: View {
     public let leftItem: PeripheralButtonType?
     public let rightItem: PeripheralButtonType?
 
-    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     @Environment(\.keyWindowSize) private var keyWindowSize: CGSize
 
     // MARK: - Computed Properties
@@ -178,7 +177,7 @@ public struct HeaderView: View {
         if showsDivider {
             Rectangle()
                 .frame(maxWidth: .infinity, maxHeight: Floats.separatorMaxHeight)
-                .foregroundStyle(colorScheme == .dark ? Colors.separatorDarkForeground : Colors.separatorLightForeground)
+                .foregroundStyle(ThemeService.isDarkModeActive ? Colors.separatorDarkForeground : Colors.separatorLightForeground)
                 .padding(.top, Floats.separatorTopPadding)
         }
     }

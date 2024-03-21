@@ -84,6 +84,9 @@
 		B946D87C2ACC8A59001D2424 /* AKError+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946D87B2ACC8A59001D2424 /* AKError+CoreExtensions.swift */; };
 		B946D87E2ACC966E001D2424 /* Duration+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */; };
 		B95798382AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95798372AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift */; };
+		B957ABF32B915F1C00DA7B72 /* Notification+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957ABF22B915F1C00DA7B72 /* Notification+CoreExtensions.swift */; };
+		B957ABF52B915F2A00DA7B72 /* View+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957ABF42B915F2A00DA7B72 /* View+CoreExtensions.swift */; };
+		B957ABF72B915F8E00DA7B72 /* RedrawsOnTraitCollectionChangeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957ABF62B915F8E00DA7B72 /* RedrawsOnTraitCollectionChangeViewModifier.swift */; };
 		B96043D72AABA04700BD6F78 /* Translator.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96043D62AABA04700BD6F78 /* Translator.xcframework */; };
 		B96043D82AABA04700BD6F78 /* Translator.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B96043D62AABA04700BD6F78 /* Translator.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B961A8EF2ACA8346007508EC /* ViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A8EE2ACA8346007508EC /* ViewObserver.swift */; };
@@ -337,6 +340,9 @@
 		B946D87B2ACC8A59001D2424 /* AKError+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AKError+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Duration+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B95798372AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreConstants+HeaderView.swift"; sourceTree = "<group>"; };
+		B957ABF22B915F1C00DA7B72 /* Notification+CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+CoreExtensions.swift"; sourceTree = "<group>"; };
+		B957ABF42B915F2A00DA7B72 /* View+CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+CoreExtensions.swift"; sourceTree = "<group>"; };
+		B957ABF62B915F8E00DA7B72 /* RedrawsOnTraitCollectionChangeViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedrawsOnTraitCollectionChangeViewModifier.swift; sourceTree = "<group>"; };
 		B96043D62AABA04700BD6F78 /* Translator.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Translator.xcframework; path = ../../XCFrameworks/Translator/build/Translator.xcframework; sourceTree = "<group>"; };
 		B961A8EE2ACA8346007508EC /* ViewObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
 		B96A04FA2AC7C0530003FDB0 /* ProgressPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPageView.swift; sourceTree = "<group>"; };
@@ -587,15 +593,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		B91A0E232AFF194200E3C1A0 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				B9CC83212AB121E600255116 /* ThemedViewObserver.swift */,
-				B99B1DBD29E4C43400117D42 /* ThemeService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		B91A0E242AFF2F8600E3C1A0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -754,9 +751,10 @@
 			isa = PBXGroup;
 			children = (
 				B91A0E212AFF173F00E3C1A0 /* Models */,
-				B91A0E232AFF194200E3C1A0 /* Services */,
 				B9CC831F2AB11E7F00255116 /* ThemedReducer.swift */,
 				B992BCCF2A159121003BFF2E /* ThemedView.swift */,
+				B9CC83212AB121E600255116 /* ThemedViewObserver.swift */,
+				B99B1DBD29E4C43400117D42 /* ThemeService.swift */,
 			);
 			path = Theming;
 			sourceTree = "<group>";
@@ -805,6 +803,7 @@
 				B97DB5762AF4602B002C2679 /* Font+CoreExtensions.swift */,
 				B93BCDEA2AAD9D9D00AA16FE /* LanguagePair+CoreExtensions.swift */,
 				B920F1882AD7C243002FC1C2 /* Locale+CoreExtensions.swift */,
+				B957ABF22B915F1C00DA7B72 /* Notification+CoreExtensions.swift */,
 				B93BCDD12AAD8BBF00AA16FE /* Primitives+CoreExtensions.swift */,
 				B93BCDD52AAD8BD700AA16FE /* Sequence+CoreExtensions.swift */,
 				B93BCDEC2AAD9DAC00AA16FE /* Task+CoreExtensions.swift */,
@@ -812,6 +811,7 @@
 				B93BCDEE2AAD9F8E00AA16FE /* TranslatorService+CoreExtensions.swift */,
 				B93BCDDB2AAD8BFB00AA16FE /* UIKit+CoreExtensions.swift */,
 				B992BCD72A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift */,
+				B957ABF42B915F2A00DA7B72 /* View+CoreExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -921,6 +921,7 @@
 				B90F33212AE4D463002A9284 /* HeaderViewModifier.swift */,
 				B91A10FD2AFF36FD00E3C1A0 /* InterfaceStyleViewModifier.swift */,
 				B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */,
+				B957ABF62B915F8E00DA7B72 /* RedrawsOnTraitCollectionChangeViewModifier.swift */,
 				B9DDD1572B85B1A300AB5BD3 /* StatusBarStyleViewModifier.swift */,
 				B97DB56C2AF45F11002C2679 /* SwipeViewModifier.swift */,
 				B97DB5722AF45F6C002C2679 /* ToastViewModifier.swift */,
@@ -1281,6 +1282,7 @@
 				B9CC831B2AB0F6B800255116 /* QuickViewerDependency.swift in Sources */,
 				B961A8EF2ACA8346007508EC /* ViewObserver.swift in Sources */,
 				B93CAEB02AF4624000C03BF4 /* Toast+ColorPalette.swift in Sources */,
+				B957ABF52B915F2A00DA7B72 /* View+CoreExtensions.swift in Sources */,
 				B99441A02B1567DE00F3B99D /* RootWindowObserver.swift in Sources */,
 				B91A11002AFF398B00E3C1A0 /* Cacheable.swift in Sources */,
 				B90F33222AE4D463002A9284 /* HeaderViewModifier.swift in Sources */,
@@ -1311,6 +1313,7 @@
 				B93BCDE92AAD9B5300AA16FE /* Callback.swift in Sources */,
 				B96A04FB2AC7C0530003FDB0 /* ProgressPageView.swift in Sources */,
 				B92CF00F28F4DF9800870B5C /* StoredItemKeys.swift in Sources */,
+				B957ABF72B915F8E00DA7B72 /* RedrawsOnTraitCollectionChangeViewModifier.swift in Sources */,
 				B9C5830829BECE59009DCE29 /* DevModeActions.swift in Sources */,
 				B9D2410C2B85466C00E26CC6 /* RootWindowService.swift in Sources */,
 				B93BCDDC2AAD8BFB00AA16FE /* UIKit+CoreExtensions.swift in Sources */,
@@ -1327,6 +1330,7 @@
 				A206F7D528AC38DD008FFE18 /* ExpiryOverlayView.swift in Sources */,
 				B9D241062B8543D000E26CC6 /* RootWindowServiceDependency.swift in Sources */,
 				B9E7D4212AAC1ED700FAF2A9 /* SamplePageView.swift in Sources */,
+				B957ABF32B915F1C00DA7B72 /* Notification+CoreExtensions.swift in Sources */,
 				B9DB71092AD3897200EAC88B /* StoredItemKeyDomain.swift in Sources */,
 				B91689092AC760AA00AF403D /* MainQueueDependency.swift in Sources */,
 				B9C582F329BEC263009DCE29 /* DevModeAction.swift in Sources */,

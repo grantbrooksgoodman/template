@@ -55,9 +55,9 @@ private struct HeaderViewModifier: ViewModifier {
                     .background(Color.navigationBarBackground)
                 }
 
-                Spacer()
+                Spacer(minLength: 0)
                 content
-                Spacer()
+                Spacer(minLength: 0)
             }
         } else {
             VStack {
@@ -68,9 +68,9 @@ private struct HeaderViewModifier: ViewModifier {
                     showsDivider: showsDivider
                 )
 
-                Spacer()
+                Spacer(minLength: 0)
                 content
-                Spacer()
+                Spacer(minLength: 0)
             }
         }
     }

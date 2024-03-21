@@ -169,8 +169,8 @@ public struct CoreKit {
         }
 
         public func setNavigationBarAppearance(
-            backgroundColor: UIColor,
-            titleColor: UIColor
+            backgroundColor: UIColor = .navigationBarBackground,
+            titleColor: UIColor = .navigationBarTitle
         ) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithTransparentBackground()
