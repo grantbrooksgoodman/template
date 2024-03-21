@@ -62,7 +62,7 @@ public struct FailurePageView: View {
                 } label: {
                     Text(viewModel.reportBugButtonText)
                         .font(.system(size: Floats.buttonLabelFontSize))
-                        .foregroundStyle(viewModel.didReportBug ? Colors.reportBugButtonDisabledColor : Color.accent)
+                        .foregroundStyle(viewModel.didReportBug ? Color.disabled : .accent)
                 }
                 .padding(.top, Floats.reportBugButtonTopPadding)
                 .disabled(viewModel.didReportBug)

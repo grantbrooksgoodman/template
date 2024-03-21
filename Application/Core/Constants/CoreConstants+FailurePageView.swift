@@ -1,5 +1,5 @@
 //
-//  CoreConstants+FailureView.swift
+//  CoreConstants+FailurePageView.swift
 //
 //  Created by Grant Brooks Goodman.
 //  Copyright © NEOTechnica Corporation. All rights reserved.
@@ -31,7 +31,6 @@ public extension CoreConstants.CGFloats {
 public extension CoreConstants.Colors {
     enum FailureView {
         public static let imageForegroundColor: Color = .red
-        public static let reportBugButtonDisabledColor: Color = .init(uiColor: .systemGray)
     }
 }
 
