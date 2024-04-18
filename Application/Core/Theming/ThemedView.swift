@@ -15,16 +15,19 @@ import Redux
 public struct ThemedView: View {
     // MARK: - Properties
 
-    private var redrawsOnAppearanceChange = false
-    private var viewBody: () -> any View
+    private let navigationBarAppearance: NavigationBarAppearance?
+    private let redrawsOnAppearanceChange: Bool
+    private let viewBody: () -> any View
 
     // MARK: - Init
 
     public init(
+        navigationBarAppearance: NavigationBarAppearance? = .themed(),
         redrawsOnAppearanceChange: Bool = false,
         _ body: @escaping () -> any View
     ) {
         viewBody = body
+        self.navigationBarAppearance = navigationBarAppearance
         self.redrawsOnAppearanceChange = redrawsOnAppearanceChange
     }
 
@@ -33,7 +36,11 @@ public struct ThemedView: View {
     public var body: some View {
         Themed(
             .init(
-                initialState: .init(viewBody, redrawsOnAppearanceChange: redrawsOnAppearanceChange),
+                initialState: .init(
+                    viewBody,
+                    navigationBarAppearance: navigationBarAppearance,
+                    redrawsOnAppearanceChange: redrawsOnAppearanceChange
+                ),
                 reducer: ThemedReducer()
             )
         )
@@ -58,5 +65,8 @@ private struct Themed: View {
     public var body: some View {
         AnyView(viewModel.body())
             .id(viewModel.viewID)
+            .onFirstAppear {
+                viewModel.send(.viewAppeared)
+            }
     }
 }

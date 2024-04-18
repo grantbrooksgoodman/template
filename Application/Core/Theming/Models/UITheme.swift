@@ -24,7 +24,7 @@ public struct UITheme: Equatable, EncodedHashable {
     public var hashFactors: [String] {
         var factors = [String]()
         factors.append(name)
-        factors.append(contentsOf: items.map { ($0.set.variant ?? $0.set.primary).accessibilityName })
+        factors.append(contentsOf: items.map { .init(($0.set.variant ?? $0.set.primary).hash) })
         factors.append(contentsOf: items.map(\.type.rawValue))
         factors.append(.init(style.rawValue))
         return factors

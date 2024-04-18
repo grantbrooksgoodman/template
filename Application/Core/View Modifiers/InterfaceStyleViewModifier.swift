@@ -32,7 +32,9 @@ private struct InterfaceStyleViewModifier: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
+            .preferredColorScheme(.init(interfaceStyle))
             .onAppear { overrideStyle() }
+            .onDisappear { core.ui.overrideUserInterfaceStyle(ThemeService.currentTheme.style) }
     }
 
     // MARK: - Auxiliary Methods

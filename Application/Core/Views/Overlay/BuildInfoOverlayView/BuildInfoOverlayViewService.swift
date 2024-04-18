@@ -77,7 +77,7 @@ public final class BuildInfoOverlayViewService {
         var messageToDisplay = "This is a\(typeString == "alpha" ? "n" : "") \(typeString) version of *project code name \(build.codeName)*.\(expiryString)"
 
         if build.appStoreReleaseVersion > 0 {
-            messageToDisplay = "This is a pre-release update to \(build.finalName).\(build.expiryInfoString)"
+            messageToDisplay = "This is a pre-release update to \(build.finalName). \(build.expiryInfoString)"
         }
 
         // swiftlint:disable:next line_length

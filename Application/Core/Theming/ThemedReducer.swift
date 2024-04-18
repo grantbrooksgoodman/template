@@ -20,6 +20,7 @@ public struct ThemedReducer: Reducer {
     // MARK: - Actions
 
     public enum Action {
+        case viewAppeared
         case appearanceChanged
     }
 
@@ -38,26 +39,31 @@ public struct ThemedReducer: Reducer {
 
         // Other
         public var body: () -> any View
+        public var navigationBarAppearance: NavigationBarAppearance?
         public var redrawsOnAppearanceChange: Bool
 
         /* MARK: Init */
 
         public init(
             _ body: @escaping (() -> any View),
-            redrawsOnAppearanceChange: Bool = false
+            navigationBarAppearance: NavigationBarAppearance?,
+            redrawsOnAppearanceChange: Bool
         ) {
             self.body = body
+            self.navigationBarAppearance = navigationBarAppearance
             self.redrawsOnAppearanceChange = redrawsOnAppearanceChange
         }
 
         /* MARK: Equatable Conformance */
 
         public static func == (left: ThemedReducer.State, right: ThemedReducer.State) -> Bool {
+            let sameNavigationBarAppearance = left.navigationBarAppearance == right.navigationBarAppearance
             let sameObjectID = left.objectID == right.objectID
             let sameRedrawsOnAppearanceChange = left.redrawsOnAppearanceChange == right.redrawsOnAppearanceChange
             let sameViewID = left.viewID == right.viewID
 
-            guard sameObjectID,
+            guard sameNavigationBarAppearance,
+                  sameObjectID,
                   sameRedrawsOnAppearanceChange,
                   sameViewID else {
                 return false
@@ -71,8 +77,15 @@ public struct ThemedReducer: Reducer {
 
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
+        case .action(.viewAppeared):
+            guard let navigationBarAppearance = state.navigationBarAppearance else { return .none }
+            NavigationBar.setAppearance(navigationBarAppearance)
+
         case .action(.appearanceChanged):
-            coreUI.setNavigationBarAppearance()
+            if let navigationBarAppearance = state.navigationBarAppearance {
+                NavigationBar.setAppearance(navigationBarAppearance)
+            }
+
             state.objectID = UUID()
             guard state.redrawsOnAppearanceChange else { return .none }
             state.viewID = UUID()

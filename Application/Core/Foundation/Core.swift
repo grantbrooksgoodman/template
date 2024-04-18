@@ -157,32 +157,6 @@ public struct CoreKit {
             }
         }
 
-        /* MARK: Navigation Bar Appearance */
-
-        public func resetNavigationBarAppearance() {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithTransparentBackground()
-            appearance.backgroundColor = ThemeService.isDarkModeActive ? .black : .white
-
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        }
-
-        public func setNavigationBarAppearance(
-            backgroundColor: UIColor = .navigationBarBackground,
-            titleColor: UIColor = .navigationBarTitle
-        ) {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithTransparentBackground()
-            appearance.backgroundColor = backgroundColor
-
-            appearance.largeTitleTextAttributes = [.foregroundColor: titleColor]
-            appearance.titleTextAttributes = [.foregroundColor: titleColor]
-
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        }
-
         /* MARK: View Controller Presentation */
 
         // Public
