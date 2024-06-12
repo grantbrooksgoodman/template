@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public extension ThemeService {
     static var isDarkModeActive: Bool {

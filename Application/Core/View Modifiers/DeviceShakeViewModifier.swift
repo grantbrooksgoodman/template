@@ -11,7 +11,7 @@ import SwiftUI
 import UIKit
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 private struct DeviceShakeViewModifier: ViewModifier {
     // MARK: - Dependencies

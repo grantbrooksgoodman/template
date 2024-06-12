@@ -9,7 +9,7 @@
 import Foundation
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public protocol Observer {
     // MARK: - Associated Types

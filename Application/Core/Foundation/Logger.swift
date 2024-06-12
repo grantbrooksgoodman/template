@@ -12,7 +12,7 @@ import Foundation
 
 /* 3rd-party */
 import AlertKit
-import Redux
+import CoreArchitecture
 import Translator
 
 public enum Logger {

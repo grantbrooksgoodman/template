@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public extension RootView {
     @ViewBuilder

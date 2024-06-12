@@ -11,7 +11,7 @@ import SwiftUI
 
 /* 3rd-party */
 import AlertKit
-import Redux
+import CoreArchitecture
 
 public struct ExpiryOverlayView: View {
     // MARK: - Dependencies

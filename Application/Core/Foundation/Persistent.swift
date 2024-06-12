@@ -9,7 +9,7 @@
 import Foundation
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 /// Property wrapper for persisting values in `UserDefaults`.
 @propertyWrapper

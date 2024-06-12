@@ -12,7 +12,7 @@ import UIKit
 
 /* 3rd-party */
 import AlertKit
-import Redux
+import CoreArchitecture
 
 @main
 public final class AppDelegate: UIResponder, UIApplicationDelegate {

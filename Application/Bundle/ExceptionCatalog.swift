@@ -10,7 +10,7 @@
 import Foundation
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 /**
  Use this enum to catalog application-specific `Exception` types and their corresponding hashlet values.

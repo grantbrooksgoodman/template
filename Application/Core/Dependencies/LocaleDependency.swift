@@ -9,7 +9,7 @@
 import Foundation
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public enum LocaleDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> Locale {

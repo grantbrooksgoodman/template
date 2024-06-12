@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public struct BuildInfoOverlayReducer: Reducer {
     // MARK: - Dependencies

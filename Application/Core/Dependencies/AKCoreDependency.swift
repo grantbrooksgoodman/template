@@ -10,7 +10,7 @@ import Foundation
 
 /* 3rd-party */
 import AlertKit
-import Redux
+import CoreArchitecture
 
 public enum AKCoreDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> AKCore {

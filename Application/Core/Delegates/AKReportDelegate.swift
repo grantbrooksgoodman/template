@@ -11,7 +11,7 @@ import MessageUI
 
 /* 3rd-party */
 import AlertKit
-import Redux
+import CoreArchitecture
 import Translator
 
 public struct LogFile {

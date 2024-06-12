@@ -10,7 +10,7 @@ import Foundation
 import QuickLook
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public final class QuickViewer: NSObject, QLPreviewControllerDataSource {
     // MARK: - Properties

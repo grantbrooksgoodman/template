@@ -7,7 +7,7 @@
 
 /* 3rd-party */
 import AlertKit
-import Redux
+import CoreArchitecture
 
 public final class Timeout {
     // MARK: - Dependencies

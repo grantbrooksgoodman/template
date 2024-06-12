@@ -10,7 +10,7 @@ import CryptoKit
 import Foundation
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public protocol EncodedHashable {
     var hashFactors: [String] { get }

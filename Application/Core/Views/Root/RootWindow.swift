@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 /// Added as a subview to the key window and is perpetually frontmost.
 public struct RootWindow: View {

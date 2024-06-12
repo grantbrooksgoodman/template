@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public enum UIApplicationDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> UIApplication {

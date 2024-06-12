@@ -10,7 +10,7 @@
 import Foundation
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public struct SampleContentNavigatorState: NavigatorState {
     // MARK: - Types
@@ -36,7 +36,8 @@ public enum SampleContentNavigator {
             state.modal = modal
 
         case .pop:
-            state.stack.removeLastIfPresent()
+            guard !state.stack.isEmpty else { return }
+            state.stack.removeLast()
 
         case let .push(path):
             state.stack.append(path)

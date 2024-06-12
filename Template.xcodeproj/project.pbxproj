@@ -107,13 +107,13 @@
 		B97DB5732AF45F6C002C2679 /* ToastViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5722AF45F6C002C2679 /* ToastViewModifier.swift */; };
 		B97DB5752AF45FBA002C2679 /* CoreConstants+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5742AF45FBA002C2679 /* CoreConstants+ToastView.swift */; };
 		B97DB5772AF4602B002C2679 /* Font+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5762AF4602B002C2679 /* Font+CoreExtensions.swift */; };
+		B986F17E2C1A142900B7EB1C /* CoreArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B986F17D2C1A142900B7EB1C /* CoreArchitecture */; };
 		B992BCD02A159121003BFF2E /* ThemedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCCF2A159121003BFF2E /* ThemedView.swift */; };
 		B992BCD52A159479003BFF2E /* AKConnectionAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCD42A159479003BFF2E /* AKConnectionAlertDelegate.swift */; };
 		B992BCD82A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCD72A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift */; };
 		B994419E2B1566E200F3B99D /* RootReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B994419D2B1566E200F3B99D /* RootReducer.swift */; };
 		B99441A02B1567DE00F3B99D /* RootWindowObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B994419F2B1567DE00F3B99D /* RootWindowObserver.swift */; };
 		B99441A32B15747400F3B99D /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99441A22B15747400F3B99D /* RootNavigationView.swift */; };
-		B99652DD2AC525EA00C9CD69 /* Redux in Frameworks */ = {isa = PBXBuildFile; productRef = B99652DC2AC525EA00C9CD69 /* Redux */; };
 		B99875EF2ACB41F30024E6EF /* AlertKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99875EE2ACB41F30024E6EF /* AlertKit.xcframework */; };
 		B99875F02ACB41F30024E6EF /* AlertKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B99875EE2ACB41F30024E6EF /* AlertKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B9988BFF2AC4C72800C4924C /* RuntimeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9988BFE2AC4C72800C4924C /* RuntimeStorage.swift */; };
@@ -325,7 +325,6 @@
 		B92409822AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadcrumbsDependency.swift; sourceTree = "<group>"; };
 		B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerDomains.swift; sourceTree = "<group>"; };
 		B9260BB92AC4105C00824A7C /* BuildDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildDependency.swift; sourceTree = "<group>"; };
-		B92949382AC525AD00BAF8C9 /* Redux */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Redux; path = ../../XCFrameworks/Redux; sourceTree = "<group>"; };
 		B92CF00E28F4DF9800870B5C /* StoredItemKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredItemKeys.swift; sourceTree = "<group>"; };
 		B93457062AABF9F200944602 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		B93457082AABFB3700944602 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
@@ -350,7 +349,6 @@
 		B93CAEAD2AF4623700C03BF4 /* Toast+AppearanceEdge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+AppearanceEdge.swift"; sourceTree = "<group>"; };
 		B93CAEAF2AF4624000C03BF4 /* Toast+ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+ColorPalette.swift"; sourceTree = "<group>"; };
 		B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
-		B941496A2A4F7A8F0097DAE5 /* Redux */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Redux; path = ../../XCFrameworks/Redux; sourceTree = "<group>"; };
 		B9450DDD2C19FD8A008DCD7B /* InteractivePopGestureRecognizerDisabledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePopGestureRecognizerDisabledViewModifier.swift; sourceTree = "<group>"; };
 		B94657682AABBC740091193B /* UserDefaultsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDependency.swift; sourceTree = "<group>"; };
 		B946576A2AABBD420091193B /* AKCoreDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKCoreDependency.swift; sourceTree = "<group>"; };
@@ -453,8 +451,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B986F17E2C1A142900B7EB1C /* CoreArchitecture in Frameworks */,
 				B96043D72AABA04700BD6F78 /* Translator.xcframework in Frameworks */,
-				B99652DD2AC525EA00C9CD69 /* Redux in Frameworks */,
 				B99875EF2ACB41F30024E6EF /* AlertKit.xcframework in Frameworks */,
 				F08904FBF9C6A4A4C121DA5C /* Pods_Template.framework in Frameworks */,
 			);
@@ -486,7 +484,6 @@
 			isa = PBXGroup;
 			children = (
 				A2DF2C5328199B660089DEA1 /* Application */,
-				B94149692A4F7A8F0097DAE5 /* Packages */,
 				A2DF2C5228199B660089DEA1 /* Products */,
 				A286879128A49DA600A34912 /* Frameworks */,
 				B715D9B1ECFB89E634B86164 /* Pods */,
@@ -726,15 +723,6 @@
 				B93CAEA62AF4620700C03BF4 /* Toast+Type.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		B94149692A4F7A8F0097DAE5 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				B941496A2A4F7A8F0097DAE5 /* Redux */,
-				B92949382AC525AD00BAF8C9 /* Redux */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 		B94657672AABBC670091193B /* Dependencies */ = {
@@ -1050,7 +1038,7 @@
 			);
 			name = Template;
 			packageProductDependencies = (
-				B99652DC2AC525EA00C9CD69 /* Redux */,
+				B986F17D2C1A142900B7EB1C /* CoreArchitecture */,
 			);
 			productName = Application;
 			productReference = A2DF2C5128199B660089DEA1 /* Template.app */;
@@ -1155,7 +1143,7 @@
 			);
 			mainGroup = A2DF2C4828199B660089DEA1;
 			packageReferences = (
-				B99652DB2AC525EA00C9CD69 /* XCLocalSwiftPackageReference "../../XCFrameworks/Redux" */,
+				B986F1792C1A127D00B7EB1C /* XCLocalSwiftPackageReference "../../XCFrameworks/CoreArchitecture" */,
 			);
 			productRefGroup = A2DF2C5228199B660089DEA1 /* Products */;
 			projectDirPath = "";
@@ -1716,16 +1704,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		B99652DB2AC525EA00C9CD69 /* XCLocalSwiftPackageReference "../../XCFrameworks/Redux" */ = {
+		B986F1792C1A127D00B7EB1C /* XCLocalSwiftPackageReference "../../XCFrameworks/CoreArchitecture" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../XCFrameworks/Redux;
+			relativePath = ../../XCFrameworks/CoreArchitecture;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B99652DC2AC525EA00C9CD69 /* Redux */ = {
+		B986F17D2C1A142900B7EB1C /* CoreArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Redux;
+			productName = CoreArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

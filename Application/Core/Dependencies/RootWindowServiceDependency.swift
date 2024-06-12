@@ -9,7 +9,7 @@
 import Foundation
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public enum RootWindowServiceDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> RootWindowService {

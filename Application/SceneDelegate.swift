@@ -12,7 +12,7 @@ import SwiftUI
 import UIKit
 
 /* 3rd-party */
-import Redux
+import CoreArchitecture
 
 public final class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIGestureRecognizerDelegate {
     // MARK: - Properties
