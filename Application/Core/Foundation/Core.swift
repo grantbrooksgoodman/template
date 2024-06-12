@@ -265,13 +265,13 @@ public struct CoreKit {
                     if components.count == 2 {
                         let endonym = components[1]
                         let suffix = localizedName.lowercased() == endonym.lowercased().dropSuffix() ? "" : "(\(endonym)"
-                        partialResult[code] = "\(localizedName.firstUppercase) \(suffix)"
+                        partialResult[code] = "\(localizedName.firstUppercase) \(suffix)".trimmingBorderedWhitespace
                     } else {
                         let suffix = localizedName.lowercased() == name.lowercased() ? "" : "(\(name))"
-                        partialResult[code] = "\(localizedName.firstUppercase) \(suffix)"
+                        partialResult[code] = "\(localizedName.firstUppercase) \(suffix)".trimmingBorderedWhitespace
                     }
                 } else {
-                    partialResult[code] = name
+                    partialResult[code] = name.trimmingBorderedWhitespace
                 }
             }
         }

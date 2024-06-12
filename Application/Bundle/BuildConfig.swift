@@ -29,5 +29,6 @@ public enum BuildConfig {
     // MARK: - Other
 
     public static let languageCode = Locale.systemLanguageCode
+    public static let loggerDomainsExcludedFromSessionRecord: [LoggerDomain] = [.observer]
     public static let loggerDomainSubscriptions: [LoggerDomain] = [.general]
 }

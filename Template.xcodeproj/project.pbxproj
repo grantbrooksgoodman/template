@@ -82,6 +82,7 @@
 		B93CAEAE2AF4623700C03BF4 /* Toast+AppearanceEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CAEAD2AF4623700C03BF4 /* Toast+AppearanceEdge.swift */; };
 		B93CAEB02AF4624000C03BF4 /* Toast+ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93CAEAF2AF4624000C03BF4 /* Toast+ColorPalette.swift */; };
 		B94149572A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */; };
+		B9450DDE2C19FD8A008DCD7B /* InteractivePopGestureRecognizerDisabledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9450DDD2C19FD8A008DCD7B /* InteractivePopGestureRecognizerDisabledViewModifier.swift */; };
 		B94657692AABBC740091193B /* UserDefaultsDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94657682AABBC740091193B /* UserDefaultsDependency.swift */; };
 		B946576B2AABBD420091193B /* AKCoreDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946576A2AABBD420091193B /* AKCoreDependency.swift */; };
 		B94657752AABC66F0091193B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94657742AABC66F0091193B /* RootView.swift */; };
@@ -350,6 +351,7 @@
 		B93CAEAF2AF4624000C03BF4 /* Toast+ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+ColorPalette.swift"; sourceTree = "<group>"; };
 		B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		B941496A2A4F7A8F0097DAE5 /* Redux */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Redux; path = ../../XCFrameworks/Redux; sourceTree = "<group>"; };
+		B9450DDD2C19FD8A008DCD7B /* InteractivePopGestureRecognizerDisabledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePopGestureRecognizerDisabledViewModifier.swift; sourceTree = "<group>"; };
 		B94657682AABBC740091193B /* UserDefaultsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDependency.swift; sourceTree = "<group>"; };
 		B946576A2AABBD420091193B /* AKCoreDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKCoreDependency.swift; sourceTree = "<group>"; };
 		B94657742AABC66F0091193B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -975,6 +977,7 @@
 			children = (
 				B9C5830029BECB0C009DCE29 /* DeviceShakeViewModifier.swift */,
 				B90F33212AE4D463002A9284 /* HeaderViewModifier.swift */,
+				B9450DDD2C19FD8A008DCD7B /* InteractivePopGestureRecognizerDisabledViewModifier.swift */,
 				B91A10FD2AFF36FD00E3C1A0 /* InterfaceStyleViewModifier.swift */,
 				B973C4EB2BC8615500E7CCC2 /* NavigationBarAppearanceViewModifier.swift */,
 				B94149562A4F598E0097DAE5 /* OnFirstAppearViewModifier.swift */,
@@ -1421,6 +1424,7 @@
 				B957ABF32B915F1C00DA7B72 /* Notification+CoreExtensions.swift in Sources */,
 				B9DB71092AD3897200EAC88B /* StoredItemKeyDomain.swift in Sources */,
 				B91689092AC760AA00AF403D /* MainQueueDependency.swift in Sources */,
+				B9450DDE2C19FD8A008DCD7B /* InteractivePopGestureRecognizerDisabledViewModifier.swift in Sources */,
 				B9C582F329BEC263009DCE29 /* DevModeAction.swift in Sources */,
 				B92409852AB2DFC0004CF4C0 /* LoggerDomains.swift in Sources */,
 				B93CAEA72AF4620700C03BF4 /* Toast+Type.swift in Sources */,

@@ -40,6 +40,8 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         /* MARK: Defaults Keys & Logging Setup */
 
         RuntimeStorage.store(BuildConfig.languageCode, as: .languageCode)
+
+        Logger.setDomainsExcludedFromSessionRecord(BuildConfig.loggerDomainsExcludedFromSessionRecord)
         Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
 
         @Persistent(.breadcrumbsCaptureEnabled) var breadcrumbsCaptureEnabled: Bool?

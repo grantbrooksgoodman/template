@@ -174,7 +174,7 @@ extension UINavigationController: UIGestureRecognizerDelegate {
     }
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        viewControllers.count > 1
+        InteractivePopGestureRecognizer.isEnabled && viewControllers.count > 1
     }
 }
 

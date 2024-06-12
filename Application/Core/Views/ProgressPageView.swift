@@ -17,6 +17,7 @@ public struct ProgressPageView: View {
             ProgressView()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.background)
+                .interactivePopGestureRecognizerDisabled()
         }
     }
 }

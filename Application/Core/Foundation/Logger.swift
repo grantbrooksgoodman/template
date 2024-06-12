@@ -33,6 +33,7 @@ public enum Logger {
 
     // MARK: - Properties
 
+    public private(set) static var domainsExcludedFromSessionRecord = [LoggerDomain]()
     public private(set) static var subscribedDomains = [LoggerDomain]()
 
     private static let sessionID = UUID()
@@ -53,6 +54,10 @@ public enum Logger {
     }
 
     // MARK: - Domain Subscription
+
+    public static func setDomainsExcludedFromSessionRecord(_ domainsExcludedFromSessionRecord: [LoggerDomain]) {
+        self.domainsExcludedFromSessionRecord = domainsExcludedFromSessionRecord
+    }
 
     public static func subscribe(to domain: LoggerDomain) {
         subscribedDomains.append(domain)
@@ -297,7 +302,7 @@ public enum Logger {
             print(text)
         }
 
-        guard domain != .observer else { return }
+        guard !domainsExcludedFromSessionRecord.contains(domain) else { return }
 
         var text = text
         if let placement {
