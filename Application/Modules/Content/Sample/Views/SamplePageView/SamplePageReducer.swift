@@ -18,10 +18,18 @@ public struct SamplePageReducer: Reducer {
 
     @Dependency(\.translatorService) private var translator: TranslatorService
 
+    // MARK: - Properties
+
+    @Navigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+
     // MARK: - Actions
 
     public enum Action {
         case viewAppeared
+
+        case modalButtonTapped
+        case pushButtonTapped
+        case sheetButtonTapped
     }
 
     // MARK: - Feedback
@@ -61,11 +69,19 @@ public struct SamplePageReducer: Reducer {
         switch event {
         case .action(.viewAppeared):
             state.viewState = .loading
-
             return .task {
                 let result = await translator.resolve(SamplePageViewStrings.self)
                 return .resolveReturned(result)
             }
+
+        case .action(.modalButtonTapped):
+            navigationCoordinator.navigate(to: .sampleContent(.modal(.modalDetail)))
+
+        case .action(.pushButtonTapped):
+            navigationCoordinator.navigate(to: .sampleContent(.push(.pushDetail)))
+
+        case .action(.sheetButtonTapped):
+            RootSheets.present(.default)
 
         case let .feedback(.resolveReturned(.success(strings))):
             state.strings = strings

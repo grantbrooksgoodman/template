@@ -21,6 +21,7 @@ public struct ThemedReducer: Reducer {
 
     public enum Action {
         case viewAppeared
+        case viewDisappeared
         case appearanceChanged
     }
 
@@ -33,13 +34,16 @@ public struct ThemedReducer: Reducer {
     public struct State: Equatable {
         /* MARK: Properties */
 
+        // NavigationBarAppearance
+        public var navigationBarAppearance: NavigationBarAppearance?
+        public var previousNavigationBarAppearance: NavigationBarAppearance?
+
         // UUID
         public var objectID = UUID()
         public var viewID = UUID()
 
         // Other
         public var body: () -> any View
-        public var navigationBarAppearance: NavigationBarAppearance?
         public var redrawsOnAppearanceChange: Bool
 
         /* MARK: Init */
@@ -58,11 +62,13 @@ public struct ThemedReducer: Reducer {
 
         public static func == (left: ThemedReducer.State, right: ThemedReducer.State) -> Bool {
             let sameNavigationBarAppearance = left.navigationBarAppearance == right.navigationBarAppearance
+            let samePreviousNavigationBarAppearance = left.previousNavigationBarAppearance == right.previousNavigationBarAppearance
             let sameObjectID = left.objectID == right.objectID
             let sameRedrawsOnAppearanceChange = left.redrawsOnAppearanceChange == right.redrawsOnAppearanceChange
             let sameViewID = left.viewID == right.viewID
 
             guard sameNavigationBarAppearance,
+                  samePreviousNavigationBarAppearance,
                   sameObjectID,
                   sameRedrawsOnAppearanceChange,
                   sameViewID else {
@@ -78,8 +84,13 @@ public struct ThemedReducer: Reducer {
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.viewAppeared):
+            state.previousNavigationBarAppearance = NavigationBar.currentAppearance
             guard let navigationBarAppearance = state.navigationBarAppearance else { return .none }
             NavigationBar.setAppearance(navigationBarAppearance)
+
+        case .action(.viewDisappeared):
+            guard let previousNavigationBarAppearance = state.previousNavigationBarAppearance else { return .none }
+            NavigationBar.setAppearance(previousNavigationBarAppearance)
 
         case .action(.appearanceChanged):
             if let navigationBarAppearance = state.navigationBarAppearance {

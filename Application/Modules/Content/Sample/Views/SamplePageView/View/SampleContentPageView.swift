@@ -14,6 +14,11 @@ import SwiftUI
 import Redux
 
 public struct SampleContentPageView: View {
+    // MARK: - Constants Accessors
+
+    private typealias Floats = AppConstants.CGFloats.SamplePageView
+    private typealias Strings = AppConstants.Strings.SamplePageView
+
     // MARK: - Properties
 
     @ObservedObject private var viewModel: ViewModel<SamplePageReducer>
@@ -36,9 +41,46 @@ public struct SampleContentPageView: View {
                 Text(viewModel.strings.value(for: .subtitleLabelText))
                     .font(.subheadline)
                     .foregroundStyle(Color.subtitleText)
+
+                Divider()
+
+                HStack {
+                    Button {
+                        viewModel.send(.modalButtonTapped)
+                    } label: {
+                        Text(Strings.modalButtonText)
+                            .underline()
+                    }
+
+                    Divider()
+                        .frame(maxHeight: Floats.dividerFrameMaxHeight)
+
+                    Button {
+                        viewModel.send(.pushButtonTapped)
+                    } label: {
+                        Text(Strings.pushButtonText)
+                            .underline()
+                    }
+
+                    Divider()
+                        .frame(maxHeight: Floats.dividerFrameMaxHeight)
+
+                    Button {
+                        viewModel.send(.sheetButtonTapped)
+                    } label: {
+                        Text(Strings.sheetButtonText)
+                            .underline()
+                    }
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
+            .header(
+                .image(.init(
+                    foregroundColor: .titleText,
+                    image: .init(uiImage: .ntBlack)
+                ))
+            )
         }
     }
 }

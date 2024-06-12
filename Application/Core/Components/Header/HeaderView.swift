@@ -16,6 +16,25 @@ import Redux
 public struct HeaderView: View {
     // MARK: - Types
 
+    public enum Appearance: Equatable {
+        /* MARK: Cases */
+
+        case custom(backgroundColor: UIColor)
+        case themed
+
+        /* MARK: Properties */
+
+        public var backgroundColor: UIColor {
+            switch self {
+            case let .custom(backgroundColor: backgroundColor):
+                return backgroundColor
+
+            case .themed:
+                return .navigationBarBackground
+            }
+        }
+    }
+
     public enum CenterItemType {
         case image(ImageAttributes)
         case text(TextAttributes, subtitle: TextAttributes? = nil)
@@ -26,6 +45,29 @@ public struct HeaderView: View {
         case text(TextButtonAttributes)
     }
 
+    public enum SizeClass {
+        /* MARK: Cases */
+
+        case custom(minHeight: CGFloat)
+        case fullScreenCover
+        case sheet
+
+        /* MARK: Properties */
+
+        public var minHeight: CGFloat {
+            switch self {
+            case let .custom(minHeight: minHeight):
+                return minHeight
+
+            case .fullScreenCover:
+                return Floats.fullScreenCoverSizeClassFrameMinHeight
+
+            case .sheet:
+                return Floats.sheetSizeClassFrameMinHeight
+            }
+        }
+    }
+
     // MARK: - Constants Accessors
 
     private typealias Colors = CoreConstants.Colors.HeaderView
@@ -33,36 +75,33 @@ public struct HeaderView: View {
 
     // MARK: - Properties
 
-    // Bool
-    public let isThemed: Bool
-    public let showsDivider: Bool
-
-    // Other
-    public let centerItem: CenterItemType?
+    // PeripheralButtonType
     public let leftItem: PeripheralButtonType?
     public let rightItem: PeripheralButtonType?
+
+    // Other
+    public let attributes: Attributes
+    public let centerItem: CenterItemType?
 
     @Environment(\.keyWindowSize) private var keyWindowSize: CGSize
 
     // MARK: - Computed Properties
 
     private var centerItemImageMaxWidth: CGFloat { keyWindowSize.width / Floats.keyWindowSizeWidthDivisor }
+    private var isThemed: Bool { attributes.appearance == .themed }
 
     // MARK: - Init
 
-    /// - Parameter isThemed: Pass `true` to override all color values to those of the system theme.
     public init(
         leftItem: PeripheralButtonType? = nil,
         centerItem: CenterItemType? = nil,
         rightItem: PeripheralButtonType? = nil,
-        showsDivider: Bool = true,
-        isThemed: Bool = false
+        attributes: Attributes = .init()
     ) {
         self.leftItem = leftItem
         self.centerItem = centerItem
         self.rightItem = rightItem
-        self.showsDivider = showsDivider
-        self.isThemed = isThemed
+        self.attributes = attributes
     }
 
     // MARK: - Body
@@ -82,6 +121,7 @@ public struct HeaderView: View {
                 dividerView
             }
         }
+        .background(Color(uiColor: attributes.appearance.backgroundColor))
     }
 
     // MARK: - Content View
@@ -124,7 +164,7 @@ public struct HeaderView: View {
                 }
             }
         }
-        .frame(minHeight: Floats.frameMinHeight)
+        .frame(minHeight: attributes.sizeClass.minHeight)
         .padding(.horizontal, Floats.horizontalPadding)
     }
 
@@ -174,7 +214,7 @@ public struct HeaderView: View {
 
     @ViewBuilder
     private var dividerView: some View {
-        if showsDivider {
+        if attributes.showsDivider {
             Rectangle()
                 .frame(maxWidth: .infinity, maxHeight: Floats.separatorMaxHeight)
                 .foregroundStyle(ThemeService.isDarkModeActive ? Colors.separatorDarkForeground : Colors.separatorLightForeground)
@@ -195,10 +235,12 @@ public struct HeaderView: View {
                         attributes.image.image
                             .resizable()
                             .scaledToFit()
+                            .fontWeight(attributes.image.weight)
                             .foregroundStyle(isThemed ? .accent : attributes.image.foregroundColor)
                             .frame(width: size.width, height: size.height)
                     } else {
                         attributes.image.image
+                            .fontWeight(attributes.image.weight)
                             .foregroundStyle(isThemed ? .accent : attributes.image.foregroundColor)
                     }
                 }

@@ -124,6 +124,15 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             )
             return
         }
+
+        /* MARK: Navigation Setup */
+
+        let navigationCoordinator: NavigationCoordinator<RootNavigationService> = .init(
+            .init(modal: .splash),
+            navigating: RootNavigationService()
+        )
+
+        NavigationCoordinatorResolver.shared.store(navigationCoordinator)
     }
 
     // MARK: - UISceneSession

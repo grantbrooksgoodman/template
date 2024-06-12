@@ -1,5 +1,5 @@
 //
-//  EmptyReducer.swift
+//  SplashPageReducer.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -12,7 +12,11 @@ import Foundation
 /* 3rd-party */
 import Redux
 
-public struct EmptyReducer: Reducer {
+public struct SplashPageReducer: Reducer {
+    // MARK: - Properties
+
+    @Navigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+
     // MARK: - Actions
 
     public enum Action {
@@ -21,7 +25,7 @@ public struct EmptyReducer: Reducer {
 
     // MARK: - Feedback
 
-    public enum Feedback {}
+    public typealias Feedback = Never
 
     // MARK: - State
 
@@ -40,9 +44,10 @@ public struct EmptyReducer: Reducer {
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
         case .action(.viewAppeared):
-            break
+            return .task(delay: .seconds(1)) {
+                navigationCoordinator.navigate(to: .root(.sampleContent))
+                return .none
+            }
         }
-
-        return .none
     }
 }

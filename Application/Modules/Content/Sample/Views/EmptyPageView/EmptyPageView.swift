@@ -16,11 +16,11 @@ import Redux
 public struct EmptyPageView: View {
     // MARK: - Properties
 
-    @StateObject private var viewModel: ViewModel<SamplePageReducer>
+    @StateObject private var viewModel: ViewModel<EmptyPageReducer>
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<SamplePageReducer>) {
+    public init(_ viewModel: ViewModel<EmptyPageReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
     }
 
@@ -28,10 +28,9 @@ public struct EmptyPageView: View {
 
     public var body: some View {
         VStack {
-            VStack(alignment: .center) {
-                Text("Hello world")
-            }
+            Text("Hello world")
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onFirstAppear {
             viewModel.send(.viewAppeared)
         }

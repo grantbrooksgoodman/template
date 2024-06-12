@@ -10,6 +10,28 @@ import Foundation
 import SwiftUI
 
 public extension HeaderView {
+    // MARK: - Attributes
+
+    struct Attributes {
+        /* MARK: Properties */
+
+        public let appearance: Appearance
+        public let showsDivider: Bool
+        public let sizeClass: SizeClass
+
+        /* MARK: Init */
+
+        public init(
+            appearance: Appearance = .custom(backgroundColor: .navigationBarBackground),
+            showsDivider: Bool = true,
+            sizeClass: SizeClass = .fullScreenCover
+        ) {
+            self.appearance = appearance
+            self.showsDivider = showsDivider
+            self.sizeClass = sizeClass
+        }
+    }
+
     // MARK: - Image Attributes
 
     struct ImageAttributes {
@@ -18,17 +40,20 @@ public extension HeaderView {
         public let foregroundColor: Color
         public let image: Image
         public let size: CGSize?
+        public let weight: Font.Weight
 
         /* MARK: Init */
 
         public init(
             foregroundColor: Color = .accent,
             image: Image,
-            size: CGSize? = nil
+            size: CGSize? = nil,
+            weight: Font.Weight = .regular
         ) {
             self.foregroundColor = foregroundColor
             self.image = image
             self.size = size
+            self.weight = weight
         }
     }
 

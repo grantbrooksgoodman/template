@@ -10,18 +10,20 @@ import Foundation
 import SwiftUI
 
 private struct HeaderViewModifier: ViewModifier {
+    // MARK: - Constants Accessors
+
+    private typealias Floats = CoreConstants.CGFloats.HeaderView
+
     // MARK: - Properties
-
-    // Bool
-    private let isThemed: Bool
-    private let showsDivider: Bool
-
-    // CenterItemType
-    private let centerItem: HeaderView.CenterItemType?
 
     // PeripheralButtonType
     private let leftItem: HeaderView.PeripheralButtonType?
     private let rightItem: HeaderView.PeripheralButtonType?
+
+    // Other
+    private let attributes: HeaderView.Attributes
+    private let centerItem: HeaderView.CenterItemType?
+    private let popGestureAction: (() -> Void)?
 
     // MARK: - Init
 
@@ -29,69 +31,88 @@ private struct HeaderViewModifier: ViewModifier {
         leftItem: HeaderView.PeripheralButtonType?,
         centerItem: HeaderView.CenterItemType?,
         rightItem: HeaderView.PeripheralButtonType?,
-        showsDivider: Bool,
-        isThemed: Bool
+        attributes: HeaderView.Attributes,
+        popGestureAction: (() -> Void)?
     ) {
         self.leftItem = leftItem
         self.centerItem = centerItem
         self.rightItem = rightItem
-        self.showsDivider = showsDivider
-        self.isThemed = isThemed
+        self.attributes = attributes
+        self.popGestureAction = popGestureAction
     }
 
     // MARK: - Body
 
     public func body(content: Content) -> some View {
-        if isThemed {
-            VStack {
-                ThemedView {
+        let body = Group {
+            if attributes.appearance == .themed {
+                VStack {
+                    ThemedView {
+                        HeaderView(
+                            leftItem: leftItem,
+                            centerItem: centerItem,
+                            rightItem: rightItem,
+                            attributes: attributes
+                        )
+                    }
+
+                    Spacer(minLength: 0)
+                    content
+                    Spacer(minLength: 0)
+                }
+            } else {
+                VStack {
                     HeaderView(
                         leftItem: leftItem,
                         centerItem: centerItem,
                         rightItem: rightItem,
-                        showsDivider: showsDivider,
-                        isThemed: true
+                        attributes: attributes
                     )
-                    .background(Color.navigationBarBackground)
+
+                    Spacer(minLength: 0)
+                    content
+                    Spacer(minLength: 0)
                 }
-
-                Spacer(minLength: 0)
-                content
-                Spacer(minLength: 0)
             }
-        } else {
-            VStack {
-                HeaderView(
-                    leftItem: leftItem,
-                    centerItem: centerItem,
-                    rightItem: rightItem,
-                    showsDivider: showsDivider
+        }
+        .toolbar(.hidden, for: .navigationBar)
+
+        if let popGestureAction {
+            body
+                .contentShape(Rectangle())
+                .gesture(
+                    DragGesture(
+                        minimumDistance: Floats.dragGestureMinimumDistance,
+                        coordinateSpace: .global
+                    )
+                    .onChanged { value in
+                        guard value.startLocation.x < Floats.dragGestureValueLeftEdgeThreshold,
+                              value.translation.width > Floats.dragGestureValueRightSwipeThreshold else { return }
+                        popGestureAction()
+                    }
                 )
-
-                Spacer(minLength: 0)
-                content
-                Spacer(minLength: 0)
-            }
+        } else {
+            body
         }
     }
 }
 
 public extension View {
-    /// - Parameter isThemed: Pass `true` to override all color values to those of the system theme.
+    /// - Parameter attributes: Choosing a themed `appearance` value overrides all color values to those of the system theme.
     func header(
         leftItem: HeaderView.PeripheralButtonType? = nil,
         _ centerItem: HeaderView.CenterItemType? = nil,
         rightItem: HeaderView.PeripheralButtonType? = nil,
-        showsDivider: Bool = true,
-        isThemed: Bool = false
+        attributes: HeaderView.Attributes = .init(),
+        popGestureAction: (() -> Void)? = nil
     ) -> some View {
         modifier(
             HeaderViewModifier(
                 leftItem: leftItem,
                 centerItem: centerItem,
                 rightItem: rightItem,
-                showsDivider: showsDivider,
-                isThemed: isThemed
+                attributes: attributes,
+                popGestureAction: popGestureAction
             )
         )
     }

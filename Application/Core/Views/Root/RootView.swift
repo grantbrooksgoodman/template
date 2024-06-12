@@ -13,9 +13,9 @@ import SwiftUI
 import Redux
 
 public struct RootView: View {
-    // MARK: - Dependencies
+    // MARK: - Properties
 
-    @ObservedDependency(\.rootNavigationCoordinator) public var navigationCoordinator: RootNavigationCoordinator
+    @ObservedNavigator public var navigationCoordinator: NavigationCoordinator<RootNavigationService>
 
     // MARK: - View
 

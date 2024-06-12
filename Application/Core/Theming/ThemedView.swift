@@ -68,5 +68,8 @@ private struct Themed: View {
             .onFirstAppear {
                 viewModel.send(.viewAppeared)
             }
+            .onDisappear {
+                viewModel.send(.viewDisappeared)
+            }
     }
 }

@@ -23,6 +23,7 @@ public struct NavigationBarConfiguration: Equatable {
 
     // UIColor
     public let backgroundColor: UIColor
+    public let barButtonItemColor: UIColor
     public let titleColor: UIColor
 
     // MARK: - Computed Properties
@@ -39,8 +40,8 @@ public struct NavigationBarConfiguration: Equatable {
         }
 
         appearance.backgroundColor = backgroundColor
-        appearance.largeTitleTextAttributes = [.foregroundColor: titleColor]
-        appearance.titleTextAttributes = [.foregroundColor: titleColor]
+        appearance.largeTitleTextAttributes = [.foregroundColor: titleColor, .strokeColor: barButtonItemColor]
+        appearance.titleTextAttributes = [.foregroundColor: titleColor, .strokeColor: barButtonItemColor]
 
         return appearance
     }
@@ -50,10 +51,12 @@ public struct NavigationBarConfiguration: Equatable {
     public init(
         titleColor: UIColor,
         backgroundColor: UIColor,
+        barButtonItemColor: UIColor,
         showsDivider: Bool
     ) {
         self.titleColor = titleColor
         self.backgroundColor = backgroundColor
+        self.barButtonItemColor = barButtonItemColor
         self.showsDivider = showsDivider
     }
 }
@@ -79,6 +82,7 @@ public enum NavigationBar {
             let standardConfig: NavigationBarConfiguration = .init(
                 titleColor: .navigationBarTitle,
                 backgroundColor: .navigationBarBackground,
+                barButtonItemColor: .accent,
                 showsDivider: showsDivider
             )
             setAppearance(standardConfig.uiNavigationBarAppearance, scrollEdgeAppearance: scrollEdgeConfig?.uiNavigationBarAppearance)
@@ -88,6 +92,9 @@ public enum NavigationBar {
     }
 
     private static func setAppearance(_ standardAppearance: UINavigationBarAppearance, scrollEdgeAppearance: UINavigationBarAppearance?) {
+        let buttonTintColor = standardAppearance.titleTextAttributes[.strokeColor] as? UIColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = buttonTintColor
+
         UINavigationBar.appearance().compactAppearance = standardAppearance
         UINavigationBar.appearance().compactScrollEdgeAppearance = scrollEdgeAppearance ?? standardAppearance
 

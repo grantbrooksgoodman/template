@@ -24,7 +24,14 @@ public enum RootSheet {
         switch self {
         case .default:
             return .init(
-                EmptyView()
+                ThemedView {
+                    Text("Root Sheet")
+                        .header(
+                            rightItem: .doneButton { RootSheets.dismiss() },
+                            attributes: .init(sizeClass: .sheet)
+                        )
+                        .preferredStatusBarStyle(.lightContent)
+                }
             )
         }
     }

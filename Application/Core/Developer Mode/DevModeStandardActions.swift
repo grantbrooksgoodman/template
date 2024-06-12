@@ -18,16 +18,14 @@ public extension DevModeAction {
         // MARK: - Available Actions Getter
 
         public static var available: [DevModeAction] {
-            var availableActions: [DevModeAction] = [toggleBuildInfoOverlayAction,
-                                                     overrideLanguageCodeAction,
-                                                     resetUserDefaultsAction,
-                                                     toggleBreadcrumbsAction,
-                                                     viewLoggerSessionRecordAction,
-                                                     disableDeveloperModeAction]
-
-            if RootPage.allCases.count > 1 {
-                availableActions.insert(navigateToPageAction, at: 0)
-            }
+            var availableActions: [DevModeAction] = [
+                toggleBuildInfoOverlayAction,
+                overrideLanguageCodeAction,
+                resetUserDefaultsAction,
+                toggleBreadcrumbsAction,
+                viewLoggerSessionRecordAction,
+                disableDeveloperModeAction,
+            ]
 
             if AppTheme.allCases.count > 1 {
                 availableActions.insert(changeThemeAction, at: 0)
@@ -69,35 +67,6 @@ public extension DevModeAction {
                 perform: DevModeService.promptToToggle,
                 isDestructive: true
             )
-        }
-
-        private static var navigateToPageAction: DevModeAction {
-            func navigateToPage() {
-                @Dependency(\.rootNavigationCoordinator) var rootNavigationCoordinator: RootNavigationCoordinator
-
-                var actions = [AKAction]()
-                actions = RootPage.allCases.map { .init(
-                    title: $0.rawValue.camelCaseToHumanReadable.capitalizingWords,
-                    style: .default,
-                    isEnabled: $0.rawValue != rootNavigationCoordinator.page.rawValue
-                ) }
-
-                AKActionSheet(
-                    title: "Navigate to Page",
-                    actions: actions,
-                    shouldTranslate: [.none]
-                ).present { actionID in
-                    func format(_ pageName: String) -> String { pageName.camelCaseToHumanReadable.capitalizingWords }
-                    guard actionID != -1,
-                          let pageName = actions.first(where: { $0.identifier == actionID })?.title,
-                          let correspondingCase = RootPage.allCases.first(where: { format($0.rawValue) == pageName }) else { return }
-
-                    rootNavigationCoordinator.setPage(correspondingCase)
-                    navigateToPage()
-                }
-            }
-
-            return .init(title: "Navigate to Page", perform: navigateToPage)
         }
 
         private static var overrideLanguageCodeAction: DevModeAction {
@@ -299,13 +268,5 @@ public extension DevModeAction {
 
             return .init(title: "View Logger Session Record", perform: viewLoggerSessionRecord)
         }
-    }
-}
-
-private extension String {
-    var capitalizingWords: String {
-        let components = components(separatedBy: ": ")
-        guard components.count > 1 else { return firstUppercase }
-        return "\(components[0].firstUppercase): \(components[1].firstUppercase)"
     }
 }

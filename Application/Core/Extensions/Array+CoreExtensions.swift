@@ -17,6 +17,18 @@ public extension Array {
         guard index > -1, count > index else { return nil }
         return self[index]
     }
+
+    /// Verifies preconditions before mutating the array to avoid out of bounds errors.
+    mutating func removeFirstIfPresent(_ k: Int = 1) {
+        guard count >= k else { return }
+        removeFirst(k)
+    }
+
+    /// Verifies preconditions before mutating the array to avoid out of bounds errors.
+    mutating func removeLastIfPresent(_ k: Int = 1) {
+        guard count >= k else { return }
+        removeLast(k)
+    }
 }
 
 public extension Array where Element == Any {

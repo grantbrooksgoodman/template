@@ -14,12 +14,26 @@ import SwiftUI
 import Redux
 
 public extension RootView {
+    @ViewBuilder
     var rootPage: some View {
-        Group {
-            switch navigationCoordinator.page {
-            case .sample:
-                withTransition { SamplePageView(.init(initialState: .init(), reducer: SamplePageReducer())) }
+        switch navigationCoordinator.state.modal {
+        case .sampleContent:
+            withTransition {
+                RootContainerView()
             }
+
+        case .splash:
+            withTransition {
+                SplashPageView(
+                    .init(
+                        initialState: .init(),
+                        reducer: SplashPageReducer()
+                    )
+                )
+            }
+
+        case .none:
+            EmptyView()
         }
     }
 }
