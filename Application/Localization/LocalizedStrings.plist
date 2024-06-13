@@ -1087,6 +1087,161 @@
 		<key>zh</key>
 		<string>星期五</string>
 	</dict>
+	<key>internet_connection_offline</key>
+	<dict>
+		<key>af</key>
+		<string>Daar is geen internetverbinding nie.</string>
+		<key>ar</key>
+		<string>لا يوجد اتصال بالإنترنت.</string>
+		<key>az</key>
+		<string>İnternet bağlantısı yoxdur.</string>
+		<key>be</key>
+		<string>Інтэрнэту няма.</string>
+		<key>bg</key>
+		<string>Няма интернет връзка.</string>
+		<key>bn</key>
+		<string>ইন্টারনেট সংযোগ নেই।</string>
+		<key>bs</key>
+		<string>Nema internetske veze.</string>
+		<key>ca</key>
+		<string>No hi ha connexió a Internet.</string>
+		<key>cs</key>
+		<string>Není zde připojení k internetu.</string>
+		<key>cy</key>
+		<string>Nid oes cysylltiad rhyngrwyd.</string>
+		<key>da</key>
+		<string>Der er ingen internetforbindelse.</string>
+		<key>de</key>
+		<string>Es besteht keine Internetverbindung.</string>
+		<key>el</key>
+		<string>Δεν υπάρχει σύνδεση στο διαδίκτυο.</string>
+		<key>en</key>
+		<string>Internet connection is offline.</string>
+		<key>eo</key>
+		<string>Ne estas interreta konekto.</string>
+		<key>es</key>
+		<string>No hay conexión a internet.</string>
+		<key>et</key>
+		<string>Interneti-ühendus puudub.</string>
+		<key>eu</key>
+		<string>Ez dago Interneteko konexiorik.</string>
+		<key>fa</key>
+		<string>اتصال به اینترنت وجود ندارد.</string>
+		<key>fi</key>
+		<string>Internet-yhteyttä ei ole.</string>
+		<key>fr</key>
+		<string>Il n&apos;y a pas de connexion Internet.</string>
+		<key>ga</key>
+		<string>Níl aon nasc idirlín ann.</string>
+		<key>gd</key>
+		<string>Chan eil ceangal eadar-lìn ann.</string>
+		<key>gl</key>
+		<string>Non hai conexión a internet.</string>
+		<key>gu</key>
+		<string>ત્યાં કોઈ ઇન્ટરનેટ કનેક્શન નથી.</string>
+		<key>he</key>
+		<string>אין חיבור לאינטרנט.</string>
+		<key>hi</key>
+		<string>कोई इंटरनेट कनेक्शन नहीं है.</string>
+		<key>hr</key>
+		<string>Nema internetske veze.</string>
+		<key>ht</key>
+		<string>Pa gen okenn koneksyon entènèt.</string>
+		<key>hu</key>
+		<string>Nincs internet kapcsolat.</string>
+		<key>hy</key>
+		<string>Ինտերնետ կապ չկա։</string>
+		<key>id</key>
+		<string>Tidak ada koneksi internet.</string>
+		<key>is</key>
+		<string>Það er engin nettenging.</string>
+		<key>it</key>
+		<string>Non c&apos;è connessione internet.</string>
+		<key>ja</key>
+		<string>インターネット接続がありません。</string>
+		<key>ka</key>
+		<string>ინტერნეტი არ არის.</string>
+		<key>kk</key>
+		<string>Интернет байланысы жоқ.</string>
+		<key>kn</key>
+		<string>ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವಿಲ್ಲ.</string>
+		<key>ko</key>
+		<string>인터넷에 연결되어 있지 않습니다.</string>
+		<key>ky</key>
+		<string>Интернет байланышы жок.</string>
+		<key>lt</key>
+		<string>Nėra interneto ryšio.</string>
+		<key>mg</key>
+		<string>Tsy misy fifandraisana Internet.</string>
+		<key>mi</key>
+		<string>Karekau he hononga ipurangi.</string>
+		<key>mk</key>
+		<string>Нема интернет врска.</string>
+		<key>ml</key>
+		<string>ഇൻ്റർനെറ്റ് കണക്ഷൻ ഇല്ല.</string>
+		<key>mn</key>
+		<string>Интернэт холболт байхгүй байна.</string>
+		<key>mt</key>
+		<string>M&apos;hemm l-ebda konnessjoni bl-internet.</string>
+		<key>ne</key>
+		<string>इन्टरनेट जडान छैन।</string>
+		<key>nl</key>
+		<string>Er is geen internetverbinding.</string>
+		<key>no</key>
+		<string>Det er ingen internettforbindelse.</string>
+		<key>pa</key>
+		<string>ਕੋਈ ਇੰਟਰਨੈਟ ਕਨੈਕਸ਼ਨ ਨਹੀਂ ਹੈ।</string>
+		<key>pl</key>
+		<string>Brak połączenia z Internetem.</string>
+		<key>pt</key>
+		<string>Não há conexão com a Internet.</string>
+		<key>ro</key>
+		<string>Nu există conexiune la internet.</string>
+		<key>ru</key>
+		<string>Нет подключения к Интернету.</string>
+		<key>si</key>
+		<string>අන්තර්ජාල සම්බන්ධතාවයක් නොමැත.</string>
+		<key>sk</key>
+		<string>Nie je k dispozícii pripojenie na internet.</string>
+		<key>sl</key>
+		<string>Ni internetne povezave.</string>
+		<key>sq</key>
+		<string>Nuk ka lidhje interneti.</string>
+		<key>sr</key>
+		<string>Не постоји интернет веза.</string>
+		<key>su</key>
+		<string>Henteu aya sambungan internét.</string>
+		<key>sv</key>
+		<string>Det finns ingen internetuppkoppling.</string>
+		<key>sw</key>
+		<string>Hakuna muunganisho wa intaneti.</string>
+		<key>ta</key>
+		<string>இணைய இணைப்பு இல்லை.</string>
+		<key>te</key>
+		<string>ఇంటర్నెట్ కనెక్షన్ లేదు.</string>
+		<key>tg</key>
+		<string>Пайвасти интернет нест.</string>
+		<key>th</key>
+		<string>ไม่มีการเชื่อมต่ออินเทอร์เน็ต</string>
+		<key>tl</key>
+		<string>Walang koneksyon sa internet.</string>
+		<key>tr</key>
+		<string>İnternet bağlantısı yok.</string>
+		<key>tt</key>
+		<string>Интернетка тоташу юк.</string>
+		<key>uk</key>
+		<string>Немає підключення до Інтернету.</string>
+		<key>ur</key>
+		<string>کوئی انٹرنیٹ کنکشن نہیں ہے۔</string>
+		<key>uz</key>
+		<string>Internet aloqasi yo&apos;q.</string>
+		<key>vi</key>
+		<string>Không có kết nối internet.</string>
+		<key>yi</key>
+		<string>עס איז קיין אינטערנעט פֿאַרבינדונג.</string>
+		<key>zh</key>
+		<string>没有互联网连接。</string>
+	</dict>
 	<key>monday</key>
 	<dict>
 		<key>af</key>

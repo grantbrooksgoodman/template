@@ -40,8 +40,14 @@ public struct NavigationBarConfiguration: Equatable {
         }
 
         appearance.backgroundColor = backgroundColor
-        appearance.largeTitleTextAttributes = [.foregroundColor: titleColor, .strokeColor: barButtonItemColor]
-        appearance.titleTextAttributes = [.foregroundColor: titleColor, .strokeColor: barButtonItemColor]
+        appearance.largeTitleTextAttributes = [
+            .foregroundColor: titleColor,
+            .strokeColor: barButtonItemColor,
+        ]
+        appearance.titleTextAttributes = [
+            .foregroundColor: titleColor,
+            .strokeColor: barButtonItemColor,
+        ]
 
         return appearance
     }
@@ -92,8 +98,8 @@ public enum NavigationBar {
     }
 
     private static func setAppearance(_ standardAppearance: UINavigationBarAppearance, scrollEdgeAppearance: UINavigationBarAppearance?) {
-        let buttonTintColor = standardAppearance.titleTextAttributes[.strokeColor] as? UIColor
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = buttonTintColor
+        let barButtonItemColor = standardAppearance.titleTextAttributes[.strokeColor] as? UIColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = barButtonItemColor
 
         UINavigationBar.appearance().compactAppearance = standardAppearance
         UINavigationBar.appearance().compactScrollEdgeAppearance = scrollEdgeAppearance ?? standardAppearance

@@ -340,14 +340,21 @@ public extension Error {
 }
 
 public extension Exception {
-    static func timedOut(_ metadata: [Any]) -> Exception {
-        @Localized(.timedOut) var timedOutString: String
-        let exception = Exception(
-            "The operation timed out. Please try again later.",
+    static func internetConnectionOffline(_ metadata: [Any]) -> Exception {
+        .init(
+            "Internet connection is offline.",
             isReportable: false,
-            extraParams: [CommonParamKeys.userFacingDescriptor.rawValue: timedOutString],
+            extraParams: [CommonParamKeys.userFacingDescriptor.rawValue: Localized(.internetConnectionOffline).wrappedValue],
             metadata: metadata
         )
-        return exception
+    }
+
+    static func timedOut(_ metadata: [Any]) -> Exception {
+        .init(
+            "The operation timed out. Please try again later.",
+            isReportable: false,
+            extraParams: [CommonParamKeys.userFacingDescriptor.rawValue: Localized(.timedOut).wrappedValue],
+            metadata: metadata
+        )
     }
 }

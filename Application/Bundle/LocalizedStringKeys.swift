@@ -21,30 +21,35 @@ public enum LocalizedStringKey: String {
     case dismiss
     case done
 
+    case friday
+
+    case internetConnectionOffline
+
+    case monday
+
     case noEmail
     case noInternetMessage
     case noInternetTitle
     case noResults
 
     case reportBug
-    case somethingWentWrong
-    case tapToReport
-    case timedOut
-    case tryAgain
 
+    case saturday
     case search
     case sendFeedback
     case settings
-
+    case somethingWentWrong
     case sunday
-    case monday
-    case tuesday
-    case wednesday
-    case thursday
-    case friday
-    case saturday
 
+    case tapToReport
+    case thursday
+    case timedOut
     case today
+    case tryAgain
+    case tuesday
+
+    case wednesday
+
     case yesterday
 
     // MARK: - Properties
