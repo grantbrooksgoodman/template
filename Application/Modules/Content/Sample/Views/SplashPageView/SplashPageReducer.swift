@@ -45,7 +45,7 @@ public struct SplashPageReducer: Reducer {
         switch event {
         case .action(.viewAppeared):
             return .task(delay: .seconds(1)) {
-                navigationCoordinator.navigate(to: .root(.sampleContent))
+                navigationCoordinator.navigate(to: .root(.modal(.sampleContent)))
                 return .none
             }
         }

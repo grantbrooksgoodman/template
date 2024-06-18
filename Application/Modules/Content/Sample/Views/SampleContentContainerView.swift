@@ -1,5 +1,5 @@
 //
-//  RootContainerView.swift
+//  SampleContentContainerView.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -13,12 +13,12 @@ import SwiftUI
 /* 3rd-party */
 import CoreArchitecture
 
-public struct RootContainerView: View {
+public struct SampleContentContainerView: View {
     // MARK: - Properties
 
     @ObservedNavigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
 
-    // MARK: - Computed Properties
+    // MARK: - Bindings
 
     private var navigationPathBinding: Binding<[SampleContentNavigatorState.SeguePaths]> {
         navigationCoordinator.navigable(

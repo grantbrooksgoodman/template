@@ -8,6 +8,10 @@
 /* Native */
 import Foundation
 import SwiftUI
+import UIKit
+
+/* 3rd-party */
+import CoreArchitecture
 
 public enum InteractivePopGestureRecognizer {
     // MARK: - Properties
@@ -17,6 +21,8 @@ public enum InteractivePopGestureRecognizer {
     // MARK: - Set Is Enabled
 
     public static func setIsEnabled(_ isEnabled: Bool) {
+        @Dependency(\.uiApplication) var uiApplication: UIApplication
+        guard uiApplication.applicationState == .active else { return }
         self.isEnabled = isEnabled
     }
 }

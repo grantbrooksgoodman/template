@@ -21,7 +21,17 @@ public struct SampleContentPageView: View {
 
     // MARK: - Properties
 
+    @ObservedNavigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
     @ObservedObject private var viewModel: ViewModel<SamplePageReducer>
+
+    // MARK: - Bindings
+
+    private var sheetBinding: Binding<SampleContentNavigatorState.SheetPaths?> {
+        navigationCoordinator.navigable(
+            \.sampleContent.sheet,
+            route: { .sampleContent(.sheet($0)) }
+        )
+    }
 
     // MARK: - Init
 
@@ -80,6 +90,22 @@ public struct SampleContentPageView: View {
                     foregroundColor: .titleText,
                     image: .init(uiImage: .ntBlack)
                 ))
+            )
+        }
+        .sheet(item: sheetBinding) { sheetView(for: $0) }
+    }
+
+    // MARK: - Auxiliary
+
+    @ViewBuilder
+    private func sheetView(for path: SampleContentNavigatorState.SheetPaths) -> some View {
+        switch path {
+        case .sheetDetail:
+            DetailPageView(
+                .init(
+                    initialState: .init(.sheet),
+                    reducer: DetailPageReducer()
+                )
             )
         }
     }

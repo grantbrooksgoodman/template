@@ -23,9 +23,14 @@ public struct SampleContentNavigatorState: NavigatorState {
         case pushDetail
     }
 
+    public enum SheetPaths: Paths {
+        case sheetDetail
+    }
+
     // MARK: - Properties
 
     public var modal: ModalPaths?
+    public var sheet: SheetPaths?
     public var stack: [SeguePaths] = []
 }
 
@@ -42,6 +47,9 @@ public enum SampleContentNavigator {
         case let .push(path):
             state.stack.append(path)
 
+        case let .sheet(sheet):
+            state.sheet = sheet
+
         case let .stack(paths):
             state.stack = paths
         }
@@ -53,6 +61,7 @@ public extension RootNavigationService.Route {
         case modal(SampleContentNavigatorState.ModalPaths?)
         case pop
         case push(SampleContentNavigatorState.SeguePaths)
+        case sheet(SampleContentNavigatorState.SheetPaths?)
         case stack([SampleContentNavigatorState.SeguePaths])
     }
 }

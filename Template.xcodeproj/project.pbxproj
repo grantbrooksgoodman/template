@@ -37,7 +37,7 @@
 		B90701DB2C17D3C000F80A02 /* EmptyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701DA2C17D3C000F80A02 /* EmptyPageView.swift */; };
 		B90701E22C17D41F00F80A02 /* DetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701E12C17D41F00F80A02 /* DetailPageView.swift */; };
 		B90701E42C17D42700F80A02 /* DetailPageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701E32C17D42700F80A02 /* DetailPageReducer.swift */; };
-		B90701E62C17E55000F80A02 /* RootNavigatorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701E52C17E55000F80A02 /* RootNavigatorState.swift */; };
+		B90701E62C17E55000F80A02 /* RootNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701E52C17E55000F80A02 /* RootNavigator.swift */; };
 		B90CCC092AC74478001C326F /* CoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CCC082AC74478001C326F /* CoreConstants.swift */; };
 		B90F331F2AE4D41A002A9284 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90F331D2AE4D41A002A9284 /* HeaderView.swift */; };
 		B90F33202AE4D41A002A9284 /* HeaderView+DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90F331E2AE4D41A002A9284 /* HeaderView+DataModels.swift */; };
@@ -177,7 +177,7 @@
 		B9F3615B2C18DD6000586D1D /* AppConstants+SplashPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615A2C18DD6000586D1D /* AppConstants+SplashPageView.swift */; };
 		B9F3615D2C18DD7200586D1D /* AppConstants+DetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */; };
 		B9F3615F2C18DD7A00586D1D /* AppConstants+SamplePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */; };
-		B9F361612C18E12600586D1D /* RootContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F361602C18E12600586D1D /* RootContainerView.swift */; };
+		B9F361612C18E12600586D1D /* SampleContentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F361602C18E12600586D1D /* SampleContentContainerView.swift */; };
 		F08904FBF9C6A4A4C121DA5C /* Pods_Template.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098CDEDE75D862311ED24DF0 /* Pods_Template.framework */; };
 /* End PBXBuildFile section */
 
@@ -230,7 +230,7 @@
 		B90701DA2C17D3C000F80A02 /* EmptyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPageView.swift; sourceTree = "<group>"; };
 		B90701E12C17D41F00F80A02 /* DetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageView.swift; sourceTree = "<group>"; };
 		B90701E32C17D42700F80A02 /* DetailPageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageReducer.swift; sourceTree = "<group>"; };
-		B90701E52C17E55000F80A02 /* RootNavigatorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigatorState.swift; sourceTree = "<group>"; };
+		B90701E52C17E55000F80A02 /* RootNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigator.swift; sourceTree = "<group>"; };
 		B90CCC082AC74478001C326F /* CoreConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreConstants.swift; sourceTree = "<group>"; };
 		B90F331D2AE4D41A002A9284 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B90F331E2AE4D41A002A9284 /* HeaderView+DataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HeaderView+DataModels.swift"; sourceTree = "<group>"; };
@@ -442,7 +442,7 @@
 		B9F3615A2C18DD6000586D1D /* AppConstants+SplashPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+SplashPageView.swift"; sourceTree = "<group>"; };
 		B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+DetailPageView.swift"; sourceTree = "<group>"; };
 		B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+SamplePageView.swift"; sourceTree = "<group>"; };
-		B9F361602C18E12600586D1D /* RootContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerView.swift; sourceTree = "<group>"; };
+		B9F361602C18E12600586D1D /* SampleContentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleContentContainerView.swift; sourceTree = "<group>"; };
 		CF52460DFCE5E62E30711A79 /* Pods-Template.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Template.release.xcconfig"; path = "Target Support Files/Pods-Template/Pods-Template.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -567,6 +567,7 @@
 				B90701DC2C17D3C800F80A02 /* EmptyPageView */,
 				B9E7D41B2AAC1ED700FAF2A9 /* SamplePageView */,
 				B90701D52C17D33A00F80A02 /* SplashPageView */,
+				B9F361602C18E12600586D1D /* SampleContentContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -753,10 +754,9 @@
 		B94657702AABC6200091193B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				B9F361602C18E12600586D1D /* RootContainerView.swift */,
 				B90701CD2C17BE7600F80A02 /* RootNavigationService.swift */,
 				B99441A22B15747400F3B99D /* RootNavigationView.swift */,
-				B90701E52C17E55000F80A02 /* RootNavigatorState.swift */,
+				B90701E52C17E55000F80A02 /* RootNavigator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1309,7 +1309,7 @@
 				B9BB3CF72AC1486D0077D1BC /* AKTranslationDelegate.swift in Sources */,
 				B93457072AABF9F200944602 /* Localization.swift in Sources */,
 				B9E7D43D2AAC222600FAF2A9 /* Observable.swift in Sources */,
-				B9F361612C18E12600586D1D /* RootContainerView.swift in Sources */,
+				B9F361612C18E12600586D1D /* SampleContentContainerView.swift in Sources */,
 				B99B1DC829E4C4BD00117D42 /* UITheme+DataModels.swift in Sources */,
 				B992BCD52A159479003BFF2E /* AKConnectionAlertDelegate.swift in Sources */,
 				B920F18B2AD7C93A002FC1C2 /* LocaleDependency.swift in Sources */,
@@ -1403,7 +1403,7 @@
 				B9AF12502ACE4AF50045C54C /* EncodedHashable.swift in Sources */,
 				B90701D72C17D34300F80A02 /* SplashPageView.swift in Sources */,
 				B978B19F2B87CEAF00AA007A /* RootSheets.swift in Sources */,
-				B90701E62C17E55000F80A02 /* RootNavigatorState.swift in Sources */,
+				B90701E62C17E55000F80A02 /* RootNavigator.swift in Sources */,
 				B9CC83222AB121E600255116 /* ThemedViewObserver.swift in Sources */,
 				B93BCDEF2AAD9F8E00AA16FE /* TranslatorService+CoreExtensions.swift in Sources */,
 				A206F7D528AC38DD008FFE18 /* ExpiryOverlayView.swift in Sources */,

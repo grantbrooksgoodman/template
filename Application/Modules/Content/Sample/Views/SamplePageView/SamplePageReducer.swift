@@ -81,7 +81,7 @@ public struct SamplePageReducer: Reducer {
             navigationCoordinator.navigate(to: .sampleContent(.push(.pushDetail)))
 
         case .action(.sheetButtonTapped):
-            RootSheets.present(.default)
+            navigationCoordinator.navigate(to: .sampleContent(.sheet(.sheetDetail)))
 
         case let .feedback(.resolveReturned(.success(strings))):
             state.strings = strings

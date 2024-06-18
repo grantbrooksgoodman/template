@@ -35,9 +35,10 @@ public struct DetailPageReducer: Reducer {
     public struct State: Equatable {
         /* MARK: Types */
 
-        public enum Configuration {
+        public enum Configuration: String {
             case modal
             case push
+            case sheet
         }
 
         /* MARK: Properties */
@@ -46,7 +47,7 @@ public struct DetailPageReducer: Reducer {
 
         /* MARK: Computed Properties */
 
-        public var navigationTitle: String { "\(configuration == .modal ? "Modal" : "Push") Detail View" }
+        public var navigationTitle: String { "\(configuration.rawValue.firstUppercase) Detail View" }
 
         public var popGestureAction: (() -> Void)? {
             guard configuration == .modal else { return nil }
@@ -77,6 +78,9 @@ public struct DetailPageReducer: Reducer {
 
             case .push:
                 navigationCoordinator.navigate(to: .sampleContent(.pop))
+
+            case .sheet:
+                navigationCoordinator.navigate(to: .sampleContent(.sheet(.none)))
             }
         }
 
@@ -89,7 +93,7 @@ public struct DetailPageReducer: Reducer {
 
         case .action(.popToSplashButtonTapped):
             navigateBack()
-            navigationCoordinator.navigate(to: .root(.splash))
+            navigationCoordinator.navigate(to: .root(.modal(.splash)))
         }
 
         return .none

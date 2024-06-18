@@ -34,39 +34,73 @@ public struct DetailPageView: View {
     public var body: some View {
         ThemedView {
             VStack {
-                Text(viewModel.navigationTitle)
-                    .bold()
+                switch viewModel.configuration {
+                case .modal,
+                     .push:
+                    fullScreenCoverView
+                        .header(
+                            leftItem: .backButton { viewModel.send(.navigateBackButtonTapped) },
+                            .text(.init(viewModel.navigationTitle)),
+                            popGestureAction: viewModel.popGestureAction
+                        )
 
-                Divider()
-
-                HStack {
-                    Button {
-                        viewModel.send(.navigateBackButtonTapped)
-                    } label: {
-                        Text(Strings.navigateBackButtonText)
-                            .underline()
-                    }
-
-                    Divider()
-                        .frame(maxHeight: Floats.dividerFrameMaxHeight)
-
-                    Button {
-                        viewModel.send(.popToSplashButtonTapped)
-                    } label: {
-                        Text(Strings.popToSplashButtonText)
-                            .underline()
-                    }
+                case .sheet:
+                    sheetView
+                        .header(
+                            rightItem: .doneButton { viewModel.send(.navigateBackButtonTapped) },
+                            attributes: .init(sizeClass: .sheet)
+                        )
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .header(
-                leftItem: .backButton { viewModel.send(.navigateBackButtonTapped) },
-                .text(.init(viewModel.navigationTitle)),
-                popGestureAction: viewModel.popGestureAction
-            )
             .onFirstAppear {
                 viewModel.send(.viewAppeared)
             }
         }
+    }
+
+    private var fullScreenCoverView: some View {
+        VStack {
+            Text(viewModel.navigationTitle)
+                .bold()
+
+            Divider()
+
+            HStack {
+                Button {
+                    viewModel.send(.navigateBackButtonTapped)
+                } label: {
+                    Text(Strings.navigateBackButtonText)
+                        .underline()
+                }
+
+                Divider()
+                    .frame(maxHeight: Floats.dividerFrameMaxHeight)
+
+                Button {
+                    viewModel.send(.popToSplashButtonTapped)
+                } label: {
+                    Text(Strings.popToSplashButtonText)
+                        .underline()
+                }
+            }
+        }
+    }
+
+    private var sheetView: some View {
+        VStack {
+            Text(viewModel.navigationTitle)
+                .bold()
+
+            Divider()
+
+            Button {
+                viewModel.send(.popToSplashButtonTapped)
+            } label: {
+                Text(Strings.popToSplashButtonText)
+                    .underline()
+            }
+        }
+        .preferredStatusBarStyle(.lightContent)
     }
 }

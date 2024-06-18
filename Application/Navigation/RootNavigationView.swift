@@ -19,7 +19,7 @@ public extension RootView {
         switch navigationCoordinator.state.modal {
         case .sampleContent:
             withTransition {
-                RootContainerView()
+                SampleContentContainerView()
             }
 
         case .splash:
