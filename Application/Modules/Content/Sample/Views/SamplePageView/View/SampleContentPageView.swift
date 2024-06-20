@@ -11,6 +11,7 @@ import Foundation
 import SwiftUI
 
 /* 3rd-party */
+import ComponentKit
 import CoreArchitecture
 
 public struct SampleContentPageView: View {
@@ -44,42 +45,45 @@ public struct SampleContentPageView: View {
     public var body: some View {
         ThemedView {
             VStack {
-                Text(viewModel.strings.value(for: .titleLabelText))
-                    .font(.headline)
-                    .foregroundStyle(Color.titleText)
+                Components.text(
+                    viewModel.strings.value(for: .titleLabelText),
+                    font: .systemBold
+                )
 
-                Text(viewModel.strings.value(for: .subtitleLabelText))
-                    .font(.subheadline)
-                    .foregroundStyle(Color.subtitleText)
+                Components.text(
+                    viewModel.strings.value(for: .subtitleLabelText),
+                    font: .system(scale: .small),
+                    foregroundColor: .subtitleText
+                )
 
                 Divider()
 
                 HStack {
-                    Button {
+                    Components.button(
+                        Strings.modalButtonText,
+                        font: .systemMediumUnderlined
+                    ) {
                         viewModel.send(.modalButtonTapped)
-                    } label: {
-                        Text(Strings.modalButtonText)
-                            .underline()
                     }
 
                     Divider()
                         .frame(maxHeight: Floats.dividerFrameMaxHeight)
 
-                    Button {
+                    Components.button(
+                        Strings.pushButtonText,
+                        font: .systemMediumUnderlined
+                    ) {
                         viewModel.send(.pushButtonTapped)
-                    } label: {
-                        Text(Strings.pushButtonText)
-                            .underline()
                     }
 
                     Divider()
                         .frame(maxHeight: Floats.dividerFrameMaxHeight)
 
-                    Button {
+                    Components.button(
+                        Strings.sheetButtonText,
+                        font: .systemMediumUnderlined
+                    ) {
                         viewModel.send(.sheetButtonTapped)
-                    } label: {
-                        Text(Strings.sheetButtonText)
-                            .underline()
                     }
                 }
             }

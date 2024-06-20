@@ -17,7 +17,6 @@ public extension CoreConstants.CGFloats {
         public static let buildInfoButtonPadding: CGFloat = 1
         public static let buildInfoButtonXOffset: CGFloat = -10
 
-        public static let buildInfoButtonLabelFontSize: CGFloat = 13
         public static let developerModeIndicatorFrameHeight: CGFloat = 8
         public static let developerModeIndicatorFrameWidth: CGFloat = 8
         public static let developerModeIndicatorTrailingPadding: CGFloat = -6

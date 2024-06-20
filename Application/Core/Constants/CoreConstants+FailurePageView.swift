@@ -15,12 +15,12 @@ public extension CoreConstants.CGFloats {
     enum FailureView {
         public static let buttonLabelFontSize: CGFloat = 14
 
-        public static let exceptionLabelFontSize: CGFloat = 17
         public static let exceptionLabelHorizontalPadding: CGFloat = 2
         public static let exceptionLabelVerticalPadding: CGFloat = 5
 
         public static let imageBottomPadding: CGFloat = 5
-        public static let imageSystemSize: CGFloat = 60
+        public static let imageFrameMaxHeight: CGFloat = 60
+        public static let imageFrameMaxWidth: CGFloat = 60
 
         public static let reportBugButtonTopPadding: CGFloat = 5
     }

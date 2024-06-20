@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 /* 3rd-party */
+import ComponentKit
 import CoreArchitecture
 
 public struct FailurePageView: View {
@@ -34,35 +35,40 @@ public struct FailurePageView: View {
     public var body: some View {
         ThemedView {
             VStack {
-                Image(systemName: Strings.imageSystemName)
-                    .renderingMode(.template)
-                    .foregroundStyle(Colors.imageForegroundColor)
-                    .font(.system(size: Floats.imageSystemSize))
-                    .padding(.bottom, Floats.imageBottomPadding)
+                Components.symbol(
+                    Strings.imageSystemName,
+                    foregroundColor: Colors.imageForegroundColor,
+                    usesIntrinsicSize: false
+                )
+                .frame(
+                    maxWidth: Floats.imageFrameMaxWidth,
+                    maxHeight: Floats.imageFrameMaxHeight
+                )
+                .padding(.bottom, Floats.imageBottomPadding)
 
-                Text(viewModel.exception.userFacingDescriptor)
-                    .font(.sanFrancisco(.semibold, size: Floats.exceptionLabelFontSize))
-                    .foregroundStyle(Color.titleText)
-                    .padding(.vertical, Floats.exceptionLabelVerticalPadding)
-                    .padding(.horizontal, Floats.exceptionLabelHorizontalPadding)
-                    .multilineTextAlignment(.center)
+                Components.text(
+                    viewModel.exception.userFacingDescriptor,
+                    font: .systemSemibold
+                )
+                .padding(.vertical, Floats.exceptionLabelVerticalPadding)
+                .padding(.horizontal, Floats.exceptionLabelHorizontalPadding)
+                .multilineTextAlignment(.center)
 
                 if viewModel.retryHandler != nil {
-                    Button {
+                    Components.button(
+                        viewModel.retryButtonText,
+                        font: .systemSemibold(scale: .custom(Floats.buttonLabelFontSize))
+                    ) {
                         viewModel.send(.executeRetryHandler)
-                    } label: {
-                        Text(viewModel.retryButtonText)
-                            .font(.system(size: Floats.buttonLabelFontSize, weight: .semibold))
-                            .foregroundStyle(Color.accent)
                     }
                 }
 
-                Button {
+                Components.button(
+                    viewModel.reportBugButtonText,
+                    font: .system(scale: .custom(Floats.buttonLabelFontSize)),
+                    foregroundColor: viewModel.didReportBug ? .disabled : .accent
+                ) {
                     viewModel.send(.reportBugButtonTapped)
-                } label: {
-                    Text(viewModel.reportBugButtonText)
-                        .font(.system(size: Floats.buttonLabelFontSize))
-                        .foregroundStyle(viewModel.didReportBug ? Color.disabled : .accent)
                 }
                 .padding(.top, Floats.reportBugButtonTopPadding)
                 .disabled(viewModel.didReportBug)

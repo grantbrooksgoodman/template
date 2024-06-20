@@ -11,6 +11,7 @@ import Foundation
 import SwiftUI
 
 /* 3rd-party */
+import ComponentKit
 import CoreArchitecture
 
 public struct EmptyPageView: View {
@@ -28,7 +29,7 @@ public struct EmptyPageView: View {
 
     public var body: some View {
         VStack {
-            Text("Hello world")
+            Components.text("Hello world")
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onFirstAppear {

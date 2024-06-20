@@ -11,6 +11,7 @@ import Foundation
 import SwiftUI
 
 /* 3rd-party */
+import ComponentKit
 import CoreArchitecture
 
 public struct DetailPageView: View {
@@ -61,27 +62,29 @@ public struct DetailPageView: View {
 
     private var fullScreenCoverView: some View {
         VStack {
-            Text(viewModel.navigationTitle)
-                .bold()
+            Components.text(
+                viewModel.navigationTitle,
+                font: .systemBold
+            )
 
             Divider()
 
             HStack {
-                Button {
+                Components.button(
+                    Strings.navigateBackButtonText,
+                    font: .systemMediumUnderlined
+                ) {
                     viewModel.send(.navigateBackButtonTapped)
-                } label: {
-                    Text(Strings.navigateBackButtonText)
-                        .underline()
                 }
 
                 Divider()
                     .frame(maxHeight: Floats.dividerFrameMaxHeight)
 
-                Button {
+                Components.button(
+                    Strings.popToSplashButtonText,
+                    font: .systemMediumUnderlined
+                ) {
                     viewModel.send(.popToSplashButtonTapped)
-                } label: {
-                    Text(Strings.popToSplashButtonText)
-                        .underline()
                 }
             }
         }
@@ -89,16 +92,18 @@ public struct DetailPageView: View {
 
     private var sheetView: some View {
         VStack {
-            Text(viewModel.navigationTitle)
-                .bold()
+            Components.text(
+                viewModel.navigationTitle,
+                font: .systemBold
+            )
 
             Divider()
 
-            Button {
+            Components.button(
+                Strings.popToSplashButtonText,
+                font: .systemMediumUnderlined
+            ) {
                 viewModel.send(.popToSplashButtonTapped)
-            } label: {
-                Text(Strings.popToSplashButtonText)
-                    .underline()
             }
         }
         .preferredStatusBarStyle(.lightContent)

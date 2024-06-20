@@ -178,6 +178,8 @@
 		B9F3615D2C18DD7200586D1D /* AppConstants+DetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */; };
 		B9F3615F2C18DD7A00586D1D /* AppConstants+SamplePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */; };
 		B9F361612C18E12600586D1D /* SampleContentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F361602C18E12600586D1D /* SampleContentContainerView.swift */; };
+		B9F8E71E2C23B85A00EC1033 /* ComponentKit in Frameworks */ = {isa = PBXBuildFile; productRef = B9F8E71D2C23B85A00EC1033 /* ComponentKit */; };
+		B9F8E7222C23DDB800EC1033 /* ComponentKit+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F8E7212C23DDB800EC1033 /* ComponentKit+CoreExtensions.swift */; };
 		F08904FBF9C6A4A4C121DA5C /* Pods_Template.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098CDEDE75D862311ED24DF0 /* Pods_Template.framework */; };
 /* End PBXBuildFile section */
 
@@ -443,6 +445,7 @@
 		B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+DetailPageView.swift"; sourceTree = "<group>"; };
 		B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+SamplePageView.swift"; sourceTree = "<group>"; };
 		B9F361602C18E12600586D1D /* SampleContentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleContentContainerView.swift; sourceTree = "<group>"; };
+		B9F8E7212C23DDB800EC1033 /* ComponentKit+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComponentKit+CoreExtensions.swift"; sourceTree = "<group>"; };
 		CF52460DFCE5E62E30711A79 /* Pods-Template.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Template.release.xcconfig"; path = "Target Support Files/Pods-Template/Pods-Template.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -455,6 +458,7 @@
 				B96043D72AABA04700BD6F78 /* Translator.xcframework in Frameworks */,
 				B99875EF2ACB41F30024E6EF /* AlertKit.xcframework in Frameworks */,
 				F08904FBF9C6A4A4C121DA5C /* Pods_Template.framework in Frameworks */,
+				B9F8E71E2C23B85A00EC1033 /* ComponentKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,6 +845,7 @@
 				B946D87B2ACC8A59001D2424 /* AKError+CoreExtensions.swift */,
 				B9E7D4732AAD359000FAF2A9 /* Array+CoreExtensions.swift */,
 				B920F1862AD77128002FC1C2 /* Calendar+CoreExtensions.swift */,
+				B9F8E7212C23DDB800EC1033 /* ComponentKit+CoreExtensions.swift */,
 				B9E7D4752AAD35CE00FAF2A9 /* Date+CoreExtensions.swift */,
 				B93BCDCF2AAD8B1900AA16FE /* Dictionary+CoreExtensions.swift */,
 				B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */,
@@ -1039,6 +1044,7 @@
 			name = Template;
 			packageProductDependencies = (
 				B986F17D2C1A142900B7EB1C /* CoreArchitecture */,
+				B9F8E71D2C23B85A00EC1033 /* ComponentKit */,
 			);
 			productName = Application;
 			productReference = A2DF2C5128199B660089DEA1 /* Template.app */;
@@ -1144,6 +1150,7 @@
 			mainGroup = A2DF2C4828199B660089DEA1;
 			packageReferences = (
 				B986F1792C1A127D00B7EB1C /* XCLocalSwiftPackageReference "../../XCFrameworks/CoreArchitecture" */,
+				B9F8E71C2C23B85A00EC1033 /* XCLocalSwiftPackageReference "../../XCFrameworks/ComponentKit" */,
 			);
 			productRefGroup = A2DF2C5228199B660089DEA1 /* Products */;
 			projectDirPath = "";
@@ -1382,6 +1389,7 @@
 				B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */,
 				B99B1DC229E4C49C00117D42 /* UITheme.swift in Sources */,
 				B94657752AABC66F0091193B /* RootView.swift in Sources */,
+				B9F8E7222C23DDB800EC1033 /* ComponentKit+CoreExtensions.swift in Sources */,
 				A2DF2CBB28199D3C0089DEA1 /* SystemInformation.swift in Sources */,
 				B9E7D4322AAC20E100FAF2A9 /* BuildInfoOverlayReducer.swift in Sources */,
 				B9E6D7C72B126B68000BC88D /* ProgressHUD.swift in Sources */,
@@ -1642,7 +1650,7 @@
 				DEVELOPMENT_TEAM = 7R4R2FSWH9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Application/Resources/Property Lists/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1667,7 +1675,7 @@
 				DEVELOPMENT_TEAM = 7R4R2FSWH9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Application/Resources/Property Lists/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1708,12 +1716,20 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../XCFrameworks/CoreArchitecture;
 		};
+		B9F8E71C2C23B85A00EC1033 /* XCLocalSwiftPackageReference "../../XCFrameworks/ComponentKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../XCFrameworks/ComponentKit;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		B986F17D2C1A142900B7EB1C /* CoreArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreArchitecture;
+		};
+		B9F8E71D2C23B85A00EC1033 /* ComponentKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ComponentKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -40,7 +40,7 @@ public struct FailurePageReducer: Reducer {
 
         // Other
         public var didReportBug = false
-        public var exception: Exception!
+        public var exception: Exception
         public var retryHandler: (() -> Void)?
 
         /* MARK: Init */
@@ -56,19 +56,17 @@ public struct FailurePageReducer: Reducer {
         /* MARK: Equatable Conformance */
 
         public static func == (left: State, right: State) -> Bool {
+            let bothNilRetryHandlers = left.retryHandler == nil && right.retryHandler == nil
             let sameDidReportBug = left.didReportBug == right.didReportBug
             let sameException = left.exception == right.exception
             let sameReportBugButtonText = left.reportBugButtonText == right.reportBugButtonText
             let sameRetryButtonText = left.retryButtonText == right.retryButtonText
-            let bothNilRetryHandlers = left.retryHandler == nil && right.retryHandler == nil
 
-            guard sameDidReportBug,
+            guard bothNilRetryHandlers,
+                  sameDidReportBug,
                   sameException,
                   sameReportBugButtonText,
-                  sameRetryButtonText,
-                  bothNilRetryHandlers else {
-                return false
-            }
+                  sameRetryButtonText else { return false }
 
             return true
         }

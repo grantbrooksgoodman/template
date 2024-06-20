@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 /* 3rd-party */
+import ComponentKit
 import CoreArchitecture
 
 public struct ToastView: View {
@@ -76,22 +77,35 @@ public struct ToastView: View {
             HStack(alignment: title == nil ? .center : .top) {
                 if let iconSystemImageName = style.bannerIconSystemImageName,
                    let defaultColor = style.defaultColor {
-                    Image(systemName: iconSystemImageName)
-                        .foregroundStyle(colorPalette?.accent ?? defaultColor)
+                    Components.symbol(
+                        iconSystemImageName,
+                        foregroundColor: colorPalette?.accent ?? defaultColor,
+                        usesIntrinsicSize: true
+                    )
                 }
 
                 let labelView = VStack(alignment: .leading) {
                     if let title {
-                        Text(title)
-                            .font(.sanFrancisco(.semibold, size: Floats.bannerTitleLabelFontSize))
-                            .foregroundStyle(colorPalette?.text ?? .titleText.opacity(Floats.bannerTitleLabelForegroundColorOpacity))
-                            .multilineTextAlignment(.leading)
+                        Components.text(
+                            title,
+                            font: .init(
+                                .system(style: .semibold()),
+                                scale: .custom(Floats.bannerTitleLabelFontSize)
+                            ),
+                            foregroundColor: colorPalette?.text ?? .titleText.opacity(Floats.bannerTitleLabelForegroundColorOpacity)
+                        )
+                        .multilineTextAlignment(.leading)
                     }
 
-                    Text(message)
-                        .font(.sanFrancisco(title == nil ? .semibold : .regular, size: Floats.bannerMessageLabelFontSize))
-                        .foregroundStyle(colorPalette?.text ?? .titleText.opacity(Floats.bannerMessageLabelForegroundColorOpacity))
-                        .multilineTextAlignment(.leading)
+                    Components.text(
+                        message,
+                        font: .init(
+                            .system(style: title == nil ? .semibold() : .regular()),
+                            scale: .custom(Floats.bannerMessageLabelFontSize)
+                        ),
+                        foregroundColor: colorPalette?.text ?? .titleText.opacity(Floats.bannerMessageLabelForegroundColorOpacity)
+                    )
+                    .multilineTextAlignment(.leading)
                 }
 
                 if let onTap {
@@ -109,11 +123,11 @@ public struct ToastView: View {
                 Spacer(minLength: Floats.bannerSpacerMinLength)
 
                 if showsDismissButton {
-                    Button {
+                    Components.button(
+                        symbolName: Strings.bannerDismissButtonImageSystemName,
+                        foregroundColor: colorPalette?.dismissButton ?? .titleText.opacity(Floats.bannerDismissButtonForegroundColorOpacity)
+                    ) {
                         onDismiss()
-                    } label: {
-                        Image(systemName: Strings.bannerDismissButtonImageSystemName)
-                            .foregroundStyle(colorPalette?.dismissButton ?? .titleText.opacity(Floats.bannerDismissButtonForegroundColorOpacity))
                     }
                 }
             }
@@ -142,36 +156,43 @@ public struct ToastView: View {
             let labelView = HStack {
                 if let iconSystemImageName = style.capsuleIconSystemImageName,
                    let defaultColor = style.defaultColor {
-                    Image(systemName: iconSystemImageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(
-                            maxWidth: Floats.capsuleImageFrameMaxWidth,
-                            maxHeight: Floats.capsuleImageFrameMaxHeight,
-                            alignment: .center
-                        )
-                        .foregroundStyle(defaultColor)
+                    Components.symbol(
+                        iconSystemImageName,
+                        foregroundColor: defaultColor,
+                        usesIntrinsicSize: false
+                    )
+                    .frame(
+                        maxWidth: Floats.capsuleImageFrameMaxWidth,
+                        maxHeight: Floats.capsuleImageFrameMaxHeight,
+                        alignment: .center
+                    )
                 }
 
                 if let title {
                     VStack(alignment: style.capsuleIconSystemImageName == nil ? .center : .leading) {
-                        Text(title)
-                            .font(.sanFrancisco(.semibold, size: Floats.capsuleTitleLabelFontSize))
-                            .foregroundStyle(Color.titleText)
-                            .multilineTextAlignment(.leading)
+                        Components.text(
+                            title,
+                            font: .systemSemibold(scale: .custom(Floats.capsuleTitleLabelFontSize)),
+                            foregroundColor: .titleText
+                        )
+                        .multilineTextAlignment(.leading)
 
-                        Text(message)
-                            .font(.sanFrancisco(size: Floats.capsuleMessageLabelFontSize))
-                            .foregroundStyle(Colors.capsuleMessageLabelForeground)
-                            .multilineTextAlignment(.leading)
+                        Components.text(
+                            message,
+                            font: .system(scale: .custom(Floats.capsuleMessageLabelFontSize)),
+                            foregroundColor: Colors.capsuleMessageLabelForeground
+                        )
+                        .multilineTextAlignment(.leading)
                     }
                 } else {
-                    Text(message)
-                        .font(.sanFrancisco(.semibold, size: Floats.capsuleTitleLabelFontSize))
-                        .foregroundStyle(Color.titleText)
-                        .multilineTextAlignment(.leading)
-                        .padding(.horizontal, Floats.capsuleMessageLabelHorizontalPadding)
-                        .padding(.vertical, Floats.capsuleMessageLabelVerticalPadding)
+                    Components.text(
+                        message,
+                        font: .systemSemibold(scale: .custom(Floats.capsuleTitleLabelFontSize)),
+                        foregroundColor: .titleText
+                    )
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal, Floats.capsuleMessageLabelHorizontalPadding)
+                    .padding(.vertical, Floats.capsuleMessageLabelVerticalPadding)
                 }
             }
 
@@ -236,7 +257,7 @@ public struct ToastView: View {
 /* MARK: UISelectionFeedbackGenerator Dependency */
 
 private enum UISelectionFeedbackGeneratorDependency: DependencyKey {
-    public static func resolve(_ dependencies: DependencyValues) -> UISelectionFeedbackGenerator {
+    public static func resolve(_: DependencyValues) -> UISelectionFeedbackGenerator {
         .init()
     }
 }
