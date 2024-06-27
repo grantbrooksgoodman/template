@@ -182,13 +182,14 @@ public final class ExpiryAlertDelegate: AKExpiryAlertDelegate {
         exitTimer?.invalidate()
         exitTimer = nil
 
-        let alertController = UIAlertController(
+        core.ui.dismissAlertController()
+
+        AKAlert(
             title: timeExpiredTitle,
             message: timeExpiredMessage,
-            preferredStyle: .alert
-        )
+            showsCancelButton: false
+        ).present()
 
-        core.ui.present(alertController, forced: true)
         core.gcd.after(.seconds(5)) { fatalError("Evaluation period ended") }
     }
 

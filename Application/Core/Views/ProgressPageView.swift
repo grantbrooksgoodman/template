@@ -15,6 +15,7 @@ public struct ProgressPageView: View {
     public var body: some View {
         ThemedView {
             ProgressView()
+                .dynamicTypeSize(.large)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.background)
                 .interactivePopGestureRecognizerDisabled()

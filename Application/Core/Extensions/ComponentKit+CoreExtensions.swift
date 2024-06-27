@@ -15,6 +15,21 @@ import CoreArchitecture
 
 public extension ComponentKit {
     func button(
+        symbolName: String,
+        weight: SwiftUI.Font.Weight? = nil,
+        usesIntrinsicSize: Bool = true,
+        action: @escaping () -> Void
+    ) -> some View {
+        Components.button(
+            symbolName: symbolName,
+            foregroundColor: .accent,
+            weight: weight,
+            usesIntrinsicSize: usesIntrinsicSize,
+            action: action
+        )
+    }
+
+    func button(
         _ text: String,
         font: ComponentKit.Font = .system,
         action: @escaping () -> Void
@@ -27,10 +42,15 @@ public extension ComponentKit {
         )
     }
 
-    func symbol(_ systemName: String, usesIntrinsicSize: Bool = true) -> some View {
+    func symbol(
+        _ systemName: String,
+        weight: SwiftUI.Font.Weight? = nil,
+        usesIntrinsicSize: Bool = true
+    ) -> some View {
         Components.symbol(
             systemName,
             foregroundColor: .accent,
+            weight: weight,
             usesIntrinsicSize: usesIntrinsicSize
         )
     }

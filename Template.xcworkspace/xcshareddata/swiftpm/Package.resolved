@@ -1,0 +1,24 @@
+{
+  "originHash" : "81a6cf202aa612ac89c641f031c71530a8f03d14ae3bca0ef7cd76933bf02c18",
+  "pins" : [
+    {
+      "identity" : "component-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grantbrooksgoodman/component-kit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7073a24400a9d22d5fd2f5f60a5efdfa51e3aa38"
+      }
+    },
+    {
+      "identity" : "core-architecture",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grantbrooksgoodman/core-architecture.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "879727bf0c83e047197a73665c51a3865439f764"
+      }
+    }
+  ],
+  "version" : 3
+}

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -59,6 +59,7 @@
 		B92409852AB2DFC0004CF4C0 /* LoggerDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */; };
 		B9260BBA2AC4105C00824A7C /* BuildDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9260BB92AC4105C00824A7C /* BuildDependency.swift */; };
 		B92CF00F28F4DF9800870B5C /* StoredItemKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92CF00E28F4DF9800870B5C /* StoredItemKeys.swift */; };
+		B9317DE92C2DD858004600B6 /* CoreArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B9317DE82C2DD858004600B6 /* CoreArchitecture */; };
 		B93457072AABF9F200944602 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93457062AABF9F200944602 /* Localization.swift */; };
 		B93457092AABFB3700944602 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93457082AABFB3700944602 /* Localized.swift */; };
 		B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */; };
@@ -107,7 +108,6 @@
 		B97DB5732AF45F6C002C2679 /* ToastViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5722AF45F6C002C2679 /* ToastViewModifier.swift */; };
 		B97DB5752AF45FBA002C2679 /* CoreConstants+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5742AF45FBA002C2679 /* CoreConstants+ToastView.swift */; };
 		B97DB5772AF4602B002C2679 /* Font+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97DB5762AF4602B002C2679 /* Font+CoreExtensions.swift */; };
-		B986F17E2C1A142900B7EB1C /* CoreArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B986F17D2C1A142900B7EB1C /* CoreArchitecture */; };
 		B992BCD02A159121003BFF2E /* ThemedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCCF2A159121003BFF2E /* ThemedView.swift */; };
 		B992BCD52A159479003BFF2E /* AKConnectionAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCD42A159479003BFF2E /* AKConnectionAlertDelegate.swift */; };
 		B992BCD82A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B992BCD72A1594C4003BFF2E /* UserDefaults+CoreExtensions.swift */; };
@@ -128,6 +128,7 @@
 		B9BB3CF12AC0C5F00077D1BC /* TranslationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF02AC0C5F00077D1BC /* TranslationMap.swift */; };
 		B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */; };
 		B9BB3CF72AC1486D0077D1BC /* AKTranslationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF62AC1486D0077D1BC /* AKTranslationDelegate.swift */; };
+		B9BBDD982C24AABE00ACD201 /* ComponentKit in Frameworks */ = {isa = PBXBuildFile; productRef = B9BBDD972C24AABE00ACD201 /* ComponentKit */; };
 		B9BEC83A2AE6F9EC0040FB1F /* EnvironmentValues+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEC8392AE6F9EC0040FB1F /* EnvironmentValues+CoreExtensions.swift */; };
 		B9C582F329BEC263009DCE29 /* DevModeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C582F229BEC263009DCE29 /* DevModeAction.swift */; };
 		B9C582F529BEC266009DCE29 /* DevModeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C582F429BEC266009DCE29 /* DevModeService.swift */; };
@@ -178,7 +179,6 @@
 		B9F3615D2C18DD7200586D1D /* AppConstants+DetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */; };
 		B9F3615F2C18DD7A00586D1D /* AppConstants+SamplePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */; };
 		B9F361612C18E12600586D1D /* SampleContentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F361602C18E12600586D1D /* SampleContentContainerView.swift */; };
-		B9F8E71E2C23B85A00EC1033 /* ComponentKit in Frameworks */ = {isa = PBXBuildFile; productRef = B9F8E71D2C23B85A00EC1033 /* ComponentKit */; };
 		B9F8E7222C23DDB800EC1033 /* ComponentKit+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F8E7212C23DDB800EC1033 /* ComponentKit+CoreExtensions.swift */; };
 		F08904FBF9C6A4A4C121DA5C /* Pods_Template.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098CDEDE75D862311ED24DF0 /* Pods_Template.framework */; };
 /* End PBXBuildFile section */
@@ -454,11 +454,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B986F17E2C1A142900B7EB1C /* CoreArchitecture in Frameworks */,
 				B96043D72AABA04700BD6F78 /* Translator.xcframework in Frameworks */,
 				B99875EF2ACB41F30024E6EF /* AlertKit.xcframework in Frameworks */,
 				F08904FBF9C6A4A4C121DA5C /* Pods_Template.framework in Frameworks */,
-				B9F8E71E2C23B85A00EC1033 /* ComponentKit in Frameworks */,
+				B9BBDD982C24AABE00ACD201 /* ComponentKit in Frameworks */,
+				B9317DE92C2DD858004600B6 /* CoreArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,8 +1043,8 @@
 			);
 			name = Template;
 			packageProductDependencies = (
-				B986F17D2C1A142900B7EB1C /* CoreArchitecture */,
-				B9F8E71D2C23B85A00EC1033 /* ComponentKit */,
+				B9BBDD972C24AABE00ACD201 /* ComponentKit */,
+				B9317DE82C2DD858004600B6 /* CoreArchitecture */,
 			);
 			productName = Application;
 			productReference = A2DF2C5128199B660089DEA1 /* Template.app */;
@@ -1149,8 +1149,8 @@
 			);
 			mainGroup = A2DF2C4828199B660089DEA1;
 			packageReferences = (
-				B986F1792C1A127D00B7EB1C /* XCLocalSwiftPackageReference "../../XCFrameworks/CoreArchitecture" */,
-				B9F8E71C2C23B85A00EC1033 /* XCLocalSwiftPackageReference "../../XCFrameworks/ComponentKit" */,
+				B9BBDD962C24AABE00ACD201 /* XCRemoteSwiftPackageReference "component-kit" */,
+				B9317DE72C2DD858004600B6 /* XCRemoteSwiftPackageReference "core-architecture" */,
 			);
 			productRefGroup = A2DF2C5228199B660089DEA1 /* Products */;
 			projectDirPath = "";
@@ -1711,24 +1711,34 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		B986F1792C1A127D00B7EB1C /* XCLocalSwiftPackageReference "../../XCFrameworks/CoreArchitecture" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../XCFrameworks/CoreArchitecture;
+/* Begin XCRemoteSwiftPackageReference section */
+		B9317DE72C2DD858004600B6 /* XCRemoteSwiftPackageReference "core-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grantbrooksgoodman/core-architecture.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
 		};
-		B9F8E71C2C23B85A00EC1033 /* XCLocalSwiftPackageReference "../../XCFrameworks/ComponentKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../XCFrameworks/ComponentKit;
+		B9BBDD962C24AABE00ACD201 /* XCRemoteSwiftPackageReference "component-kit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grantbrooksgoodman/component-kit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B986F17D2C1A142900B7EB1C /* CoreArchitecture */ = {
+		B9317DE82C2DD858004600B6 /* CoreArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = B9317DE72C2DD858004600B6 /* XCRemoteSwiftPackageReference "core-architecture" */;
 			productName = CoreArchitecture;
 		};
-		B9F8E71D2C23B85A00EC1033 /* ComponentKit */ = {
+		B9BBDD972C24AABE00ACD201 /* ComponentKit */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = B9BBDD962C24AABE00ACD201 /* XCRemoteSwiftPackageReference "component-kit" */;
 			productName = ComponentKit;
 		};
 /* End XCSwiftPackageProductDependency section */
