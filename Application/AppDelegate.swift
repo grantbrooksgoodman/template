@@ -13,6 +13,7 @@ import UIKit
 /* 3rd-party */
 import AlertKit
 import CoreArchitecture
+import Translator
 
 @main
 public final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         @Dependency(\.alertKitCore) var akCore: AKCore
         @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
         @Dependency(\.build) var build: Build
+        @Dependency(\.translationService) var translator: TranslationService
 
         /* MARK: Defaults Keys & Logging Setup */
 
@@ -43,6 +45,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Logger.setDomainsExcludedFromSessionRecord(BuildConfig.loggerDomainsExcludedFromSessionRecord)
         Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
+        translator.registerTranslationLoggerDelegate(Logger.TranslationLogger())
 
         @Persistent(.breadcrumbsCaptureEnabled) var breadcrumbsCaptureEnabled: Bool?
         @Persistent(.breadcrumbsCapturesAllViews) var breadcrumbsCapturesAllViews: Bool?

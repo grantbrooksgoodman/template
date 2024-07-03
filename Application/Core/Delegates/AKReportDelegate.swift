@@ -36,6 +36,7 @@ public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailCom
     @Dependency(\.coreKit) private var core: CoreKit
     @Dependency(\.reportDelegateDateFormatter) private var dateFormatter: DateFormatter
     @Dependency(\.fileManager) private var fileManager: FileManager
+    @Dependency(\.mainQueue) private var mainQueue: DispatchQueue
 
     // MARK: - Properties
 
@@ -142,12 +143,14 @@ public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailCom
                 bodySection = "<i>\(translatedBody.split(separator: ".")[0]).<p></p>\(translatedBody.split(separator: ".")[1]).</i><p></p>"
             }
 
-            self.composeMessage(
-                (message: bodySection, isHTML: true),
-                recipients: ["me@grantbrooks.io"],
-                subject: subject,
-                logFile: logFile
-            )
+            self.mainQueue.async {
+                self.composeMessage(
+                    (message: bodySection, isHTML: true),
+                    recipients: ["me@grantbrooks.io"],
+                    subject: subject,
+                    logFile: logFile
+                )
+            }
         }
     }
 

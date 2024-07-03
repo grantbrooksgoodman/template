@@ -491,6 +491,20 @@ public enum Logger {
     }
 }
 
+/* MARK: TranslationLoggerDelegate */
+
+public extension Logger {
+    struct TranslationLogger: TranslationLoggerDelegate {
+        public func log(_ text: String, metadata: [Any]) {
+            Logger.log(
+                text,
+                domain: .translation,
+                metadata: metadata
+            )
+        }
+    }
+}
+
 /* MARK: DateFormatter Dependency */
 
 private enum LoggerDateFormatterDependency: DependencyKey {

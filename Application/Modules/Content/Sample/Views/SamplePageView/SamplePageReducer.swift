@@ -16,7 +16,7 @@ import Translator
 public struct SamplePageReducer: Reducer {
     // MARK: - Dependencies
 
-    @Dependency(\.translatorService) private var translator: TranslatorService
+    @Dependency(\.translationService) private var translator: TranslationService
 
     // MARK: - Properties
 

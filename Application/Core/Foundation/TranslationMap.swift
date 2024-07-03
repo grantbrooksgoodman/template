@@ -28,7 +28,7 @@ public struct TranslationInputMap: Equatable {
     // MARK: - Computed Properties
 
     public var defaultOutputMap: TranslationOutputMap {
-        .init(key: key, value: RuntimeStorage.languageCode == "en" ? input.original.sanitized : input.value().sanitized)
+        .init(key: key, value: RuntimeStorage.languageCode == "en" ? input.original.sanitized : input.value.sanitized)
     }
 
     // MARK: - Init
@@ -65,14 +65,14 @@ public extension TranslatedLabelStrings {
     }
 }
 
-public extension TranslatorService {
+public extension TranslationService {
     func resolve(_ strings: TranslatedLabelStrings.Type) async -> Callback<[TranslationOutputMap], Exception> {
-        let getTranslationsResult = await getTranslations(for: strings.keyPairs.map(\.input), languagePair: .system)
+        let getTranslationsResult = await getTranslations(strings.keyPairs.map(\.input), languagePair: .system)
 
         switch getTranslationsResult {
         case let .success(translations):
             let outputs = strings.keyPairs.reduce(into: [TranslationOutputMap]()) { partialResult, keyPair in
-                if let translation = translations.first(where: { $0.input.value() == keyPair.input.value() }) {
+                if let translation = translations.first(where: { $0.input.value == keyPair.input.value }) {
                     partialResult.append(.init(key: keyPair.key, value: translation.output.sanitized))
                 } else {
                     partialResult.append(keyPair.defaultOutputMap)
@@ -81,7 +81,7 @@ public extension TranslatorService {
             return .success(outputs)
 
         case let .failure(error):
-            return .failure(error)
+            return .failure(.init(error, metadata: [self, #file, #function, #line]))
         }
     }
 }

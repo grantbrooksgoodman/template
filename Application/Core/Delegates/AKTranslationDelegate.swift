@@ -16,7 +16,7 @@ import Translator
 public final class TranslationDelegate: AKTranslationDelegate {
     // MARK: - Dependencies
 
-    @Dependency(\.translatorService) private var translator: TranslatorService
+    @Dependency(\.translationService) private var translator: TranslationService
 
     // MARK: - AKTranslationDelegate Conformance
 
@@ -32,48 +32,30 @@ public final class TranslationDelegate: AKTranslationDelegate {
             _ errorDescriptors: [String: AlertKit.TranslationInput]?
         ) -> Void
     ) {
-        let platform = using ?? .google
-        translator.getTranslations(
-            for: inputs.map { TranslationInput($0.original, alternate: $0.alternate) },
-            languagePair: .init(from: languagePair.from, to: languagePair.to),
-            hud: (requiresHUD ?? true) ? (appearsAfter: .seconds(5), isModal: true) : nil,
-            using: platform.asPlatformName
-        ) { translations, exception in
-            guard let translations,
-                  !translations.isEmpty else {
-                let exceptionDescriptor = exception?.descriptor ?? Exception(metadata: [self, #file, #function, #line]).descriptor
-                var descriptorPairs = [String: AlertKit.TranslationInput]()
-                inputs.forEach { descriptorPairs[exceptionDescriptor] = AlertKit.TranslationInput($0.original, alternate: $0.alternate) }
-                completion(nil, descriptorPairs)
-                return
-            }
-
-            completion(
-                translations.map {
-                    AlertKit.Translation(
-                        input: .init($0.input.original, alternate: $0.input.alternate),
-                        output: $0.output,
-                        languagePair: .init(from: $0.languagePair.from, to: $0.languagePair.to)
-                    )
-                }, nil
+        Task {
+            let getTranslationsResult = await translator.getTranslations(
+                inputs.map { TranslationInput($0.original, alternate: $0.alternate) },
+                languagePair: .init(from: languagePair.from, to: languagePair.to),
+                hud: (requiresHUD ?? true) ? (appearsAfter: .seconds(5), isModal: true) : nil
             )
-        }
-    }
-}
 
-private extension AlertKit.PlatformName {
-    var asPlatformName: Translator.PlatformName {
-        switch self {
-        case .deepL:
-            return .deepL
-        case .google:
-            return .google
-        case .random:
-            return .random
-        case .reverso:
-            return .reverso
-        @unknown default:
-            return .random
+            switch getTranslationsResult {
+            case let .success(translations):
+                completion(
+                    translations.map {
+                        AlertKit.Translation(
+                            input: .init($0.input.original, alternate: $0.input.alternate),
+                            output: $0.output,
+                            languagePair: .init(from: $0.languagePair.from, to: $0.languagePair.to)
+                        )
+                    }, nil
+                )
+
+            case let .failure(exception):
+                var descriptorPairs = [String: AlertKit.TranslationInput]()
+                inputs.forEach { descriptorPairs[exception.descriptor] = AlertKit.TranslationInput($0.original, alternate: $0.alternate) }
+                completion(nil, descriptorPairs)
+            }
         }
     }
 }

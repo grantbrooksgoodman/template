@@ -5,14 +5,15 @@
 //  Copyright © NEOTechnica Corporation. All rights reserved.
 //
 
+/* Native */
+import Foundation
+
 /* 3rd-party */
-import AlertKit
 import CoreArchitecture
 
 public final class Timeout {
     // MARK: - Dependencies
 
-    @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit.gcd) private var coreGCD: CoreKit.GCD
 
     // MARK: - Properties
@@ -24,11 +25,11 @@ public final class Timeout {
     // MARK: - Object Lifecycle
 
     public init(
-        after: Duration,
-        _ callback: @escaping () -> Void = {}
+        after duration: Duration,
+        callback: @escaping () -> Void
     ) {
         self.callback = callback
-        coreGCD.after(after) {
+        coreGCD.after(duration) {
             guard self.isValid else { return }
             self.invoke()
         }

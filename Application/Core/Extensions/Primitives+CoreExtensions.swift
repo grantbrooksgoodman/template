@@ -140,7 +140,7 @@ public extension String {
     }
 
     var sanitized: String {
-        removingOccurrences(of: ["*", "⌘"])
+        removingOccurrences(of: ["⁂", "⌘"])
     }
 
     var snakeCased: String {
@@ -161,23 +161,19 @@ public extension String {
     }
 
     var trimmingLeadingWhitespace: String {
-        var mutableSelf = self
-
-        while mutableSelf.hasPrefix(" ") || mutableSelf.hasPrefix("\u{00A0}") {
-            mutableSelf = mutableSelf.dropPrefix(1)
+        var string = self
+        while string.hasPrefix(" ") || string.hasPrefix("\u{00A0}") {
+            string = string.dropPrefix()
         }
-
-        return mutableSelf
+        return string
     }
 
     var trimmingTrailingWhitespace: String {
-        var mutableSelf = self
-
-        while mutableSelf.hasSuffix(" ") || mutableSelf.hasSuffix("\u{00A0}") {
-            mutableSelf = mutableSelf.dropSuffix(1)
+        var string = self
+        while string.hasSuffix(" ") || string.hasSuffix("\u{00A0}") {
+            string = string.dropSuffix()
         }
-
-        return mutableSelf
+        return string
     }
 
     var trimmingWhitespace: String {
@@ -242,8 +238,8 @@ public extension String {
     }
 
     func removingOccurrences(of excludedStrings: [String]) -> String {
-        var mutable = self
-        excludedStrings.forEach { mutable = mutable.replacingOccurrences(of: $0, with: "") }
-        return mutable
+        var string = self
+        excludedStrings.forEach { string = string.replacingOccurrences(of: $0, with: "") }
+        return string
     }
 }

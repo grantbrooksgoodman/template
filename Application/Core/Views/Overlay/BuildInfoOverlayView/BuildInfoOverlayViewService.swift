@@ -74,16 +74,16 @@ public final class BuildInfoOverlayViewService {
         let typeString = build.stage.rawValue
         let expiryString = build.timebombActive ? "\n\n\(build.expiryInfoString)" : ""
 
-        var messageToDisplay = "This is a\(typeString == "alpha" ? "n" : "") \(typeString) version of *project code name \(build.codeName)*.\(expiryString)"
+        var messageToDisplay = "This is a\(typeString == "alpha" ? "n" : "") \(typeString) version of ⌘project code name \(build.codeName)⌘.\(expiryString)"
 
         if build.appStoreReleaseVersion > 0 {
-            messageToDisplay = "This is a pre-release update to \(build.finalName). \(build.expiryInfoString)"
+            messageToDisplay = "This is a pre-release update to ⌘\(build.finalName)⌘. \(build.expiryInfoString)"
         }
 
         // swiftlint:disable:next line_length
-        messageToDisplay += "\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorized parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(calendar.dateComponents([.year], from: Date()).year!) NEOTechnica Corporation. All rights reserved."
+        messageToDisplay += "\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorized parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright ⌘© \(calendar.dateComponents([.year], from: Date()).year!) NEOTechnica Corporation⌘. All rights reserved."
 
-        let projectTitle = "Project *\(build.codeName)*"
+        let projectTitle = "Project ⌘\(build.codeName)⌘"
         let viewBuildInformationString = "View Build Information"
 
         let enableOrDisable = build.developerModeEnabled ? "Disable" : "Enable"

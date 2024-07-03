@@ -8,9 +8,6 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
-import Translator
-
 public extension Array {
     /// Convenience method which eliminates the need to guard against out of bounds errors.
     func itemAt(_ index: Int) -> Element? {
@@ -52,34 +49,5 @@ public extension Array where Element == String {
         reduce(into: Int()) { partialResult, string in
             partialResult += string == query ? 1 : 0
         }
-    }
-}
-
-public extension Array where Element == Translation {
-    // MARK: - Properties
-
-    var homogeneousLanguagePairs: Bool {
-        !(uniqueLanguagePairs.count > 1)
-    }
-
-    var uniqueLanguagePairs: [LanguagePair] {
-        map(\.languagePair).unique
-    }
-
-    // MARK: - Methods
-
-    func matchedTo(_ inputs: [String: TranslationInput]) -> [String: Translation]? {
-        var matched = [String: Translation]()
-
-        for translation in self {
-            guard let matchingInput = translation.matchingInput(inputs: inputs) else { continue }
-            matched[matchingInput.key] = matchingInput.translation
-        }
-
-        return matched.count != inputs.count ? nil : matched
-    }
-
-    func `where`(languagePair: LanguagePair) -> [Translation] {
-        filter { $0.languagePair == languagePair }
     }
 }

@@ -202,12 +202,12 @@ public final class Build {
 
         guard let daysUntilExpiry = expiryDateComponents.day else { return .init() }
 
-        var expiryInfoString = "The evaluation period for this build will expire on \(expiryInfoStringDateFormatter.string(from: expiryDate))."
+        var expiryInfoString = "The evaluation period for this build will expire on ⌘\(expiryInfoStringDateFormatter.string(from: expiryDate))⌘."
         expiryInfoString += " After this date, the entry of a six-digit expiration override code will be required to continue using this software."
         expiryInfoString += " It is strongly encouraged that the build be updated before the end of the evaluation period."
 
         guard daysUntilExpiry <= 0 else { return expiryInfoString }
-        return "The evaluation period for this build ended on \(expiryInfoStringDateFormatter.string(from: expiryDate))."
+        return "The evaluation period for this build ended on ⌘\(expiryInfoStringDateFormatter.string(from: expiryDate))⌘."
     }
 
     private func getNetworkStatus() -> Bool {
