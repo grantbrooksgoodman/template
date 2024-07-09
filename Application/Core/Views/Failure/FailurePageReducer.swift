@@ -15,7 +15,7 @@ import CoreArchitecture
 public struct FailurePageReducer: Reducer {
     // MARK: - Dependencies
 
-    @Dependency(\.alertKitCore) private var akCore: AKCore
+    @Dependency(\.alertKitConfig) private var alertKitConfig: AlertKit.Config
     @Dependency(\.build) private var build: Build
 
     // MARK: - Actions
@@ -86,11 +86,11 @@ public struct FailurePageReducer: Reducer {
 
         case .action(.reportBugButtonTapped):
             guard build.isOnline else {
-                akCore.connectionAlertDelegate()?.presentConnectionAlert()
+                Task { await ConnectionAlert.present() }
                 return .none
             }
 
-            akCore.reportDelegate().fileReport(error: .init(state.exception))
+            alertKitConfig.reportDelegate?.fileReport(state.exception)
             state.didReportBug = true
         }
 

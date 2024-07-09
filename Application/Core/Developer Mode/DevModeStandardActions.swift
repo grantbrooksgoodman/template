@@ -38,23 +38,21 @@ public extension DevModeAction {
 
         private static var changeThemeAction: DevModeAction {
             func changeTheme() {
-                var actions = [AKAction]()
-                actions = AppTheme.allCases.map { .init(
-                    title: $0.theme.name,
-                    style: .default,
-                    isEnabled: $0.theme.name != ThemeService.currentTheme.name
-                ) }
+                Task {
+                    var actions = [AKAction]()
+                    actions = AppTheme.allCases.map { appTheme in
+                        .init(
+                            appTheme.theme.name,
+                            isEnabled: appTheme.theme.name != ThemeService.currentTheme.name
+                        ) {
+                            ThemeService.setTheme(appTheme.theme, checkStyle: false)
+                        }
+                    }
 
-                AKActionSheet(
-                    message: "Change Theme",
-                    actions: actions,
-                    shouldTranslate: [.none]
-                ).present { actionID in
-                    guard actionID != -1,
-                          let themeName = actions.first(where: { $0.identifier == actionID })?.title,
-                          let correspondingCase = AppTheme.allCases.first(where: { $0.theme.name == themeName }) else { return }
-
-                    ThemeService.setTheme(correspondingCase.theme, checkStyle: false)
+                    await AKActionSheet(
+                        message: "Change Theme",
+                        actions: actions
+                    ).present(translating: [])
                 }
             }
 
@@ -70,91 +68,56 @@ public extension DevModeAction {
         }
 
         private static var overrideLanguageCodeAction: DevModeAction {
+            @Sendable
             func overrideLanguageCode() {
-                @Dependency(\.alertKitCore) var akCore: AKCore
-                @Dependency(\.coreKit) var core: CoreKit
+                Task {
+                    @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
+                    @Dependency(\.coreKit) var core: CoreKit
 
-                func setLanguageCode(_ code: String) {
-                    guard akCore.languageCodeIsLocked else {
-                        akCore.lockLanguageCode(to: code)
-                        return
-                    }
+                    guard RuntimeStorage.retrieve(.overriddenLanguageCode) == nil else {
+                        let confirmed = await AKConfirmationAlert(
+                            title: "Restore Language Code",
+                            message: "The language code will be unlocked and restored to the device's default."
+                        ).present(translating: [])
 
-                    akCore.unlockLanguageCode(andSetTo: code)
-                }
-
-                guard !akCore.languageCodeIsLocked else {
-                    setLanguageCode("en")
-                    AKConfirmationAlert(
-                        title: "Restore Language Code",
-                        message: "The language code will be unlocked and restored to the device's default.",
-                        confirmationStyle: .preferred,
-                        shouldTranslate: [.none]
-                    ).present { didConfirm in
-                        guard didConfirm == 1 else { return }
+                        guard confirmed else { return }
                         RuntimeStorage.remove(.overriddenLanguageCode)
                         core.utils.restoreDeviceLanguageCode()
                         core.hud.showSuccess()
-                    }
-                    return
-                }
-
-                setLanguageCode("en")
-                let languageCodePrompt = AKTextFieldAlert(
-                    title: "Override Language Code",
-                    message: "Enter the two-letter code of the language to apply:",
-                    actions: [AKAction(title: "Done", style: .preferred)],
-                    textFieldAttributes: [.placeholderText: "en",
-                                          .capitalizationType: UITextAutocapitalizationType.none,
-                                          .correctionType: UITextAutocorrectionType.no,
-                                          .textAlignment: NSTextAlignment.center],
-                    shouldTranslate: [.none],
-                    networkDependent: true
-                )
-
-                languageCodePrompt.presentTextFieldAlert { inputString, actionID in
-                    akCore.unlockLanguageCode()
-                    guard actionID != -1 else { return }
-                    guard let inputString,
-                          inputString.lowercasedTrimmingWhitespaceAndNewlines != "" else {
-                        setLanguageCode("en")
-                        AKConfirmationAlert(
-                            title: "Override Language Code",
-                            message: "No input was entered.\n\nWould you like to try again?",
-                            cancelConfirmTitles: (cancel: nil, confirm: "Try Again"),
-                            confirmationStyle: .preferred,
-                            shouldTranslate: [.none]
-                        ).present { didConfirm in
-                            akCore.unlockLanguageCode()
-                            guard didConfirm == 1 else { return }
-                            overrideLanguageCode()
-                        }
-
                         return
                     }
 
+                    let input = await AKTextInputAlert(
+                        title: "Override Language Code",
+                        message: "Enter the two-letter code of the language to apply:",
+                        attributes: .init(
+                            capitalizationType: .none,
+                            correctionType: .no,
+                            placeholderText: "en"
+                        )
+                    ).present(translating: [])
+
+                    guard let input else { return }
                     guard let languageCodes = RuntimeStorage.languageCodeDictionary,
-                          languageCodes.keys.contains(inputString.lowercasedTrimmingWhitespaceAndNewlines) else {
-                        setLanguageCode("en")
-                        AKConfirmationAlert(
+                          languageCodes.keys.contains(input.lowercasedTrimmingWhitespaceAndNewlines) else {
+                        let tryAgainAction: AKAction = .init(
+                            "Try Again",
+                            style: .preferred
+                        ) { overrideLanguageCode() }
+
+                        await AKAlert(
                             title: "Override Language Code",
                             message: "The language code entered was invalid. Please try again.",
-                            cancelConfirmTitles: (cancel: nil, confirm: "Try Again"),
-                            confirmationStyle: .preferred,
-                            shouldTranslate: [.none]
-                        ).present { didConfirm in
-                            akCore.unlockLanguageCode()
-                            guard didConfirm == 1 else { return }
-                            overrideLanguageCode()
-                        }
+                            actions: [tryAgainAction, .cancelAction(title: "Cancel")]
+                        ).present(translating: [])
 
                         return
                     }
 
-                    RuntimeStorage.store(inputString, as: .languageCode)
-                    RuntimeStorage.store(inputString, as: .overriddenLanguageCode)
+                    RuntimeStorage.store(input, as: .languageCode)
+                    RuntimeStorage.store(input, as: .overriddenLanguageCode)
 
-                    setLanguageCode(inputString)
+                    alertKitConfig.overrideTargetLanguageCode(input)
                     core.hud.showSuccess()
                 }
             }
@@ -183,18 +146,19 @@ public extension DevModeAction {
             @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
 
             func toggleBreadcrumbs() {
-                @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
+                Task {
+                    @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
 
-                @Persistent(.breadcrumbsCaptureEnabled) var breadcrumbsCaptureEnabled: Bool?
-                @Persistent(.breadcrumbsCapturesAllViews) var breadcrumbsCapturesAllViews: Bool?
+                    @Persistent(.breadcrumbsCaptureEnabled) var breadcrumbsCaptureEnabled: Bool?
+                    @Persistent(.breadcrumbsCapturesAllViews) var breadcrumbsCapturesAllViews: Bool?
 
-                guard !breadcrumbs.isCapturing else {
-                    AKConfirmationAlert(
-                        message: "Stop breadcrumbs capture?",
-                        confirmationStyle: .destructivePreferred,
-                        shouldTranslate: [.none]
-                    ).present { didConfirm in
-                        guard didConfirm == 1 else { return }
+                    guard !breadcrumbs.isCapturing else {
+                        let confirmed = await AKConfirmationAlert(
+                            message: "Stop breadcrumbs capture?",
+                            confirmButtonStyle: .destructivePreferred
+                        ).present(translating: [])
+
+                        guard confirmed else { return }
                         breadcrumbsCaptureEnabled = false
 
                         if let exception = breadcrumbs.stopCapture() {
@@ -204,41 +168,41 @@ public extension DevModeAction {
                             DevModeService.removeAction(withTitle: "Stop Breadcrumbs Capture")
                             DevModeService.insertAction(toggleBreadcrumbsAction, after: resetUserDefaultsAction)
                         }
+
+                        return
                     }
 
-                    return
-                }
+                    func startCapture(_ uniqueViewsOnly: Bool) {
+                        if let exception = breadcrumbs.startCapture(uniqueViewsOnly: uniqueViewsOnly) {
+                            Logger.log(exception, with: .errorAlert)
+                        } else {
+                            coreHUD.showSuccess()
+                            DevModeService.removeAction(withTitle: "Start Breadcrumbs Capture")
+                            DevModeService.insertAction(toggleBreadcrumbsAction, after: resetUserDefaultsAction)
+                        }
+                    }
 
-                // swiftlint:disable line_length
-                let alert = AKAlert(
-                    title: "Start Breadcrumbs Capture",
-                    message: "Starting breadcrumbs capture will periodically take snapshots of the current view and save them to the device's photo library.\n\nSelect the capture granularity to begin.",
-                    actions: [.init(title: "All Views", style: .default),
-                              .init(title: "Unique Views Only", style: .preferred)],
-                    shouldTranslate: [.none]
-                )
-                // swiftlint:enable line_length
-
-                alert.present { actionID in
-                    guard actionID != -1 else { return }
-
-                    breadcrumbsCaptureEnabled = true
-
-                    var uniqueViewsOnly = true
-                    if actionID == alert.actions.first(where: { $0.title == "All Views" })?.identifier {
+                    let allViewsAction: AKAction = .init("All Views") {
+                        breadcrumbsCaptureEnabled = true
                         breadcrumbsCapturesAllViews = true
-                        uniqueViewsOnly = false
-                    } else {
-                        breadcrumbsCapturesAllViews = false
+                        startCapture(false)
                     }
 
-                    if let exception = breadcrumbs.startCapture(uniqueViewsOnly: uniqueViewsOnly) {
-                        Logger.log(exception, with: .errorAlert)
-                    } else {
-                        coreHUD.showSuccess()
-                        DevModeService.removeAction(withTitle: "Start Breadcrumbs Capture")
-                        DevModeService.insertAction(toggleBreadcrumbsAction, after: resetUserDefaultsAction)
+                    let uniqueViewsOnlyAction: AKAction = .init("Unique Views Only", style: .preferred) {
+                        breadcrumbsCaptureEnabled = true
+                        breadcrumbsCapturesAllViews = false
+                        startCapture(true)
                     }
+
+                    await AKAlert(
+                        title: "Start Breadcrumbs Capture", // swiftlint:disable:next line_length
+                        message: "Starting breadcrumbs capture will periodically take snapshots of the current view and save them to the device's photo library.\n\nSelect the capture granularity to begin.",
+                        actions: [
+                            allViewsAction,
+                            uniqueViewsOnlyAction,
+                            .cancelAction(title: "Cancel"),
+                        ]
+                    ).present(translating: [])
                 }
             }
 

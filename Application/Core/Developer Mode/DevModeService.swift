@@ -90,96 +90,68 @@ public enum DevModeService {
     // MARK: - Menu Presentation
 
     public static func presentActionSheet() {
-        @Dependency(\.uiApplication) var uiApplication: UIApplication
-        guard !actions.isEmpty,
-              !uiApplication.isPresentingAlertController else { return }
+        Task {
+            @Dependency(\.uiApplication) var uiApplication: UIApplication
+            guard !actions.isEmpty,
+                  !(await uiApplication.isPresentingAlertController) else { return }
 
-        var akActions = [AKAction]()
-        akActions = actions.map { .init(title: $0.title, style: $0.isDestructive ? .destructive : .default) }
+            var akActions = [AKAction]()
+            akActions = actions.map { devModeAction in
+                .init(
+                    devModeAction.title,
+                    style: devModeAction.isDestructive ? .destructive : .default
+                ) {
+                    devModeAction.perform()
+                }
+            }
 
-        let actionSheet = AKActionSheet(
-            message: "Developer Mode Options",
-            actions: akActions,
-            shouldTranslate: [.none]
-        )
-
-        actionSheet.present { actionID in
-            guard let index = akActions.firstIndex(where: { $0.identifier == actionID }),
-                  index < actions.count else { return }
-
-            let selectedAkAction = akActions[index]
-            let presumedDevModeAction = actions[index]
-
-            let akActionTitle = selectedAkAction.title
-            let akActionDestructive = selectedAkAction.style == .destructive
-
-            guard presumedDevModeAction.metadata(isEqual: (akActionTitle, akActionDestructive)) else { return }
-            presumedDevModeAction.perform()
+            await AKActionSheet(
+                message: "Developer Mode Options",
+                actions: akActions
+            ).present(translating: [])
         }
     }
 
     // MARK: - Toggling
 
     public static func promptToToggle() {
-        @Dependency(\.alertKitCore) var akCore: AKCore
-        @Dependency(\.build) var build: Build
+        Task {
+            @Dependency(\.build) var build: Build
 
-        guard build.stage != .generalRelease else { return }
-        let previousLanguage = RuntimeStorage.languageCode
+            guard build.stage != .generalRelease else { return }
+            guard !build.developerModeEnabled else {
+                let confirmed = await AKConfirmationAlert(
+                    title: "Disable Developer Mode",
+                    message: "Are you sure you'd like to disable Developer Mode?",
+                    confirmButtonTitle: "Disable",
+                    confirmButtonStyle: .destructivePreferred
+                ).present(translating: [])
 
-        if akCore.languageCodeIsLocked {
-            akCore.unlockLanguageCode(andSetTo: "en")
-        } else {
-            akCore.lockLanguageCode(to: "en")
-        }
-
-        guard !build.developerModeEnabled else {
-            AKConfirmationAlert(
-                title: "Disable Developer Mode",
-                message: "Are you sure you'd like to disable Developer Mode?",
-                cancelConfirmTitles: (cancel: nil, confirm: "Disable"),
-                confirmationStyle: .destructivePreferred,
-                shouldTranslate: [.none]
-            ).present { didConfirm in
-                akCore.unlockLanguageCode(andSetTo: previousLanguage)
-                guard didConfirm == 1 else { return }
-                toggleDeveloperMode(enabled: false)
+                guard confirmed else { return }
+                return toggleDeveloperMode(enabled: false)
             }
 
-            return
-        }
+            let input = await AKTextInputAlert(
+                title: "Enable Developer Mode",
+                message: "Enter the Developer Mode password to continue.",
+                attributes: .init(
+                    isSecureTextEntry: true,
+                    keyboardType: .numberPad,
+                    placeholderText: "••••••"
+                ),
+                confirmButtonTitle: "Done"
+            ).present(translating: [])
 
-        let passwordPrompt = AKTextFieldAlert(
-            title: "Enable Developer Mode",
-            message: "Enter the Developer Mode password to continue.",
-            actions: [AKAction(title: "Done", style: .preferred)],
-            textFieldAttributes: [.keyboardType: UIKeyboardType.numberPad,
-                                  .placeholderText: "••••••",
-                                  .secureTextEntry: true,
-                                  .textAlignment: NSTextAlignment.center],
-            shouldTranslate: [.none]
-        )
-
-        passwordPrompt.presentTextFieldAlert { inputString, actionID in
-            akCore.unlockLanguageCode(andSetTo: previousLanguage)
-
-            guard actionID != -1 else { return }
-
-            guard let inputString,
-                  inputString == build.expirationOverrideCode else {
-                akCore.lockLanguageCode(to: "en")
-                AKAlert(
+            guard let input else { return }
+            guard input == build.expirationOverrideCode else {
+                return await AKAlert(
                     title: "Enable Developer Mode",
                     message: "The password entered was not correct. Please try again.",
-                    actions: [AKAction(title: "Try Again", style: .preferred)],
-                    shouldTranslate: [.none]
-                ).present { actionID in
-                    akCore.unlockLanguageCode(andSetTo: previousLanguage)
-                    guard actionID != -1 else { return }
-                    self.promptToToggle()
-                }
-
-                return
+                    actions: [
+                        .init("Try Again", style: .preferred) { promptToToggle() },
+                        .cancelAction(title: "Cancel"),
+                    ]
+                ).present(translating: [])
             }
 
             toggleDeveloperMode(enabled: true)

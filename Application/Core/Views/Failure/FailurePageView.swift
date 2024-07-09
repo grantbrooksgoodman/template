@@ -63,15 +63,17 @@ public struct FailurePageView: View {
                     }
                 }
 
-                Components.button(
-                    viewModel.reportBugButtonText,
-                    font: .system(scale: .custom(Floats.buttonLabelFontSize)),
-                    foregroundColor: viewModel.didReportBug ? .disabled : .accent
-                ) {
-                    viewModel.send(.reportBugButtonTapped)
+                if viewModel.exception.isReportable {
+                    Components.button(
+                        viewModel.reportBugButtonText,
+                        font: .system(scale: .custom(Floats.buttonLabelFontSize)),
+                        foregroundColor: viewModel.didReportBug ? .disabled : .accent
+                    ) {
+                        viewModel.send(.reportBugButtonTapped)
+                    }
+                    .padding(.top, Floats.reportBugButtonTopPadding)
+                    .disabled(viewModel.didReportBug)
                 }
-                .padding(.top, Floats.reportBugButtonTopPadding)
-                .disabled(viewModel.didReportBug)
             }
         }
     }

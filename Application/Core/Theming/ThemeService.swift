@@ -32,26 +32,26 @@ public enum ThemeService {
     // MARK: - Setter
 
     public static func setTheme(_ theme: UITheme, checkStyle: Bool = true) {
-        @Persistent(.pendingThemeID) var pendingThemeID: String?
+        Task { @MainActor in
+            @Persistent(.pendingThemeID) var pendingThemeID: String?
 
-        guard checkStyle else {
-            currentTheme = theme
-            return
-        }
-
-        guard currentTheme.style == theme.style else {
-            AKAlert(
-                message: "The new appearance will take effect the next time you restart the app.",
-                cancelButtonTitle: "Dismiss"
-            ).present { _ in
-                pendingThemeID = theme.encodedHash
+            guard checkStyle else {
+                currentTheme = theme
+                return
             }
 
-            return
-        }
+            guard currentTheme.style == theme.style else {
+                await AKAlert(
+                    message: "The new appearance will take effect the next time you restart the app."
+                ).present()
 
-        pendingThemeID = nil
-        currentTheme = theme
+                pendingThemeID = theme.encodedHash
+                return
+            }
+
+            pendingThemeID = nil
+            currentTheme = theme
+        }
     }
 
     private static func setStyle() {

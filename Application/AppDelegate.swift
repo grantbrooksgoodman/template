@@ -34,9 +34,11 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     private func preInitialize() {
         /* MARK: Dependencies */
 
-        @Dependency(\.alertKitCore) var akCore: AKCore
+        @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
         @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
         @Dependency(\.build) var build: Build
+        @Dependency(\.coreKit) var core: CoreKit
+        @Dependency(\.reportDelegate) var reportDelegate: ReportDelegate
         @Dependency(\.translationService) var translator: TranslationService
 
         /* MARK: Defaults Keys & Logging Setup */
@@ -86,18 +88,13 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /* MARK: AlertKit Setup */
 
-        let connectionAlertDelegate = ConnectionAlertDelegate()
-        let expiryAlertDelegate = ExpiryAlertDelegate()
-        let reportDelegate = ReportDelegate()
-        let translationDelegate = TranslationDelegate()
+        alertKitConfig.overrideTargetLanguageCode(RuntimeStorage.languageCode)
+        alertKitConfig.overrideTranslationHUDConfig(.init(appearsAfter: .milliseconds(500), isModal: true))
 
-        akCore.setLanguageCode(RuntimeStorage.languageCode)
-        akCore.register(
-            connectionAlertDelegate: connectionAlertDelegate,
-            expiryAlertDelegate: expiryAlertDelegate,
-            reportDelegate: reportDelegate,
-            translationDelegate: translationDelegate
-        )
+        alertKitConfig.registerLoggerDelegate(Logger.AlertKitLogger())
+        alertKitConfig.registerPresentationDelegate(core)
+        alertKitConfig.registerReportDelegate(reportDelegate)
+        alertKitConfig.registerTranslationDelegate(TranslationDelegate())
 
         /* MARK: Localization Setup */
 
@@ -119,7 +116,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard languageCodeDictionary[RuntimeStorage.languageCode] != nil else {
             RuntimeStorage.store("en", as: .languageCode)
-            akCore.setLanguageCode("en")
+            alertKitConfig.overrideTargetLanguageCode("en")
 
             Logger.log(
                 .init(

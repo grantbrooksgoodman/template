@@ -10,7 +10,6 @@ import CryptoKit
 import Foundation
 
 /* 3rd-party */
-import AlertKit
 import CoreArchitecture
 
 public struct Exception: Equatable, Exceptionable {
@@ -290,71 +289,5 @@ public struct Exception: Equatable, Exceptionable {
         }
 
         return "\(hexChars.joined())x\(lineNumber)".lowercased()
-    }
-}
-
-public extension Array where Element == Exception {
-    // MARK: - Properties
-
-    /**
-     Returns a single `Exception` by appending each as an underlying `Exception` to the final item in the array.
-     */
-    var compiledException: Exception? {
-        guard !isEmpty else { return nil }
-        var finalException = last!
-        guard count > 1 else { return finalException }
-        Array(reversed()[1 ... count - 1]).unique.forEach { finalException = finalException.appending(underlyingException: $0) }
-        return finalException
-    }
-
-    /**
-     Returns an array of identifier strings for each `Exception` in the array.
-     */
-    var referenceCodes: [String] {
-        var codes = [String]()
-
-        for (index, exception) in enumerated() {
-            let suffix = codes.contains(where: { $0.hasPrefix(exception.hashlet!.lowercased()) }) ? "x\(index)" : ""
-            codes.append("\(exception.hashlet!)x\(exception.metaID!)\(suffix)".lowercased())
-
-            for (index, underlyingException) in exception.traversedUnderlyingExceptions.enumerated() {
-                let suffix = codes.contains(where: { $0.hasPrefix(underlyingException.hashlet!.lowercased()) }) ? "x\(index)" : ""
-                codes.append("\(underlyingException.hashlet!)x\(underlyingException.metaID!)\(suffix)".lowercased())
-            }
-        }
-
-        return codes
-    }
-}
-
-public extension Error {
-    var staticIdentifier: String {
-        let nsError = self as NSError
-        var underlyingIDs = ["[\(nsError.domain):\(nsError.code)]"]
-        underlyingIDs.append(contentsOf: nsError.underlyingErrors.reduce(into: [String]()) { partialResult, error in
-            let underlyingNSError = error as NSError
-            partialResult.append("[\(underlyingNSError.domain):\(underlyingNSError.code)]")
-        })
-        return underlyingIDs.joined(separator: "+")
-    }
-}
-
-public extension Exception {
-    static func internetConnectionOffline(_ metadata: [Any]) -> Exception {
-        .init(
-            "Internet connection is offline.",
-            isReportable: false,
-            extraParams: [CommonParamKeys.userFacingDescriptor.rawValue: Localized(.internetConnectionOffline).wrappedValue],
-            metadata: metadata
-        )
-    }
-
-    static func timedOut(_ metadata: [Any]) -> Exception {
-        .init(
-            "The operation timed out. Please try again later.",
-            isReportable: false,
-            extraParams: [CommonParamKeys.userFacingDescriptor.rawValue: Localized(.timedOut).wrappedValue],
-            metadata: metadata
-        )
     }
 }

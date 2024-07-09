@@ -21,6 +21,8 @@ public enum LocalizedStringKey: String {
     case dismiss
     case done
 
+    case errorReportedSuccessfully
+
     case friday
 
     case internetConnectionOffline

@@ -12,6 +12,7 @@ import Foundation
 public enum LoggerDomain: String, CaseIterable {
     /* Add cases here to expose new domains to the logger. */
 
+    case alertKit
     case general
     case observer
     case translation

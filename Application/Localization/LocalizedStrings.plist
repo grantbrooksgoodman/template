@@ -932,6 +932,161 @@
 		<key>zh</key>
 		<string>完毕</string>
 	</dict>
+	<key>error_reported_successfully</key>
+	<dict>
+		<key>af</key>
+		<string>Fout is suksesvol aangemeld</string>
+		<key>ar</key>
+		<string>تم الإبلاغ عن الخطأ بنجاح</string>
+		<key>az</key>
+		<string>Xəta uğurla bildirildi</string>
+		<key>be</key>
+		<string>Пра памылку паспяхова паведамлена</string>
+		<key>bg</key>
+		<string>Грешката е докладвана успешно</string>
+		<key>bn</key>
+		<string>ত্রুটি সফলভাবে রিপোর্ট করা হয়েছে৷</string>
+		<key>bs</key>
+		<string>Greška je uspješno prijavljena</string>
+		<key>ca</key>
+		<string>S&apos;ha informat d&apos;un error correctament</string>
+		<key>cs</key>
+		<string>Chyba byla úspěšně nahlášena</string>
+		<key>cy</key>
+		<string>Gwall wedi&apos;i adrodd yn llwyddiannus</string>
+		<key>da</key>
+		<string>Fejl rapporteret</string>
+		<key>de</key>
+		<string>Fehler erfolgreich gemeldet</string>
+		<key>el</key>
+		<string>Το σφάλμα αναφέρθηκε με επιτυχία</string>
+		<key>en</key>
+		<string>Error reported successfully</string>
+		<key>eo</key>
+		<string>Eraro raportita sukcese</string>
+		<key>es</key>
+		<string>Error reportado exitosamente</string>
+		<key>et</key>
+		<string>Veast teatati edukalt</string>
+		<key>eu</key>
+		<string>Errorea behar bezala jakinarazi da</string>
+		<key>fa</key>
+		<string>خطا با موفقیت گزارش شد</string>
+		<key>fi</key>
+		<string>Virhe ilmoitettiin onnistuneesti</string>
+		<key>fr</key>
+		<string>Erreur signalée avec succès</string>
+		<key>ga</key>
+		<string>D&apos;éirigh leis an earráid a thuairisciú</string>
+		<key>gd</key>
+		<string>Dh&apos;aithris mearachd soirbheachail</string>
+		<key>gl</key>
+		<string>O erro informouse correctamente</string>
+		<key>gu</key>
+		<string>ભૂલ સફળતાપૂર્વક જાણ કરવામાં આવી</string>
+		<key>he</key>
+		<string>שגיאה דווחה בהצלחה</string>
+		<key>hi</key>
+		<string>त्रुटि सफलतापूर्वक रिपोर्ट की गई</string>
+		<key>hr</key>
+		<string>Pogreška je uspješno prijavljena</string>
+		<key>ht</key>
+		<string>Erè rapòte avèk siksè</string>
+		<key>hu</key>
+		<string>Sikeres hibajelentés</string>
+		<key>hy</key>
+		<string>Սխալը հաջողությամբ հաղորդվեց</string>
+		<key>id</key>
+		<string>Kesalahan berhasil dilaporkan</string>
+		<key>is</key>
+		<string>Tilkynnt var um villu</string>
+		<key>it</key>
+		<string>Errore segnalato con successo</string>
+		<key>ja</key>
+		<string>エラーは正常に報告されました</string>
+		<key>ka</key>
+		<string>შეცდომის შესახებ ინფორმაცია წარმატებით დასრულდა</string>
+		<key>kk</key>
+		<string>Қате сәтті хабарланды</string>
+		<key>kn</key>
+		<string>ದೋಷವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ವರದಿ ಮಾಡಲಾಗಿದೆ</string>
+		<key>ko</key>
+		<string>오류가 성공적으로 보고되었습니다.</string>
+		<key>ky</key>
+		<string>Ката ийгиликтүү кабарланды</string>
+		<key>lt</key>
+		<string>Apie klaidą pranešta sėkmingai</string>
+		<key>mg</key>
+		<string>Nisy hadisoana notaterina soa aman-tsara</string>
+		<key>mi</key>
+		<string>I tutuki pai te hapa</string>
+		<key>mk</key>
+		<string>Успешно пријавена грешка</string>
+		<key>ml</key>
+		<string>പിശക് റിപ്പോർട്ട് ചെയ്തു</string>
+		<key>mn</key>
+		<string>Алдааг амжилттай мэдээлэв</string>
+		<key>mt</key>
+		<string>Żball irrappurtat b&apos;suċċess</string>
+		<key>ne</key>
+		<string>त्रुटि सफलतापूर्वक रिपोर्ट गरियो</string>
+		<key>nl</key>
+		<string>Fout gerapporteerd</string>
+		<key>no</key>
+		<string>Feil rapportert</string>
+		<key>pa</key>
+		<string>ਗਲਤੀ ਸਫਲਤਾਪੂਰਵਕ ਰਿਪੋਰਟ ਕੀਤੀ ਗਈ</string>
+		<key>pl</key>
+		<string>Błąd został zgłoszony pomyślnie</string>
+		<key>pt</key>
+		<string>Erro relatado com sucesso</string>
+		<key>ro</key>
+		<string>Eroare raportată cu succes</string>
+		<key>ru</key>
+		<string>Ошибка зарегистрирована успешно</string>
+		<key>si</key>
+		<string>දෝෂය සාර්ථකව වාර්තා විය</string>
+		<key>sk</key>
+		<string>Chyba bola úspešne nahlásená</string>
+		<key>sl</key>
+		<string>Napaka je bila uspešno prijavljena</string>
+		<key>sq</key>
+		<string>Gabimi u raportua me sukses</string>
+		<key>sr</key>
+		<string>Грешка је успешно пријављена</string>
+		<key>su</key>
+		<string>Kasalahan dilaporkeun suksés</string>
+		<key>sv</key>
+		<string>Fel rapporterades framgångsrikt</string>
+		<key>sw</key>
+		<string>Hitilafu imeripotiwa</string>
+		<key>ta</key>
+		<string>பிழை வெற்றிகரமாகப் புகாரளிக்கப்பட்டது</string>
+		<key>te</key>
+		<string>లోపం విజయవంతంగా నివేదించబడింది</string>
+		<key>tg</key>
+		<string>Хатогӣ бомуваффақият гузориш дода шуд</string>
+		<key>th</key>
+		<string>รายงานข้อผิดพลาดเรียบร้อยแล้ว</string>
+		<key>tl</key>
+		<string>Matagumpay na naiulat ang error</string>
+		<key>tr</key>
+		<string>Hata başarıyla bildirildi</string>
+		<key>tt</key>
+		<string>Хата уңышлы хәбәр ителде</string>
+		<key>uk</key>
+		<string>Про помилку успішно повідомлено</string>
+		<key>ur</key>
+		<string>غلطی کی کامیابی کے ساتھ اطلاع دی گئی۔</string>
+		<key>uz</key>
+		<string>Xato haqida xabar berildi</string>
+		<key>vi</key>
+		<string>Đã báo lỗi thành công</string>
+		<key>yi</key>
+		<string>טעות געמאלדן הצלחה</string>
+		<key>zh</key>
+		<string>错误报告成功</string>
+	</dict>
 	<key>friday</key>
 	<dict>
 		<key>af</key>

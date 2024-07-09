@@ -13,49 +13,37 @@ import AlertKit
 import CoreArchitecture
 import Translator
 
-public final class TranslationDelegate: AKTranslationDelegate {
+public struct TranslationDelegate: AlertKit.TranslationDelegate {
     // MARK: - Dependencies
 
     @Dependency(\.translationService) private var translator: TranslationService
 
     // MARK: - AKTranslationDelegate Conformance
 
-    // swiftlint:disable:next function_parameter_count
     public func getTranslations(
-        for inputs: [AlertKit.TranslationInput],
-        languagePair: AlertKit.LanguagePair,
-        requiresHUD: Bool?,
-        using: AlertKit.PlatformName?,
-        fetchFromArchive: Bool,
-        completion: @escaping (
-            _ translations: [AlertKit.Translation]?,
-            _ errorDescriptors: [String: AlertKit.TranslationInput]?
-        ) -> Void
-    ) {
-        Task {
-            let getTranslationsResult = await translator.getTranslations(
-                inputs.map { TranslationInput($0.original, alternate: $0.alternate) },
-                languagePair: .init(from: languagePair.from, to: languagePair.to),
-                hud: (requiresHUD ?? true) ? (appearsAfter: .seconds(5), isModal: true) : nil
-            )
+        _ inputs: [TranslationInput],
+        languagePair: LanguagePair,
+        hud hudConfig: AlertKit.HUDConfig?,
+        timeout timeoutConfig: AlertKit.TranslationTimeoutConfig
+    ) async -> Result<[Translation], TranslationError> {
+        var hudConfigTuple: (Duration, Bool)?
+        if let hudConfig {
+            hudConfigTuple = (hudConfig.appearsAfter, hudConfig.isModal)
+        }
 
-            switch getTranslationsResult {
-            case let .success(translations):
-                completion(
-                    translations.map {
-                        AlertKit.Translation(
-                            input: .init($0.input.original, alternate: $0.input.alternate),
-                            output: $0.output,
-                            languagePair: .init(from: $0.languagePair.from, to: $0.languagePair.to)
-                        )
-                    }, nil
-                )
+        let getTranslationsResult = await translator.getTranslations(
+            inputs,
+            languagePair: languagePair,
+            hud: hudConfigTuple,
+            timeout: (timeoutConfig.duration, timeoutConfig.returnsInputsOnFailure)
+        )
 
-            case let .failure(exception):
-                var descriptorPairs = [String: AlertKit.TranslationInput]()
-                inputs.forEach { descriptorPairs[exception.descriptor] = AlertKit.TranslationInput($0.original, alternate: $0.alternate) }
-                completion(nil, descriptorPairs)
-            }
+        switch getTranslationsResult {
+        case let .success(translations):
+            return .success(translations)
+
+        case let .failure(exception):
+            return .failure(.unknown(exception.descriptor))
         }
     }
 }

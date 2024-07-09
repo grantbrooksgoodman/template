@@ -20,7 +20,6 @@ public enum Logger {
 
     public enum AlertType {
         case errorAlert
-        case fatalAlert
         case normalAlert
         case toast(style: Toast.Style? = nil, isPersistent: Bool = true)
     }
@@ -101,11 +100,10 @@ public enum Logger {
         domain: LoggerDomain = .general,
         with alertType: AlertType? = .none
     ) {
-        @Dependency(\.alertKitCore) var akCore: AKCore
         @Dependency(\.loggerDateFormatter) var dateFormatter: DateFormatter
 
         let typeName = String(exception.metadata[0]) // swiftlint:disable force_cast
-        let fileName = akCore.fileName(for: exception.metadata[1] as! String)
+        let fileName = fileName(for: exception.metadata[1] as! String)
         let functionName = (exception.metadata[2] as! String).components(separatedBy: "(")[0]
         let lineNumber = exception.metadata[3] as! Int // swiftlint:enable force_cast
 
@@ -146,7 +144,6 @@ public enum Logger {
         with alertType: AlertType? = .none,
         metadata: [Any]
     ) {
-        @Dependency(\.alertKitCore) var akCore: AKCore
         @Dependency(\.loggerDateFormatter) var dateFormatter: DateFormatter
 
         guard metadata.isValidMetadata else {
@@ -155,7 +152,7 @@ public enum Logger {
         }
 
         let typeName = String(metadata[0]) // swiftlint:disable force_cast
-        let fileName = akCore.fileName(for: metadata[1] as! String)
+        let fileName = fileName(for: metadata[1] as! String)
         let functionName = (metadata[2] as! String).components(separatedBy: "(")[0]
         let lineNumber = metadata[3] as! Int // swiftlint:enable force_cast
 
@@ -176,7 +173,7 @@ public enum Logger {
 
         func showAlertIfNeeded() {
             guard let alertType else { return }
-            showAlert(alertType, data: (text, metadata))
+            showAlert(alertType, text: text)
         }
     }
 
@@ -187,7 +184,6 @@ public enum Logger {
         domain: LoggerDomain = .general,
         metadata: [Any]
     ) {
-        @Dependency(\.alertKitCore) var akCore: AKCore
         @Dependency(\.loggerDateFormatter) var dateFormatter: DateFormatter
 
         guard metadata.isValidMetadata else {
@@ -196,7 +192,7 @@ public enum Logger {
         }
 
         let typeName = String(metadata[0]) // swiftlint:disable force_cast
-        let fileName = akCore.fileName(for: metadata[1] as! String)
+        let fileName = fileName(for: metadata[1] as! String)
         let functionName = (metadata[2] as! String).components(separatedBy: "(")[0]
         let lineNumber = metadata[3] as! Int // swiftlint:enable force_cast
 
@@ -270,6 +266,14 @@ public enum Logger {
         return true
     }
 
+    private static func fileName(for path: String) -> String {
+        path
+            .components(separatedBy: "/")
+            .last?
+            .components(separatedBy: ".")
+            .first ?? path
+    }
+
     private static func fallbackLog(
         _ text: String,
         domain: LoggerDomain = .general,
@@ -289,7 +293,7 @@ public enum Logger {
 
         func showAlertIfNeeded() {
             guard let alertType else { return }
-            showAlert(alertType, data: (text, [self, #file, #function, #line]))
+            showAlert(alertType, text: text)
         }
     }
 
@@ -350,102 +354,83 @@ public enum Logger {
     private static func showAlert(
         _ type: AlertType,
         exception: Exception? = nil,
-        data: (text: String, metadata: [Any])? = nil
+        text: String? = nil
     ) {
-        @Dependency(\.alertKitCore) var akCore: AKCore
-        @Dependency(\.build) var build: Build
-        @Dependency(\.coreKit) var core: CoreKit
+        Task {
+            @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
+            @Dependency(\.build) var build: Build
+            @Dependency(\.coreKit) var core: CoreKit
 
-        guard exception != nil || data != nil else { return }
+            guard let userFacingDescriptor = exception?.userFacingDescriptor ?? text else { return }
 
-        let descriptor = exception?.descriptor ?? data?.text
-        let userFacingDescriptor = exception?.userFacingDescriptor ?? data?.text
-        let metadata = exception?.metadata ?? data?.metadata
+            core.hud.hide()
 
-        guard let descriptor,
-              let userFacingDescriptor,
-              let metadata else { return }
+            let mockGenericException: Exception = .init(metadata: [self, #file, #function, #line])
+            let mockTimedOutException: Exception = .timedOut([self, #file, #function, #line])
+            let notGenericDescriptor = userFacingDescriptor != mockGenericException.userFacingDescriptor
+            let notTimedOutDescriptor = userFacingDescriptor != mockTimedOutException.userFacingDescriptor
+            let hasUserFacingDescriptor = exception?.descriptor != exception?.userFacingDescriptor
 
-        core.hud.hide()
+            let shouldTranslate = hasUserFacingDescriptor && notGenericDescriptor && notTimedOutDescriptor
 
-        let mockGenericException: Exception = .init(metadata: [self, #file, #function, #line])
-        let mockTimedOutException: Exception = .timedOut([self, #file, #function, #line])
-        let notGenericDescriptor = userFacingDescriptor != mockGenericException.userFacingDescriptor
-        let notTimedOutDescriptor = userFacingDescriptor != mockTimedOutException.userFacingDescriptor
-        let hasUserFacingDescriptor = exception?.descriptor != exception?.userFacingDescriptor
-
-        var shouldTranslate = hasUserFacingDescriptor && notGenericDescriptor && notTimedOutDescriptor
-
-        switch type {
-        case .errorAlert:
-            var akError: AKError?
-            if let exception {
-                akError = .init(exception)
-            } else if let data {
-                akError = .init(.init(data.text, metadata: data.metadata))
-            }
-
-            guard let akError else {
-                showAlert(.normalAlert, exception: exception, data: data)
-                return
-            }
-
-            let notGenericDescription = akError.description != mockGenericException.userFacingDescriptor
-            let notTimedOutDescription = akError.description != mockTimedOutException.userFacingDescriptor
-            let hasUserFacingDescriptor = akError.extraParams?.keys.contains(Exception.CommonParamKeys.userFacingDescriptor.rawValue) ?? false
-            shouldTranslate = hasUserFacingDescriptor && notGenericDescription && notTimedOutDescription
-
-            AKErrorAlert(
-                error: akError,
-                shouldTranslate: shouldTranslate ? [.all] : [.actions(indices: nil),
-                                                             .cancelButtonTitle]
-            ).present()
-
-        case .fatalAlert:
-            akCore.present(.fatalErrorAlert, with: [
-                descriptor,
-                build.stage != .generalRelease,
-                metadata,
-            ])
-
-        case .normalAlert:
-            AKAlert(
-                message: userFacingDescriptor,
-                cancelButtonTitle: "OK",
-                shouldTranslate: shouldTranslate ? [.message] : [.none]
-            ).present()
-
-        case let .toast(style: style, isPersistent: isPersistent):
-            @Sendable
-            func showToast(_ userFacingDescriptor: String) {
-                let style = style ?? (exception == nil ? .info : .error)
-
-                var title: String?
-                var message: String?
-
-                if let exception,
-                   exception.isReportable {
-                    title = userFacingDescriptor
-                    message = Localized(.tapToReport).wrappedValue
+            switch type {
+            case .errorAlert:
+                guard let exception else {
+                    showAlert(.normalAlert, text: text)
+                    return
                 }
 
-                Observables.rootViewToast.value = .init(
-                    isPersistent ? .banner(style: style) : .capsule(style: style),
-                    title: title,
-                    message: message ?? userFacingDescriptor,
-                    perpetuation: isPersistent ? .persistent : .ephemeral(.seconds(10))
+                let errorAlert = AKErrorAlert(
+                    exception,
+                    dismissButtonTitle: Localized(.dismiss).wrappedValue
                 )
 
-                guard let exception,
-                      exception.isReportable else { return }
-
-                Observables.rootViewToastAction.value = {
-                    akCore.reportDelegate().fileReport(error: .init(exception))
+                var translationOptionKeys: [AKErrorAlert.TranslationOptionKey] = shouldTranslate ? [.errorDescription] : []
+                if exception.isReportable {
+                    translationOptionKeys.append(.sendErrorReportButtonTitle)
                 }
-            }
 
-            guard !shouldTranslate else {
-                Task {
+                return await errorAlert.present(translating: translationOptionKeys)
+
+            case .normalAlert:
+                let alert = AKAlert(message: userFacingDescriptor)
+
+                if shouldTranslate {
+                    return await alert.present(translating: [.message])
+                }
+
+                return await alert.present(translating: [])
+
+            case let .toast(style: style, isPersistent: isPersistent):
+                @Sendable
+                func showToast(_ userFacingDescriptor: String) {
+                    let style = style ?? (exception == nil ? .info : .error)
+
+                    var title: String?
+                    var message: String?
+
+                    if let exception,
+                       exception.isReportable {
+                        title = userFacingDescriptor
+                        message = Localized(.tapToReport).wrappedValue
+                    }
+
+                    Observables.rootViewToast.value = .init(
+                        isPersistent ? .banner(style: style) : .capsule(style: style),
+                        title: title,
+                        message: message ?? userFacingDescriptor,
+                        perpetuation: isPersistent ? .persistent : .ephemeral(.seconds(10))
+                    )
+
+                    guard let exception,
+                          exception.isReportable else { return }
+
+                    Observables.rootViewToastAction.value = {
+                        alertKitConfig.reportDelegate?.fileReport(exception)
+                    }
+                }
+
+                guard !shouldTranslate else {
                     let translateWithSystemLanguagePairResult = await translateWithSystemLanguagePair(userFacingDescriptor)
 
                     switch translateWithSystemLanguagePairResult {
@@ -455,38 +440,50 @@ public enum Logger {
                     case .failure:
                         showToast(userFacingDescriptor)
                     }
+
+                    return
                 }
 
-                return
+                showToast(userFacingDescriptor)
             }
-
-            showToast(userFacingDescriptor)
         }
     }
 
     private static func translateWithSystemLanguagePair(_ text: String) async -> Callback<String, Exception> {
-        await withCheckedContinuation { continuation in
-            @Dependency(\.alertKitCore) var akCore: AKCore
-            akCore.translationDelegate().getTranslations(
-                for: [.init(text)],
-                languagePair: .init(
-                    from: Translator.LanguagePair.system.from,
-                    to: Translator.LanguagePair.system.to
-                ),
-                requiresHUD: nil,
-                using: nil,
-                fetchFromArchive: true
-            ) { translations, errorDescriptors in
-                guard let translation = translations?.first else {
-                    let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
-                        partialResult.append(.init(keyPair.key, metadata: [self, #file, #function, #line]))
-                    }.compiledException
-                    continuation.resume(returning: .failure(exception ?? .init(metadata: [self, #file, #function, #line])))
-                    return
-                }
+        @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
 
-                continuation.resume(returning: .success(translation.output))
+        guard let translationDelegate = alertKitConfig.translationDelegate else { return .success(text) }
+        let getTranslationsResult = await translationDelegate.getTranslations(
+            [.init(text)],
+            languagePair: .system,
+            hud: alertKitConfig.translationHUDConfig,
+            timeout: alertKitConfig.translationTimeoutConfig
+        )
+
+        switch getTranslationsResult {
+        case let .success(translations):
+            guard let translation = translations.first else {
+                return .failure(.init(metadata: [self, #file, #function, #line]))
             }
+
+            return .success(translation.output)
+
+        case let .failure(error):
+            return .failure(.init(error.localizedDescription, metadata: [self, #file, #function, #line]))
+        }
+    }
+}
+
+/* MARK: AlertKit LoggerDelegate */
+
+public extension Logger {
+    struct AlertKitLogger: AlertKit.LoggerDelegate {
+        public func log(_ text: String, metadata: [Any]) {
+            Logger.log(
+                text,
+                domain: .alertKit,
+                metadata: metadata
+            )
         }
     }
 }

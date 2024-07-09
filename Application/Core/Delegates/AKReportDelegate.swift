@@ -6,313 +6,250 @@
 //
 
 /* Native */
-import CryptoKit
+import Foundation
 import MessageUI
 
 /* 3rd-party */
 import AlertKit
 import CoreArchitecture
-import Translator
 
-public struct LogFile {
-    // MARK: - Properties
-
-    public let fileName: String
-    public let data: Data
-
-    // MARK: - Init
-
-    public init(fileName: String, data: Data) {
-        self.fileName = fileName
-        self.data = data
-    }
-}
-
-public final class ReportDelegate: UIViewController, AKReportDelegate, MFMailComposeViewControllerDelegate {
+public struct ReportDelegate: AlertKit.ReportDelegate {
     // MARK: - Dependencies
 
-    @Dependency(\.alertKitCore) private var akCore: AKCore
+    @Dependency(\.alertKitConfig) private var alertKitConfig: AlertKit.Config
     @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
     @Dependency(\.reportDelegateDateFormatter) private var dateFormatter: DateFormatter
     @Dependency(\.fileManager) private var fileManager: FileManager
-    @Dependency(\.mainQueue) private var mainQueue: DispatchQueue
+    @Dependency(\.jsonEncoder) private var jsonEncoder: JSONEncoder
+    @Dependency(\.mailComposer) private var mailComposer: MailComposer
 
     // MARK: - Properties
 
-    private var commonParams: [String: String] {
-        var parameters = ["LanguageCode": RuntimeStorage.languageCode]
+    public static let shared = ReportDelegate()
 
-        if let presentedView = RuntimeStorage.presentedViewName {
-            parameters["PresentedView"] = presentedView.firstLowercase.snakeCased
-        }
+    // MARK: - Computed Properties
 
-        return parameters
+    private var bundleVersionString: String {
+        "\(build.stage == .generalRelease ? build.finalName : build.codeName) (\(build.bundleVersion))"
     }
 
-    private var dateHashlet: String {
-        var dateHash = dateFormatter.string(from: Date())
-        dateHash = SHA256.hash(data: Data(dateHash.utf8)).compactMap { String(format: "%02x", $0) }.joined()
-        return dateHash.components[0 ... dateHash.count / 4].joined()
-    }
+    private var loggerSessionRecordAttachment: MailComposer.AttachmentData? {
+        let loggerSessionRecordFilePathString = Logger.sessionRecordFilePath.path()
 
-    // MARK: - AKReportDelegate Conformance
+        guard let loggerSessionRecordData = fileManager.contents(atPath: loggerSessionRecordFilePathString),
+              let loggerSessionRecordFileName = loggerSessionRecordFilePathString
+              .components(separatedBy: "/")
+              .last?
+              .components(separatedBy: ".")
+              .first else { return nil }
 
-    public func fileReport(error: AKError) {
-        let error = error.injecting(commonParams)
-        guard let data = getLogFileData(type: .error, error: error) else {
-            Logger.log(
-                .init(
-                    "Couldn't get log file data!",
-                    extraParams: ["OriginalMetadata": error.metadata],
-                    metadata: [self, #file, #function, #line]
-                ),
-                with: .errorAlert
-            )
-            return
-        }
-
-        let logFile: LogFile = .init(fileName: "\(build.codeName.lowercased())_\(dateHashlet)", data: data)
-        let subject = "\(build.stage == .generalRelease ? build.finalName : build.codeName) (\(build.bundleVersion)) Error Report"
-
-        composeMessage(
-            recipients: ["me@grantbrooks.io"],
-            subject: subject,
-            logFile: logFile
+        return .init(
+            loggerSessionRecordData,
+            fileName: "logger_session_\(loggerSessionRecordFileName).txt",
+            mimeType: "text/plain"
         )
     }
 
-    public func fileReport(
-        forBug: Bool,
-        body: String,
-        prompt: String,
-        metadata: [Any]
-    ) {
-        guard metadata.isValidMetadata else {
-            Logger.log(.init("Improperly formatted metadata.", metadata: [self, #file, #function, #line]))
-            return
+    // MARK: - Init
+
+    private init() {}
+
+    // MARK: - AlertKit.ReportDelegate Conformance
+
+    public func fileReport(_ error: any AlertKit.Errorable) {
+        Task {
+            await composeMessage(
+                subject: "\(bundleVersionString) Error Report",
+                body: nil,
+                prompt: nil,
+                error: error
+            )
+        }
+    }
+
+    // MARK: - Report Bug
+
+    public func reportBug() {
+        Task {
+            await composeMessage(
+                subject: "\(bundleVersionString) Bug Report",
+                body: "In the appropriate section, please describe the error encountered and the steps to reproduce it.",
+                prompt: "Description/Steps to Reproduce",
+                error: nil
+            )
+        }
+    }
+
+    // MARK: - Send Feedback
+
+    public func sendFeedback() {
+        Task {
+            await composeMessage(
+                subject: "\(bundleVersionString) Feedback Report",
+                body: "Any general feedback is appreciated in the appropriate section.",
+                prompt: "General Feedback",
+                error: nil
+            )
+        }
+    }
+
+    // MARK: - Auxiliary
+
+    @MainActor
+    private func composeMessage(
+        subject: String,
+        body: String?,
+        prompt: String?,
+        error: (any AlertKit.Errorable)?
+    ) async {
+        func compose(body: String?, prompt: String?) {
+            var bodyTuple: (String, Bool)?
+
+            if let body,
+               let prompt {
+                var bodyHTML = "<i>\(body.split(separator: ".")[0]).</i><p></p><b>\(prompt):</b><p></p>"
+                if body.split(separator: ".").count > 1 {
+                    bodyHTML = "<i>\(body.split(separator: ".")[0]).<p></p>\(body.split(separator: ".")[1]).</i><p></p>"
+                }
+                bodyTuple = (bodyHTML, true)
+            }
+
+            var attachments: [MailComposer.AttachmentData] = []
+            if let loggerSessionRecordAttachment {
+                attachments.append(loggerSessionRecordAttachment)
+            }
+
+            if let reportMetadataAttachment = reportMetadataAttachment(error) {
+                attachments.append(reportMetadataAttachment)
+            }
+
+            mailComposer.compose(
+                subject: subject,
+                body: bodyTuple,
+                recipients: ["me@grantbrooks.io"],
+                attachments: attachments
+            )
+
+            mailComposer.onComposeFinished { onComposeFinished($0) }
         }
 
-        guard let logFileData = getLogFileData(
-            type: forBug ? .bug : .feedback,
-            metadata: metadata
-        ) else {
+        guard mailComposer.canSendMail else {
             Logger.log(
                 .init(
-                    "Couldn't get log file data!",
-                    extraParams: ["OriginalMetadata": metadata],
+                    Localized(.noEmail).wrappedValue,
+                    isReportable: false,
                     metadata: [self, #file, #function, #line]
                 ),
                 with: .errorAlert
             )
+
             return
         }
 
-        let logFile: LogFile = .init(fileName: "\(build.codeName.lowercased())_\(dateHashlet)", data: logFileData)
-        let subject = "\(build.stage == .generalRelease ? build.finalName : build.codeName) (\(build.bundleVersion)) \(forBug ? "Bug" : "Feedback") Report"
+        guard let body,
+              let prompt else { return compose(body: nil, prompt: nil) }
 
-        var translatedBody = body
-        var translatedPrompt = prompt
-
-        akCore.translationDelegate().getTranslations(
-            for: [
+        guard let translationDelegate = alertKitConfig.translationDelegate else { return }
+        let getTranslationsResult = await translationDelegate.getTranslations(
+            [
                 .init(body),
                 .init(prompt),
             ],
-            languagePair: .init(
-                from: Translator.LanguagePair.system.from,
-                to: Translator.LanguagePair.system.to
-            ),
-            requiresHUD: nil,
-            using: nil,
-            fetchFromArchive: true
-        ) { translations, errorDescriptors in
-            guard let translations else {
-                let exception = errorDescriptors?.reduce(into: [Exception]()) { partialResult, keyPair in
-                    partialResult.append(.init(keyPair.key, metadata: [self, #file, #function, #line]))
-                }.compiledException
-                Logger.log(exception ?? .init(metadata: [self, #file, #function, #line]))
-                return
-            }
+            languagePair: .system,
+            hud: alertKitConfig.translationHUDConfig,
+            timeout: alertKitConfig.translationTimeoutConfig
+        )
 
-            translatedBody = translations.first(where: { $0.input.value() == translatedBody })?.output ?? translatedBody
-            translatedPrompt = translations.first(where: { $0.input.value() == translatedPrompt })?.output ?? translatedPrompt
+        switch getTranslationsResult {
+        case let .success(translations):
+            compose(
+                body: translations.first(where: { $0.input.value == body })?.output ?? body,
+                prompt: translations.first(where: { $0.input.value == prompt })?.output ?? prompt
+            )
 
-            var bodySection = "<i>\(translatedBody.split(separator: ".")[0]).</i><p></p><b>\(translatedPrompt):</b><p></p>"
-            if translatedBody.split(separator: ".").count > 1 {
-                bodySection = "<i>\(translatedBody.split(separator: ".")[0]).<p></p>\(translatedBody.split(separator: ".")[1]).</i><p></p>"
-            }
+        case let .failure(error):
+            Logger.log(.init(error, metadata: [self, #file, #function, #line]))
+            compose(body: body, prompt: prompt)
+        }
+    }
 
-            self.mainQueue.async {
-                self.composeMessage(
-                    (message: bodySection, isHTML: true),
-                    recipients: ["me@grantbrooks.io"],
-                    subject: subject,
-                    logFile: logFile
+    private func onComposeFinished(_ result: Result<MFMailComposeResult, Error>) {
+        switch result {
+        case let .failure(error):
+            Logger.log(
+                .init(error, metadata: [self, #file, #function, #line]),
+                with: .toast()
+            )
+
+        case let .success(result):
+            switch result {
+            case .failed:
+                Logger.log(
+                    .init(metadata: [self, #file, #function, #line]),
+                    with: .toast()
                 )
+
+            case .sent:
+                Observables.rootViewToast.value = .init(
+                    .capsule(style: .success),
+                    message: Localized(.errorReportedSuccessfully).wrappedValue,
+                    perpetuation: .ephemeral(.seconds(3))
+                )
+
+            default: ()
             }
         }
     }
 
-    // MARK: - File Management
-
-    private func getLogFileData(
-        type: ContextCodeType,
-        error: AKError? = nil,
-        metadata: [Any]? = nil
-    ) -> Data? {
-        func getJSON(from dictionary: [String: String]) -> Data? {
+    private func reportMetadataAttachment(_ error: (any AlertKit.Errorable)? = nil) -> MailComposer.AttachmentData? {
+        func attachmentData(_ dictionary: [String: String]) -> MailComposer.AttachmentData? {
             do {
-                let encoder = JSONEncoder()
-                return try encoder.encode(dictionary)
+                return try .init(
+                    jsonEncoder.encode(dictionary),
+                    fileName: "metadata.log",
+                    mimeType: "application/json"
+                )
             } catch {
                 Logger.log(.init(error, metadata: [self, #file, #function, #line]))
                 return nil
             }
         }
 
-        guard error != nil || metadata != nil else { return nil }
+        var sections = [
+            "build_number": "\(build.buildNumber)\(build.stage.shortString)",
+            "build_sku": build.buildSKU,
+            "bundle_version": build.bundleVersion,
+            "connection_status": build.isOnline ? "online" : "offline",
+            "device_model": "\(SystemInformation.modelName) (\(SystemInformation.modelCode.lowercased()))",
+            "language_code": RuntimeStorage.languageCode,
+            "occurrence_date": dateFormatter.string(from: .now),
+            "operating_system_id": SystemInformation.osVersion.lowercased(),
+            "project_id": build.projectID,
+        ]
 
-        guard let contextCode = akCore.contextCode(for: type, metadata: error?.metadata ?? metadata!) else {
-            Logger.log(.init("Unable to generate context code.", metadata: [self, #file, #function, #line]))
-            return nil
+        guard let error else { return attachmentData(sections) }
+
+        var errorDescription = error.description
+        if let descriptor = error.extraParams?["Descriptor"] as? String,
+           let hashlet = error.extraParams?["Hashlet"] as? String {
+            errorDescription = "\(descriptor) (\(hashlet.uppercased()))"
         }
 
-        let connectionStatus = build.isOnline ? "online" : "offline"
+        sections["error_description"] = errorDescription
+        sections["error_id"] = error.id
 
-        var sections = ["build_sku": build.buildSKU,
-                        "context_code": contextCode,
-                        "internet_connection_status": connectionStatus,
-                        "occurrence_date": dateFormatter.string(from: Date()),
-                        "project_id": build.projectID]
-
-        guard let error = error else {
-            sections["extra_parameters"] = (commonParams as [String: Any]).withCapitalizedKeys.description.replacingOccurrences(of: "\"", with: "'")
-            if let json = getJSON(from: sections) {
-                return json
-            }
-
-            return nil
+        if let additionalParameters = error.extraParams?
+            .filter({ $0.key != "Descriptor" })
+            .filter({ $0.key != "Hashlet" }),
+            !additionalParameters.isEmpty {
+            sections["error_parameters"] = additionalParameters
+                .withCapitalizedKeys
+                .description
+                .replacingOccurrences(of: "\"", with: "'")
         }
 
-        var finalDescriptor = error.description ?? ""
-
-        if let extraParams = error.extraParams,
-           let descriptor = extraParams["Descriptor"] as? String {
-            if let hashlet = extraParams["Hashlet"] as? String {
-                finalDescriptor = "\(descriptor) (\(hashlet.uppercased()))"
-            } else {
-                finalDescriptor = descriptor
-            }
-        }
-
-        if finalDescriptor != "" {
-            sections["error_descriptor"] = finalDescriptor
-        }
-
-        if let extraParams = error.extraParams?.filter({ $0.key != "Descriptor" }).filter({ $0.key != "Hashlet" }),
-           !extraParams.isEmpty {
-            sections["extra_parameters"] = extraParams.withCapitalizedKeys.description.replacingOccurrences(of: "\"", with: "'")
-        }
-
-        if let json = getJSON(from: sections) {
-            return json
-        }
-
-        return nil
-    }
-
-    // MARK: - MFMailComposeViewControllerDelegate Conformance
-
-    public func mailComposeController(
-        _ controller: MFMailComposeViewController,
-        didFinishWith result: MFMailComposeResult,
-        error: Error?
-    ) {
-        controller.dismiss(animated: true) {
-            self.core.gcd.after(.seconds(1)) {
-                switch result {
-                case .sent:
-                    AKAlert(
-                        title: "Message Sent",
-                        message: "The message was sent successfully.",
-                        cancelButtonTitle: "OK"
-                    ).present()
-
-                case .failed:
-                    var exception: Exception = .init(metadata: [self, #file, #function, #line])
-                    if let error {
-                        exception = .init(error, metadata: [self, #file, #function, #line])
-                    }
-
-                    AKErrorAlert(error: .init(exception)).present()
-
-                default: ()
-                }
-            }
-        }
-    }
-
-    // MARK: - Auxiliary
-
-    private func composeMessage(
-        _ messageBody: (message: String, isHTML: Bool)? = nil,
-        recipients: [String],
-        subject: String,
-        logFile: LogFile?
-    ) {
-        guard MFMailComposeViewController.canSendMail() else {
-            @Localized(.noEmail) var userFacingDescriptor: String
-            let exception = Exception(
-                "Device can't send e-mail.",
-                isReportable: false,
-                extraParams: [Exception.CommonParamKeys.userFacingDescriptor.rawValue: userFacingDescriptor],
-                metadata: [self, #file, #function, #line]
-            )
-
-            AKErrorAlert(
-                error: .init(exception),
-                shouldTranslate: [.none],
-                networkDependent: true
-            ).present()
-
-            return
-        }
-
-        let composeController = MFMailComposeViewController()
-        composeController.mailComposeDelegate = self
-
-        composeController.setSubject(subject)
-        composeController.setToRecipients(recipients)
-
-        if let messageBody {
-            composeController.setMessageBody(messageBody.message, isHTML: messageBody.isHTML)
-        }
-
-        if let logFile {
-            composeController.addAttachmentData(
-                logFile.data,
-                mimeType: "application/json",
-                fileName: "\(logFile.fileName).log"
-            )
-        }
-
-        let loggerSessionRecordFilePathString = Logger.sessionRecordFilePath.path()
-
-        if let loggerSessionRecordData = fileManager.contents(atPath: loggerSessionRecordFilePathString),
-           let loggerSessionRecordFileName = loggerSessionRecordFilePathString
-           .components(separatedBy: "/")
-           .last?
-           .components(separatedBy: ".")
-           .first {
-            composeController.addAttachmentData(
-                loggerSessionRecordData,
-                mimeType: "text/plain",
-                fileName: "logger_session_\(loggerSessionRecordFileName).txt"
-            )
-        }
-
-        core.ui.present(composeController)
+        return attachmentData(sections)
     }
 }
 
@@ -322,7 +259,7 @@ private enum ReportDelegateDateFormatterDependency: DependencyKey {
     public static func resolve(_: DependencyValues) -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-        formatter.locale = .init(identifier: "en_GB")
+        formatter.locale = .init(identifier: "en_US")
         return formatter
     }
 }

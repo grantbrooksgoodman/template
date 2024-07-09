@@ -1,6 +1,15 @@
 {
-  "originHash" : "07a68983f14e37310d2ec941ca261a5f69358ec73bff47ad6c9c63c2a44797a7",
+  "originHash" : "77a71835edc0bccc5216ea7c676c049b6eae53c9450fb1369c2087a5082069df",
   "pins" : [
+    {
+      "identity" : "alert-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grantbrooksgoodman/alert-kit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e301eac6d139d7c91c1594ef1fc1cc23dfadaf8a"
+      }
+    },
     {
       "identity" : "component-kit",
       "kind" : "remoteSourceControl",
@@ -25,7 +34,7 @@
       "location" : "https://github.com/grantbrooksgoodman/translator.git",
       "state" : {
         "branch" : "main",
-        "revision" : "15583705c0abeda6c6e2c5c4d022dfae1c6f3bd7"
+        "revision" : "4c9640cbf94aee216ac47af39c0ad3b0877b0725"
       }
     }
   ],

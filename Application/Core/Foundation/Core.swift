@@ -78,7 +78,7 @@ public struct CoreKit {
                 alertIcon = .exclamation
             }
 
-            var resolvedText: String?
+            var resolvedText = text
             if let text,
                text.hasSuffix(".") {
                 resolvedText = text.dropSuffix()
@@ -278,19 +278,10 @@ public struct CoreKit {
 
         /* MARK: Methods */
 
-        @discardableResult
-        public func restoreDeviceLanguageCode() -> Exception? {
-            @Dependency(\.alertKitCore) var akCore: AKCore
-
+        public func restoreDeviceLanguageCode() {
+            @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
+            alertKitConfig.overrideTargetLanguageCode(BuildConfig.languageCode)
             RuntimeStorage.store(BuildConfig.languageCode, as: .languageCode)
-
-            if akCore.languageCodeIsLocked {
-                akCore.unlockLanguageCode(andSetTo: BuildConfig.languageCode)
-            } else {
-                akCore.setLanguageCode(BuildConfig.languageCode)
-            }
-
-            return nil
         }
     }
 }
