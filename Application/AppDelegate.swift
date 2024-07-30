@@ -39,7 +39,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         @Dependency(\.build) var build: Build
         @Dependency(\.coreKit) var core: CoreKit
         @Dependency(\.reportDelegate) var reportDelegate: ReportDelegate
-        @Dependency(\.translationService) var translator: TranslationService
+        @Dependency(\.translatorConfig) var translatorConfig: Translator.Config
 
         /* MARK: Defaults Keys & Logging Setup */
 
@@ -47,7 +47,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Logger.setDomainsExcludedFromSessionRecord(BuildConfig.loggerDomainsExcludedFromSessionRecord)
         Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
-        translator.registerTranslationLoggerDelegate(Logger.TranslationLogger())
+        translatorConfig.registerLoggerDelegate(Logger.TranslationLogger())
 
         @Persistent(.breadcrumbsCaptureEnabled) var breadcrumbsCaptureEnabled: Bool?
         @Persistent(.breadcrumbsCapturesAllViews) var breadcrumbsCapturesAllViews: Bool?
@@ -96,6 +96,15 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         alertKitConfig.registerReportDelegate(reportDelegate)
         alertKitConfig.registerTranslationDelegate(TranslationDelegate())
 
+        /* MARK: Navigation Setup */
+
+        let navigationCoordinator: NavigationCoordinator<RootNavigationService> = .init(
+            .init(modal: .splash),
+            navigating: RootNavigationService()
+        )
+
+        NavigationCoordinatorResolver.shared.store(navigationCoordinator)
+
         /* MARK: Localization Setup */
 
         let localizedStrings = Localization.localizedStrings
@@ -115,26 +124,16 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let languageCodeDictionary = RuntimeStorage.languageCodeDictionary else { return }
 
         guard languageCodeDictionary[RuntimeStorage.languageCode] != nil else {
-            RuntimeStorage.store("en", as: .languageCode)
-            alertKitConfig.overrideTargetLanguageCode("en")
-
             Logger.log(
                 .init(
                     "Unsupported language code; reverting to English.",
                     metadata: [self, #file, #function, #line]
                 )
             )
+
+            core.utils.setLanguageCode("en")
             return
         }
-
-        /* MARK: Navigation Setup */
-
-        let navigationCoordinator: NavigationCoordinator<RootNavigationService> = .init(
-            .init(modal: .splash),
-            navigating: RootNavigationService()
-        )
-
-        NavigationCoordinatorResolver.shared.store(navigationCoordinator)
     }
 
     // MARK: - UISceneSession

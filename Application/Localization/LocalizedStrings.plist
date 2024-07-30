@@ -2617,6 +2617,161 @@ Hãy kết nối với Internet và cố gắng một lần nữa.</string>
 		<key>zh</key>
 		<string>报告错误</string>
 	</dict>
+	<key>report_sent</key>
+	<dict>
+		<key>af</key>
+		<string>Die verslag is gestuur</string>
+		<key>ar</key>
+		<string>تم إرسال التقرير</string>
+		<key>az</key>
+		<string>Məruzə göndərildi</string>
+		<key>be</key>
+		<string>Даклад быў адпраўлены</string>
+		<key>bg</key>
+		<string>Докладът е изпратен</string>
+		<key>bn</key>
+		<string>রিপোর্ট পাঠানো হয়েছে</string>
+		<key>bs</key>
+		<string>Izveštaj je poslan</string>
+		<key>ca</key>
+		<string>L’informe s’ha enviat</string>
+		<key>cs</key>
+		<string>Zpráva byla odeslána</string>
+		<key>cy</key>
+		<string>Anfonwyd yr adroddiad</string>
+		<key>da</key>
+		<string>Rapporten blev sendt</string>
+		<key>de</key>
+		<string>Der Bericht wurde gesendet</string>
+		<key>el</key>
+		<string>Η αναφορά στάλθηκε</string>
+		<key>en</key>
+		<string>Report sent</string>
+		<key>eo</key>
+		<string>La raporto estis sendita</string>
+		<key>es</key>
+		<string>El informe fue enviado</string>
+		<key>et</key>
+		<string>Aruanne saadeti</string>
+		<key>eu</key>
+		<string>Txostena bidali da</string>
+		<key>fa</key>
+		<string>گزارش ارسال شد</string>
+		<key>fi</key>
+		<string>Raportti lähetettiin</string>
+		<key>fr</key>
+		<string>Le rapport a été envoyé</string>
+		<key>ga</key>
+		<string>Seoladh an tuarascáil</string>
+		<key>gd</key>
+		<string>Chaidh an aithisg a chuir</string>
+		<key>gl</key>
+		<string>O informe foi enviado</string>
+		<key>gu</key>
+		<string>અહેવાલ મોકલવામાં આવ્યો હતો</string>
+		<key>he</key>
+		<string>הדו&quot;ח נשלח</string>
+		<key>hi</key>
+		<string>रिपोर्ट भेजी गई थी</string>
+		<key>hr</key>
+		<string>Izvještaj je poslan</string>
+		<key>ht</key>
+		<string>Rapò a te voye</string>
+		<key>hu</key>
+		<string>A jelentést elküldték</string>
+		<key>hy</key>
+		<string>Զեկույցը ուղարկվել է</string>
+		<key>id</key>
+		<string>Laporan itu dikirim</string>
+		<key>is</key>
+		<string>Skýrslan var send</string>
+		<key>it</key>
+		<string>Il rapporto è stato inviato</string>
+		<key>ja</key>
+		<string>報告書が送信されました</string>
+		<key>ka</key>
+		<string>Ანგარიში გაიგზავნა</string>
+		<key>kk</key>
+		<string>Есеп жіберілді</string>
+		<key>kn</key>
+		<string>ವರದಿಯನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</string>
+		<key>ko</key>
+		<string>보고서가 전송되었습니다</string>
+		<key>ky</key>
+		<string>Отчет жөнөтүлдү</string>
+		<key>lt</key>
+		<string>Pranešimas buvo išsiųstas</string>
+		<key>mg</key>
+		<string>Nalefa ny tatitra</string>
+		<key>mi</key>
+		<string>I tukuna te ripoata</string>
+		<key>mk</key>
+		<string>Извештајот беше испратен</string>
+		<key>ml</key>
+		<string>റിപ്പോർട്ട് അയച്ചു</string>
+		<key>mn</key>
+		<string>Тайланг илгээсэн</string>
+		<key>mt</key>
+		<string>Ir-rapport intbagħat</string>
+		<key>ne</key>
+		<string>रिपोर्ट पठाइएको थियो</string>
+		<key>nl</key>
+		<string>Het rapport is verzonden</string>
+		<key>no</key>
+		<string>Rapporten ble sendt</string>
+		<key>pa</key>
+		<string>ਰਿਪੋਰਟ ਭੇਜੀ ਗਈ ਸੀ</string>
+		<key>pl</key>
+		<string>Raport został wysłany</string>
+		<key>pt</key>
+		<string>O relatório foi enviado</string>
+		<key>ro</key>
+		<string>Raportul a fost trimis</string>
+		<key>ru</key>
+		<string>Отчет был отправлен.</string>
+		<key>si</key>
+		<string>වාර්තාව එව්වා</string>
+		<key>sk</key>
+		<string>Správa bola zaslaná</string>
+		<key>sl</key>
+		<string>Poročilo je bilo poslano</string>
+		<key>sq</key>
+		<string>Raporti u dërgua</string>
+		<key>sr</key>
+		<string>Извештај је послан</string>
+		<key>su</key>
+		<string>Laporanna dikirim</string>
+		<key>sv</key>
+		<string>Rapporten skickades</string>
+		<key>sw</key>
+		<string>Ripoti hiyo ilitumwa</string>
+		<key>ta</key>
+		<string>அறிக்கை அனுப்பப்பட்டது</string>
+		<key>te</key>
+		<string>నివేదిక పంపారు</string>
+		<key>tg</key>
+		<string>Ҳисобот фиристода шуд</string>
+		<key>th</key>
+		<string>รายงานได้ถูกส่งไปแล้ว</string>
+		<key>tl</key>
+		<string>Ipinadala ang ulat</string>
+		<key>tr</key>
+		<string>Rapor gönderildi</string>
+		<key>tt</key>
+		<string>Доклад җибәрелде</string>
+		<key>uk</key>
+		<string>Звіт був надісланий</string>
+		<key>ur</key>
+		<string>رپورٹ بھیجی گئی تھی</string>
+		<key>uz</key>
+		<string>Hisobot yuborildi</string>
+		<key>vi</key>
+		<string>Báo cáo đã được gửi</string>
+		<key>yi</key>
+		<string>דער באַריכט איז געשיקט</string>
+		<key>zh</key>
+		<string>该报告已发送</string>
+	</dict>
 	<key>saturday</key>
 	<dict>
 		<key>af</key>

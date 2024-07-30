@@ -63,17 +63,12 @@ public extension TranslationService {
     ) {
         @Dependency(\.coreKit) var core: CoreKit
         @Dependency(\.translationService) var translator: TranslationService
-        @Dependency(\.uiApplication) var uiApplication: UIApplication
         var didComplete = false
 
         if let hudConfig {
             core.gcd.after(hudConfig.appearsAfter) {
                 guard !didComplete else { return }
-                core.hud.showProgress()
-                guard hudConfig.isModal else { return }
-                Task { @MainActor in
-                    uiApplication.keyWindow?.isUserInteractionEnabled = false
-                }
+                core.hud.showProgress(isModal: hudConfig.isModal)
             }
         }
 
@@ -81,10 +76,6 @@ public extension TranslationService {
             guard !didComplete else { return false }
             didComplete = true
             core.hud.hide()
-            guard let hudConfig, hudConfig.isModal else { return true }
-            Task { @MainActor in
-                uiApplication.keyWindow?.isUserInteractionEnabled = true
-            }
             return true
         }
 

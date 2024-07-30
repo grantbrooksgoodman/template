@@ -35,6 +35,7 @@ public enum LocalizedStringKey: String {
     case noResults
 
     case reportBug
+    case reportSent
 
     case saturday
     case search

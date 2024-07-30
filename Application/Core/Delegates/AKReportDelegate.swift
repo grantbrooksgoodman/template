@@ -135,15 +135,18 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
         }
 
         guard mailComposer.canSendMail else {
-            Logger.log(
-                .init(
-                    Localized(.noEmail).wrappedValue,
-                    isReportable: false,
-                    metadata: [self, #file, #function, #line]
-                ),
-                with: .errorAlert
+            let exception: Exception = .init(
+                "Device is not configured for e-mail.",
+                isReportable: false,
+                extraParams: [Exception.CommonParamKeys.userFacingDescriptor.rawValue: Localized(.noEmail).wrappedValue],
+                metadata: [self, #file, #function, #line]
             )
 
+            Logger.log(exception)
+            await AKErrorAlert(
+                exception,
+                dismissButtonTitle: Localized(.dismiss).wrappedValue
+            ).present(translating: [])
             return
         }
 
@@ -193,7 +196,7 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
             case .sent:
                 Observables.rootViewToast.value = .init(
                     .capsule(style: .success),
-                    message: Localized(.errorReportedSuccessfully).wrappedValue,
+                    message: Localized(.reportSent).wrappedValue,
                     perpetuation: .ephemeral(.seconds(3))
                 )
 
@@ -219,13 +222,14 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
         var sections = [
             "build_number": "\(build.buildNumber)\(build.stage.shortString)",
             "build_sku": build.buildSKU,
-            "bundle_version": build.bundleVersion,
             "connection_status": build.isOnline ? "online" : "offline",
             "device_model": "\(SystemInformation.modelName) (\(SystemInformation.modelCode.lowercased()))",
+            "internal_bundle_version": build.bundleVersion,
             "language_code": RuntimeStorage.languageCode,
             "occurrence_date": dateFormatter.string(from: .now),
             "operating_system_id": SystemInformation.osVersion.lowercased(),
             "project_id": build.projectID,
+            "release_bundle_version": build.bundleReleaseVersion,
         ]
 
         guard let error else { return attachmentData(sections) }

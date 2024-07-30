@@ -181,6 +181,12 @@ extension UINavigationController: UIGestureRecognizerDelegate {
 // MARK: - UIView
 
 public extension UIView {
+    func addOrEnable(_ gestureRecognizer: UIGestureRecognizer) {
+        guard let existingGestureRecognizer = gestureRecognizers?
+            .first(where: { $0 == gestureRecognizer }) else { return addGestureRecognizer(gestureRecognizer) }
+        existingGestureRecognizer.isEnabled = true
+    }
+
     func addOverlay(
         alpha: CGFloat = 1,
         activityIndicator indicatorConfig: (style: UIActivityIndicatorView.Style, color: UIColor)? = nil,

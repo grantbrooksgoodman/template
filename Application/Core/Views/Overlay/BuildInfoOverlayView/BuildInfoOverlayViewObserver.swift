@@ -19,7 +19,11 @@ public struct BuildInfoOverlayViewObserver: Observer {
     // MARK: - Properties
 
     public let id = UUID()
-    public let observedValues: [any ObservableProtocol] = [Observables.breadcrumbsDidCapture, Observables.isDeveloperModeEnabled]
+    public let observedValues: [any ObservableProtocol] = [
+        Observables.breadcrumbsDidCapture,
+        Observables.isDeveloperModeEnabled,
+        Observables.languageCodeChanged,
+    ]
     public let viewModel: ViewModel<R>
 
     // MARK: - Init
@@ -48,6 +52,9 @@ public struct BuildInfoOverlayViewObserver: Observer {
         case .isDeveloperModeEnabled:
             guard let value = observable.value as? Bool else { return }
             send(.isDeveloperModeEnabledChanged(value))
+
+        case .languageCodeChanged:
+            send(.languageCodeChanged)
 
         default: ()
         }

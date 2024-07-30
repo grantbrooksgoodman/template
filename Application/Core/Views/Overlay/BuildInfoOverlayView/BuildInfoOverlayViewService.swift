@@ -67,7 +67,7 @@ public struct BuildInfoOverlayViewService {
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
 
             await AKActionSheet(
-                message: "File a Report",
+                title: "File a Report",
                 actions: [
                     .init("Send Feedback") { reportDelegate.sendFeedback() },
                     .init("Report Bug") { reportDelegate.reportBug() },
@@ -111,8 +111,19 @@ public struct BuildInfoOverlayViewService {
     }
 
     private func viewBuildInformationButtonTapped() {
-        // swiftlint:disable:next line_length
-        let message = "Build Number\n\(String(build.buildNumber))\n\nBuild Stage\n\(build.stage.rawValue.capitalized)\n\nBundle Version\n\(build.bundleVersion)\n\nProject ID\n\(build.projectID)\n\nSKU\n\(build.buildSKU)"
+        let buildStageString = "Build Stage\n\(build.stage.rawValue.capitalized)"
+        let bundleVersionString = "Bundle Version\n\(build.bundleVersion) (\(String(build.buildNumber)))"
+        let projectIDString = "Project ID\n\(build.projectID)"
+        let releaseVersionString = "Release Version\n\(build.bundleReleaseVersion) (\(String(build.releaseBuildNumber)))"
+        let skuString = "SKU\n\(build.buildSKU)"
+
+        let message = [
+            buildStageString,
+            bundleVersionString,
+            projectIDString,
+            releaseVersionString,
+            skuString,
+        ].joined(separator: "\n\n")
         let attributedMessage = message.attributed(
             mainAttributes: [.font: UIFont.systemFont(ofSize: 13)],
             alternateAttributes: [.font: UIFont.boldSystemFont(ofSize: 14)],
@@ -121,6 +132,7 @@ public struct BuildInfoOverlayViewService {
                 "Build Stage",
                 "Bundle Version",
                 "Project ID",
+                "Release Version",
                 "SKU",
             ]
         )

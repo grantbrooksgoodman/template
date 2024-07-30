@@ -50,7 +50,7 @@ public extension DevModeAction {
                     }
 
                     await AKActionSheet(
-                        message: "Change Theme",
+                        title: "Change Theme",
                         actions: actions
                     ).present(translating: [])
                 }
@@ -71,7 +71,6 @@ public extension DevModeAction {
             @Sendable
             func overrideLanguageCode() {
                 Task {
-                    @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
                     @Dependency(\.coreKit) var core: CoreKit
 
                     guard RuntimeStorage.retrieve(.overriddenLanguageCode) == nil else {
@@ -114,10 +113,7 @@ public extension DevModeAction {
                         return
                     }
 
-                    RuntimeStorage.store(input, as: .languageCode)
-                    RuntimeStorage.store(input, as: .overriddenLanguageCode)
-
-                    alertKitConfig.overrideTargetLanguageCode(input)
+                    core.utils.setLanguageCode(input, override: true)
                     core.hud.showSuccess()
                 }
             }
@@ -227,7 +223,12 @@ public extension DevModeAction {
         private static var viewLoggerSessionRecordAction: DevModeAction {
             func viewLoggerSessionRecord() {
                 @Dependency(\.quickViewer) var quickViewer: QuickViewer
-                quickViewer.preview(fileAtPath: Logger.sessionRecordFilePath.path())
+                if let exception = quickViewer.preview(
+                    filesAtPaths: [Logger.sessionRecordFilePath.path()],
+                    embedded: true
+                ) {
+                    Logger.log(exception, with: .toast())
+                }
             }
 
             return .init(title: "View Logger Session Record", perform: viewLoggerSessionRecord)

@@ -63,6 +63,7 @@ public struct CoreKit {
 
         /* MARK: Dependencies */
 
+        @Dependency(\.uiApplication.keyWindow) private var keyWindow: UIWindow?
         @Dependency(\.mainQueue) private var mainQueue: DispatchQueue
 
         /* MARK: Methods */
@@ -94,33 +95,39 @@ public struct CoreKit {
         }
 
         public func hide(after delay: Duration? = nil) {
-            let gcd: GCD = .init()
+            mainQueue.async {
+                let gcd: GCD = .init()
 
-            guard let delay else {
-                ProgressHUD.dismiss()
-                gcd.after(.milliseconds(250)) { ProgressHUD.remove() }
-                return
-            }
+                func hideHUD() {
+                    keyWindow?.isUserInteractionEnabled = true
+                    ProgressHUD.dismiss()
+                    gcd.after(.milliseconds(250)) { ProgressHUD.remove() }
+                }
 
-            gcd.after(delay) {
-                ProgressHUD.dismiss()
-                gcd.after(.milliseconds(250)) { ProgressHUD.remove() }
+                guard let delay else { return hideHUD() }
+                gcd.after(delay) { hideHUD() }
             }
         }
 
-        public func showProgress(after delay: Duration? = nil, text: String? = nil) {
-            guard let delay else {
-                Task { @MainActor in
+        public func showProgress(
+            text: String? = nil,
+            after delay: Duration? = nil,
+            isModal: Bool = false
+        ) {
+            mainQueue.async {
+                func showHUD() {
                     ProgressHUD.show(text)
+                    guard isModal else { return }
+                    keyWindow?.isUserInteractionEnabled = false
                 }
-                return
-            }
 
-            GCD().after(delay) { ProgressHUD.show(text) }
+                guard let delay else { return showHUD() }
+                GCD().after(delay) { showHUD() }
+            }
         }
 
         public func showSuccess(text: String? = nil) {
-            Task { @MainActor in
+            mainQueue.async {
                 ProgressHUD.showSucceed(text)
             }
         }
@@ -279,9 +286,18 @@ public struct CoreKit {
         /* MARK: Methods */
 
         public func restoreDeviceLanguageCode() {
+            setLanguageCode(BuildConfig.languageCode)
+        }
+
+        public func setLanguageCode(_ languageCode: String, override: Bool = false) {
             @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
-            alertKitConfig.overrideTargetLanguageCode(BuildConfig.languageCode)
-            RuntimeStorage.store(BuildConfig.languageCode, as: .languageCode)
+
+            alertKitConfig.overrideTargetLanguageCode(languageCode)
+            RuntimeStorage.store(languageCode, as: .languageCode)
+            Observables.languageCodeChanged.trigger()
+
+            guard override else { return }
+            RuntimeStorage.store(languageCode, as: .overriddenLanguageCode)
         }
     }
 }

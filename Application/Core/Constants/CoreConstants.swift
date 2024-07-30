@@ -26,6 +26,7 @@ public enum CoreConstants {
 public extension Observables {
     static let breadcrumbsDidCapture: Observable<Nil> = .init(key: .breadcrumbsDidCapture)
     static let isDeveloperModeEnabled: Observable<Bool> = .init(.isDeveloperModeEnabled, false)
+    static let languageCodeChanged: Observable<Nil> = .init(key: .languageCodeChanged)
     static let rootViewSheet: Observable<AnyView?> = .init(.rootViewSheet, nil)
     static let rootViewToast: Observable<Toast?> = .init(.rootViewToast, nil)
     static let rootViewToastAction: Observable<() -> Void> = .init(.rootViewToastAction) {}

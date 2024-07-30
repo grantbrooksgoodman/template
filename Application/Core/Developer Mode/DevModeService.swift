@@ -106,7 +106,7 @@ public enum DevModeService {
             }
 
             await AKActionSheet(
-                message: "Developer Mode Options",
+                title: "Developer Mode Options",
                 actions: akActions
             ).present(translating: [])
         }

@@ -67,8 +67,13 @@ public final class Build {
 
     // MARK: - Computed Properties
 
+    // Int
+    public var buildNumber: Int { getBuildNumber() }
+    public var releaseBuildNumber: Int { getReleaseBuildNumber() }
+
     // String
     public var buildSKU: String { getBuildSKU() }
+    public var bundleReleaseVersion: String { getBundleReleaseVersion() }
     public var bundleVersion: String { getBundleVersion() }
     public var expirationOverrideCode: String { getExpirationOverrideCode() }
     public var expiryInfoString: String { getExpiryInfoString() }
@@ -77,7 +82,6 @@ public final class Build {
     private var isReleaseBuild: Bool { getIsReleaseBuild() }
 
     // Other
-    public var buildNumber: Int { getBuildNumber() }
     public var expiryDate: Date { getExpiryDate() }
     public var isOnline: Bool { getNetworkStatus() }
 
@@ -150,12 +154,13 @@ public final class Build {
         return "\(formattedBuildDateString)-\(threeLetterID)-\(String(format: "%06d", getBuildNumber()))\(stage.shortString)"
     }
 
-    private func getBundleVersion() -> String {
-        guard !isReleaseBuild else {
-            guard let shortReleaseVersionString = infoDictionary["CFBundleShortReleaseVersionString"] as? String else { return .init() }
-            return shortReleaseVersionString
-        }
+    private func getBundleReleaseVersion() -> String {
+        guard let shortReleaseVersionString = infoDictionary["CFBundleShortReleaseVersionString"] as? String else { return .init() }
+        return shortReleaseVersionString
+    }
 
+    private func getBundleVersion() -> String {
+        guard !isReleaseBuild else { return getBundleReleaseVersion() }
         guard let bundleReleaseVersionString = infoDictionary["CFBundleReleaseVersion"] as? String,
               let currentReleaseBuildNumber = Int(bundleReleaseVersionString) else { return .init() }
         return "\(String(appStoreReleaseVersion)).\(String(currentReleaseBuildNumber / 150)).\(String(currentReleaseBuildNumber / 50))"
@@ -264,6 +269,12 @@ public final class Build {
         }
 
         return (Array(NSOrderedSet(array: projectIDComponents)) as? [String] ?? []).joined()
+    }
+
+    private func getReleaseBuildNumber() -> Int {
+        guard let bundleVersionString = infoDictionary["CFBundleReleaseVersion"] as? String,
+              let buildNumber = Int(bundleVersionString) else { return 0 }
+        return buildNumber
     }
 }
 

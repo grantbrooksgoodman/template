@@ -56,6 +56,7 @@
 		B92409812AB2C5AB004CF4C0 /* Breadcrumbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409802AB2C5AB004CF4C0 /* Breadcrumbs.swift */; };
 		B92409832AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409822AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift */; };
 		B92409852AB2DFC0004CF4C0 /* LoggerDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */; };
+		B92502DC2C444A37008D0575 /* StatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92502DB2C444A37008D0575 /* StatusBarStyle.swift */; };
 		B9260BBA2AC4105C00824A7C /* BuildDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9260BB92AC4105C00824A7C /* BuildDependency.swift */; };
 		B92CF00F28F4DF9800870B5C /* StoredItemKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92CF00E28F4DF9800870B5C /* StoredItemKeys.swift */; };
 		B9317DE92C2DD858004600B6 /* CoreArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B9317DE82C2DD858004600B6 /* CoreArchitecture */; };
@@ -90,6 +91,7 @@
 		B946D87C2ACC8A59001D2424 /* AlertKit+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946D87B2ACC8A59001D2424 /* AlertKit+CoreExtensions.swift */; };
 		B946D87E2ACC966E001D2424 /* Duration+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */; };
 		B95013E72C34915200932E23 /* LocalTranslationArchiverDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95013E62C34915200932E23 /* LocalTranslationArchiverDependency.swift */; };
+		B95490192C3E203D008690E6 /* TranslatorConfigDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95490182C3E203D008690E6 /* TranslatorConfigDependency.swift */; };
 		B95798382AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95798372AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift */; };
 		B957ABF32B915F1C00DA7B72 /* Notification+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957ABF22B915F1C00DA7B72 /* Notification+CoreExtensions.swift */; };
 		B957ABF52B915F2A00DA7B72 /* View+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957ABF42B915F2A00DA7B72 /* View+CoreExtensions.swift */; };
@@ -315,6 +317,7 @@
 		B92409802AB2C5AB004CF4C0 /* Breadcrumbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breadcrumbs.swift; sourceTree = "<group>"; };
 		B92409822AB2D6C3004CF4C0 /* BreadcrumbsDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadcrumbsDependency.swift; sourceTree = "<group>"; };
 		B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerDomains.swift; sourceTree = "<group>"; };
+		B92502DB2C444A37008D0575 /* StatusBarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarStyle.swift; sourceTree = "<group>"; };
 		B9260BB92AC4105C00824A7C /* BuildDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildDependency.swift; sourceTree = "<group>"; };
 		B92CF00E28F4DF9800870B5C /* StoredItemKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredItemKeys.swift; sourceTree = "<group>"; };
 		B93457062AABF9F200944602 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -347,6 +350,7 @@
 		B946D87B2ACC8A59001D2424 /* AlertKit+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertKit+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Duration+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B95013E62C34915200932E23 /* LocalTranslationArchiverDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTranslationArchiverDependency.swift; sourceTree = "<group>"; };
+		B95490182C3E203D008690E6 /* TranslatorConfigDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorConfigDependency.swift; sourceTree = "<group>"; };
 		B95798372AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreConstants+HeaderView.swift"; sourceTree = "<group>"; };
 		B957ABF22B915F1C00DA7B72 /* Notification+CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B957ABF42B915F2A00DA7B72 /* View+CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+CoreExtensions.swift"; sourceTree = "<group>"; };
@@ -744,6 +748,7 @@
 				B9B172F72C3DAE6900765F8A /* ReportDelegateDependency.swift */,
 				B9D241052B8543D000E26CC6 /* RootWindowServiceDependency.swift */,
 				B9E7D4162AAC06D000FAF2A9 /* TranslationServiceDependency.swift */,
+				B95490182C3E203D008690E6 /* TranslatorConfigDependency.swift */,
 				B93457112AAC015200944602 /* UIApplicationDependency.swift */,
 				B93BCDCD2AAD854B00AA16FE /* URLSessionDependency.swift */,
 				B94657682AABBC740091193B /* UserDefaultsDependency.swift */,
@@ -949,6 +954,7 @@
 				B9CC83182AB0F4BB00255116 /* QuickViewer.swift */,
 				B978B19E2B87CEAF00AA007A /* RootSheets.swift */,
 				B9988BFE2AC4C72800C4924C /* RuntimeStorage.swift */,
+				B92502DB2C444A37008D0575 /* StatusBarStyle.swift */,
 				A2DF2CB728199D3C0089DEA1 /* SystemInformation.swift */,
 				B9C582FE29BECA8D009DCE29 /* Timeout.swift */,
 				B9BB3CF02AC0C5F00077D1BC /* TranslationMap.swift */,
@@ -1284,6 +1290,7 @@
 				B9E7D46E2AAD117A00FAF2A9 /* Core.swift in Sources */,
 				B9E7D4762AAD35CE00FAF2A9 /* Date+CoreExtensions.swift in Sources */,
 				B9DDD1582B85B1A300AB5BD3 /* StatusBarStyleViewModifier.swift in Sources */,
+				B92502DC2C444A37008D0575 /* StatusBarStyle.swift in Sources */,
 				B9BEC83A2AE6F9EC0040FB1F /* EnvironmentValues+CoreExtensions.swift in Sources */,
 				B9C582F529BEC266009DCE29 /* DevModeService.swift in Sources */,
 				B9B172F62C3DACFC00765F8A /* CoreKit+CoreExtensions.swift in Sources */,
@@ -1330,6 +1337,7 @@
 				B9B172F22C3DAA1A00765F8A /* BuildExpiryAlert.swift in Sources */,
 				B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */,
 				A286879F28A4A1CB00A34912 /* AKReportDelegate.swift in Sources */,
+				B95490192C3E203D008690E6 /* TranslatorConfigDependency.swift in Sources */,
 				B93457122AAC015200944602 /* UIApplicationDependency.swift in Sources */,
 				B9E7D4412AAC227100FAF2A9 /* BuildInfoOverlayViewObserver.swift in Sources */,
 				B9F3615B2C18DD6000586D1D /* AppConstants+SplashPageView.swift in Sources */,
