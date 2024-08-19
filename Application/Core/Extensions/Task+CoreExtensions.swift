@@ -9,14 +9,26 @@
 import Foundation
 
 public extension Task where Failure == Error {
+    @discardableResult
+    static func background(
+        delayedBy duration: Duration = .zero,
+        @_implicitSelfCapture operation: @escaping @Sendable () async throws -> Success
+    ) -> Task {
+        Task(priority: .background) {
+            guard duration != .zero else { return try await operation() }
+            try await Task<Never, Never>.sleep(nanoseconds: .init(duration.timeInterval * 1_000_000_000))
+            return try await operation()
+        }
+    }
+
+    @discardableResult
     static func delayed(
-        byTimeInterval delayInterval: TimeInterval,
+        by duration: Duration,
         priority: TaskPriority? = nil,
-        operation: @escaping @Sendable () async throws -> Success
+        @_implicitSelfCapture operation: @escaping @Sendable () async throws -> Success
     ) -> Task {
         Task(priority: priority) {
-            let delay = UInt64(delayInterval * 1_000_000_000)
-            try await Task<Never, Never>.sleep(nanoseconds: delay)
+            try await Task<Never, Never>.sleep(nanoseconds: .init(duration.timeInterval * 1_000_000_000))
             return try await operation()
         }
     }

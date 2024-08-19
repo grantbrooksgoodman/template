@@ -73,7 +73,7 @@ public extension TranslationService {
         case let .success(translations):
             let outputs = strings.keyPairs.reduce(into: [TranslationOutputMap]()) { partialResult, keyPair in
                 if let translation = translations.first(where: { $0.input.value == keyPair.input.value }) {
-                    partialResult.append(.init(key: keyPair.key, value: translation.output.sanitized))
+                    partialResult.append(.init(key: keyPair.key, value: translation.output))
                 } else {
                     partialResult.append(keyPair.defaultOutputMap)
                 }

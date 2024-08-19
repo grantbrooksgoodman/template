@@ -137,7 +137,7 @@ public final class BuildExpiryAlert {
             guard let input else { exit(0) }
             guard input == build.expirationOverrideCode else {
                 core.hud.flash(incorrectOverrideCodeHUDText, image: .exclamation)
-                _ = Task.delayed(byTimeInterval: 2) { await self.present() }
+                _ = Task.delayed(by: .seconds(2)) { await self.present() }
                 return
             }
 

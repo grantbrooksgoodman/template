@@ -69,17 +69,15 @@ public final class Build {
 
     // Int
     public var buildNumber: Int { getBuildNumber() }
-    public var releaseBuildNumber: Int { getReleaseBuildNumber() }
+    public var revisionBuildNumber: Int { getRevisionBuildNumber() }
 
     // String
     public var buildSKU: String { getBuildSKU() }
-    public var bundleReleaseVersion: String { getBundleReleaseVersion() }
     public var bundleVersion: String { getBundleVersion() }
+    public var bundleRevision: String { getBundleRevision() }
     public var expirationOverrideCode: String { getExpirationOverrideCode() }
     public var expiryInfoString: String { getExpiryInfoString() }
     public var projectID: String { getProjectID() }
-
-    private var isReleaseBuild: Bool { getIsReleaseBuild() }
 
     // Other
     public var expiryDate: Date { getExpiryDate() }
@@ -135,9 +133,7 @@ public final class Build {
     // MARK: - Computed Property Getters
 
     private func getBuildNumber() -> Int {
-        guard let bundleVersionString = infoDictionary["CFBundleVersion"] as? String,
-              let buildNumber = Int(bundleVersionString) else { return 0 }
-        return buildNumber
+        Int(infoDictionary["CFBundleVersion"] as? String ?? "") ?? 0
     }
 
     private func getBuildSKU() -> String {
@@ -154,16 +150,26 @@ public final class Build {
         return "\(formattedBuildDateString)-\(threeLetterID)-\(String(format: "%06d", getBuildNumber()))\(stage.shortString)"
     }
 
-    private func getBundleReleaseVersion() -> String {
-        guard let shortReleaseVersionString = infoDictionary["CFBundleShortReleaseVersionString"] as? String else { return .init() }
-        return shortReleaseVersionString
+    private func getBundleVersion() -> String {
+        infoDictionary["CFBundleShortVersionString"] as? String ?? "0.0.0"
     }
 
-    private func getBundleVersion() -> String {
-        guard !isReleaseBuild else { return getBundleReleaseVersion() }
-        guard let bundleReleaseVersionString = infoDictionary["CFBundleReleaseVersion"] as? String,
-              let currentReleaseBuildNumber = Int(bundleReleaseVersionString) else { return .init() }
-        return "\(String(appStoreReleaseVersion)).\(String(currentReleaseBuildNumber / 150)).\(String(currentReleaseBuildNumber / 50))"
+    private func getBundleRevision() -> String {
+        let alphabet = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        let revisionMilestone = getRevisionBuildNumber() / 150
+
+        func letterRepresentation(_ index: Int) -> String {
+            guard let letter = alphabet.itemAt(index) else { return "A" }
+            return .init(letter)
+        }
+
+        if revisionMilestone >= alphabet.count {
+            var remainder = revisionMilestone
+            while remainder > alphabet.count { remainder /= alphabet.count }
+            return letterRepresentation(remainder)
+        } else {
+            return letterRepresentation(revisionMilestone)
+        }
     }
 
     private func getExpirationOverrideCode() -> String {
@@ -187,14 +193,14 @@ public final class Build {
         }.joined()
     }
 
-    private func getIsReleaseBuild() -> Bool {
-        guard let isReleaseBuild = infoDictionary["IsReleaseBuild"] as? Bool else { return true }
-        return isReleaseBuild
-    }
-
     private func getExpiryDate() -> Date {
-        guard let futureDate = calendar.date(byAdding: .day, value: 30, to: .init(timeIntervalSince1970: buildDateUnixDouble).comparator) else { return Date() }
-        return futureDate.comparator
+        calendar.date(
+            byAdding: .day,
+            value: 30,
+            to: .init(
+                timeIntervalSince1970: buildDateUnixDouble
+            ).comparator
+        )?.comparator ?? .distantPast
     }
 
     private func getExpiryInfoString() -> String {
@@ -271,10 +277,8 @@ public final class Build {
         return (Array(NSOrderedSet(array: projectIDComponents)) as? [String] ?? []).joined()
     }
 
-    private func getReleaseBuildNumber() -> Int {
-        guard let bundleVersionString = infoDictionary["CFBundleReleaseVersion"] as? String,
-              let buildNumber = Int(bundleVersionString) else { return 0 }
-        return buildNumber
+    private func getRevisionBuildNumber() -> Int {
+        Int(infoDictionary["CFBundleRevision"] as? String ?? "0") ?? 0
     }
 }
 

@@ -49,7 +49,6 @@
 		B91689092AC760AA00AF403D /* MainQueueDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91689082AC760AA00AF403D /* MainQueueDependency.swift */; };
 		B91A10FE2AFF36FD00E3C1A0 /* InterfaceStyleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91A10FD2AFF36FD00E3C1A0 /* InterfaceStyleViewModifier.swift */; };
 		B91A11002AFF398B00E3C1A0 /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91A10FF2AFF398B00E3C1A0 /* Cacheable.swift */; };
-		B91A11022AFF39C900E3C1A0 /* CacheDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91A11012AFF39C900E3C1A0 /* CacheDomains.swift */; };
 		B920F1872AD77128002FC1C2 /* Calendar+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920F1862AD77128002FC1C2 /* Calendar+CoreExtensions.swift */; };
 		B920F1892AD7C243002FC1C2 /* Locale+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920F1882AD7C243002FC1C2 /* Locale+CoreExtensions.swift */; };
 		B920F18B2AD7C93A002FC1C2 /* LocaleDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920F18A2AD7C93A002FC1C2 /* LocaleDependency.swift */; };
@@ -58,6 +57,7 @@
 		B92409852AB2DFC0004CF4C0 /* LoggerDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */; };
 		B92502DC2C444A37008D0575 /* StatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92502DB2C444A37008D0575 /* StatusBarStyle.swift */; };
 		B9260BBA2AC4105C00824A7C /* BuildDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9260BB92AC4105C00824A7C /* BuildDependency.swift */; };
+		B9299F782C68745A00DAE200 /* TimestampDateFormatterDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9299F772C68745A00DAE200 /* TimestampDateFormatterDependency.swift */; };
 		B92CF00F28F4DF9800870B5C /* StoredItemKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92CF00E28F4DF9800870B5C /* StoredItemKeys.swift */; };
 		B9317DE92C2DD858004600B6 /* CoreArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B9317DE82C2DD858004600B6 /* CoreArchitecture */; };
 		B93457072AABF9F200944602 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93457062AABF9F200944602 /* Localization.swift */; };
@@ -156,6 +156,7 @@
 		B9DB71092AD3897200EAC88B /* StoredItemKeyDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DB71082AD3897200EAC88B /* StoredItemKeyDomain.swift */; };
 		B9DDD1582B85B1A300AB5BD3 /* StatusBarStyleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DDD1572B85B1A300AB5BD3 /* StatusBarStyleViewModifier.swift */; };
 		B9DE08122C3C98210099FB85 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = B9DE08112C3C98210099FB85 /* AlertKit */; };
+		B9E2E60F2C72E554004022FE /* CacheDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E2E60E2C72E554004022FE /* CacheDomains.swift */; };
 		B9E6D7C72B126B68000BC88D /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E6D7C62B126B68000BC88D /* ProgressHUD.swift */; };
 		B9E7D4172AAC06D000FAF2A9 /* TranslationServiceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4162AAC06D000FAF2A9 /* TranslationServiceDependency.swift */; };
 		B9E7D41A2AAC0FC500FAF2A9 /* FileManagerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D4192AAC0FC500FAF2A9 /* FileManagerDependency.swift */; };
@@ -310,7 +311,6 @@
 		B91689082AC760AA00AF403D /* MainQueueDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDependency.swift; sourceTree = "<group>"; };
 		B91A10FD2AFF36FD00E3C1A0 /* InterfaceStyleViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceStyleViewModifier.swift; sourceTree = "<group>"; };
 		B91A10FF2AFF398B00E3C1A0 /* Cacheable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
-		B91A11012AFF39C900E3C1A0 /* CacheDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheDomains.swift; sourceTree = "<group>"; };
 		B920F1862AD77128002FC1C2 /* Calendar+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B920F1882AD7C243002FC1C2 /* Locale+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B920F18A2AD7C93A002FC1C2 /* LocaleDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleDependency.swift; sourceTree = "<group>"; };
@@ -319,6 +319,7 @@
 		B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerDomains.swift; sourceTree = "<group>"; };
 		B92502DB2C444A37008D0575 /* StatusBarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarStyle.swift; sourceTree = "<group>"; };
 		B9260BB92AC4105C00824A7C /* BuildDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildDependency.swift; sourceTree = "<group>"; };
+		B9299F772C68745A00DAE200 /* TimestampDateFormatterDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampDateFormatterDependency.swift; sourceTree = "<group>"; };
 		B92CF00E28F4DF9800870B5C /* StoredItemKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredItemKeys.swift; sourceTree = "<group>"; };
 		B93457062AABF9F200944602 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		B93457082AABFB3700944602 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
@@ -414,6 +415,7 @@
 		B9DB71062AD3891700EAC88B /* UserDefaultsKeyDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeyDomain.swift; sourceTree = "<group>"; };
 		B9DB71082AD3897200EAC88B /* StoredItemKeyDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredItemKeyDomain.swift; sourceTree = "<group>"; };
 		B9DDD1572B85B1A300AB5BD3 /* StatusBarStyleViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarStyleViewModifier.swift; sourceTree = "<group>"; };
+		B9E2E60E2C72E554004022FE /* CacheDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheDomains.swift; sourceTree = "<group>"; };
 		B9E6D7C62B126B68000BC88D /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		B9E7D4162AAC06D000FAF2A9 /* TranslationServiceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServiceDependency.swift; sourceTree = "<group>"; };
 		B9E7D4192AAC0FC500FAF2A9 /* FileManagerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDependency.swift; sourceTree = "<group>"; };
@@ -747,6 +749,7 @@
 				B9CC831A2AB0F6B800255116 /* QuickViewerDependency.swift */,
 				B9B172F72C3DAE6900765F8A /* ReportDelegateDependency.swift */,
 				B9D241052B8543D000E26CC6 /* RootWindowServiceDependency.swift */,
+				B9299F772C68745A00DAE200 /* TimestampDateFormatterDependency.swift */,
 				B9E7D4162AAC06D000FAF2A9 /* TranslationServiceDependency.swift */,
 				B95490182C3E203D008690E6 /* TranslatorConfigDependency.swift */,
 				B93457112AAC015200944602 /* UIApplicationDependency.swift */,
@@ -996,7 +999,7 @@
 				B9E7D42A2AAC1F4000FAF2A9 /* AppConstants.swift */,
 				B99F13F32A280A0500B9FCE2 /* AppDefaultsKeys.swift */,
 				B93BCDF22AADA47400AA16FE /* BuildConfig.swift */,
-				B91A11012AFF39C900E3C1A0 /* CacheDomains.swift */,
+				B9E2E60E2C72E554004022FE /* CacheDomains.swift */,
 				B9C5830729BECE59009DCE29 /* DevModeActions.swift */,
 				B91688D928FE0E4C004C80A2 /* ExceptionCatalog.swift */,
 				B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */,
@@ -1215,7 +1218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\napp_store_release_version=0\ncurrent_app_store_build_number=0\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nIS_RELEASE_BUILD=$(/usr/libexec/PlistBuddy -c \"Print IsReleaseBuild\" \"$INFOPLIST_FILE\")\n\nBUILD_NUMBER=$(($BUILD_NUMBER + 1))\nrelease_build_number=$((($BUILD_NUMBER) - current_app_store_build_number))\nbuild_date=`date +%s`\n\nif [ \"$IS_RELEASE_BUILD\" = true ] ; then\n    RELEASE_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortReleaseVersionString\" \"$INFOPLIST_FILE\")\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $RELEASE_VERSION\" \"$INFOPLIST_FILE\"\nelse\n    minor_release_number=$((release_build_number / 150))\n    bug_fix_release_number=$((release_build_number / 50))\n    bundle_version=\"$((app_store_release_version)).$((minor_release_number)).$((bug_fix_release_number))\"\n        \n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $bundle_version\" \"$INFOPLIST_FILE\"\nfi\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $build_date\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleReleaseVersion $release_build_number\" \"$INFOPLIST_FILE\"\n";
+			shellScript = "#!/bin/bash\ncurrent_app_store_build_number=0\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nBUILD_NUMBER=$(($BUILD_NUMBER + 1))\n\nrevision_build_number=$((($BUILD_NUMBER) - current_app_store_build_number))\nbuild_date=`date +%s`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $build_date\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleRevision $revision_build_number\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"$INFOPLIST_FILE\"\n";
 		};
 		B98145F22AB4F34100937D37 /* Run SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1290,6 +1293,7 @@
 				B9E7D46E2AAD117A00FAF2A9 /* Core.swift in Sources */,
 				B9E7D4762AAD35CE00FAF2A9 /* Date+CoreExtensions.swift in Sources */,
 				B9DDD1582B85B1A300AB5BD3 /* StatusBarStyleViewModifier.swift in Sources */,
+				B9299F782C68745A00DAE200 /* TimestampDateFormatterDependency.swift in Sources */,
 				B92502DC2C444A37008D0575 /* StatusBarStyle.swift in Sources */,
 				B9BEC83A2AE6F9EC0040FB1F /* EnvironmentValues+CoreExtensions.swift in Sources */,
 				B9C582F529BEC266009DCE29 /* DevModeService.swift in Sources */,
@@ -1302,7 +1306,6 @@
 				B93BCDF72AAF937500AA16FE /* FileManager+CoreExtensions.swift in Sources */,
 				B9E7D4272AAC1F0400FAF2A9 /* FailurePageView.swift in Sources */,
 				B9CC83192AB0F4BB00255116 /* QuickViewer.swift in Sources */,
-				B91A11022AFF39C900E3C1A0 /* CacheDomains.swift in Sources */,
 				B9D241042B85439F00E26CC6 /* ThemeService+CoreExtensions.swift in Sources */,
 				B946D87C2ACC8A59001D2424 /* AlertKit+CoreExtensions.swift in Sources */,
 				B9E7D4292AAC1F0400FAF2A9 /* CoreConstants+FailurePageView.swift in Sources */,
@@ -1392,6 +1395,7 @@
 				B9CC83202AB11E7F00255116 /* ThemedReducer.swift in Sources */,
 				B91688ED2904913E004C80A2 /* Logger.swift in Sources */,
 				B9E7D4462AAC257A00FAF2A9 /* BuildInfoOverlayViewServiceDependency.swift in Sources */,
+				B9E2E60F2C72E554004022FE /* CacheDomains.swift in Sources */,
 				B99F13F42A280A0500B9FCE2 /* AppDefaultsKeys.swift in Sources */,
 				B91689072AC75FFB00AF403D /* MainBundleDependency.swift in Sources */,
 				B93BCDEB2AAD9D9D00AA16FE /* LanguagePair+CoreExtensions.swift in Sources */,

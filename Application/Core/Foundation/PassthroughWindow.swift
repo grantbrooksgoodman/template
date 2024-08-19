@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class PassthroughWindow: UIWindow {
+public final class PassthroughWindow: UIWindow {
     override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         guard let hitView = super.hitTest(point, with: event) else { return nil }
         return rootViewController?.view == hitView ? nil : hitView

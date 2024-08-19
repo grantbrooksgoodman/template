@@ -59,16 +59,12 @@ public struct BuildInfoOverlayReducer: Reducer {
         }
     }
 
-    // MARK: - Init
-
-    public init() { RuntimeStorage.store(#file, as: .presentedViewName) }
-
     // MARK: - Reduce
 
     public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
         switch event {
-        case .action(.viewAppeared):
-            state.buildInfoButtonText = "\(build.codeName) \(build.bundleVersion) (\(String(build.buildNumber))\(build.stage.shortString))"
+        case .action(.viewAppeared): // swiftlint:disable:next line_length
+            state.buildInfoButtonText = "\(build.codeName) \(build.bundleVersion) (\(String(build.buildNumber))\(build.stage.shortString)/\(build.bundleRevision.lowercased()))"
 
             @Persistent(.developerModeEnabled) var defaultsValue: Bool?
             guard let defaultsValue else { return .none }

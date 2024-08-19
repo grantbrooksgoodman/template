@@ -19,8 +19,9 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
     @Dependency(\.alertKitConfig) private var alertKitConfig: AlertKit.Config
     @Dependency(\.build) private var build: Build
     @Dependency(\.coreKit) private var core: CoreKit
-    @Dependency(\.reportDelegateDateFormatter) private var dateFormatter: DateFormatter
+    @Dependency(\.timestampDateFormatter) private var dateFormatter: DateFormatter
     @Dependency(\.fileManager) private var fileManager: FileManager
+    @Dependency(\.uiApplication.keyViewController?.frontmostViewController) private var frontmostViewController: UIViewController?
     @Dependency(\.jsonEncoder) private var jsonEncoder: JSONEncoder
     @Dependency(\.mailComposer) private var mailComposer: MailComposer
 
@@ -220,17 +221,20 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
         }
 
         var sections = [
-            "build_number": "\(build.buildNumber)\(build.stage.shortString)",
             "build_sku": build.buildSKU,
+            "bundle_revision": "\(build.bundleRevision) (\(build.revisionBuildNumber))",
+            "bundle_version": "\(build.bundleVersion) (\(build.buildNumber)\(build.stage.shortString))",
             "connection_status": build.isOnline ? "online" : "offline",
             "device_model": "\(SystemInformation.modelName) (\(SystemInformation.modelCode.lowercased()))",
-            "internal_bundle_version": build.bundleVersion,
             "language_code": RuntimeStorage.languageCode,
-            "occurrence_date": dateFormatter.string(from: .now),
-            "operating_system_id": SystemInformation.osVersion.lowercased(),
+            "os_version": SystemInformation.osVersion.lowercased(),
             "project_id": build.projectID,
-            "release_bundle_version": build.bundleReleaseVersion,
+            "timestamp": dateFormatter.string(from: .now),
         ]
+
+        if let frontmostViewController {
+            sections["view_id"] = String(type(of: frontmostViewController))
+        }
 
         guard let error else { return attachmentData(sections) }
 
@@ -254,23 +258,5 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
         }
 
         return attachmentData(sections)
-    }
-}
-
-/* MARK: DateFormatter Dependency */
-
-private enum ReportDelegateDateFormatterDependency: DependencyKey {
-    public static func resolve(_: DependencyValues) -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-        formatter.locale = .init(identifier: "en_US")
-        return formatter
-    }
-}
-
-private extension DependencyValues {
-    var reportDelegateDateFormatter: DateFormatter {
-        get { self[ReportDelegateDateFormatterDependency.self] }
-        set { self[ReportDelegateDateFormatterDependency.self] = newValue }
     }
 }

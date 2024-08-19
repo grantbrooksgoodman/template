@@ -9,24 +9,16 @@
 /* Native */
 import Foundation
 
-/**
- Use this enum to define domains for new objects conforming to `Cacheable`.
- */
-public enum CacheDomain: Equatable, Hashable {
-    // MARK: - Cases
+public extension CoreKit.Utilities {
+    // MARK: - Types
 
-    case `default`(DefaultCacheDomainKey)
-
-    // MARK: - Properties
-
-    public var rawValue: String {
-        switch self {
-        case let .default(key):
-            return key.rawValue
-        }
+    enum CacheDomain: CaseIterable {
+        case localization
     }
-}
 
-public enum DefaultCacheDomainKey: String {
-    case cacheableValueKey
+    // MARK: - Clear Caches
+
+    func clearCaches(domains: [CacheDomain] = CacheDomain.allCases) {
+        if domains.contains(.localization) { Localization.clearCache() }
+    }
 }

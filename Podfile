@@ -6,7 +6,7 @@ target 'Template' do
   use_frameworks!
 
   # Pods for Template
-  pod 'SwiftFormat/CLI', '~> 0.49'
+  pod 'SwiftFormat/CLI'
   pod 'SwiftLint'
 end
 

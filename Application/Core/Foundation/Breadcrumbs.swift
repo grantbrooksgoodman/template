@@ -13,6 +13,14 @@ import UIKit
 import CoreArchitecture
 
 public final class Breadcrumbs {
+    // MARK: - Dependencies
+
+    @Dependency(\.build) private var build: Build
+    @Dependency(\.coreKit.gcd) private var coreGCD: CoreKit.GCD
+    @Dependency(\.breadcrumbsDateFormatter) private var dateFormatter: DateFormatter
+    @Dependency(\.fileManager) private var fileManager: FileManager
+    @Dependency(\.uiApplication) private var uiApplication: UIApplication
+
     // MARK: - Properties
 
     // Array
@@ -27,19 +35,15 @@ public final class Breadcrumbs {
     // MARK: - Computed Properties
 
     private var filePath: URL {
-        @Dependency(\.build) var build: Build
-        @Dependency(\.breadcrumbsDateFormatter) var dateFormatter: DateFormatter
-        @Dependency(\.fileManager) var fileManager: FileManager
-
         let documents = fileManager.documentsDirectoryURL
-        let timeString = dateFormatter.string(from: Date())
+        let timeString = dateFormatter.string(from: .now)
 
         var fileName: String!
-        if let viewName = RuntimeStorage.presentedViewName {
-            fileName = "\(build.codeName)_\(viewName) @ \(timeString).png"
+        if let frontmostViewController = uiApplication.keyViewController?.frontmostViewController {
+            fileName = "\(build.codeName)_\(String(type(of: frontmostViewController))) @ \(timeString).png"
         } else {
             let fileNamePrefix = "\(build.codeName)_\(String(build.buildNumber))"
-            let fileNameSuffix = "\(build.stage.shortString) @ \(timeString).png"
+            let fileNameSuffix = "\(build.stage.shortString) | \(build.bundleRevision) @ \(timeString).png"
             fileName = fileNamePrefix + fileNameSuffix
         }
 
@@ -62,7 +66,6 @@ public final class Breadcrumbs {
         isCapturing = true
 
         func continuallyCapture() {
-            @Dependency(\.coreKit.gcd) var coreGCD: CoreKit.GCD
             guard isCapturing else { return }
             capture()
             coreGCD.after(.seconds(10)) { continuallyCapture() }
@@ -86,8 +89,6 @@ public final class Breadcrumbs {
 
     private func capture() {
         func saveImage() {
-            @Dependency(\.uiApplication) var uiApplication: UIApplication
-
             guard let image = uiApplication.snapshot,
                   let pngData = image.pngData() else { return }
 
@@ -101,9 +102,9 @@ public final class Breadcrumbs {
         guard Int.random(in: 1 ... 1_000_000) % 3 == 0 else { return }
 
         if uniqueViewsOnly {
-            guard let viewName = RuntimeStorage.presentedViewName,
-                  !fileHistory.contains(viewName) else { return }
-            fileHistory.append(viewName)
+            guard let frontmostViewController = uiApplication.keyViewController?.frontmostViewController,
+                  !fileHistory.contains(String(type(of: frontmostViewController))) else { return }
+            fileHistory.append(String(type(of: frontmostViewController)))
             saveImage()
         } else {
             saveImage()

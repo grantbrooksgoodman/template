@@ -258,3 +258,19 @@ public extension UIView {
         return subviews.filter { $0.tag == coreUI.semTag(for: string) }
     }
 }
+
+// MARK: - UIViewController
+
+public extension UIViewController {
+    /// Recursively resolves the last child view controller among its `children` in the view controller hierarchy.
+    var frontmostViewController: UIViewController {
+        var viewController = self
+
+        while !viewController.children.isEmpty {
+            guard let lastChild = viewController.children.last else { return viewController }
+            viewController = lastChild
+        }
+
+        return viewController
+    }
+}

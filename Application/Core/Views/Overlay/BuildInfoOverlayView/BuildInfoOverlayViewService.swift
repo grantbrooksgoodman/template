@@ -114,16 +114,17 @@ public struct BuildInfoOverlayViewService {
         let buildStageString = "Build Stage\n\(build.stage.rawValue.capitalized)"
         let bundleVersionString = "Bundle Version\n\(build.bundleVersion) (\(String(build.buildNumber)))"
         let projectIDString = "Project ID\n\(build.projectID)"
-        let releaseVersionString = "Release Version\n\(build.bundleReleaseVersion) (\(String(build.releaseBuildNumber)))"
+        let revisionString = "Revision\n\(build.bundleRevision) (\(String(build.revisionBuildNumber)))"
         let skuString = "SKU\n\(build.buildSKU)"
 
         let message = [
             buildStageString,
             bundleVersionString,
             projectIDString,
-            releaseVersionString,
+            revisionString,
             skuString,
         ].joined(separator: "\n\n")
+
         let attributedMessage = message.attributed(
             mainAttributes: [.font: UIFont.systemFont(ofSize: 13)],
             alternateAttributes: [.font: UIFont.boldSystemFont(ofSize: 14)],
@@ -132,7 +133,7 @@ public struct BuildInfoOverlayViewService {
                 "Build Stage",
                 "Bundle Version",
                 "Project ID",
-                "Release Version",
+                "Revision",
                 "SKU",
             ]
         )
