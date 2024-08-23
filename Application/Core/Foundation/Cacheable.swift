@@ -32,31 +32,61 @@ public struct Cache<KeyType: RawRepresentable> where KeyType.RawValue: StringPro
 }
 
 @propertyWrapper
-public struct Cached<KeyType: RawRepresentable, T> where KeyType.RawValue: StringProtocol, KeyType: CaseIterable {
+public struct Cached<KeyType: RawRepresentable, ObjectType> where KeyType.RawValue: StringProtocol, KeyType: CaseIterable {
+    // MARK: - Types
+
+    private enum LoggingActionType: String {
+        case getValue = "Returning"
+        case removeValue = "Removing"
+        case setValue = "Setting"
+    }
+
     // MARK: - Properties
 
     private let cache: Cache<KeyType> = .init()
     private let key: KeyType
+    private let logsAccess: Bool
 
     // MARK: - Init
 
-    public init(_ key: KeyType) {
+    public init(
+        _ key: KeyType,
+        logsAccess: Bool = false
+    ) {
         self.key = key
+        self.logsAccess = logsAccess
     }
 
     // MARK: - WrappedValue
 
-    public var wrappedValue: T? {
-        get { cache.value(forKey: key) as? T }
+    public var wrappedValue: ObjectType? {
+        get {
+            guard let value = cache.value(forKey: key) as? ObjectType else { return nil }
+            log(.getValue, key: key)
+            return value
+        }
 
         set {
             guard let newValue else {
                 cache.removeObject(forKey: key)
+                log(.removeValue, key: key)
                 return
             }
 
             cache.set(newValue, forKey: key)
+            log(.setValue, key: key)
         }
+    }
+
+    // MARK: - Logging
+
+    private func log(_ type: LoggingActionType, key: KeyType) {
+        guard logsAccess else { return }
+        Logger.log(
+            "\(type.rawValue) cached value for key \"\(key.rawValue)\".",
+            domain: .caches,
+            metadata: [self, #file, #function, #line]
+        )
     }
 }
 

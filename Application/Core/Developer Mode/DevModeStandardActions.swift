@@ -21,6 +21,7 @@ public extension DevModeAction {
             var availableActions: [DevModeAction] = [
                 toggleBuildInfoOverlayAction,
                 overrideLanguageCodeAction,
+                clearCachesAction,
                 resetUserDefaultsAction,
                 toggleBreadcrumbsAction,
                 viewLoggerSessionRecordAction,
@@ -59,8 +60,18 @@ public extension DevModeAction {
             return .init(title: "Change Theme", perform: changeTheme)
         }
 
+        private static var clearCachesAction: DevModeAction {
+            func clearCaches() {
+                @Dependency(\.coreKit) var core: CoreKit
+                core.utils.clearCaches()
+                core.hud.flash(image: .success)
+            }
+
+            return .init(title: "Clear Caches", perform: clearCaches)
+        }
+
         private static var disableDeveloperModeAction: DevModeAction {
-            return .init(
+            .init(
                 title: "Disable Developer Mode",
                 perform: DevModeService.promptToToggle,
                 isDestructive: true

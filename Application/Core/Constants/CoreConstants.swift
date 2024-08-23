@@ -67,5 +67,6 @@ public extension UserDefaultsKeyDomain {
         case developerModeEnabled
         case hidesBuildInfoOverlay
         case pendingThemeID
+        case translationArchive
     }
 }

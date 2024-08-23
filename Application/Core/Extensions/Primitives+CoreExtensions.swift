@@ -60,6 +60,9 @@ public extension Int {
 
 // MARK: - String
 
+// Implementation inherited from Translator.
+extension String: EncodedHashable {}
+
 public extension String {
     /* MARK: Properties */
 

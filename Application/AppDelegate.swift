@@ -38,7 +38,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         @Dependency(\.breadcrumbs) var breadcrumbs: Breadcrumbs
         @Dependency(\.build) var build: Build
         @Dependency(\.coreKit) var core: CoreKit
-        @Dependency(\.reportDelegate) var reportDelegate: ReportDelegate
         @Dependency(\.translatorConfig) var translatorConfig: Translator.Config
 
         /* MARK: Defaults Keys & Logging Setup */
@@ -47,7 +46,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Logger.setDomainsExcludedFromSessionRecord(BuildConfig.loggerDomainsExcludedFromSessionRecord)
         Logger.subscribe(to: BuildConfig.loggerDomainSubscriptions)
-        translatorConfig.registerLoggerDelegate(Logger.TranslationLogger())
 
         @Persistent(.breadcrumbsCaptureEnabled) var breadcrumbsCaptureEnabled: Bool?
         @Persistent(.breadcrumbsCapturesAllViews) var breadcrumbsCapturesAllViews: Bool?
@@ -86,15 +84,19 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             ThemeService.setTheme(AppTheme.default.theme, checkStyle: false)
         }
 
-        /* MARK: AlertKit Setup */
+        /* MARK: AlertKit & Translator Setup */
 
         alertKitConfig.overrideTargetLanguageCode(RuntimeStorage.languageCode)
         alertKitConfig.overrideTranslationHUDConfig(.init(appearsAfter: .milliseconds(500), isModal: true))
 
         alertKitConfig.registerLoggerDelegate(Logger.AlertKitLogger())
         alertKitConfig.registerPresentationDelegate(core)
-        alertKitConfig.registerReportDelegate(reportDelegate)
-        alertKitConfig.registerTranslationDelegate(TranslationDelegate())
+
+        ReportDelegate.registerWithDependencies()
+        TranslationDelegate.registerWithDependencies()
+
+        LocalTranslationArchiverDelegate.registerWithDependencies()
+        translatorConfig.registerLoggerDelegate(Logger.TranslationLogger())
 
         /* MARK: Navigation Setup */
 

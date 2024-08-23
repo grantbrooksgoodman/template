@@ -90,7 +90,6 @@
 		B94657752AABC66F0091193B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94657742AABC66F0091193B /* RootView.swift */; };
 		B946D87C2ACC8A59001D2424 /* AlertKit+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946D87B2ACC8A59001D2424 /* AlertKit+CoreExtensions.swift */; };
 		B946D87E2ACC966E001D2424 /* Duration+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */; };
-		B95013E72C34915200932E23 /* LocalTranslationArchiverDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95013E62C34915200932E23 /* LocalTranslationArchiverDependency.swift */; };
 		B95490192C3E203D008690E6 /* TranslatorConfigDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95490182C3E203D008690E6 /* TranslatorConfigDependency.swift */; };
 		B95798382AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95798372AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift */; };
 		B957ABF32B915F1C00DA7B72 /* Notification+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957ABF22B915F1C00DA7B72 /* Notification+CoreExtensions.swift */; };
@@ -98,6 +97,7 @@
 		B957ABF72B915F8E00DA7B72 /* RedrawsOnTraitCollectionChangeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957ABF62B915F8E00DA7B72 /* RedrawsOnTraitCollectionChangeViewModifier.swift */; };
 		B961A8EF2ACA8346007508EC /* ViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A8EE2ACA8346007508EC /* ViewObserver.swift */; };
 		B96A04FB2AC7C0530003FDB0 /* ProgressPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A04FA2AC7C0530003FDB0 /* ProgressPageView.swift */; };
+		B970B5C62C72EA070052040A /* TranslationArchiverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B970B5C52C72EA070052040A /* TranslationArchiverDelegate.swift */; };
 		B97381092ACE8A2000ADB173 /* Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97381082ACE8A2000ADB173 /* Persistent.swift */; };
 		B973C4EA2BC860FA00E7CCC2 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B973C4E92BC860FA00E7CCC2 /* NavigationBar.swift */; };
 		B973C4EC2BC8615500E7CCC2 /* NavigationBarAppearanceViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B973C4EB2BC8615500E7CCC2 /* NavigationBarAppearanceViewModifier.swift */; };
@@ -130,7 +130,6 @@
 		B9B172F22C3DAA1A00765F8A /* BuildExpiryAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B172F12C3DAA1A00765F8A /* BuildExpiryAlert.swift */; };
 		B9B172F42C3DAA2B00765F8A /* ConnectionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B172F32C3DAA2B00765F8A /* ConnectionAlert.swift */; };
 		B9B172F62C3DACFC00765F8A /* CoreKit+CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B172F52C3DACFC00765F8A /* CoreKit+CoreExtensions.swift */; };
-		B9B172F82C3DAE6900765F8A /* ReportDelegateDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B172F72C3DAE6900765F8A /* ReportDelegateDependency.swift */; };
 		B9BB3CF12AC0C5F00077D1BC /* TranslationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF02AC0C5F00077D1BC /* TranslationMap.swift */; };
 		B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */; };
 		B9BB3CF72AC1486D0077D1BC /* AKTranslationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF62AC1486D0077D1BC /* AKTranslationDelegate.swift */; };
@@ -350,7 +349,6 @@
 		B94657742AABC66F0091193B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		B946D87B2ACC8A59001D2424 /* AlertKit+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertKit+CoreExtensions.swift"; sourceTree = "<group>"; };
 		B946D87D2ACC966E001D2424 /* Duration+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Duration+CoreExtensions.swift"; sourceTree = "<group>"; };
-		B95013E62C34915200932E23 /* LocalTranslationArchiverDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTranslationArchiverDependency.swift; sourceTree = "<group>"; };
 		B95490182C3E203D008690E6 /* TranslatorConfigDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorConfigDependency.swift; sourceTree = "<group>"; };
 		B95798372AE4DE4800B9FFF9 /* CoreConstants+HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreConstants+HeaderView.swift"; sourceTree = "<group>"; };
 		B957ABF22B915F1C00DA7B72 /* Notification+CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+CoreExtensions.swift"; sourceTree = "<group>"; };
@@ -358,6 +356,7 @@
 		B957ABF62B915F8E00DA7B72 /* RedrawsOnTraitCollectionChangeViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedrawsOnTraitCollectionChangeViewModifier.swift; sourceTree = "<group>"; };
 		B961A8EE2ACA8346007508EC /* ViewObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
 		B96A04FA2AC7C0530003FDB0 /* ProgressPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPageView.swift; sourceTree = "<group>"; };
+		B970B5C52C72EA070052040A /* TranslationArchiverDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationArchiverDelegate.swift; sourceTree = "<group>"; };
 		B97381082ACE8A2000ADB173 /* Persistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistent.swift; sourceTree = "<group>"; };
 		B973C4E92BC860FA00E7CCC2 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		B973C4EB2BC8615500E7CCC2 /* NavigationBarAppearanceViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarAppearanceViewModifier.swift; sourceTree = "<group>"; };
@@ -390,7 +389,6 @@
 		B9B172F12C3DAA1A00765F8A /* BuildExpiryAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildExpiryAlert.swift; sourceTree = "<group>"; };
 		B9B172F32C3DAA2B00765F8A /* ConnectionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionAlert.swift; sourceTree = "<group>"; };
 		B9B172F52C3DACFC00765F8A /* CoreKit+CoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreKit+CoreExtensions.swift"; sourceTree = "<group>"; };
-		B9B172F72C3DAE6900765F8A /* ReportDelegateDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDelegateDependency.swift; sourceTree = "<group>"; };
 		B9BB3CF02AC0C5F00077D1BC /* TranslationMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationMap.swift; sourceTree = "<group>"; };
 		B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedLabelStringCollection.swift; sourceTree = "<group>"; };
 		B9BB3CF62AC1486D0077D1BC /* AKTranslationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKTranslationDelegate.swift; sourceTree = "<group>"; };
@@ -741,13 +739,11 @@
 				B9E7D4192AAC0FC500FAF2A9 /* FileManagerDependency.swift */,
 				B9AF12512ACE4DAD0045C54C /* JSONDependencies.swift */,
 				B920F18A2AD7C93A002FC1C2 /* LocaleDependency.swift */,
-				B95013E62C34915200932E23 /* LocalTranslationArchiverDependency.swift */,
 				B9B172EF2C3D96A000765F8A /* MailComposerDependency.swift */,
 				B91689062AC75FFB00AF403D /* MainBundleDependency.swift */,
 				B91689082AC760AA00AF403D /* MainQueueDependency.swift */,
 				B9EA3A892AC6BB3700674147 /* NotificationCenterDependency.swift */,
 				B9CC831A2AB0F6B800255116 /* QuickViewerDependency.swift */,
-				B9B172F72C3DAE6900765F8A /* ReportDelegateDependency.swift */,
 				B9D241052B8543D000E26CC6 /* RootWindowServiceDependency.swift */,
 				B9299F772C68745A00DAE200 /* TimestampDateFormatterDependency.swift */,
 				B9E7D4162AAC06D000FAF2A9 /* TranslationServiceDependency.swift */,
@@ -783,6 +779,7 @@
 			children = (
 				A286879E28A4A1CB00A34912 /* AKReportDelegate.swift */,
 				B9BB3CF62AC1486D0077D1BC /* AKTranslationDelegate.swift */,
+				B970B5C52C72EA070052040A /* TranslationArchiverDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -1353,12 +1350,10 @@
 				B920F1892AD7C243002FC1C2 /* Locale+CoreExtensions.swift in Sources */,
 				B90701CE2C17BE7600F80A02 /* RootNavigationService.swift in Sources */,
 				B91688DA28FE0E4C004C80A2 /* ExceptionCatalog.swift in Sources */,
-				B9B172F82C3DAE6900765F8A /* ReportDelegateDependency.swift in Sources */,
 				B9B172F42C3DAA2B00765F8A /* ConnectionAlert.swift in Sources */,
 				B99B1DBE29E4C43400117D42 /* ThemeService.swift in Sources */,
 				B93CAEAA2AF4621C00C03BF4 /* Toast+PerpetuationStrategy.swift in Sources */,
 				B946D87E2ACC966E001D2424 /* Duration+CoreExtensions.swift in Sources */,
-				B95013E72C34915200932E23 /* LocalTranslationArchiverDependency.swift in Sources */,
 				B9E7D4282AAC1F0400FAF2A9 /* FailurePageReducer.swift in Sources */,
 				B946576B2AABBD420091193B /* AlertKitConfigDependency.swift in Sources */,
 				B9E7D44C2AAC2EDD00FAF2A9 /* CoreConstants+BuildInfoOverlayView.swift in Sources */,
@@ -1428,6 +1423,7 @@
 				B90CCC092AC74478001C326F /* CoreConstants.swift in Sources */,
 				B99B1DC029E4C45000117D42 /* AppThemes.swift in Sources */,
 				B9DB71072AD3891700EAC88B /* UserDefaultsKeyDomain.swift in Sources */,
+				B970B5C62C72EA070052040A /* TranslationArchiverDelegate.swift in Sources */,
 				B90F331F2AE4D41A002A9284 /* HeaderView.swift in Sources */,
 				B9CC83172AB0DCA700255116 /* DevModeStandardActions.swift in Sources */,
 				B9AF12502ACE4AF50045C54C /* EncodedHashable.swift in Sources */,

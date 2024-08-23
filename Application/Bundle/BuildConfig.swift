@@ -30,5 +30,10 @@ public enum BuildConfig {
 
     public static let languageCode = Locale.systemLanguageCode
     public static let loggerDomainsExcludedFromSessionRecord: [LoggerDomain] = [.observer]
-    public static let loggerDomainSubscriptions: [LoggerDomain] = [.alertKit, .general, .translation]
+    public static let loggerDomainSubscriptions: [LoggerDomain] = [
+        .alertKit,
+        .caches,
+        .general,
+        .translation,
+    ]
 }

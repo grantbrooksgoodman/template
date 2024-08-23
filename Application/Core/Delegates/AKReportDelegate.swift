@@ -25,10 +25,6 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
     @Dependency(\.jsonEncoder) private var jsonEncoder: JSONEncoder
     @Dependency(\.mailComposer) private var mailComposer: MailComposer
 
-    // MARK: - Properties
-
-    public static let shared = ReportDelegate()
-
     // MARK: - Computed Properties
 
     private var bundleVersionString: String {
@@ -54,7 +50,14 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
 
     // MARK: - Init
 
-    private init() {}
+    fileprivate init() {}
+
+    // MARK: - Register with Dependencies
+
+    public static func registerWithDependencies() {
+        @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
+        alertKitConfig.registerReportDelegate(ReportDelegate())
+    }
 
     // MARK: - AlertKit.ReportDelegate Conformance
 
@@ -258,5 +261,20 @@ public struct ReportDelegate: AlertKit.ReportDelegate {
         }
 
         return attachmentData(sections)
+    }
+}
+
+/* MARK: Dependency */
+
+public enum ReportDelegateDependency: DependencyKey {
+    public static func resolve(_ dependencies: DependencyValues) -> ReportDelegate {
+        (dependencies.alertKitConfig.reportDelegate as? ReportDelegate) ?? .init()
+    }
+}
+
+public extension DependencyValues {
+    var reportDelegate: ReportDelegate {
+        get { self[ReportDelegateDependency.self] }
+        set { self[ReportDelegateDependency.self] = newValue }
     }
 }

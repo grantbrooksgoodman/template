@@ -18,6 +18,17 @@ public struct TranslationDelegate: AlertKit.TranslationDelegate {
 
     @Dependency(\.translationService) private var translator: TranslationService
 
+    // MARK: - Init
+
+    private init() {}
+
+    // MARK: - Register with Dependencies
+
+    public static func registerWithDependencies() {
+        @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
+        alertKitConfig.registerTranslationDelegate(TranslationDelegate())
+    }
+
     // MARK: - AKTranslationDelegate Conformance
 
     public func getTranslations(
