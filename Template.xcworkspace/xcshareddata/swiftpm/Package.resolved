@@ -1,40 +1,40 @@
 {
-  "originHash" : "77a71835edc0bccc5216ea7c676c049b6eae53c9450fb1369c2087a5082069df",
+  "originHash" : "9df09ab589b0d8849a515529fe179574c6c9a29cb6174fe4d259a52b1774e3b4",
   "pins" : [
     {
       "identity" : "alert-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grantbrooksgoodman/alert-kit",
       "state" : {
-        "branch" : "main",
-        "revision" : "7ec063ef843e908744a56b2bc7c11f2119aad663"
+        "revision" : "4d477725deec2d3bdcd1deff1cd57c958413dcd8",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "app-subsystem",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grantbrooksgoodman/app-subsystem",
+      "state" : {
+        "revision" : "6a71b8d64c2e7540046a07c135f6d4664cdb4365",
+        "version" : "1.0.0"
       }
     },
     {
       "identity" : "component-kit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/grantbrooksgoodman/component-kit.git",
+      "location" : "https://github.com/grantbrooksgoodman/component-kit",
       "state" : {
-        "branch" : "main",
-        "revision" : "029a8ef67653f6e4f0966cbc6c15b09109e6544e"
-      }
-    },
-    {
-      "identity" : "core-architecture",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/grantbrooksgoodman/core-architecture.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "45d6d08b23b755170c51ae7dbfcf01e82c81c5fe"
+        "revision" : "bb8e0d3d21adeb1e2bf559e3eef999cc079b7f77",
+        "version" : "1.0.0"
       }
     },
     {
       "identity" : "translator",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/grantbrooksgoodman/translator.git",
+      "location" : "https://github.com/grantbrooksgoodman/translator",
       "state" : {
-        "branch" : "main",
-        "revision" : "02ee8fc59e966f3d92d7b13f8683669098dc1d07"
+        "revision" : "8bc631ec5f73ff3cef0ba04871d78f57564e6906",
+        "version" : "1.0.0"
       }
     }
   ],

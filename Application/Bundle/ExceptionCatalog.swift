@@ -9,27 +9,25 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
-import CoreArchitecture
+/* Proprietary */
+import AppSubsystem
 
 /**
- Use this enum to catalog application-specific `Exception` types and their corresponding hashlet values.
+ Use this extension to catalog application-specific `Exception` types and their corresponding hashlet values.
  */
-public enum AppException: String {
-    /* Add new cases here. */
+public extension AppException {
+    // MARK: - Types
 
-    case timedOut = "DE75"
-}
-
-/**
- Use this method to add simplified descriptors for commonly encountered errors.
- */
-public extension Exception {
-    func userFacingDescriptor(for descriptor: String) -> String? {
-        switch descriptor {
-        /* Add simplified error descriptors here. */
-        default:
-            return nil
+    struct ExceptionMetadataDelegate: AppSubsystem.Delegates.ExceptionMetadataDelegate {
+        public func isReportable(_ hashlet: String) -> Bool { true }
+        public func userFacingDescriptor(for descriptor: String) -> String? {
+            switch descriptor {
+            default: nil
+            }
         }
     }
+
+    // MARK: - Properties
+
+    static let timedOut: AppException = .init("DE75")
 }

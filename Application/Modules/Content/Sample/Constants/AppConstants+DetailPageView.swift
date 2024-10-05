@@ -9,6 +9,9 @@
 /* Native */
 import Foundation
 
+/* Proprietary */
+import AppSubsystem
+
 // MARK: - CGFloat
 
 public extension AppConstants.CGFloats {
