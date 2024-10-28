@@ -9,12 +9,11 @@
 /* Native */
 import Foundation
 
-public extension StoredItemKeyDomain {
-    enum AppStoredItemKey: String {
-        /* Add cases here for each new stored item reference key. */
+/* Proprietary */
+import AppSubsystem
 
-        case `default`
-    }
+public extension StoredItemKey {
+    static let `default`: StoredItemKey = .init("default")
 }
 
 public extension RuntimeStorage {
