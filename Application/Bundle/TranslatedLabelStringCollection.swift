@@ -9,8 +9,11 @@
 /* Native */
 import Foundation
 
-public enum TranslatedLabelStringCollection: Equatable {
-    /* Add cases here to expose new strings for on-the-fly translation. */
+/* Proprietary */
+import AppSubsystem
 
-    case samplePageView(SamplePageViewStringKey)
+public extension TranslatedLabelStringCollection {
+    /* Add methods here to expose new strings for on-the-fly translation. */
+
+    static func samplePageView(_ key: SamplePageViewStringKey) -> TranslatedLabelStringCollection { .init(key.rawValue) }
 }

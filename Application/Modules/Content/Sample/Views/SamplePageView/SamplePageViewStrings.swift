@@ -9,7 +9,8 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
+/* Proprietary */
+import AppSubsystem
 import Translator
 
 public extension TranslatedLabelStringCollection {
