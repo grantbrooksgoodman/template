@@ -9,12 +9,18 @@
 /* Native */
 import Foundation
 
-public enum LoggerDomain: String, CaseIterable {
-    /* Add cases here to expose new domains to the logger. */
+/* Proprietary */
+import AppSubsystem
 
-    case alertKit
-    case caches
-    case general
-    case observer
-    case translation
+public extension LoggerDomain {
+    static let domainsExcludedFromSessionRecord: [LoggerDomain] = [
+        .observer,
+    ]
+
+    static let subscribedDomains: [LoggerDomain] = [
+        .alertKit,
+        .caches,
+        .general,
+        .translation,
+    ]
 }

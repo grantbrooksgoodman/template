@@ -8,6 +8,9 @@
 /* Native */
 import Foundation
 
+/* Proprietary */
+import AppSubsystem
+
 @propertyWrapper
 public struct Localized: Equatable {
     // MARK: - Properties
