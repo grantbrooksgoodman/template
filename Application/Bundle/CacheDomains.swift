@@ -9,25 +9,31 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
-import CoreArchitecture
+/* Proprietary */
+import AppSubsystem
 
-public extension CoreKit.Utilities {
+public extension CacheDomain {
     // MARK: - Types
 
-    enum CacheDomain: CaseIterable {
-        case encodedHash
-        case localization
-        case localTranslationArchive
+    struct List: AppSubsystem.Delegates.CacheDomainListDelegate {
+        public var allCacheDomains: [CacheDomain] {
+            [
+                .encodedHash,
+                .localization,
+                .localTranslationArchive,
+            ]
+        }
     }
 
-    // MARK: - Clear Caches
+    // MARK: - Properties
 
-    func clearCaches(domains: [CacheDomain] = CacheDomain.allCases) {
-        @Dependency(\.localTranslationArchiver) var localTranslationArchiver: LocalTranslationArchiverDelegate
+    static let localization: CacheDomain = .init("localization")
+}
 
-        if domains.contains(.encodedHash) { EncodedHashCache.clearCache() }
-        if domains.contains(.localization) { Localization.clearCache() }
-        if domains.contains(.localTranslationArchive) { localTranslationArchiver.clearArchive() }
+public extension CoreKit.Utilities {
+    func clearCaches(_ domains: [CacheDomain] = CacheDomain.allCases) {
+        let appDomains = clearCaches(domains: domains)
+
+        if appDomains.contains(.localization) { Localization.clearCache() }
     }
 }
