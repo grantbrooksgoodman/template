@@ -9,8 +9,8 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
-import CoreArchitecture
+/* Proprietary */
+import AppSubsystem
 import Translator
 
 public struct SamplePageReducer: Reducer {
@@ -29,13 +29,8 @@ public struct SamplePageReducer: Reducer {
 
         case modalButtonTapped
         case pushButtonTapped
-        case sheetButtonTapped
-    }
-
-    // MARK: - Feedback
-
-    public enum Feedback {
         case resolveReturned(Callback<[TranslationOutputMap], Exception>)
+        case sheetButtonTapped
     }
 
     // MARK: - State
@@ -61,31 +56,31 @@ public struct SamplePageReducer: Reducer {
 
     // MARK: - Reduce
 
-    public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
-        switch event {
-        case .action(.viewAppeared):
+    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
+        switch action {
+        case .viewAppeared:
             state.viewState = .loading
             return .task {
                 let result = await translator.resolve(SamplePageViewStrings.self)
                 return .resolveReturned(result)
             }
 
-        case .action(.modalButtonTapped):
+        case .modalButtonTapped:
             navigationCoordinator.navigate(to: .sampleContent(.modal(.modalDetail)))
 
-        case .action(.pushButtonTapped):
+        case .pushButtonTapped:
             navigationCoordinator.navigate(to: .sampleContent(.push(.pushDetail)))
 
-        case .action(.sheetButtonTapped):
-            navigationCoordinator.navigate(to: .sampleContent(.sheet(.sheetDetail)))
-
-        case let .feedback(.resolveReturned(.success(strings))):
+        case let .resolveReturned(.success(strings)):
             state.strings = strings
             state.viewState = .loaded
 
-        case let .feedback(.resolveReturned(.failure(exception))):
+        case let .resolveReturned(.failure(exception)):
             Logger.log(exception)
             state.viewState = .loaded
+
+        case .sheetButtonTapped:
+            navigationCoordinator.navigate(to: .sampleContent(.sheet(.sheetDetail)))
         }
 
         return .none

@@ -9,26 +9,14 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
-import CoreArchitecture
+/* Proprietary */
+import AppSubsystem
 
-public enum ObservableKey: String {
-    // MARK: - App Cases
-
-    /* Add cases here to define new values for Observer instances. */
-
-    // MARK: - Core Cases
-
-    case breadcrumbsDidCapture
-    case isDeveloperModeEnabled
-    case languageCodeChanged
-    case rootViewSheet
-    case rootViewToast
-    case rootViewToastAction
-    case themedViewAppearanceChanged
+public extension ObservableKey {
+    /* Add keys here to define new values for Observer instances. */
 }
 
 /// For sending and accessing observed values between scopes.
-public enum Observables {
+public extension Observables {
     /* Add new properties conforming to Observable here. */
 }

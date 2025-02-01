@@ -9,8 +9,8 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
-import CoreArchitecture
+/* Proprietary */
+import AppSubsystem
 
 public struct DetailPageReducer: Reducer {
     // MARK: - Properties
@@ -25,10 +25,6 @@ public struct DetailPageReducer: Reducer {
         case navigateBackButtonTapped
         case popToSplashButtonTapped
     }
-
-    // MARK: - Feedback
-
-    public typealias Feedback = Never
 
     // MARK: - State
 
@@ -66,7 +62,7 @@ public struct DetailPageReducer: Reducer {
 
     // MARK: - Reduce
 
-    public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
+    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
         func navigateBack() {
             switch state.configuration {
             case .modal:
@@ -80,14 +76,14 @@ public struct DetailPageReducer: Reducer {
             }
         }
 
-        switch event {
-        case .action(.viewAppeared):
+        switch action {
+        case .viewAppeared:
             break
 
-        case .action(.navigateBackButtonTapped):
+        case .navigateBackButtonTapped:
             navigateBack()
 
-        case .action(.popToSplashButtonTapped):
+        case .popToSplashButtonTapped:
             navigateBack()
             navigationCoordinator.navigate(to: .root(.modal(.splash)))
         }

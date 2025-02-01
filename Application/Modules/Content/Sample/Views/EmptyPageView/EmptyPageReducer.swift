@@ -9,8 +9,8 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
-import CoreArchitecture
+/* Proprietary */
+import AppSubsystem
 
 public struct EmptyPageReducer: Reducer {
     // MARK: - Actions
@@ -18,10 +18,6 @@ public struct EmptyPageReducer: Reducer {
     public enum Action {
         case viewAppeared
     }
-
-    // MARK: - Feedback
-
-    public enum Feedback {}
 
     // MARK: - State
 
@@ -33,9 +29,9 @@ public struct EmptyPageReducer: Reducer {
 
     // MARK: - Reduce
 
-    public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
-        switch event {
-        case .action(.viewAppeared):
+    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
+        switch action {
+        case .viewAppeared:
             break
         }
 

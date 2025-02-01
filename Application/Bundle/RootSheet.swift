@@ -10,22 +10,14 @@
 import Foundation
 import SwiftUI
 
-public enum RootSheet {
-    // MARK: - Cases
+/* Proprietary */
+import AppSubsystem
 
-    /* Add cases here to expose new views for presentation on the root sheet. */
+@MainActor
+public extension RootSheet {
+    /* Add values here to expose new views for presentation on the root sheet. */
 
-    case `default`
-
-    // MARK: - Properties
-
-    @MainActor
-    public var view: AnyView {
-        switch self {
-        case .default:
-            return .init(
-                EmptyView()
-            )
-        }
-    }
+    static let `default`: RootSheet = .init(.init(
+        EmptyView()
+    ))
 }

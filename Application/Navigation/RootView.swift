@@ -1,5 +1,5 @@
 //
-//  RootNavigationView.swift
+//  RootView.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -10,12 +10,27 @@
 import Foundation
 import SwiftUI
 
-/* 3rd-party */
-import CoreArchitecture
+/* Proprietary */
+import AppSubsystem
 
-public extension RootView {
+public struct RootView: View {
+    // MARK: - Properties
+
+    @ObservedNavigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+
+    // MARK: - Body
+
+    public var body: some View {
+        GeometryReader { proxy in
+            rootPage
+                .environment(\.mainWindowSize, proxy.size)
+        }
+    }
+
+    // MARK: - Root Page
+
     @ViewBuilder
-    var rootPage: some View {
+    private var rootPage: some View {
         switch navigationCoordinator.state.modal {
         case .sampleContent:
             withTransition {

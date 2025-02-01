@@ -9,8 +9,8 @@
 /* Native */
 import Foundation
 
-/* 3rd-party */
-import CoreArchitecture
+/* Proprietary */
+import AppSubsystem
 
 public struct SplashPageReducer: Reducer {
     // MARK: - Properties
@@ -23,10 +23,6 @@ public struct SplashPageReducer: Reducer {
         case viewAppeared
     }
 
-    // MARK: - Feedback
-
-    public typealias Feedback = Never
-
     // MARK: - State
 
     public struct State: Equatable {
@@ -37,9 +33,9 @@ public struct SplashPageReducer: Reducer {
 
     // MARK: - Reduce
 
-    public func reduce(into state: inout State, for event: Event) -> Effect<Feedback> {
-        switch event {
-        case .action(.viewAppeared):
+    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
+        switch action {
+        case .viewAppeared:
             return .task(delay: .seconds(1)) {
                 navigationCoordinator.navigate(to: .root(.modal(.sampleContent)))
                 return .none

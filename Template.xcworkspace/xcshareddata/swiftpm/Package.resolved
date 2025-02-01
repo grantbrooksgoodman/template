@@ -1,5 +1,5 @@
 {
-  "originHash" : "77a71835edc0bccc5216ea7c676c049b6eae53c9450fb1369c2087a5082069df",
+  "originHash" : "9df09ab589b0d8849a515529fe179574c6c9a29cb6174fe4d259a52b1774e3b4",
   "pins" : [
     {
       "identity" : "alert-kit",
@@ -7,34 +7,34 @@
       "location" : "https://github.com/grantbrooksgoodman/alert-kit",
       "state" : {
         "branch" : "main",
-        "revision" : "7ec063ef843e908744a56b2bc7c11f2119aad663"
+        "revision" : "7d13f6226d3d6c3b8d9014bdfcf73f7a1e72ac4d"
+      }
+    },
+    {
+      "identity" : "app-subsystem",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grantbrooksgoodman/app-subsystem",
+      "state" : {
+        "branch" : "main",
+        "revision" : "bf8996072b89956f43975223f4ffb19fc689c850"
       }
     },
     {
       "identity" : "component-kit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/grantbrooksgoodman/component-kit.git",
+      "location" : "https://github.com/grantbrooksgoodman/component-kit",
       "state" : {
         "branch" : "main",
-        "revision" : "029a8ef67653f6e4f0966cbc6c15b09109e6544e"
-      }
-    },
-    {
-      "identity" : "core-architecture",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/grantbrooksgoodman/core-architecture.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "45d6d08b23b755170c51ae7dbfcf01e82c81c5fe"
+        "revision" : "cf5acb1b1dc9b9ad00ba007c6afd9798cce1ec62"
       }
     },
     {
       "identity" : "translator",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/grantbrooksgoodman/translator.git",
+      "location" : "https://github.com/grantbrooksgoodman/translator",
       "state" : {
         "branch" : "main",
-        "revision" : "02ee8fc59e966f3d92d7b13f8683669098dc1d07"
+        "revision" : "6b1a81d5924f4a03043ebc7c43257133b0aa42d4"
       }
     }
   ],

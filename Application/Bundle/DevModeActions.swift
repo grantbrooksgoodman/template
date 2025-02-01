@@ -9,14 +9,43 @@
 /* Native */
 import Foundation
 
+/* Proprietary */
+import AppSubsystem
+
 /**
  Use this extension to add new actions to the Developer Mode menu.
  */
-public extension DevModeService {
-    // MARK: - Custom Action Addition
+public extension DevModeAction {
+    struct AppActions: AppSubsystem.Delegates.DevModeAppActionDelegate {
+        // MARK: - Properties
 
-    static func addCustomActions() {
-        /* Add custom DevModeAction implementations here. */
-        // addActions([])
+        public var appActions: [DevModeAction] = [
+            clearCachesAction,
+            resetUserDefaultsAction,
+        ]
+
+        // MARK: - Computed Properties
+
+        private static var clearCachesAction: DevModeAction {
+            func clearCaches() {
+                @Dependency(\.coreKit) var core: CoreKit
+                core.utils.clearCaches()
+                core.hud.flash(image: .success)
+            }
+
+            return .init(title: "Clear Caches", perform: clearCaches)
+        }
+
+        private static var resetUserDefaultsAction: DevModeAction {
+            func resetUserDefaults() {
+                @Dependency(\.coreKit.hud) var coreHUD: CoreKit.HUD
+                @Dependency(\.userDefaults) var defaults: UserDefaults
+
+                defaults.reset(keeping: UserDefaultsKey.coreKeys)
+                coreHUD.showSuccess(text: "Reset UserDefaults")
+            }
+
+            return .init(title: "Reset UserDefaults", perform: resetUserDefaults)
+        }
     }
 }
