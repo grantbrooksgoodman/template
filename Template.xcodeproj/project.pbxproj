@@ -227,7 +227,7 @@
 		A2DF2C4828199B660089DEA1 = {
 			isa = PBXGroup;
 			children = (
-				A2DF2C5328199B660089DEA1 /* Application */,
+				A2DF2C5328199B660089DEA1 /* Sources */,
 				A2DF2C5228199B660089DEA1 /* Products */,
 				A286879128A49DA600A34912 /* Frameworks */,
 				B715D9B1ECFB89E634B86164 /* Pods */,
@@ -242,18 +242,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A2DF2C5328199B660089DEA1 /* Application */ = {
+		A2DF2C5328199B660089DEA1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A2DF2C5428199B660089DEA1 /* AppDelegate.swift */,
-				A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */,
+				B9CCEBD02C8F83A200CB9C01 /* Application.swift */,
 				B9E7D4542AAC400B00FAF2A9 /* Bundle */,
 				B93457052AABF9E400944602 /* Localization */,
 				B91A0E242AFF2F8600E3C1A0 /* Modules */,
 				B94657702AABC6200091193B /* Navigation */,
 				A2DF2C6F28199BF40089DEA1 /* Resources */,
 			);
-			path = Application;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		A2DF2C6F28199BF40089DEA1 /* Resources */ = {
@@ -376,6 +375,15 @@
 			path = Content;
 			sourceTree = "<group>";
 		};
+		B91C90342D821B2900959AEB /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				A2DF2C5428199B660089DEA1 /* AppDelegate.swift */,
+				A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		B93457052AABF9E400944602 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,9 +453,9 @@
 		B9E7D4542AAC400B00FAF2A9 /* Bundle */ = {
 			isa = PBXGroup;
 			children = (
+				B91C90342D821B2900959AEB /* Delegates */,
 				B9F361522C18B56800586D1D /* Navigators */,
 				B99B1DC929E4C7EC00117D42 /* Themes */,
-				B9CCEBD02C8F83A200CB9C01 /* Application.swift */,
 				B9E2E60E2C72E554004022FE /* CacheDomains.swift */,
 				B9C5830729BECE59009DCE29 /* DevModeActions.swift */,
 				B91688D928FE0E4C004C80A2 /* ExceptionCatalog.swift */,
@@ -993,7 +1001,7 @@
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 7R4R2FSWH9;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Application/Resources/Property Lists/Info.plist";
+				INFOPLIST_FILE = "Sources/Resources/Property Lists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1018,7 +1026,7 @@
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 7R4R2FSWH9;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Application/Resources/Property Lists/Info.plist";
+				INFOPLIST_FILE = "Sources/Resources/Property Lists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
