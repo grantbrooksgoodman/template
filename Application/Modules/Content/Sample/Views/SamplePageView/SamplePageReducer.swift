@@ -16,11 +16,8 @@ import Translator
 public struct SamplePageReducer: Reducer {
     // MARK: - Dependencies
 
+    @Dependency(\.navigation) private var navigation: NavigationCoordinator<RootNavigationService>
     @Dependency(\.translationService) private var translator: TranslationService
-
-    // MARK: - Properties
-
-    @Navigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
 
     // MARK: - Actions
 
@@ -66,10 +63,10 @@ public struct SamplePageReducer: Reducer {
             }
 
         case .modalButtonTapped:
-            navigationCoordinator.navigate(to: .sampleContent(.modal(.modalDetail)))
+            navigation.navigate(to: .sampleContent(.modal(.modalDetail)))
 
         case .pushButtonTapped:
-            navigationCoordinator.navigate(to: .sampleContent(.push(.pushDetail)))
+            navigation.navigate(to: .sampleContent(.push(.pushDetail)))
 
         case let .resolveReturned(.success(strings)):
             state.strings = strings
@@ -80,7 +77,7 @@ public struct SamplePageReducer: Reducer {
             state.viewState = .loaded
 
         case .sheetButtonTapped:
-            navigationCoordinator.navigate(to: .sampleContent(.sheet(.sheetDetail)))
+            navigation.navigate(to: .sampleContent(.sheet(.sheetDetail)))
         }
 
         return .none

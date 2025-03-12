@@ -14,9 +14,9 @@ import SwiftUI
 import AppSubsystem
 
 public struct RootView: View {
-    // MARK: - Properties
+    // MARK: - Dependencies
 
-    @ObservedNavigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+    @ObservedDependency(\.navigation) private var navigation: NavigationCoordinator<RootNavigationService>
 
     // MARK: - Body
 
@@ -31,7 +31,7 @@ public struct RootView: View {
 
     @ViewBuilder
     private var rootPage: some View {
-        switch navigationCoordinator.state.modal {
+        switch navigation.state.modal {
         case .sampleContent:
             withTransition {
                 SampleContentContainerView()

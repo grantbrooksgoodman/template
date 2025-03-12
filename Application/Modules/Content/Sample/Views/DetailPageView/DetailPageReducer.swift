@@ -13,9 +13,9 @@ import Foundation
 import AppSubsystem
 
 public struct DetailPageReducer: Reducer {
-    // MARK: - Properties
+    // MARK: - Dependencies
 
-    @Navigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+    @Dependency(\.navigation) private var navigation: NavigationCoordinator<RootNavigationService>
 
     // MARK: - Actions
 
@@ -48,8 +48,8 @@ public struct DetailPageReducer: Reducer {
         public var popGestureAction: (() -> Void)? {
             guard configuration == .modal else { return nil }
             return {
-                @Navigator var navigationCoordinator: NavigationCoordinator<RootNavigationService>
-                navigationCoordinator.navigate(to: .sampleContent(.modal(.none)))
+                @Dependency(\.navigation) var navigation: NavigationCoordinator<RootNavigationService>
+                navigation.navigate(to: .sampleContent(.modal(.none)))
             }
         }
 
@@ -65,14 +65,9 @@ public struct DetailPageReducer: Reducer {
     public func reduce(into state: inout State, action: Action) -> Effect<Action> {
         func navigateBack() {
             switch state.configuration {
-            case .modal:
-                navigationCoordinator.navigate(to: .sampleContent(.modal(.none)))
-
-            case .push:
-                navigationCoordinator.navigate(to: .sampleContent(.pop))
-
-            case .sheet:
-                navigationCoordinator.navigate(to: .sampleContent(.sheet(.none)))
+            case .modal: navigation.navigate(to: .sampleContent(.modal(.none)))
+            case .push: navigation.navigate(to: .sampleContent(.pop))
+            case .sheet: navigation.navigate(to: .sampleContent(.sheet(.none)))
             }
         }
 
@@ -85,7 +80,7 @@ public struct DetailPageReducer: Reducer {
 
         case .popToSplashButtonTapped:
             navigateBack()
-            navigationCoordinator.navigate(to: .root(.modal(.splash)))
+            navigation.navigate(to: .root(.modal(.splash)))
         }
 
         return .none

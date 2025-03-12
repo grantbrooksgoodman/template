@@ -32,8 +32,7 @@ public enum Application {
             dmyFirstCompileDateString: "29062007",
             finalName: "",
             languageCode: Locale.systemLanguageCode,
-            loggingEnabled: true,
-            timebombActive: true
+            loggingEnabled: true
         )
 
         // MARK: - Localization & Logging Setup
@@ -42,14 +41,5 @@ public enum Application {
 
         Logger.setDomainsExcludedFromSessionRecord(LoggerDomain.domainsExcludedFromSessionRecord)
         Logger.subscribe(to: LoggerDomain.subscribedDomains)
-
-        // MARK: - Navigation Setup
-
-        let navigationCoordinator: NavigationCoordinator<RootNavigationService> = .init(
-            .init(modal: .splash),
-            navigating: RootNavigationService()
-        )
-
-        NavigationCoordinatorResolver.shared.store(navigationCoordinator)
     }
 }

@@ -13,9 +13,9 @@ import Foundation
 import AppSubsystem
 
 public struct SplashPageReducer: Reducer {
-    // MARK: - Properties
+    // MARK: - Dependencies
 
-    @Navigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+    @Dependency(\.navigation) private var navigation: NavigationCoordinator<RootNavigationService>
 
     // MARK: - Actions
 
@@ -37,7 +37,7 @@ public struct SplashPageReducer: Reducer {
         switch action {
         case .viewAppeared:
             return .task(delay: .seconds(1)) {
-                navigationCoordinator.navigate(to: .root(.modal(.sampleContent)))
+                navigation.navigate(to: .root(.modal(.sampleContent)))
                 return .none
             }
         }
