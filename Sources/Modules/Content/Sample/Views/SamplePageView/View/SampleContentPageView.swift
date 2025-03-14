@@ -20,15 +20,18 @@ public struct SampleContentPageView: View {
     private typealias Floats = AppConstants.CGFloats.SamplePageView
     private typealias Strings = AppConstants.Strings.SamplePageView
 
+    // MARK: - Dependencies
+
+    @ObservedDependency(\.navigation) private var navigation: Navigation
+
     // MARK: - Properties
 
-    @ObservedNavigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
     @ObservedObject private var viewModel: ViewModel<SamplePageReducer>
 
     // MARK: - Bindings
 
     private var sheetBinding: Binding<SampleContentNavigatorState.SheetPaths?> {
-        navigationCoordinator.navigable(
+        navigation.navigable(
             \.sampleContent.sheet,
             route: { .sampleContent(.sheet($0)) }
         )

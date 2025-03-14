@@ -15,7 +15,7 @@ import AppSubsystem
 public struct DetailPageReducer: Reducer {
     // MARK: - Dependencies
 
-    @Dependency(\.navigation) private var navigation: NavigationCoordinator<RootNavigationService>
+    @Dependency(\.navigation) private var navigation: Navigation
 
     // MARK: - Actions
 
@@ -48,7 +48,7 @@ public struct DetailPageReducer: Reducer {
         public var popGestureAction: (() -> Void)? {
             guard configuration == .modal else { return nil }
             return {
-                @Dependency(\.navigation) var navigation: NavigationCoordinator<RootNavigationService>
+                @Dependency(\.navigation) var navigation: Navigation
                 navigation.navigate(to: .sampleContent(.modal(.none)))
             }
         }

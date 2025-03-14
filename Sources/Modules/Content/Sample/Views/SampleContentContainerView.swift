@@ -14,14 +14,14 @@ import SwiftUI
 import AppSubsystem
 
 public struct SampleContentContainerView: View {
-    // MARK: - Properties
+    // MARK: - Dependencies
 
-    @ObservedNavigator private var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+    @ObservedDependency(\.navigation) private var navigation: Navigation
 
     // MARK: - Bindings
 
     private var navigationPathBinding: Binding<[SampleContentNavigatorState.SeguePaths]> {
-        navigationCoordinator.navigable(
+        navigation.navigable(
             \.sampleContent.stack,
             route: { .sampleContent(.stack($0)) }
         )
@@ -31,7 +31,7 @@ public struct SampleContentContainerView: View {
 
     @ViewBuilder
     public var body: some View {
-        switch navigationCoordinator.state.sampleContent.modal {
+        switch navigation.state.sampleContent.modal {
         case .modalDetail:
             DetailPageView(
                 .init(
