@@ -37,11 +37,11 @@
 		B91688DA28FE0E4C004C80A2 /* ExceptionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91688D928FE0E4C004C80A2 /* ExceptionCatalog.swift */; };
 		B91C902D2D82132500959AEB /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B91C902C2D82132500959AEB /* AppSubsystem */; };
 		B91C902F2D82159400959AEB /* NavigationCoordinatorDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C902E2D82159400959AEB /* NavigationCoordinatorDependency.swift */; };
-		B91C90322D82192F00959AEB /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B91C90312D82192F00959AEB /* AppSubsystem */; };
+		B91C90372D82229600959AEB /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B91C90362D82229600959AEB /* AppSubsystem */; };
+		B91C90402D822E0600959AEB /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B91C903F2D822E0600959AEB /* AppSubsystem */; };
+		B91C90432D824FC900959AEB /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B91C90422D824FC900959AEB /* AppSubsystem */; };
 		B921F4132CCF3305006BB149 /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B921F4122CCF3305006BB149 /* AppSubsystem */; };
 		B92409852AB2DFC0004CF4C0 /* LoggerDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */; };
-		B93457072AABF9F200944602 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93457062AABF9F200944602 /* Localization.swift */; };
-		B93457092AABFB3700944602 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93457082AABFB3700944602 /* Localized.swift */; };
 		B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */; };
 		B93BCDE52AAD9A1A00AA16FE /* SamplePageViewStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */; };
 		B978B19D2B87CE3200AA007A /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978B19C2B87CE3200AA007A /* RootSheet.swift */; };
@@ -173,8 +173,6 @@
 		B91688D928FE0E4C004C80A2 /* ExceptionCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExceptionCatalog.swift; sourceTree = "<group>"; };
 		B91C902E2D82159400959AEB /* NavigationCoordinatorDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinatorDependency.swift; sourceTree = "<group>"; };
 		B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerDomains.swift; sourceTree = "<group>"; };
-		B93457062AABF9F200944602 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
-		B93457082AABFB3700944602 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringKeys.swift; sourceTree = "<group>"; };
 		B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePageViewStrings.swift; sourceTree = "<group>"; };
 		B978B19C2B87CE3200AA007A /* RootSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSheet.swift; sourceTree = "<group>"; };
@@ -206,9 +204,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B91C90322D82192F00959AEB /* AppSubsystem in Frameworks */,
+				B91C90372D82229600959AEB /* AppSubsystem in Frameworks */,
 				B921F4132CCF3305006BB149 /* AppSubsystem in Frameworks */,
 				B91C902D2D82132500959AEB /* AppSubsystem in Frameworks */,
+				B91C90402D822E0600959AEB /* AppSubsystem in Frameworks */,
+				B91C90432D824FC900959AEB /* AppSubsystem in Frameworks */,
 				8488CCA531537608C7F22939 /* Pods_Template.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,7 +247,6 @@
 			children = (
 				B9CCEBD02C8F83A200CB9C01 /* Application.swift */,
 				B9E7D4542AAC400B00FAF2A9 /* Bundle */,
-				B93457052AABF9E400944602 /* Localization */,
 				B91A0E242AFF2F8600E3C1A0 /* Modules */,
 				B94657702AABC6200091193B /* Navigation */,
 				A2DF2C6F28199BF40089DEA1 /* Resources */,
@@ -308,7 +307,6 @@
 				B90701D32C17D27100F80A02 /* DetailPageView */,
 				B90701DC2C17D3C800F80A02 /* EmptyPageView */,
 				B9E7D41B2AAC1ED700FAF2A9 /* SamplePageView */,
-				B90701D52C17D33A00F80A02 /* SplashPageView */,
 				B9F361602C18E12600586D1D /* SampleContentContainerView.swift */,
 			);
 			path = Views;
@@ -370,6 +368,7 @@
 		B91A10F82AFF362000E3C1A0 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				B9B05D202D83DC2B00E7945E /* Shared */,
 				B91A0E252AFF2F9100E3C1A0 /* Sample */,
 			);
 			path = Content;
@@ -382,16 +381,6 @@
 				A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
-			sourceTree = "<group>";
-		};
-		B93457052AABF9E400944602 /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				B93457062AABF9F200944602 /* Localization.swift */,
-				B93457082AABFB3700944602 /* Localized.swift */,
-				A206F7D928AC4FD7008FFE18 /* LocalizedStrings.plist */,
-			);
-			path = Localization;
 			sourceTree = "<group>";
 		};
 		B94657702AABC6200091193B /* Navigation */ = {
@@ -414,10 +403,36 @@
 			path = Themes;
 			sourceTree = "<group>";
 		};
+		B9B05D202D83DC2B00E7945E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B9B05D212D83DC2F00E7945E /* Constants */,
+				B9B05D222D83DC3300E7945E /* Views */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B9B05D212D83DC2F00E7945E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				B9F3615A2C18DD6000586D1D /* AppConstants+SplashPageView.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		B9B05D222D83DC3300E7945E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B90701D52C17D33A00F80A02 /* SplashPageView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B9D2410D2B85484E00E26CC6 /* Property Lists */ = {
 			isa = PBXGroup;
 			children = (
 				B9D2410E2B85487000E26CC6 /* Info.plist */,
+				A206F7D928AC4FD7008FFE18 /* LocalizedStrings.plist */,
 			);
 			path = "Property Lists";
 			sourceTree = "<group>";
@@ -483,7 +498,6 @@
 			children = (
 				B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */,
 				B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */,
-				B9F3615A2C18DD6000586D1D /* AppConstants+SplashPageView.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -511,7 +525,9 @@
 			packageProductDependencies = (
 				B921F4122CCF3305006BB149 /* AppSubsystem */,
 				B91C902C2D82132500959AEB /* AppSubsystem */,
-				B91C90312D82192F00959AEB /* AppSubsystem */,
+				B91C90362D82229600959AEB /* AppSubsystem */,
+				B91C903F2D822E0600959AEB /* AppSubsystem */,
+				B91C90422D824FC900959AEB /* AppSubsystem */,
 			);
 			productName = Application;
 			productReference = A2DF2C5128199B660089DEA1 /* Template.app */;
@@ -616,7 +632,7 @@
 			);
 			mainGroup = A2DF2C4828199B660089DEA1;
 			packageReferences = (
-				B91C90302D82192F00959AEB /* XCRemoteSwiftPackageReference "app-subsystem" */,
+				B91C90412D824FC900959AEB /* XCRemoteSwiftPackageReference "app-subsystem" */,
 			);
 			productRefGroup = A2DF2C5228199B660089DEA1 /* Products */;
 			projectDirPath = "";
@@ -745,12 +761,10 @@
 				B9F361542C18B58000586D1D /* SampleContentNavigator.swift in Sources */,
 				B9E7D43F2AAC223700FAF2A9 /* Observables.swift in Sources */,
 				B90701D92C17D34B00F80A02 /* SplashPageReducer.swift in Sources */,
-				B93457092AABFB3700944602 /* Localized.swift in Sources */,
 				B9C5E9132AB161B6004D79DA /* EmptyPageReducer.swift in Sources */,
 				A2DF2C5528199B660089DEA1 /* AppDelegate.swift in Sources */,
 				B91C902F2D82159400959AEB /* NavigationCoordinatorDependency.swift in Sources */,
 				A2DF2C5728199B660089DEA1 /* SceneDelegate.swift in Sources */,
-				B93457072AABF9F200944602 /* Localization.swift in Sources */,
 				B9F361612C18E12600586D1D /* SampleContentContainerView.swift in Sources */,
 				B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */,
 				B9F3615B2C18DD6000586D1D /* AppConstants+SplashPageView.swift in Sources */,
@@ -1064,7 +1078,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B91C90302D82192F00959AEB /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
+		B91C90412D824FC900959AEB /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/grantbrooksgoodman/app-subsystem";
 			requirement = {
@@ -1079,9 +1093,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = AppSubsystem;
 		};
-		B91C90312D82192F00959AEB /* AppSubsystem */ = {
+		B91C90362D82229600959AEB /* AppSubsystem */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B91C90302D82192F00959AEB /* XCRemoteSwiftPackageReference "app-subsystem" */;
+			productName = AppSubsystem;
+		};
+		B91C903F2D822E0600959AEB /* AppSubsystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppSubsystem;
+		};
+		B91C90422D824FC900959AEB /* AppSubsystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B91C90412D824FC900959AEB /* XCRemoteSwiftPackageReference "app-subsystem" */;
 			productName = AppSubsystem;
 		};
 		B921F4122CCF3305006BB149 /* AppSubsystem */ = {

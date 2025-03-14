@@ -18,8 +18,6 @@ import AppSubsystem
  */
 public extension AppTheme {
     struct List: AppSubsystem.Delegates.AppThemeListDelegate {
-        public var allAppThemes: [AppTheme] {
-            [.default]
-        }
+        public let appThemes: [AppTheme] = []
     }
 }

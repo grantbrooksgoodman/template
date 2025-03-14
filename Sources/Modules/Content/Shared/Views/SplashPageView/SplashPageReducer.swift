@@ -15,7 +15,7 @@ import AppSubsystem
 public struct SplashPageReducer: Reducer {
     // MARK: - Dependencies
 
-    @Dependency(\.navigation) private var navigation: NavigationCoordinator<RootNavigationService>
+    @Dependency(\.navigation) private var navigation: Navigation
 
     // MARK: - Actions
 
@@ -26,8 +26,6 @@ public struct SplashPageReducer: Reducer {
     // MARK: - State
 
     public struct State: Equatable {
-        /* MARK: Init */
-
         public init() {}
     }
 

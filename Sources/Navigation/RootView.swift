@@ -16,7 +16,7 @@ import AppSubsystem
 public struct RootView: View {
     // MARK: - Dependencies
 
-    @ObservedDependency(\.navigation) private var navigation: NavigationCoordinator<RootNavigationService>
+    @ObservedDependency(\.navigation) private var navigation: Navigation
 
     // MARK: - Body
 

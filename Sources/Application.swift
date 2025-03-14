@@ -14,15 +14,15 @@ import AppSubsystem
 
 public enum Application {
     public static func initialize() {
-        // MARK: - App Subsystem Setup
-
         AppSubsystem.delegates.register(
             appThemeListDelegate: AppTheme.List(),
             buildInfoOverlayDotIndicatorColorDelegate: nil,
             cacheDomainListDelegate: CacheDomain.List(),
             devModeAppActionDelegate: DevModeAction.AppActions(),
             exceptionMetadataDelegate: AppException.ExceptionMetadataDelegate(),
-            localizedStringsDelegate: Localization.LocalizedStringsDelegate()
+            localizedStringsDelegate: LocalizedStringKey.LocalizedStringsDelegate(),
+            loggerDomainSubscriptionDelegate: LoggerDomain.SubscriptionDelegate(),
+            permanentUserDefaultsKeyDelegate: UserDefaultsKey.PermanentKeyDelegate()
         )
 
         AppSubsystem.initialize(
@@ -34,12 +34,5 @@ public enum Application {
             languageCode: Locale.systemLanguageCode,
             loggingEnabled: true
         )
-
-        // MARK: - Localization & Logging Setup
-
-        Localization.initialize()
-
-        Logger.setDomainsExcludedFromSessionRecord(LoggerDomain.domainsExcludedFromSessionRecord)
-        Logger.subscribe(to: LoggerDomain.subscribedDomains)
     }
 }

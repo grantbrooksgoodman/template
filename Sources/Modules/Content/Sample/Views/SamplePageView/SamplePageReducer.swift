@@ -16,7 +16,7 @@ import Translator
 public struct SamplePageReducer: Reducer {
     // MARK: - Dependencies
 
-    @Dependency(\.navigation) private var navigation: NavigationCoordinator<RootNavigationService>
+    @Dependency(\.navigation) private var navigation: Navigation
     @Dependency(\.translationService) private var translator: TranslationService
 
     // MARK: - Actions

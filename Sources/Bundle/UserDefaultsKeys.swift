@@ -13,5 +13,7 @@ import Foundation
 import AppSubsystem
 
 public extension UserDefaultsKey {
-    /* Add values here for each new defaults key. */
+    struct PermanentKeyDelegate: AppSubsystem.Delegates.PermanentUserDefaultsKeyDelegate {
+        public let permanentKeys: [UserDefaultsKey] = []
+    }
 }

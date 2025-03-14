@@ -7,7 +7,7 @@
       "location" : "https://github.com/grantbrooksgoodman/alert-kit",
       "state" : {
         "branch" : "main",
-        "revision" : "bfddcc1e3408ebef98080f880f99004ad3af9652"
+        "revision" : "e64c53e37dbcfc831575b8841bbc0ad65f38af89"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/grantbrooksgoodman/app-subsystem",
       "state" : {
         "branch" : "main",
-        "revision" : "267fa1730834676ca3560ea6959fa8d486e8dad7"
+        "revision" : "5752c7897beba33a24754707374990b3881635d4"
       }
     },
     {

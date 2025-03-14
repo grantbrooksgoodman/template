@@ -12,6 +12,8 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
+public typealias Navigation = NavigationCoordinator<RootNavigationService>
+
 public struct RootNavigationService: Navigating {
     // MARK: - Type Aliases
 
