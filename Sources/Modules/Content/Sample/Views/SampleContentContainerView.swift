@@ -18,51 +18,16 @@ public struct SampleContentContainerView: View {
 
     @ObservedDependency(\.navigation) private var navigation: Navigation
 
-    // MARK: - Bindings
-
-    private var navigationPathBinding: Binding<[SampleContentNavigatorState.SeguePaths]> {
-        navigation.navigable(
-            \.sampleContent.stack,
-            route: { .sampleContent(.stack($0)) }
-        )
-    }
-
     // MARK: - View
 
     @ViewBuilder
     public var body: some View {
         switch navigation.state.sampleContent.modal {
-        case .modalDetail:
-            DetailPageView(
-                .init(
-                    initialState: .init(.modal),
-                    reducer: DetailPageReducer()
-                )
-            )
-
         case .none:
-            NavigationStack(path: navigationPathBinding) {
-                SamplePageView(
-                    .init(
-                        initialState: .init(),
-                        reducer: SamplePageReducer()
-                    )
-                )
-                .navigationDestination(for: SampleContentNavigatorState.SeguePaths.self) { destinationView(for: $0) }
-            }
-        }
-    }
-
-    // MARK: - Auxiliary
-
-    @ViewBuilder
-    private func destinationView(for path: SampleContentNavigatorState.SeguePaths) -> some View {
-        switch path {
-        case .pushDetail:
-            DetailPageView(
+            SamplePageView(
                 .init(
-                    initialState: .init(.push),
-                    reducer: DetailPageReducer()
+                    initialState: .init(),
+                    reducer: SamplePageReducer()
                 )
             )
         }

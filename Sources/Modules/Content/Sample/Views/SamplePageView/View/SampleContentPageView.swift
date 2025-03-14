@@ -15,27 +15,9 @@ import AppSubsystem
 import ComponentKit
 
 public struct SampleContentPageView: View {
-    // MARK: - Constants Accessors
-
-    private typealias Floats = AppConstants.CGFloats.SamplePageView
-    private typealias Strings = AppConstants.Strings.SamplePageView
-
-    // MARK: - Dependencies
-
-    @ObservedDependency(\.navigation) private var navigation: Navigation
-
     // MARK: - Properties
 
     @ObservedObject private var viewModel: ViewModel<SamplePageReducer>
-
-    // MARK: - Bindings
-
-    private var sheetBinding: Binding<SampleContentNavigatorState.SheetPaths?> {
-        navigation.navigable(
-            \.sampleContent.sheet,
-            route: { .sampleContent(.sheet($0)) }
-        )
-    }
 
     // MARK: - Init
 
@@ -58,37 +40,6 @@ public struct SampleContentPageView: View {
                     font: .system(scale: .small),
                     foregroundColor: .subtitleText
                 )
-
-                Divider()
-
-                HStack {
-                    Components.button(
-                        Strings.modalButtonText,
-                        font: .systemMediumUnderlined
-                    ) {
-                        viewModel.send(.modalButtonTapped)
-                    }
-
-                    Divider()
-                        .frame(maxHeight: Floats.dividerFrameMaxHeight)
-
-                    Components.button(
-                        Strings.pushButtonText,
-                        font: .systemMediumUnderlined
-                    ) {
-                        viewModel.send(.pushButtonTapped)
-                    }
-
-                    Divider()
-                        .frame(maxHeight: Floats.dividerFrameMaxHeight)
-
-                    Components.button(
-                        Strings.sheetButtonText,
-                        font: .systemMediumUnderlined
-                    ) {
-                        viewModel.send(.sheetButtonTapped)
-                    }
-                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
@@ -97,22 +48,6 @@ public struct SampleContentPageView: View {
                     foregroundColor: .titleText,
                     image: .init(uiImage: .ntBlack)
                 ))
-            )
-        }
-        .sheet(item: sheetBinding) { sheetView(for: $0) }
-    }
-
-    // MARK: - Auxiliary
-
-    @ViewBuilder
-    private func sheetView(for path: SampleContentNavigatorState.SheetPaths) -> some View {
-        switch path {
-        case .sheetDetail:
-            DetailPageView(
-                .init(
-                    initialState: .init(.sheet),
-                    reducer: DetailPageReducer()
-                )
             )
         }
     }

@@ -12,8 +12,6 @@
 		A2DF2C5528199B660089DEA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5428199B660089DEA1 /* AppDelegate.swift */; };
 		A2DF2C5728199B660089DEA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */; };
 		A2DF2C5B28199B670089DEA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C5A28199B670089DEA1 /* Assets.xcassets */; };
-		A2DF2C7328199C3C0089DEA1 /* Chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */; };
-		A2DF2C7628199C400089DEA1 /* Chord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C7528199C400089DEA1 /* Chord.mp3 */; };
 		A2DF2CA128199CE20089DEA1 /* San Francisco (Heavy Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9528199CE20089DEA1 /* San Francisco (Heavy Italic).otf */; };
 		A2DF2CA228199CE20089DEA1 /* San Francisco (Bold Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9628199CE20089DEA1 /* San Francisco (Bold Italic).otf */; };
 		A2DF2CA328199CE20089DEA1 /* San Francisco (Heavy).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9728199CE20089DEA1 /* San Francisco (Heavy).otf */; };
@@ -30,8 +28,6 @@
 		B90701D72C17D34300F80A02 /* SplashPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701D62C17D34300F80A02 /* SplashPageView.swift */; };
 		B90701D92C17D34B00F80A02 /* SplashPageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701D82C17D34B00F80A02 /* SplashPageReducer.swift */; };
 		B90701DB2C17D3C000F80A02 /* EmptyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701DA2C17D3C000F80A02 /* EmptyPageView.swift */; };
-		B90701E22C17D41F00F80A02 /* DetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701E12C17D41F00F80A02 /* DetailPageView.swift */; };
-		B90701E42C17D42700F80A02 /* DetailPageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701E32C17D42700F80A02 /* DetailPageReducer.swift */; };
 		B90701E62C17E55000F80A02 /* RootNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90701E52C17E55000F80A02 /* RootNavigator.swift */; };
 		B9124EDB2AAFB27A00590B7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B9124EDD2AAFB27A00590B7B /* Localizable.strings */; };
 		B91688DA28FE0E4C004C80A2 /* ExceptionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91688D928FE0E4C004C80A2 /* ExceptionCatalog.swift */; };
@@ -61,8 +57,6 @@
 		B9E7D43F2AAC223700FAF2A9 /* Observables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E7D43E2AAC223700FAF2A9 /* Observables.swift */; };
 		B9F361542C18B58000586D1D /* SampleContentNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F361532C18B58000586D1D /* SampleContentNavigator.swift */; };
 		B9F3615B2C18DD6000586D1D /* AppConstants+SplashPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615A2C18DD6000586D1D /* AppConstants+SplashPageView.swift */; };
-		B9F3615D2C18DD7200586D1D /* AppConstants+DetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */; };
-		B9F3615F2C18DD7A00586D1D /* AppConstants+SamplePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */; };
 		B9F361612C18E12600586D1D /* SampleContentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F361602C18E12600586D1D /* SampleContentContainerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,8 +67,6 @@
 		A2DF2C5428199B660089DEA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A2DF2C5A28199B670089DEA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chime.mp3; sourceTree = "<group>"; };
-		A2DF2C7528199C400089DEA1 /* Chord.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chord.mp3; sourceTree = "<group>"; };
 		A2DF2C9528199CE20089DEA1 /* San Francisco (Heavy Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Heavy Italic).otf"; sourceTree = "<group>"; };
 		A2DF2C9628199CE20089DEA1 /* San Francisco (Bold Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Bold Italic).otf"; sourceTree = "<group>"; };
 		A2DF2C9728199CE20089DEA1 /* San Francisco (Heavy).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Heavy).otf"; sourceTree = "<group>"; };
@@ -92,8 +84,6 @@
 		B90701D62C17D34300F80A02 /* SplashPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPageView.swift; sourceTree = "<group>"; };
 		B90701D82C17D34B00F80A02 /* SplashPageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPageReducer.swift; sourceTree = "<group>"; };
 		B90701DA2C17D3C000F80A02 /* EmptyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPageView.swift; sourceTree = "<group>"; };
-		B90701E12C17D41F00F80A02 /* DetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageView.swift; sourceTree = "<group>"; };
-		B90701E32C17D42700F80A02 /* DetailPageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageReducer.swift; sourceTree = "<group>"; };
 		B90701E52C17E55000F80A02 /* RootNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigator.swift; sourceTree = "<group>"; };
 		B9124EDC2AAFB27A00590B7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B9124EDE2AAFB28100590B7B /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -193,8 +183,6 @@
 		B9E7D43E2AAC223700FAF2A9 /* Observables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observables.swift; sourceTree = "<group>"; };
 		B9F361532C18B58000586D1D /* SampleContentNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleContentNavigator.swift; sourceTree = "<group>"; };
 		B9F3615A2C18DD6000586D1D /* AppConstants+SplashPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+SplashPageView.swift"; sourceTree = "<group>"; };
-		B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+DetailPageView.swift"; sourceTree = "<group>"; };
-		B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+SamplePageView.swift"; sourceTree = "<group>"; };
 		B9F361602C18E12600586D1D /* SampleContentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleContentContainerView.swift; sourceTree = "<group>"; };
 		CF52460DFCE5E62E30711A79 /* Pods-Template.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Template.release.xcconfig"; path = "Target Support Files/Pods-Template/Pods-Template.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -257,21 +245,11 @@
 		A2DF2C6F28199BF40089DEA1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A2DF2C7128199C260089DEA1 /* Audio */,
 				A2DF2CAE28199CE90089DEA1 /* Images */,
 				B9D2410D2B85484E00E26CC6 /* Property Lists */,
 				B9E7D4522AAC3E0300FAF2A9 /* Other */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		A2DF2C7128199C260089DEA1 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */,
-				A2DF2C7528199C400089DEA1 /* Chord.mp3 */,
-			);
-			path = Audio;
 			sourceTree = "<group>";
 		};
 		A2DF2C8828199CBC0089DEA1 /* San Francisco Font */ = {
@@ -304,10 +282,8 @@
 		A2DF2CBE28199D630089DEA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B90701D32C17D27100F80A02 /* DetailPageView */,
 				B90701DC2C17D3C800F80A02 /* EmptyPageView */,
 				B9E7D41B2AAC1ED700FAF2A9 /* SamplePageView */,
-				B90701D52C17D33A00F80A02 /* SplashPageView */,
 				B9F361602C18E12600586D1D /* SampleContentContainerView.swift */,
 			);
 			path = Views;
@@ -320,15 +296,6 @@
 				CF52460DFCE5E62E30711A79 /* Pods-Template.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		B90701D32C17D27100F80A02 /* DetailPageView */ = {
-			isa = PBXGroup;
-			children = (
-				B90701E32C17D42700F80A02 /* DetailPageReducer.swift */,
-				B90701E12C17D41F00F80A02 /* DetailPageView.swift */,
-			);
-			path = DetailPageView;
 			sourceTree = "<group>";
 		};
 		B90701D52C17D33A00F80A02 /* SplashPageView */ = {
@@ -360,7 +327,6 @@
 		B91A0E252AFF2F9100E3C1A0 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				B9F361592C18DD5500586D1D /* Constants */,
 				A2DF2CBE28199D630089DEA1 /* Views */,
 			);
 			path = Sample;
@@ -369,6 +335,7 @@
 		B91A10F82AFF362000E3C1A0 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				B9B05D1E2D83D9BD00E7945E /* Shared */,
 				B91A0E252AFF2F9100E3C1A0 /* Sample */,
 			);
 			path = Content;
@@ -401,6 +368,23 @@
 				B99B1DB929E4C2AF00117D42 /* CustomColors.swift */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		B9B05D1E2D83D9BD00E7945E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B9F361592C18DD5500586D1D /* Constants */,
+				B9B05D1F2D83D9CC00E7945E /* Views */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B9B05D1F2D83D9CC00E7945E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B90701D52C17D33A00F80A02 /* SplashPageView */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B9D2410D2B85484E00E26CC6 /* Property Lists */ = {
@@ -471,8 +455,6 @@
 		B9F361592C18DD5500586D1D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */,
-				B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */,
 				B9F3615A2C18DD6000586D1D /* AppConstants+SplashPageView.swift */,
 			);
 			path = Constants;
@@ -627,9 +609,7 @@
 				A2DF2CA328199CE20089DEA1 /* San Francisco (Heavy).otf in Resources */,
 				A2DF2CA728199CE20089DEA1 /* San Francisco (Medium).otf in Resources */,
 				A2DF2CA528199CE20089DEA1 /* San Francisco (Regular).otf in Resources */,
-				A2DF2C7328199C3C0089DEA1 /* Chime.mp3 in Resources */,
 				A2DF2CA828199CE20089DEA1 /* San Francisco (Semibold).otf in Resources */,
-				A2DF2C7628199C400089DEA1 /* Chord.mp3 in Resources */,
 				A2DF2CA428199CE20089DEA1 /* San Francisco (Medium Italic).otf in Resources */,
 				A2DF2CAA28199CE20089DEA1 /* San Francisco (Light).otf in Resources */,
 				A2DF2CA928199CE20089DEA1 /* San Francisco (Regular Italic).otf in Resources */,
@@ -746,17 +726,13 @@
 				B9F3615B2C18DD6000586D1D /* AppConstants+SplashPageView.swift in Sources */,
 				B90701CE2C17BE7600F80A02 /* RootNavigationService.swift in Sources */,
 				B91688DA28FE0E4C004C80A2 /* ExceptionCatalog.swift in Sources */,
-				B9F3615D2C18DD7200586D1D /* AppConstants+DetailPageView.swift in Sources */,
 				B9E7D4202AAC1ED700FAF2A9 /* SampleContentPageView.swift in Sources */,
 				B9E7D4222AAC1ED700FAF2A9 /* SamplePageReducer.swift in Sources */,
-				B90701E42C17D42700F80A02 /* DetailPageReducer.swift in Sources */,
 				B9E2E60F2C72E554004022FE /* CacheDomains.swift in Sources */,
 				B99F13F42A280A0500B9FCE2 /* UserDefaultsKeys.swift in Sources */,
 				B93BCDE52AAD9A1A00AA16FE /* SamplePageViewStrings.swift in Sources */,
-				B9F3615F2C18DD7A00586D1D /* AppConstants+SamplePageView.swift in Sources */,
 				B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */,
 				B90701DB2C17D3C000F80A02 /* EmptyPageView.swift in Sources */,
-				B90701E22C17D41F00F80A02 /* DetailPageView.swift in Sources */,
 				B9CCEBCD2C8ED50700CB9C01 /* RootView.swift in Sources */,
 				B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */,
 				B9C5830829BECE59009DCE29 /* DevModeActions.swift in Sources */,

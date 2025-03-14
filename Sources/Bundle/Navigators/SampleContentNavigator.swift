@@ -15,17 +15,11 @@ import AppSubsystem
 public struct SampleContentNavigatorState: NavigatorState {
     // MARK: - Types
 
-    public enum ModalPaths: Paths {
-        case modalDetail
-    }
+    public enum ModalPaths: Paths {}
 
-    public enum SeguePaths: Paths {
-        case pushDetail
-    }
+    public enum SeguePaths: Paths {}
 
-    public enum SheetPaths: Paths {
-        case sheetDetail
-    }
+    public enum SheetPaths: Paths {}
 
     // MARK: - Properties
 
@@ -36,32 +30,32 @@ public struct SampleContentNavigatorState: NavigatorState {
 
 public enum SampleContentNavigator {
     static func navigate(to route: RootNavigationService.Route.SampleContentRoute, on state: inout SampleContentNavigatorState) {
-        switch route {
-        case let .modal(modal):
-            state.modal = modal
+//        switch route {
+//        case let .modal(modal):
+//            state.modal = modal
 
-        case .pop:
-            guard !state.stack.isEmpty else { return }
-            state.stack.removeLast()
-
-        case let .push(path):
-            state.stack.append(path)
-
-        case let .sheet(sheet):
-            state.sheet = sheet
-
-        case let .stack(paths):
-            state.stack = paths
-        }
+//        case .pop:
+//            guard !state.stack.isEmpty else { return }
+//            state.stack.removeLast()
+//
+//        case let .push(path):
+//            state.stack.append(path)
+//
+//        case let .sheet(sheet):
+//            state.sheet = sheet
+//
+//        case let .stack(paths):
+//            state.stack = paths
+//        }
     }
 }
 
 public extension RootNavigationService.Route {
     enum SampleContentRoute {
-        case modal(SampleContentNavigatorState.ModalPaths?)
-        case pop
-        case push(SampleContentNavigatorState.SeguePaths)
-        case sheet(SampleContentNavigatorState.SheetPaths?)
-        case stack([SampleContentNavigatorState.SeguePaths])
+//        case modal(SampleContentNavigatorState.ModalPaths?)
+//        case pop
+//        case push(SampleContentNavigatorState.SeguePaths)
+//        case sheet(SampleContentNavigatorState.SheetPaths?)
+//        case stack([SampleContentNavigatorState.SeguePaths])
     }
 }
