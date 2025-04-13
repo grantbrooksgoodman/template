@@ -11,9 +11,13 @@ import Foundation
 
 /* Proprietary */
 import AppSubsystem
+import Networking
 
 public extension CacheDomain {
     struct List: AppSubsystem.Delegates.CacheDomainListDelegate {
-        public let appCacheDomains: [CacheDomain] = []
+        public let appCacheDomains: [CacheDomain] = [
+            .Networking.database,
+            .Networking.storage,
+        ]
     }
 }

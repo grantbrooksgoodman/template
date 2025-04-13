@@ -10,13 +10,23 @@
 import Foundation
 
 /* Proprietary */
+import AlertKit
 import AppSubsystem
+import Networking
 
 public enum Application {
+    @MainActor
     public static func initialize() {
+        // MARK: - Dependencies
+
+        @Dependency(\.alertKitConfig) var alertKitConfig: AlertKit.Config
+        @Dependency(\.networking.hostedTranslation) var translator: HostedTranslationDelegate
+
+        // MARK: - App Subsystem Setup
+
         AppSubsystem.delegates.register(
             appThemeListDelegate: AppTheme.List(),
-            buildInfoOverlayDotIndicatorColorDelegate: nil,
+            buildInfoOverlayDotIndicatorColorDelegate: Networking.BuildInfoOverlayDotIndicatorColorDelegate.shared,
             cacheDomainListDelegate: CacheDomain.List(),
             devModeAppActionDelegate: DevModeAction.AppActions(),
             exceptionMetadataDelegate: AppException.ExceptionMetadataDelegate(),
@@ -34,5 +44,10 @@ public enum Application {
             languageCode: Locale.systemLanguageCode,
             loggingEnabled: true
         )
+
+        // MARK: - Networking Setup
+
+        Networking.initialize()
+        alertKitConfig.registerTranslationDelegate(translator)
     }
 }

@@ -12,6 +12,7 @@ import SwiftUI
 
 /* Proprietary */
 import AppSubsystem
+import Networking
 
 public struct RootView: View {
     // MARK: - Dependencies
@@ -21,25 +22,28 @@ public struct RootView: View {
     // MARK: - Body
 
     public var body: some View {
-        switch navigation.state.modal {
-        case .sampleContent:
-            withTransition {
-                SampleContentContainerView()
-            }
+        ZStack {
+            switch navigation.state.modal {
+            case .sampleContent:
+                withTransition {
+                    SampleContentContainerView()
+                }
 
-        case .splash:
-            withTransition {
-                SplashPageView(
-                    .init(
-                        initialState: .init(),
-                        reducer: SplashPageReducer()
+            case .splash:
+                withTransition {
+                    SplashPageView(
+                        .init(
+                            initialState: .init(),
+                            reducer: SplashPageReducer()
+                        )
                     )
-                )
-            }
+                }
 
-        case .none:
-            EmptyView()
+            case .none:
+                EmptyView()
+            }
         }
+        .indicatesNetworkActivity()
     }
 }
 

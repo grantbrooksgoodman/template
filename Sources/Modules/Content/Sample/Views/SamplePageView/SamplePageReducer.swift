@@ -11,13 +11,13 @@ import Foundation
 
 /* Proprietary */
 import AppSubsystem
-import Translator
+import Networking
 
 public struct SamplePageReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.navigation) private var navigation: Navigation
-    @Dependency(\.translationService) private var translator: TranslationService
+    @Dependency(\.networking.hostedTranslation) private var translator: HostedTranslationDelegate
 
     // MARK: - Actions
 

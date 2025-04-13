@@ -11,6 +11,7 @@ import Foundation
 
 /* Proprietary */
 import AppSubsystem
+import Networking
 
 public extension LoggerDomain {
     struct SubscriptionDelegate: AppSubsystem.Delegates.LoggerDomainSubscriptionDelegate {
@@ -22,6 +23,9 @@ public extension LoggerDomain {
             .alertKit,
             .caches,
             .general,
+            .Networking.database,
+            .Networking.hostedTranslation,
+            .Networking.storage,
             .translation,
         ]
     }

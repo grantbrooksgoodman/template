@@ -11,9 +11,13 @@ import Foundation
 
 /* Proprietary */
 import AppSubsystem
+import Networking
 
 public extension UserDefaultsKey {
     struct PermanentKeyDelegate: AppSubsystem.Delegates.PermanentUserDefaultsKeyDelegate {
-        public let permanentKeys: [UserDefaultsKey] = []
+        public let permanentKeys: [UserDefaultsKey] = [
+            .networking(.isNetworkActivityIndicatorEnabled),
+            .networking(.networkEnvironment),
+        ]
     }
 }

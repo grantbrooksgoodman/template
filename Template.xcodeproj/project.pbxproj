@@ -44,8 +44,9 @@
 		B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */; };
 		B93BCDE52AAD9A1A00AA16FE /* SamplePageViewStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */; };
 		B94324532DA7544F00CA326A /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B94324522DA7544F00CA326A /* AppSubsystem */; };
-		B96F598B2DA9F12A00DE61CC /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B96F598A2DA9F12A00DE61CC /* AppSubsystem */; };
 		B978B19D2B87CE3200AA007A /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978B19C2B87CE3200AA007A /* RootSheet.swift */; };
+		B979A3A02DAC6FDF00E982A2 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B979A39F2DAC6FDF00E982A2 /* Networking */; };
+		B979A3A42DAC73F600E982A2 /* NetworkPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = B979A3A32DAC73F600E982A2 /* NetworkPaths.swift */; };
 		B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DB929E4C2AF00117D42 /* CustomColors.swift */; };
 		B99B1DC029E4C45000117D42 /* AppThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DBF29E4C45000117D42 /* AppThemes.swift */; };
 		B99F13F42A280A0500B9FCE2 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */; };
@@ -176,6 +177,7 @@
 		B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringKeys.swift; sourceTree = "<group>"; };
 		B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePageViewStrings.swift; sourceTree = "<group>"; };
 		B978B19C2B87CE3200AA007A /* RootSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSheet.swift; sourceTree = "<group>"; };
+		B979A3A32DAC73F600E982A2 /* NetworkPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPaths.swift; sourceTree = "<group>"; };
 		B99B1DB929E4C2AF00117D42 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		B99B1DBF29E4C45000117D42 /* AppThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemes.swift; sourceTree = "<group>"; };
 		B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
@@ -206,9 +208,9 @@
 				B91C90372D82229600959AEB /* AppSubsystem in Frameworks */,
 				B921F4132CCF3305006BB149 /* AppSubsystem in Frameworks */,
 				B91C902D2D82132500959AEB /* AppSubsystem in Frameworks */,
-				B96F598B2DA9F12A00DE61CC /* AppSubsystem in Frameworks */,
 				B91C90402D822E0600959AEB /* AppSubsystem in Frameworks */,
 				B94324532DA7544F00CA326A /* AppSubsystem in Frameworks */,
+				B979A3A02DAC6FDF00E982A2 /* Networking in Frameworks */,
 				8488CCA531537608C7F22939 /* Pods_Template.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +469,7 @@
 				B91688D928FE0E4C004C80A2 /* ExceptionCatalog.swift */,
 				B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */,
 				B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */,
+				B979A3A32DAC73F600E982A2 /* NetworkPaths.swift */,
 				B9E7D43E2AAC223700FAF2A9 /* Observables.swift */,
 				B978B19C2B87CE3200AA007A /* RootSheet.swift */,
 				B9CCEBBF2C8E6DD800CB9C01 /* StoredItemKeys.swift */,
@@ -519,7 +522,7 @@
 				B91C90362D82229600959AEB /* AppSubsystem */,
 				B91C903F2D822E0600959AEB /* AppSubsystem */,
 				B94324522DA7544F00CA326A /* AppSubsystem */,
-				B96F598A2DA9F12A00DE61CC /* AppSubsystem */,
+				B979A39F2DAC6FDF00E982A2 /* Networking */,
 			);
 			productName = Application;
 			productReference = A2DF2C5128199B660089DEA1 /* Template.app */;
@@ -624,7 +627,7 @@
 			);
 			mainGroup = A2DF2C4828199B660089DEA1;
 			packageReferences = (
-				B96F59892DA9F12A00DE61CC /* XCRemoteSwiftPackageReference "app-subsystem" */,
+				B979A39E2DAC6FDF00E982A2 /* XCRemoteSwiftPackageReference "networking" */,
 			);
 			productRefGroup = A2DF2C5228199B660089DEA1 /* Products */;
 			projectDirPath = "";
@@ -758,6 +761,7 @@
 				B91C902F2D82159400959AEB /* NavigationCoordinatorDependency.swift in Sources */,
 				A2DF2C5728199B660089DEA1 /* SceneDelegate.swift in Sources */,
 				B9F361612C18E12600586D1D /* SampleContentContainerView.swift in Sources */,
+				B979A3A42DAC73F600E982A2 /* NetworkPaths.swift in Sources */,
 				B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */,
 				B9F3615B2C18DD6000586D1D /* AppConstants+SplashPageView.swift in Sources */,
 				B90701CE2C17BE7600F80A02 /* RootNavigationService.swift in Sources */,
@@ -1069,9 +1073,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B96F59892DA9F12A00DE61CC /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
+		B979A39E2DAC6FDF00E982A2 /* XCRemoteSwiftPackageReference "networking" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/grantbrooksgoodman/app-subsystem";
+			repositoryURL = "https://github.com/grantbrooksgoodman/networking";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -1100,10 +1104,10 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = AppSubsystem;
 		};
-		B96F598A2DA9F12A00DE61CC /* AppSubsystem */ = {
+		B979A39F2DAC6FDF00E982A2 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B96F59892DA9F12A00DE61CC /* XCRemoteSwiftPackageReference "app-subsystem" */;
-			productName = AppSubsystem;
+			package = B979A39E2DAC6FDF00E982A2 /* XCRemoteSwiftPackageReference "networking" */;
+			productName = Networking;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
