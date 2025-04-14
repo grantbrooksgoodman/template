@@ -14,8 +14,6 @@ import AppSubsystem
 
 public enum Application {
     public static func initialize() {
-        // MARK: - App Subsystem Setup
-
         AppSubsystem.delegates.register(
             appThemeListDelegate: AppTheme.List(),
             buildInfoOverlayDotIndicatorColorDelegate: nil,
