@@ -38,9 +38,9 @@
 		B94324532DA7544F00CA326A /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B94324522DA7544F00CA326A /* AppSubsystem */; };
 		B96F598B2DA9F12A00DE61CC /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B96F598A2DA9F12A00DE61CC /* AppSubsystem */; };
 		B978B19D2B87CE3200AA007A /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978B19C2B87CE3200AA007A /* RootSheet.swift */; };
-		B979A3A72DAC89B700E982A2 /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B979A3A62DAC89B700E982A2 /* AppSubsystem */; };
+		B978CAE12DB021120079A3AA /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B978CAE02DB021120079A3AA /* AppSubsystem */; };
 		B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DB929E4C2AF00117D42 /* CustomColors.swift */; };
-		B99B1DC029E4C45000117D42 /* AppThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DBF29E4C45000117D42 /* AppThemes.swift */; };
+		B99B1DC029E4C45000117D42 /* UIThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DBF29E4C45000117D42 /* UIThemes.swift */; };
 		B99F13F42A280A0500B9FCE2 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */; };
 		B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */; };
 		B9C5830829BECE59009DCE29 /* DevModeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5830729BECE59009DCE29 /* DevModeActions.swift */; };
@@ -164,7 +164,7 @@
 		B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePageViewStrings.swift; sourceTree = "<group>"; };
 		B978B19C2B87CE3200AA007A /* RootSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSheet.swift; sourceTree = "<group>"; };
 		B99B1DB929E4C2AF00117D42 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
-		B99B1DBF29E4C45000117D42 /* AppThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemes.swift; sourceTree = "<group>"; };
+		B99B1DBF29E4C45000117D42 /* UIThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIThemes.swift; sourceTree = "<group>"; };
 		B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedLabelStringCollection.swift; sourceTree = "<group>"; };
 		B9C5830729BECE59009DCE29 /* DevModeActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevModeActions.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B979A3A72DAC89B700E982A2 /* AppSubsystem in Frameworks */,
+				B978CAE12DB021120079A3AA /* AppSubsystem in Frameworks */,
 				8488CCA531537608C7F22939 /* Pods_Template.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,8 +356,8 @@
 		B99B1DC929E4C7EC00117D42 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				B99B1DBF29E4C45000117D42 /* AppThemes.swift */,
 				B99B1DB929E4C2AF00117D42 /* CustomColors.swift */,
+				B99B1DBF29E4C45000117D42 /* UIThemes.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -473,7 +473,7 @@
 			);
 			name = Template;
 			packageProductDependencies = (
-				B979A3A62DAC89B700E982A2 /* AppSubsystem */,
+				B978CAE02DB021120079A3AA /* AppSubsystem */,
 			);
 			productName = Application;
 			productReference = A2DF2C5128199B660089DEA1 /* Template.app */;
@@ -578,7 +578,7 @@
 			);
 			mainGroup = A2DF2C4828199B660089DEA1;
 			packageReferences = (
-				B979A3A52DAC89B700E982A2 /* XCRemoteSwiftPackageReference "app-subsystem" */,
+				B978CADF2DB021120079A3AA /* XCRemoteSwiftPackageReference "app-subsystem" */,
 			);
 			productRefGroup = A2DF2C5228199B660089DEA1 /* Products */;
 			projectDirPath = "";
@@ -725,7 +725,7 @@
 				B9CCEBCD2C8ED50700CB9C01 /* RootView.swift in Sources */,
 				B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */,
 				B9C5830829BECE59009DCE29 /* DevModeActions.swift in Sources */,
-				B99B1DC029E4C45000117D42 /* AppThemes.swift in Sources */,
+				B99B1DC029E4C45000117D42 /* UIThemes.swift in Sources */,
 				B90701D72C17D34300F80A02 /* SplashPageView.swift in Sources */,
 				B9CCEBC02C8E6DD800CB9C01 /* StoredItemKeys.swift in Sources */,
 				B90701E62C17E55000F80A02 /* RootNavigator.swift in Sources */,
@@ -1018,7 +1018,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B979A3A52DAC89B700E982A2 /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
+		B978CADF2DB021120079A3AA /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/grantbrooksgoodman/app-subsystem";
 			requirement = {
@@ -1029,18 +1029,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B979A3A62DAC89B700E982A2 /* AppSubsystem */ = {
+		B978CAE02DB021120079A3AA /* AppSubsystem */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B979A3A52DAC89B700E982A2 /* XCRemoteSwiftPackageReference "app-subsystem" */;
-			productName = AppSubsystem;
-		};
-		B94324522DA7544F00CA326A /* AppSubsystem */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppSubsystem;
-		};
-		B96F598A2DA9F12A00DE61CC /* AppSubsystem */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B96F59892DA9F12A00DE61CC /* XCRemoteSwiftPackageReference "app-subsystem" */;
+			package = B978CADF2DB021120079A3AA /* XCRemoteSwiftPackageReference "app-subsystem" */;
 			productName = AppSubsystem;
 		};
 /* End XCSwiftPackageProductDependency section */

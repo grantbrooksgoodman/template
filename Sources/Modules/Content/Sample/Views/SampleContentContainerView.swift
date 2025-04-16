@@ -22,14 +22,21 @@ public struct SampleContentContainerView: View {
 
     @ViewBuilder
     public var body: some View {
-        switch navigation.state.sampleContent.modal {
-        case .none:
-            SamplePageView(
-                .init(
-                    initialState: .init(),
-                    reducer: SamplePageReducer()
+        ZStack {
+            Color.clear
+                .frame(width: .zero, height: .zero)
+                .preferredStatusBarStyle(ThemeService.isDarkModeActive ? .lightContent : .darkContent)
+                .redrawsOnTraitCollectionChange()
+
+            switch navigation.state.sampleContent.modal {
+            case .none:
+                SamplePageView(
+                    .init(
+                        initialState: .init(),
+                        reducer: SamplePageReducer()
+                    )
                 )
-            )
+            }
         }
     }
 }
