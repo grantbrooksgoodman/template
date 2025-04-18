@@ -8,7 +8,6 @@
 
 /* Native */
 import Foundation
-import UIKit
 
 /* Proprietary */
 import AppSubsystem

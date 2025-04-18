@@ -16,7 +16,7 @@
       "location" : "https://github.com/grantbrooksgoodman/alert-kit",
       "state" : {
         "branch" : "main",
-        "revision" : "5011aa20348cccf8dffca56ff26f1dcf455c06c6"
+        "revision" : "3c07f3548d114847cc73401e57f9fa92289f8fc9"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/grantbrooksgoodman/app-subsystem",
       "state" : {
         "branch" : "main",
-        "revision" : "715ce064119550bffb4883c2a6d04a4e46138a0a"
+        "revision" : "cf479668ecf1d83168bb71e7a99743632bcf43d2"
       }
     },
     {
@@ -133,7 +133,7 @@
       "location" : "https://github.com/grantbrooksgoodman/networking",
       "state" : {
         "branch" : "main",
-        "revision" : "88f1ff276bd387fec2e68659b06403b2125b0ab9"
+        "revision" : "b0b432efb0617e6fcf01764e2c75038953799388"
       }
     },
     {
@@ -160,7 +160,7 @@
       "location" : "https://github.com/grantbrooksgoodman/translator",
       "state" : {
         "branch" : "main",
-        "revision" : "9ffa1785bd724eed05c9a55b265658705c9e25dc"
+        "revision" : "88b733d5e4b94149cf49a3ff601cca6d434645cf"
       }
     }
   ],
