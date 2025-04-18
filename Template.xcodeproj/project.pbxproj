@@ -39,6 +39,7 @@
 		B92409852AB2DFC0004CF4C0 /* LoggerDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */; };
 		B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */; };
 		B93BCDE52AAD9A1A00AA16FE /* SamplePageViewStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */; };
+		B97149212DB1EADB00D162BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B97149202DB1EADB00D162BA /* GoogleService-Info.plist */; };
 		B978B19D2B87CE3200AA007A /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978B19C2B87CE3200AA007A /* RootSheet.swift */; };
 		B979A3A02DAC6FDF00E982A2 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B979A39F2DAC6FDF00E982A2 /* Networking */; };
 		B979A3A42DAC73F600E982A2 /* NetworkPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = B979A3A32DAC73F600E982A2 /* NetworkPaths.swift */; };
@@ -171,6 +172,7 @@
 		B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerDomains.swift; sourceTree = "<group>"; };
 		B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringKeys.swift; sourceTree = "<group>"; };
 		B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePageViewStrings.swift; sourceTree = "<group>"; };
+		B97149202DB1EADB00D162BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B978B19C2B87CE3200AA007A /* RootSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSheet.swift; sourceTree = "<group>"; };
 		B979A3A32DAC73F600E982A2 /* NetworkPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPaths.swift; sourceTree = "<group>"; };
 		B99B1DB929E4C2AF00117D42 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 		B9D2410D2B85484E00E26CC6 /* Property Lists */ = {
 			isa = PBXGroup;
 			children = (
+				B97149202DB1EADB00D162BA /* GoogleService-Info.plist */,
 				B9D2410E2B85487000E26CC6 /* Info.plist */,
 				A206F7D928AC4FD7008FFE18 /* LocalizedStrings.plist */,
 			);
@@ -639,6 +642,7 @@
 				A2DF2CA928199CE20089DEA1 /* San Francisco (Regular Italic).otf in Resources */,
 				A2DF2CAC28199CE20089DEA1 /* San Francisco (Light Italic).otf in Resources */,
 				A2DF2CAB28199CE20089DEA1 /* San Francisco (Bold).otf in Resources */,
+				B97149212DB1EADB00D162BA /* GoogleService-Info.plist in Resources */,
 				A2DF2CA128199CE20089DEA1 /* San Francisco (Heavy Italic).otf in Resources */,
 				A2DF2C5B28199B670089DEA1 /* Assets.xcassets in Resources */,
 				A2DF2CA228199CE20089DEA1 /* San Francisco (Bold Italic).otf in Resources */,

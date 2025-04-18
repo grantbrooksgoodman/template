@@ -1,4 +1,5 @@
 .DS_Store
+GoogleService-Info.plist
 Package.resolved
 Pods/
 xcshareddata/swiftpm
