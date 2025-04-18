@@ -29,26 +29,32 @@ public struct SampleContentContainerView: View {
 
     // MARK: - View
 
-    @ViewBuilder
     public var body: some View {
-        switch navigation.state.sampleContent.modal {
-        case .modalDetail:
-            DetailPageView(
-                .init(
-                    initialState: .init(.modal),
-                    reducer: DetailPageReducer()
-                )
-            )
+        ZStack {
+            Color.clear
+                .frame(width: .zero, height: .zero)
+                .preferredStatusBarStyle(ThemeService.isDarkModeActive ? .lightContent : .darkContent)
+                .redrawsOnTraitCollectionChange()
 
-        case .none:
-            NavigationStack(path: navigationPathBinding) {
-                SamplePageView(
+            switch navigation.state.sampleContent.modal {
+            case .modalDetail:
+                DetailPageView(
                     .init(
-                        initialState: .init(),
-                        reducer: SamplePageReducer()
+                        initialState: .init(.modal),
+                        reducer: DetailPageReducer()
                     )
                 )
-                .navigationDestination(for: SampleContentNavigatorState.SeguePaths.self) { destinationView(for: $0) }
+
+            case .none:
+                NavigationStack(path: navigationPathBinding) {
+                    SamplePageView(
+                        .init(
+                            initialState: .init(),
+                            reducer: SamplePageReducer()
+                        )
+                    )
+                    .navigationDestination(for: SampleContentNavigatorState.SeguePaths.self) { destinationView(for: $0) }
+                }
             }
         }
     }

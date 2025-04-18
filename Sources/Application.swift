@@ -15,14 +15,14 @@ import AppSubsystem
 public enum Application {
     public static func initialize() {
         AppSubsystem.delegates.register(
-            appThemeListDelegate: AppTheme.List(),
             buildInfoOverlayDotIndicatorColorDelegate: nil,
             cacheDomainListDelegate: CacheDomain.List(),
             devModeAppActionDelegate: DevModeAction.AppActions(),
             exceptionMetadataDelegate: AppException.ExceptionMetadataDelegate(),
             localizedStringsDelegate: LocalizedStringKey.LocalizedStringsDelegate(),
             loggerDomainSubscriptionDelegate: LoggerDomain.SubscriptionDelegate(),
-            permanentUserDefaultsKeyDelegate: UserDefaultsKey.PermanentKeyDelegate()
+            permanentUserDefaultsKeyDelegate: UserDefaultsKey.PermanentKeyDelegate(),
+            uiThemeListDelegate: UITheme.List()
         )
 
         AppSubsystem.initialize(
