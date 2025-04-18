@@ -21,16 +21,6 @@ public struct RootView: View {
     // MARK: - Body
 
     public var body: some View {
-        GeometryReader { proxy in
-            rootPage
-                .environment(\.mainWindowSize, proxy.size)
-        }
-    }
-
-    // MARK: - Root Page
-
-    @ViewBuilder
-    private var rootPage: some View {
         switch navigation.state.modal {
         case .sampleContent:
             withTransition {

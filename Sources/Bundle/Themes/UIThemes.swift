@@ -1,5 +1,5 @@
 //
-//  AppThemes.swift
+//  UIThemes.swift
 //  Template
 //
 //  Created by Grant Brooks Goodman on DD/MM/20YY.
@@ -8,7 +8,6 @@
 
 /* Native */
 import Foundation
-import UIKit
 
 /* Proprietary */
 import AppSubsystem
@@ -16,8 +15,8 @@ import AppSubsystem
 /**
  Use this extension to build new UI themes.
  */
-public extension AppTheme {
-    struct List: AppSubsystem.Delegates.AppThemeListDelegate {
-        public let appThemes: [AppTheme] = []
+public extension UITheme {
+    struct List: AppSubsystem.Delegates.UIThemeListDelegate {
+        public let uiThemes: [UITheme] = []
     }
 }
