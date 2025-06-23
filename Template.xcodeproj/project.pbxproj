@@ -40,7 +40,7 @@
 		B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */; };
 		B93BCDE52AAD9A1A00AA16FE /* SamplePageViewStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */; };
 		B978B19D2B87CE3200AA007A /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978B19C2B87CE3200AA007A /* RootSheet.swift */; };
-		B978CAE12DB021120079A3AA /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B978CAE02DB021120079A3AA /* AppSubsystem */; };
+		B99899872E09E0A500DEC579 /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B99899862E09E0A500DEC579 /* AppSubsystem */; };
 		B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DB929E4C2AF00117D42 /* CustomColors.swift */; };
 		B99B1DC029E4C45000117D42 /* UIThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DBF29E4C45000117D42 /* UIThemes.swift */; };
 		B99F13F42A280A0500B9FCE2 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */; };
@@ -198,7 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B978CAE12DB021120079A3AA /* AppSubsystem in Frameworks */,
+				B99899872E09E0A500DEC579 /* AppSubsystem in Frameworks */,
 				8488CCA531537608C7F22939 /* Pods_Template.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,7 +504,7 @@
 			);
 			name = Template;
 			packageProductDependencies = (
-				B978CAE02DB021120079A3AA /* AppSubsystem */,
+				B99899862E09E0A500DEC579 /* AppSubsystem */,
 			);
 			productName = Application;
 			productReference = A2DF2C5128199B660089DEA1 /* Template.app */;
@@ -522,6 +522,7 @@
 				TargetAttributes = {
 					A2DF2C5028199B660089DEA1 = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 2600;
 					};
 				};
 			};
@@ -609,7 +610,7 @@
 			);
 			mainGroup = A2DF2C4828199B660089DEA1;
 			packageReferences = (
-				B978CADF2DB021120079A3AA /* XCRemoteSwiftPackageReference "app-subsystem" */,
+				B99899852E09E0A500DEC579 /* XCRemoteSwiftPackageReference "app-subsystem" */,
 			);
 			productRefGroup = A2DF2C5228199B660089DEA1 /* Products */;
 			projectDirPath = "";
@@ -987,6 +988,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Application Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 7R4R2FSWH9;
@@ -1000,6 +1002,8 @@
 				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = us.neotechnica.template;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1012,6 +1016,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Application Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 7R4R2FSWH9;
@@ -1025,6 +1030,7 @@
 				MARKETING_VERSION = 0.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = us.neotechnica.template;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1054,7 +1060,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B978CADF2DB021120079A3AA /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
+		B99899852E09E0A500DEC579 /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/grantbrooksgoodman/app-subsystem";
 			requirement = {
@@ -1065,9 +1071,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B978CAE02DB021120079A3AA /* AppSubsystem */ = {
+		B99899862E09E0A500DEC579 /* AppSubsystem */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B978CADF2DB021120079A3AA /* XCRemoteSwiftPackageReference "app-subsystem" */;
+			package = B99899852E09E0A500DEC579 /* XCRemoteSwiftPackageReference "app-subsystem" */;
 			productName = AppSubsystem;
 		};
 /* End XCSwiftPackageProductDependency section */
