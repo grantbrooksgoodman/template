@@ -24,6 +24,7 @@ public enum LocalizedStringKey: String, LocalizedStringKeyRepresentable {
     case dismiss
     case done
 
+    case errorReported
     case errorReportedSuccessfully
 
     case friday
@@ -77,6 +78,7 @@ public extension LocalizedStringKey {
         public var cancel: String { Localized(.cancel).wrappedValue }
         public var done: String { Localized(.done).wrappedValue }
         public var dismiss: String { Localized(.dismiss).wrappedValue }
+        public var errorReported: String { Localized(.errorReported).wrappedValue }
         public var internetConnectionOffline: String { Localized(.internetConnectionOffline).wrappedValue }
         public var noEmail: String { Localized(.noEmail).wrappedValue }
         public var noInternetMessage: String { Localized(.noInternetMessage).wrappedValue }
