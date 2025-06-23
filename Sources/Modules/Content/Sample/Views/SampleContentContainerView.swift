@@ -29,7 +29,6 @@ public struct SampleContentContainerView: View {
 
     // MARK: - View
 
-    @ViewBuilder
     public var body: some View {
         ZStack {
             Color.clear
