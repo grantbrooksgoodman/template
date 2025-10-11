@@ -13,13 +13,13 @@ import Foundation
 import AppSubsystem
 
 /**
- Use this extension to catalog application-specific `Exception` types and their corresponding hashlet values.
+ Use this extension to catalog application-specific `Exception` types and their corresponding error code values.
  */
 public extension AppException {
     // MARK: - Types
 
     struct ExceptionMetadataDelegate: AppSubsystem.Delegates.ExceptionMetadataDelegate {
-        public func isReportable(_ hashlet: String) -> Bool { true }
+        public func isReportable(_ errorCode: String) -> Bool { true }
         public func userFacingDescriptor(for descriptor: String) -> String? {
             switch descriptor {
             default: nil
