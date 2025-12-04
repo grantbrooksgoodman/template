@@ -13,7 +13,7 @@ import Foundation
 import AppSubsystem
 import Translator
 
-public struct SamplePageReducer: Reducer {
+struct SamplePageReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.navigation) private var navigation: Navigation
@@ -21,7 +21,7 @@ public struct SamplePageReducer: Reducer {
 
     // MARK: - Actions
 
-    public enum Action {
+    enum Action {
         case viewAppeared
 
         case modalButtonTapped
@@ -32,20 +32,20 @@ public struct SamplePageReducer: Reducer {
 
     // MARK: - State
 
-    public struct State: Equatable {
+    struct State: Equatable {
         /* MARK: Properties */
 
-        public var strings: [TranslationOutputMap] = SamplePageViewStrings.defaultOutputMap
-        public var viewState: StatefulView.ViewState = .loading
+        var strings: [TranslationOutputMap] = SamplePageViewStrings.defaultOutputMap
+        var viewState: StatefulView.ViewState = .loading
 
         /* MARK: Init */
 
-        public init() {}
+        init() {}
     }
 
     // MARK: - Reduce
 
-    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
+    func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .viewAppeared:
             state.viewState = .loading

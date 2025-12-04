@@ -12,13 +12,13 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public extension LoggerDomain {
+extension LoggerDomain {
     struct SubscriptionDelegate: AppSubsystem.Delegates.LoggerDomainSubscriptionDelegate {
-        public let domainsExcludedFromSessionRecord: [LoggerDomain] = [
+        let domainsExcludedFromSessionRecord: [LoggerDomain] = [
             .observer,
         ]
 
-        public let subscribedDomains: [LoggerDomain] = [
+        let subscribedDomains: [LoggerDomain] = [
             .alertKit,
             .caches,
             .general,

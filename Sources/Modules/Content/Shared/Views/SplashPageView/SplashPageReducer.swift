@@ -12,26 +12,26 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public struct SplashPageReducer: Reducer {
+struct SplashPageReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.navigation) private var navigation: Navigation
 
     // MARK: - Actions
 
-    public enum Action {
+    enum Action {
         case viewAppeared
     }
 
     // MARK: - State
 
-    public struct State: Equatable {
-        public init() {}
+    struct State: Equatable {
+        init() {}
     }
 
     // MARK: - Reduce
 
-    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
+    func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .viewAppeared:
             return .task(delay: .seconds(1)) {

@@ -12,14 +12,14 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public struct DetailPageReducer: Reducer {
+struct DetailPageReducer: Reducer {
     // MARK: - Dependencies
 
     @Dependency(\.navigation) private var navigation: Navigation
 
     // MARK: - Actions
 
-    public enum Action {
+    enum Action {
         case viewAppeared
 
         case navigateBackButtonTapped
@@ -28,10 +28,10 @@ public struct DetailPageReducer: Reducer {
 
     // MARK: - State
 
-    public struct State: Equatable {
+    struct State: Equatable {
         /* MARK: Types */
 
-        public enum Configuration: String {
+        enum Configuration: String {
             case modal
             case push
             case sheet
@@ -39,13 +39,13 @@ public struct DetailPageReducer: Reducer {
 
         /* MARK: Properties */
 
-        public var configuration: Configuration
+        var configuration: Configuration
 
         /* MARK: Computed Properties */
 
-        public var navigationTitle: String { "\(configuration.rawValue.firstUppercase) Detail View" }
+        var navigationTitle: String { "\(configuration.rawValue.firstUppercase) Detail View" }
 
-        public var popGestureAction: (() -> Void)? {
+        var popGestureAction: (() -> Void)? {
             guard configuration == .modal else { return nil }
             return {
                 @Dependency(\.navigation) var navigation: Navigation
@@ -55,14 +55,14 @@ public struct DetailPageReducer: Reducer {
 
         /* MARK: Init */
 
-        public init(_ configuration: Configuration) {
+        init(_ configuration: Configuration) {
             self.configuration = configuration
         }
     }
 
     // MARK: - Reduce
 
-    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
+    func reduce(into state: inout State, action: Action) -> Effect<Action> {
         func navigateBack() {
             switch state.configuration {
             case .modal: navigation.navigate(to: .sampleContent(.modal(.none)))

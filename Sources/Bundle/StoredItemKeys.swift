@@ -12,11 +12,11 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public extension StoredItemKey {
+extension StoredItemKey {
     static let `default`: StoredItemKey = .init("default")
 }
 
-public extension RuntimeStorage {
+extension RuntimeStorage {
     /* Add new static properties here for quick access. */
 
     static var `default`: String? { retrieve(.default) as? String }

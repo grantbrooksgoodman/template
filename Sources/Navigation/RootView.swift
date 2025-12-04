@@ -13,14 +13,14 @@ import SwiftUI
 /* Proprietary */
 import AppSubsystem
 
-public struct RootView: View {
+struct RootView: View {
     // MARK: - Dependencies
 
     @ObservedDependency(\.navigation) private var navigation: Navigation
 
     // MARK: - Body
 
-    public var body: some View {
+    var body: some View {
         switch navigation.state.modal {
         case .sampleContent:
             withTransition {

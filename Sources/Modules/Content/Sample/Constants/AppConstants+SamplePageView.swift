@@ -14,18 +14,18 @@ import AppSubsystem
 
 // MARK: - CGFloat
 
-public extension AppConstants.CGFloats {
+extension AppConstants.CGFloats {
     enum SamplePageView {
-        public static let dividerFrameMaxHeight: CGFloat = 15
+        static let dividerFrameMaxHeight: CGFloat = 15
     }
 }
 
 // MARK: - String
 
-public extension AppConstants.Strings {
+extension AppConstants.Strings {
     enum SamplePageView {
-        public static let modalButtonText = "Modal View"
-        public static let pushButtonText = "Push View"
-        public static let sheetButtonText = "Sheet View"
+        static let modalButtonText = "Modal View"
+        static let pushButtonText = "Push View"
+        static let sheetButtonText = "Sheet View"
     }
 }

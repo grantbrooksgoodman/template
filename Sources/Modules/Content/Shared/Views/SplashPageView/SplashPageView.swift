@@ -13,7 +13,7 @@ import SwiftUI
 /* Proprietary */
 import AppSubsystem
 
-public struct SplashPageView: View {
+struct SplashPageView: View {
     // MARK: - Constants Accessors
 
     private typealias Floats = AppConstants.CGFloats.SplashPageView
@@ -24,13 +24,13 @@ public struct SplashPageView: View {
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<SplashPageReducer>) {
+    init(_ viewModel: ViewModel<SplashPageReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
     }
 
     // MARK: - View
 
-    public var body: some View {
+    var body: some View {
         ThemedView {
             VStack {
                 Image(uiImage: ThemeService.isDarkModeActive ? .ntWhite : .ntBlack)

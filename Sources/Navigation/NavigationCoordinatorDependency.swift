@@ -14,8 +14,8 @@ import AppSubsystem
 
 private var didResolve = false
 
-public enum NavigationCoordinatorDependency: DependencyKey {
-    public static func resolve(_: DependencyValues) -> NavigationCoordinator<RootNavigationService> {
+enum NavigationCoordinatorDependency: DependencyKey {
+    static func resolve(_: DependencyValues) -> NavigationCoordinator<RootNavigationService> {
         guard !didResolve else {
             @Navigator var navigationCoordinator: NavigationCoordinator<RootNavigationService>
             return navigationCoordinator
@@ -32,7 +32,7 @@ public enum NavigationCoordinatorDependency: DependencyKey {
     }
 }
 
-public extension DependencyValues {
+extension DependencyValues {
     var navigation: NavigationCoordinator<RootNavigationService> {
         get { self[NavigationCoordinatorDependency.self] }
         set { self[NavigationCoordinatorDependency.self] = newValue }

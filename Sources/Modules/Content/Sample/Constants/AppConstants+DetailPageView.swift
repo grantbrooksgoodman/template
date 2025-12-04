@@ -14,17 +14,18 @@ import AppSubsystem
 
 // MARK: - CGFloat
 
-public extension AppConstants.CGFloats {
+extension AppConstants.CGFloats {
     enum DetailPageView {
-        public static let dividerFrameMaxHeight: CGFloat = 15
+        static let dividerFrameMaxHeight: CGFloat = 15
+        static let modalFadeInDurationMilliseconds: CGFloat = 250
     }
 }
 
 // MARK: - String
 
-public extension AppConstants.Strings {
+extension AppConstants.Strings {
     enum DetailPageView {
-        public static let navigateBackButtonText = "Navigate Back"
-        public static let popToSplashButtonText = "Pop to Splash"
+        static let navigateBackButtonText = "Navigate Back"
+        static let popToSplashButtonText = "Pop to Splash"
     }
 }

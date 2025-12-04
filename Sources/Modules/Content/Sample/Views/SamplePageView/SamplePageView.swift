@@ -14,7 +14,7 @@ import SwiftUI
 import AppSubsystem
 import ComponentKit
 
-public struct SamplePageView: View {
+struct SamplePageView: View {
     // MARK: - Constants Accessors
 
     private typealias Floats = AppConstants.CGFloats.SamplePageView
@@ -39,13 +39,13 @@ public struct SamplePageView: View {
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<SamplePageReducer>) {
+    init(_ viewModel: ViewModel<SamplePageReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
     }
 
     // MARK: - View
 
-    public var body: some View {
+    var body: some View {
         StatefulView(viewModel.binding(for: \.viewState)) {
             ThemedView {
                 VStack {

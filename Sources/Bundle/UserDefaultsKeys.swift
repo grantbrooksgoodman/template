@@ -12,8 +12,8 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public extension UserDefaultsKey {
+extension UserDefaultsKey {
     struct PermanentKeyDelegate: AppSubsystem.Delegates.PermanentUserDefaultsKeyDelegate {
-        public let permanentKeys: [UserDefaultsKey] = []
+        let permanentKeys: [UserDefaultsKey] = []
     }
 }

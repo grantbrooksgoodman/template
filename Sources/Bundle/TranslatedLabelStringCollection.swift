@@ -12,7 +12,7 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public extension TranslatedLabelStringCollection {
+extension TranslatedLabelStringCollection {
     /* Add methods here to expose new strings for on-the-fly translation. */
 
     static func samplePageView(_ key: SamplePageViewStringKey) -> TranslatedLabelStringCollection { .init(key.rawValue) }

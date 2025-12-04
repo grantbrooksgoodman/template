@@ -14,20 +14,20 @@ import SwiftUI
 import AppSubsystem
 import ComponentKit
 
-public struct EmptyPageView: View {
+struct EmptyPageView: View {
     // MARK: - Properties
 
     @StateObject private var viewModel: ViewModel<EmptyPageReducer>
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<EmptyPageReducer>) {
+    init(_ viewModel: ViewModel<EmptyPageReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
     }
 
     // MARK: - View
 
-    public var body: some View {
+    var body: some View {
         VStack {
             Components.text("Hello world")
         }

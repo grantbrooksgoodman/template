@@ -12,8 +12,8 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public extension CacheDomain {
+extension CacheDomain {
     struct List: AppSubsystem.Delegates.CacheDomainListDelegate {
-        public let appCacheDomains: [CacheDomain] = []
+        let appCacheDomains: [CacheDomain] = []
     }
 }

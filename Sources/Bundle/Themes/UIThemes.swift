@@ -15,8 +15,8 @@ import AppSubsystem
 /**
  Use this extension to build new UI themes.
  */
-public extension UITheme {
+extension UITheme {
     struct List: AppSubsystem.Delegates.UIThemeListDelegate {
-        public let uiThemes: [UITheme] = []
+        let uiThemes: [UITheme] = []
     }
 }

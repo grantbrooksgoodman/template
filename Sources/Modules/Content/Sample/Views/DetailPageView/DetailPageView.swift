@@ -14,7 +14,7 @@ import SwiftUI
 import AppSubsystem
 import ComponentKit
 
-public struct DetailPageView: View {
+struct DetailPageView: View {
     // MARK: - Constants Accessors
 
     private typealias Floats = AppConstants.CGFloats.DetailPageView
@@ -26,13 +26,13 @@ public struct DetailPageView: View {
 
     // MARK: - Init
 
-    public init(_ viewModel: ViewModel<DetailPageReducer>) {
+    init(_ viewModel: ViewModel<DetailPageReducer>) {
         _viewModel = .init(wrappedValue: viewModel)
     }
 
     // MARK: - View
 
-    public var body: some View {
+    var body: some View {
         ThemedView {
             VStack {
                 switch viewModel.configuration {
@@ -44,6 +44,11 @@ public struct DetailPageView: View {
                             .text(.init(viewModel.navigationTitle)),
                             popGestureAction: viewModel.popGestureAction
                         )
+                        .if(viewModel.configuration == .modal) {
+                            $0.fadeIn(
+                                .milliseconds(Floats.modalFadeInDurationMilliseconds)
+                            )
+                        }
 
                 case .sheet:
                     sheetView
@@ -106,6 +111,8 @@ public struct DetailPageView: View {
                 viewModel.send(.popToSplashButtonTapped)
             }
         }
-        .preferredStatusBarStyle(.lightContent)
+        .preferredStatusBarStyle(
+            UIApplication.isFullyV26Compatible ? .default : .lightContent
+        )
     }
 }

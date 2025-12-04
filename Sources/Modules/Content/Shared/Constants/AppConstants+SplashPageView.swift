@@ -14,9 +14,9 @@ import AppSubsystem
 
 // MARK: - CGFloat
 
-public extension AppConstants.CGFloats {
+extension AppConstants.CGFloats {
     enum SplashPageView {
-        public static let imageFrameHeight: CGFloat = 130
-        public static let imageFrameWidth: CGFloat = 250
+        static let imageFrameHeight: CGFloat = 130
+        static let imageFrameWidth: CGFloat = 250
     }
 }

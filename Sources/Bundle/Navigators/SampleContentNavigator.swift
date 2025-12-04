@@ -12,29 +12,29 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public struct SampleContentNavigatorState: NavigatorState {
+struct SampleContentNavigatorState: NavigatorState {
     // MARK: - Types
 
-    public enum ModalPaths: Paths {
+    enum ModalPaths: Paths {
         case modalDetail
     }
 
-    public enum SeguePaths: Paths {
+    enum SeguePaths: Paths {
         case pushDetail
     }
 
-    public enum SheetPaths: Paths {
+    enum SheetPaths: Paths {
         case sheetDetail
     }
 
     // MARK: - Properties
 
-    public var modal: ModalPaths?
-    public var sheet: SheetPaths?
-    public var stack: [SeguePaths] = []
+    var modal: ModalPaths?
+    var sheet: SheetPaths?
+    var stack: [SeguePaths] = []
 }
 
-public enum SampleContentNavigator {
+enum SampleContentNavigator {
     static func navigate(to route: RootNavigationService.Route.SampleContentRoute, on state: inout SampleContentNavigatorState) {
         switch route {
         case let .modal(modal):
@@ -56,7 +56,7 @@ public enum SampleContentNavigator {
     }
 }
 
-public extension RootNavigationService.Route {
+extension RootNavigationService.Route {
     enum SampleContentRoute {
         case modal(SampleContentNavigatorState.ModalPaths?)
         case pop

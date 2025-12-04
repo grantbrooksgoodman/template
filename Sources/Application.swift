@@ -12,8 +12,8 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public enum Application {
-    public static func initialize() {
+enum Application {
+    static func initialize() {
         AppSubsystem.delegates.register(
             buildInfoOverlayDotIndicatorColorDelegate: nil,
             cacheDomainListDelegate: CacheDomain.List(),

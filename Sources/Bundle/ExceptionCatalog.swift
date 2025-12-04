@@ -15,12 +15,12 @@ import AppSubsystem
 /**
  Use this extension to catalog application-specific `Exception` types and their corresponding error code values.
  */
-public extension AppException {
+extension AppException {
     // MARK: - Types
 
     struct ExceptionMetadataDelegate: AppSubsystem.Delegates.ExceptionMetadataDelegate {
-        public func isReportable(_ errorCode: String) -> Bool { true }
-        public func userFacingDescriptor(for descriptor: String) -> String? {
+        func isReportable(_ errorCode: String) -> Bool { true }
+        func userFacingDescriptor(for descriptor: String) -> String? {
             switch descriptor {
             default: nil
             }
@@ -29,5 +29,5 @@ public extension AppException {
 
     // MARK: - Properties
 
-    static let timedOut: AppException = .init("DE75")
+    static let timedOut: AppException = .init("801F")
 }

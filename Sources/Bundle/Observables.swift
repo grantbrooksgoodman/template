@@ -12,11 +12,11 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public extension ObservableKey {
+extension ObservableKey {
     /* Add keys here to define new values for Observer instances. */
 }
 
 /// For sending and accessing observed values between scopes.
-public extension Observables {
+extension Observables {
     /* Add new properties conforming to Observable here. */
 }

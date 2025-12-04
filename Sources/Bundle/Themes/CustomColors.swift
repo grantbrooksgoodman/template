@@ -16,14 +16,14 @@ import AppSubsystem
 /**
  Use this extension to define new colorable item types for specific UI elements.
  */
-public extension ColoredItemType {}
+extension ColoredItemType {}
 
 /**
  Use this extension to create custom `UIColor` types based on the current theme.
  */
-public extension UIColor {}
+extension UIColor {}
 
 /**
  Provided to create convenience initializers for custom `Color` types.
  */
-public extension Color {}
+extension Color {}

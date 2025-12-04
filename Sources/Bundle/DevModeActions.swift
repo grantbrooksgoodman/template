@@ -15,8 +15,8 @@ import AppSubsystem
 /**
  Use this extension to add new actions to the Developer Mode menu.
  */
-public extension DevModeAction {
+extension DevModeAction {
     struct AppActions: AppSubsystem.Delegates.DevModeAppActionDelegate {
-        public let appActions: [DevModeAction] = []
+        let appActions: [DevModeAction] = []
     }
 }

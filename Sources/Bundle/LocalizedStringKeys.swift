@@ -12,7 +12,7 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public enum LocalizedStringKey: String, LocalizedStringKeyRepresentable {
+enum LocalizedStringKey: String, LocalizedStringKeyRepresentable {
     // MARK: - Cases
 
     /* Add cases here for newly pre-localized strings. */
@@ -61,10 +61,10 @@ public enum LocalizedStringKey: String, LocalizedStringKeyRepresentable {
 
     // MARK: - Properties
 
-    public var referent: String { rawValue.snakeCased }
+    var referent: String { rawValue.snakeCased }
 }
 
-public extension Localized where T == LocalizedStringKey {
+extension Localized where T == LocalizedStringKey {
     init(
         _ key: LocalizedStringKey,
         languageCode: String = RuntimeStorage.languageCode
@@ -73,23 +73,23 @@ public extension Localized where T == LocalizedStringKey {
     }
 }
 
-public extension LocalizedStringKey {
+extension LocalizedStringKey {
     struct LocalizedStringsDelegate: AppSubsystem.Delegates.LocalizedStringsDelegate {
-        public var cancel: String { Localized(.cancel).wrappedValue }
-        public var done: String { Localized(.done).wrappedValue }
-        public var dismiss: String { Localized(.dismiss).wrappedValue }
-        public var errorReported: String { Localized(.errorReported).wrappedValue }
-        public var internetConnectionOffline: String { Localized(.internetConnectionOffline).wrappedValue }
-        public var noEmail: String { Localized(.noEmail).wrappedValue }
-        public var noInternetMessage: String { Localized(.noInternetMessage).wrappedValue }
-        public var reportBug: String { Localized(.reportBug).wrappedValue }
-        public var reportSent: String { Localized(.reportSent).wrappedValue }
-        public var sendFeedback: String { Localized(.sendFeedback).wrappedValue }
-        public var settings: String { Localized(.settings).wrappedValue }
-        public var somethingWentWrong: String { Localized(.somethingWentWrong).wrappedValue }
-        public var tapToReport: String { Localized(.tapToReport).wrappedValue }
-        public var timedOut: String { Localized(.timedOut).wrappedValue }
-        public var tryAgain: String { Localized(.tryAgain).wrappedValue }
-        public var yesterday: String { Localized(.yesterday).wrappedValue }
+        var cancel: String { Localized(.cancel).wrappedValue }
+        var done: String { Localized(.done).wrappedValue }
+        var dismiss: String { Localized(.dismiss).wrappedValue }
+        var errorReported: String { Localized(.errorReported).wrappedValue }
+        var internetConnectionOffline: String { Localized(.internetConnectionOffline).wrappedValue }
+        var noEmail: String { Localized(.noEmail).wrappedValue }
+        var noInternetMessage: String { Localized(.noInternetMessage).wrappedValue }
+        var reportBug: String { Localized(.reportBug).wrappedValue }
+        var reportSent: String { Localized(.reportSent).wrappedValue }
+        var sendFeedback: String { Localized(.sendFeedback).wrappedValue }
+        var settings: String { Localized(.settings).wrappedValue }
+        var somethingWentWrong: String { Localized(.somethingWentWrong).wrappedValue }
+        var tapToReport: String { Localized(.tapToReport).wrappedValue }
+        var timedOut: String { Localized(.timedOut).wrappedValue }
+        var tryAgain: String { Localized(.tryAgain).wrappedValue }
+        var yesterday: String { Localized(.yesterday).wrappedValue }
     }
 }

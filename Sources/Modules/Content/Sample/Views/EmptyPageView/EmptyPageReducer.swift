@@ -12,22 +12,22 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-public struct EmptyPageReducer: Reducer {
+struct EmptyPageReducer: Reducer {
     // MARK: - Actions
 
-    public enum Action {
+    enum Action {
         case viewAppeared
     }
 
     // MARK: - State
 
-    public struct State: Equatable {
-        public init() {}
+    struct State: Equatable {
+        init() {}
     }
 
     // MARK: - Reduce
 
-    public func reduce(into state: inout State, action: Action) -> Effect<Action> {
+    func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .viewAppeared:
             break
