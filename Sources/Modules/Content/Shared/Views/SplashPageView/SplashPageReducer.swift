@@ -25,9 +25,7 @@ struct SplashPageReducer: Reducer {
 
     // MARK: - State
 
-    struct State: Equatable {
-        init() {}
-    }
+    struct State: Equatable {}
 
     // MARK: - Reduce
 

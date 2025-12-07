@@ -51,7 +51,7 @@ struct SamplePageView: View {
                 VStack {
                     Components.text(
                         viewModel.strings.value(for: .titleLabelText),
-                        font: .systemBold
+                        font: .systemBold(scale: .large)
                     )
 
                     Components.text(
@@ -59,36 +59,36 @@ struct SamplePageView: View {
                         font: .system(scale: .small),
                         foregroundColor: .subtitleText
                     )
-
-                    Divider()
+                    .padding(
+                        .bottom,
+                        Floats.hStackBottomPadding
+                    )
 
                     HStack {
-                        Components.button(
+                        Components.capsuleButton(
                             Strings.modalButtonText,
-                            font: .systemMediumUnderlined
+                            font: .systemSemibold
                         ) {
                             viewModel.send(.modalButtonTapped)
                         }
 
-                        Divider()
-                            .frame(maxHeight: Floats.dividerFrameMaxHeight)
-
-                        Components.button(
+                        Components.capsuleButton(
                             Strings.pushButtonText,
-                            font: .systemMediumUnderlined
+                            font: .systemSemibold
                         ) {
                             viewModel.send(.pushButtonTapped)
                         }
+                    }
+                    .padding(
+                        .bottom,
+                        Floats.hStackBottomPadding
+                    )
 
-                        Divider()
-                            .frame(maxHeight: Floats.dividerFrameMaxHeight)
-
-                        Components.button(
-                            Strings.sheetButtonText,
-                            font: .systemMediumUnderlined
-                        ) {
-                            viewModel.send(.sheetButtonTapped)
-                        }
+                    Components.capsuleButton(
+                        Strings.sheetButtonText,
+                        font: .systemSemibold
+                    ) {
+                        viewModel.send(.sheetButtonTapped)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -97,7 +97,8 @@ struct SamplePageView: View {
                     .image(.init(
                         foregroundColor: .titleText,
                         image: .init(uiImage: .ntBlack)
-                    ))
+                    )),
+                    usesInlineDisplayMode: false
                 )
             }
             .sheet(item: sheetBinding) { sheetView(for: $0) }

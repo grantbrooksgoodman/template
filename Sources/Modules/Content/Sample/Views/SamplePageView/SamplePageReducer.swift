@@ -33,14 +33,8 @@ struct SamplePageReducer: Reducer {
     // MARK: - State
 
     struct State: Equatable {
-        /* MARK: Properties */
-
         var strings: [TranslationOutputMap] = SamplePageViewStrings.defaultOutputMap
         var viewState: StatefulView.ViewState = .loading
-
-        /* MARK: Init */
-
-        init() {}
     }
 
     // MARK: - Reduce

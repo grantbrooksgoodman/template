@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8488CCA531537608C7F22939 /* Pods_Template.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDFA0F1CD9A595EE8AF0DC6 /* Pods_Template.framework */; };
 		A206F7DA28AC4FD7008FFE18 /* LocalizedStrings.plist in Resources */ = {isa = PBXBuildFile; fileRef = A206F7D928AC4FD7008FFE18 /* LocalizedStrings.plist */; };
+		A2AD74BA2EE541E80030AD26 /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = A2AD74B92EE541E80030AD26 /* AppSubsystem */; };
 		A2DF2C5528199B660089DEA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5428199B660089DEA1 /* AppDelegate.swift */; };
 		A2DF2C5728199B660089DEA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */; };
 		A2DF2C5B28199B670089DEA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C5A28199B670089DEA1 /* Assets.xcassets */; };
@@ -40,7 +41,6 @@
 		B934570B2AABFC7100944602 /* LocalizedStringKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */; };
 		B93BCDE52AAD9A1A00AA16FE /* SamplePageViewStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93BCDE42AAD9A1A00AA16FE /* SamplePageViewStrings.swift */; };
 		B978B19D2B87CE3200AA007A /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978B19C2B87CE3200AA007A /* RootSheet.swift */; };
-		B99899872E09E0A500DEC579 /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = B99899862E09E0A500DEC579 /* AppSubsystem */; };
 		B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DB929E4C2AF00117D42 /* CustomColors.swift */; };
 		B99B1DC029E4C45000117D42 /* UIThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DBF29E4C45000117D42 /* UIThemes.swift */; };
 		B99F13F42A280A0500B9FCE2 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */; };
@@ -198,7 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B99899872E09E0A500DEC579 /* AppSubsystem in Frameworks */,
+				A2AD74BA2EE541E80030AD26 /* AppSubsystem in Frameworks */,
 				8488CCA531537608C7F22939 /* Pods_Template.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,7 +504,7 @@
 			);
 			name = Template;
 			packageProductDependencies = (
-				B99899862E09E0A500DEC579 /* AppSubsystem */,
+				A2AD74B92EE541E80030AD26 /* AppSubsystem */,
 			);
 			productName = Application;
 			productReference = A2DF2C5128199B660089DEA1 /* Template.app */;
@@ -610,7 +610,7 @@
 			);
 			mainGroup = A2DF2C4828199B660089DEA1;
 			packageReferences = (
-				B99899852E09E0A500DEC579 /* XCRemoteSwiftPackageReference "app-subsystem" */,
+				A2AD74B82EE541E80030AD26 /* XCRemoteSwiftPackageReference "app-subsystem" */,
 			);
 			productRefGroup = A2DF2C5228199B660089DEA1 /* Products */;
 			projectDirPath = "";
@@ -1060,7 +1060,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B99899852E09E0A500DEC579 /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
+		A2AD74B82EE541E80030AD26 /* XCRemoteSwiftPackageReference "app-subsystem" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/grantbrooksgoodman/app-subsystem";
 			requirement = {
@@ -1071,9 +1071,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B99899862E09E0A500DEC579 /* AppSubsystem */ = {
+		A2AD74B92EE541E80030AD26 /* AppSubsystem */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B99899852E09E0A500DEC579 /* XCRemoteSwiftPackageReference "app-subsystem" */;
+			package = A2AD74B82EE541E80030AD26 /* XCRemoteSwiftPackageReference "app-subsystem" */;
 			productName = AppSubsystem;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -16,7 +16,8 @@ import AppSubsystem
 
 extension AppConstants.CGFloats {
     enum SamplePageView {
-        static let dividerFrameMaxHeight: CGFloat = 15
+        static let hStackBottomPadding: CGFloat = 5
+        static let subtitleLabelBottomPadding: CGFloat = 15
     }
 }
 

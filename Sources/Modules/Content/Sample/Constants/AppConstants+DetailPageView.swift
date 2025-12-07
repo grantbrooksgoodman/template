@@ -8,6 +8,7 @@
 
 /* Native */
 import Foundation
+import SwiftUI
 
 /* Proprietary */
 import AppSubsystem
@@ -16,8 +17,17 @@ import AppSubsystem
 
 extension AppConstants.CGFloats {
     enum DetailPageView {
-        static let dividerFrameMaxHeight: CGFloat = 15
         static let modalFadeInDurationMilliseconds: CGFloat = 250
+    }
+}
+
+// MARK: - Color
+
+extension AppConstants.Colors {
+    enum DetailPageView {
+        static var doneButtonForeground: Color {
+            UIApplication.isGlassTintingEnabled ? .white : .accent
+        }
     }
 }
 

@@ -17,6 +17,7 @@ import ComponentKit
 struct DetailPageView: View {
     // MARK: - Constants Accessors
 
+    private typealias Colors = AppConstants.Colors.DetailPageView
     private typealias Floats = AppConstants.CGFloats.DetailPageView
     private typealias Strings = AppConstants.Strings.DetailPageView
 
@@ -53,8 +54,17 @@ struct DetailPageView: View {
                 case .sheet:
                     sheetView
                         .header(
-                            rightItem: .doneButton { viewModel.send(.navigateBackButtonTapped) },
+                            .text(.init(viewModel.navigationTitle)),
+                            rightItem: .doneButton(
+                                foregroundColor: Colors.doneButtonForeground
+                            ) {
+                                viewModel.send(.navigateBackButtonTapped)
+                            },
                             attributes: .init(sizeClass: .sheet)
+                        )
+                        .navigationBarItemGlassTint(
+                            .accent,
+                            for: .trailing
                         )
                 }
             }
@@ -69,25 +79,20 @@ struct DetailPageView: View {
         VStack {
             Components.text(
                 viewModel.navigationTitle,
-                font: .systemBold
+                font: .systemBold(scale: .large)
             )
 
-            Divider()
-
             HStack {
-                Components.button(
+                Components.capsuleButton(
                     Strings.navigateBackButtonText,
-                    font: .systemMediumUnderlined
+                    font: .systemSemibold
                 ) {
                     viewModel.send(.navigateBackButtonTapped)
                 }
 
-                Divider()
-                    .frame(maxHeight: Floats.dividerFrameMaxHeight)
-
-                Components.button(
+                Components.capsuleButton(
                     Strings.popToSplashButtonText,
-                    font: .systemMediumUnderlined
+                    font: .systemSemibold
                 ) {
                     viewModel.send(.popToSplashButtonTapped)
                 }
@@ -96,20 +101,11 @@ struct DetailPageView: View {
     }
 
     private var sheetView: some View {
-        VStack {
-            Components.text(
-                viewModel.navigationTitle,
-                font: .systemBold
-            )
-
-            Divider()
-
-            Components.button(
-                Strings.popToSplashButtonText,
-                font: .systemMediumUnderlined
-            ) {
-                viewModel.send(.popToSplashButtonTapped)
-            }
+        Components.capsuleButton(
+            Strings.popToSplashButtonText,
+            font: .systemSemibold
+        ) {
+            viewModel.send(.popToSplashButtonTapped)
         }
         .preferredStatusBarStyle(
             UIApplication.isFullyV26Compatible ? .default : .lightContent

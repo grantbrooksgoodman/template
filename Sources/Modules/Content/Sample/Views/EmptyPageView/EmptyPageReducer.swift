@@ -21,9 +21,7 @@ struct EmptyPageReducer: Reducer {
 
     // MARK: - State
 
-    struct State: Equatable {
-        init() {}
-    }
+    struct State: Equatable {}
 
     // MARK: - Reduce
 
