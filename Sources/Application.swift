@@ -30,7 +30,6 @@ enum Application {
             appStoreBuildNumber: 0,
             buildMilestone: .preAlpha,
             codeName: "Template",
-            dmyFirstCompileDateString: "29062007",
             finalName: "",
             languageCode: Locale.systemLanguageCode,
             loggingEnabled: true

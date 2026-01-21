@@ -666,7 +666,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nBUILD_NUMBER=$(($BUILD_NUMBER + 1))\nbuild_date=`date +%s`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $build_date\" \"$INFOPLIST_FILE\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"$INFOPLIST_FILE\"\n";
+			shellScript = "#!/bin/bash\n\nset -e\nPLIST=\"$INFOPLIST_FILE\"\n\n# Increment build number\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$PLIST\")\nBUILD_NUMBER=$((BUILD_NUMBER + 1))\n\n# Current build timestamp\nBUILD_DATE=$(date +%s)\n\n# Update CFBuildDate and CFBundleVersion\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $BUILD_DATE\" \"$PLIST\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"$PLIST\"\n\n# Conditionally set CFFirstCompileDate\nPLACEHOLDER_FIRST_COMPILE_DATE=\"1183100400\"\nCURRENT_FIRST_COMPILE_DATE=$(/usr/libexec/PlistBuddy -c \"Print :CFFirstCompileDate\" \"$PLIST\" 2>/dev/null || echo \"\")\n\nif [[ \"$CURRENT_FIRST_COMPILE_DATE\" == \"$PLACEHOLDER_FIRST_COMPILE_DATE\" ]]; then\n  /usr/libexec/PlistBuddy -c \"Set :CFFirstCompileDate $BUILD_DATE\" \"$PLIST\"\nfi\n";
 		};
 		B98145F22AB4F34100937D37 /* Run SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
