@@ -45,7 +45,7 @@ struct DetailPageReducer: Reducer {
 
         var navigationTitle: String { "\(configuration.rawValue.firstUppercase) Detail View" }
 
-        var popGestureAction: (() -> Void)? {
+        var popGestureAction: (@MainActor () -> Void)? {
             guard configuration == .modal else { return nil }
             return {
                 @Dependency(\.navigation) var navigation: Navigation
@@ -63,8 +63,9 @@ struct DetailPageReducer: Reducer {
     // MARK: - Reduce
 
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
-        func navigateBack() {
-            switch state.configuration {
+        @MainActor
+        func navigateBack(_ configuration: State.Configuration) {
+            switch configuration {
             case .modal: navigation.navigate(to: .sampleContent(.modal(.none)))
             case .push: navigation.navigate(to: .sampleContent(.pop))
             case .sheet: navigation.navigate(to: .sampleContent(.sheet(.none)))
@@ -76,11 +77,17 @@ struct DetailPageReducer: Reducer {
             break
 
         case .navigateBackButtonTapped:
-            navigateBack()
+            let configuration = state.configuration
+            return .fireAndForget { @MainActor in
+                navigateBack(configuration)
+            }
 
         case .popToSplashButtonTapped:
-            navigateBack()
-            navigation.navigate(to: .root(.modal(.splash)))
+            let configuration = state.configuration
+            return .fireAndForget { @MainActor in
+                navigateBack(configuration)
+                navigation.navigate(to: .root(.modal(.splash)))
+            }
         }
 
         return .none

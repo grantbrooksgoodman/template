@@ -13,6 +13,7 @@ import Foundation
 import AppSubsystem
 
 enum Application {
+    @MainActor
     static func initialize() {
         AppSubsystem.delegates.register(
             buildInfoOverlayDotIndicatorColorDelegate: nil,

@@ -10,7 +10,8 @@
 import Foundation
 
 /* Proprietary */
-import AppSubsystem
+// TODO: Remove when using Swift 6 branch.
+@preconcurrency import AppSubsystem
 
 extension StoredItemKey {
     static let `default`: StoredItemKey = .init("default")

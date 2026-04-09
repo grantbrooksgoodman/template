@@ -12,7 +12,7 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-private var didResolve = false
+private nonisolated(unsafe) var didResolve = false
 
 enum NavigationCoordinatorDependency: DependencyKey {
     static func resolve(_: DependencyValues) -> NavigationCoordinator<RootNavigationService> {
@@ -21,7 +21,7 @@ enum NavigationCoordinatorDependency: DependencyKey {
             return navigationCoordinator
         }
 
-        let navigationCoordinator: NavigationCoordinator<RootNavigationService> = .init(
+        @MainActorIsolated var navigationCoordinator: NavigationCoordinator<RootNavigationService> = .init(
             .init(modal: .splash),
             navigating: RootNavigationService()
         )
