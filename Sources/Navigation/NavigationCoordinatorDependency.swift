@@ -12,23 +12,29 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-private var didResolve = false
-
 enum NavigationCoordinatorDependency: DependencyKey {
+    // MARK: - Properties
+
+    private static let didResolve = LockIsolated<Bool>(wrappedValue: false)
+
+    // MARK: - DependencyKey Conformance
+
     static func resolve(_: DependencyValues) -> NavigationCoordinator<RootNavigationService> {
-        guard !didResolve else {
-            @Navigator var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+        didResolve.projectedValue.withValue {
+            guard !$0 else {
+                @Navigator var navigationCoordinator: NavigationCoordinator<RootNavigationService>
+                return navigationCoordinator
+            }
+
+            @MainActorIsolated var navigationCoordinator: NavigationCoordinator<RootNavigationService> = .init(
+                .init(modal: .splash),
+                navigating: RootNavigationService()
+            )
+
+            NavigationCoordinatorResolver.shared.store(navigationCoordinator)
+            $0 = true
             return navigationCoordinator
         }
-
-        let navigationCoordinator: NavigationCoordinator<RootNavigationService> = .init(
-            .init(modal: .splash),
-            navigating: RootNavigationService()
-        )
-
-        NavigationCoordinatorResolver.shared.store(navigationCoordinator)
-        didResolve = true
-        return navigationCoordinator
     }
 }
 

@@ -49,10 +49,14 @@ struct SamplePageReducer: Reducer {
             }
 
         case .modalButtonTapped:
-            navigation.navigate(to: .sampleContent(.modal(.modalDetail)))
+            return .fireAndForget { @MainActor in
+                navigation.navigate(to: .sampleContent(.modal(.modalDetail)))
+            }
 
         case .pushButtonTapped:
-            navigation.navigate(to: .sampleContent(.push(.pushDetail)))
+            return .fireAndForget { @MainActor in
+                navigation.navigate(to: .sampleContent(.push(.pushDetail)))
+            }
 
         case let .resolveReturned(.success(strings)):
             state.strings = strings
@@ -63,7 +67,9 @@ struct SamplePageReducer: Reducer {
             state.viewState = .loaded
 
         case .sheetButtonTapped:
-            navigation.navigate(to: .sampleContent(.sheet(.sheetDetail)))
+            return .fireAndForget { @MainActor in
+                navigation.navigate(to: .sampleContent(.sheet(.sheetDetail)))
+            }
         }
 
         return .none

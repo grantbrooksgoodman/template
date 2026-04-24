@@ -32,7 +32,7 @@ struct SplashPageReducer: Reducer {
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .viewAppeared:
-            return .task(delay: .seconds(1)) {
+            return .task(delay: .seconds(1)) { @MainActor in
                 navigation.navigate(to: .root(.modal(.sampleContent)))
                 return .none
             }

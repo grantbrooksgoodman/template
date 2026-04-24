@@ -12,6 +12,7 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
+@MainActor
 enum Application {
     static func initialize() {
         AppSubsystem.delegates.register(

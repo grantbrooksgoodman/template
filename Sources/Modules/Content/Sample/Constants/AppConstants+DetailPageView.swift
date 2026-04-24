@@ -25,6 +25,7 @@ extension AppConstants.CGFloats {
 
 extension AppConstants.Colors {
     enum DetailPageView {
+        @MainActor
         static var doneButtonForeground: Color {
             UIApplication.isGlassTintingEnabled ? .white : .accent
         }
