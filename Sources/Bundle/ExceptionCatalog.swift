@@ -10,8 +10,7 @@
 import Foundation
 
 /* Proprietary */
-// TODO: Remove when using Swift 6 branch.
-@preconcurrency import AppSubsystem
+import AppSubsystem
 
 /**
  Use this extension to catalog application-specific `Exception` types and their corresponding error code values.

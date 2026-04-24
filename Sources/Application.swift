@@ -12,8 +12,8 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
+@MainActor
 enum Application {
-    @MainActor
     static func initialize() {
         AppSubsystem.delegates.register(
             buildInfoOverlayDotIndicatorColorDelegate: nil,
