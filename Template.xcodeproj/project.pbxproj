@@ -13,8 +13,6 @@
 		A2DF2C5528199B660089DEA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5428199B660089DEA1 /* AppDelegate.swift */; };
 		A2DF2C5728199B660089DEA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */; };
 		A2DF2C5B28199B670089DEA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C5A28199B670089DEA1 /* Assets.xcassets */; };
-		A2DF2C7328199C3C0089DEA1 /* Chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */; };
-		A2DF2C7628199C400089DEA1 /* Chord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C7528199C400089DEA1 /* Chord.mp3 */; };
 		A2DF2CA128199CE20089DEA1 /* San Francisco (Heavy Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9528199CE20089DEA1 /* San Francisco (Heavy Italic).otf */; };
 		A2DF2CA228199CE20089DEA1 /* San Francisco (Bold Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9628199CE20089DEA1 /* San Francisco (Bold Italic).otf */; };
 		A2DF2CA328199CE20089DEA1 /* San Francisco (Heavy).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9728199CE20089DEA1 /* San Francisco (Heavy).otf */; };
@@ -68,8 +66,6 @@
 		A2DF2C5428199B660089DEA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A2DF2C5A28199B670089DEA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chime.mp3; sourceTree = "<group>"; };
-		A2DF2C7528199C400089DEA1 /* Chord.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chord.mp3; sourceTree = "<group>"; };
 		A2DF2C9528199CE20089DEA1 /* San Francisco (Heavy Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Heavy Italic).otf"; sourceTree = "<group>"; };
 		A2DF2C9628199CE20089DEA1 /* San Francisco (Bold Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Bold Italic).otf"; sourceTree = "<group>"; };
 		A2DF2C9728199CE20089DEA1 /* San Francisco (Heavy).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Heavy).otf"; sourceTree = "<group>"; };
@@ -247,21 +243,11 @@
 		A2DF2C6F28199BF40089DEA1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A2DF2C7128199C260089DEA1 /* Audio */,
 				A2DF2CAE28199CE90089DEA1 /* Images */,
 				B9D2410D2B85484E00E26CC6 /* Property Lists */,
 				B9E7D4522AAC3E0300FAF2A9 /* Other */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		A2DF2C7128199C260089DEA1 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */,
-				A2DF2C7528199C400089DEA1 /* Chord.mp3 */,
-			);
-			path = Audio;
 			sourceTree = "<group>";
 		};
 		A2DF2C8828199CBC0089DEA1 /* San Francisco Font */ = {
@@ -496,7 +482,7 @@
 				B98145F32AB4F51700937D37 /* Run SwiftLint */,
 				A2DF2C4E28199B660089DEA1 /* Frameworks */,
 				A2DF2C4F28199B660089DEA1 /* Resources */,
-				A2DF2CC228199F000089DEA1 /* Update Build Information */,
+				A2DF2CC228199F000089DEA1 /* Stamp Build Date */,
 			);
 			buildRules = (
 			);
@@ -629,9 +615,7 @@
 				A2DF2CA328199CE20089DEA1 /* San Francisco (Heavy).otf in Resources */,
 				A2DF2CA728199CE20089DEA1 /* San Francisco (Medium).otf in Resources */,
 				A2DF2CA528199CE20089DEA1 /* San Francisco (Regular).otf in Resources */,
-				A2DF2C7328199C3C0089DEA1 /* Chime.mp3 in Resources */,
 				A2DF2CA828199CE20089DEA1 /* San Francisco (Semibold).otf in Resources */,
-				A2DF2C7628199C400089DEA1 /* Chord.mp3 in Resources */,
 				A2DF2CA428199CE20089DEA1 /* San Francisco (Medium Italic).otf in Resources */,
 				A2DF2CAA28199CE20089DEA1 /* San Francisco (Light).otf in Resources */,
 				A2DF2CA928199CE20089DEA1 /* San Francisco (Regular Italic).otf in Resources */,
@@ -649,7 +633,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A2DF2CC228199F000089DEA1 /* Update Build Information */ = {
+		A2DF2CC228199F000089DEA1 /* Stamp Build Date */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -659,7 +643,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Update Build Information";
+			name = "Stamp Build Date";
 			outputFileListPaths = (
 			);
 			outputPaths = (

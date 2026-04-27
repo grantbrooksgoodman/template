@@ -33,6 +33,8 @@ struct SamplePageReducer: Reducer {
     // MARK: - State
 
     struct State: Equatable {
+        let titleLabelText = Localized(.helloWorld).wrappedValue
+
         var strings: [TranslationOutputMap] = SamplePageViewStrings.defaultOutputMap
         var viewState: StatefulView.ViewState = .loading
     }
