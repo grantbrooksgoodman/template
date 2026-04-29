@@ -2,70 +2,70 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBuildDate</key>
-    <string>1183100400</string>
-    <key>CFBundleExecutable</key>
-    <string>$(EXECUTABLE_NAME)</string>
-    <key>CFBundleIdentifier</key>
-    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-    <key>CFBundleName</key>
-    <string>$(PRODUCT_NAME)</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
-    <key>CFBundleVersion</key>
-    <string>0</string>
-    <key>CFFirstCompileDate</key>
-    <string>1183100400</string>
-    <key>CFTargetName</key>
-    <string>$(TARGET_NAME)</string>
-    <key>LSRequiresIPhoneOS</key>
-    <true/>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Photo library access is requested to save images.</string>
-    <key>UIAppFonts</key>
-    <array>
-        <string>San Francisco (Bold Italic).otf</string>
-        <string>San Francisco (Bold).otf</string>
-        <string>San Francisco (Heavy Italic).otf</string>
-        <string>San Francisco (Heavy).otf</string>
-        <string>San Francisco (Light Italic).otf</string>
-        <string>San Francisco (Light).otf</string>
-        <string>San Francisco (Medium Italic).otf</string>
-        <string>San Francisco (Medium).otf</string>
-        <string>San Francisco (Regular Italic).otf</string>
-        <string>San Francisco (Regular).otf</string>
-        <string>San Francisco (Semibold Italic).otf</string>
-        <string>San Francisco (Semibold).otf</string>
-    </array>
-    <key>UIApplicationSceneManifest</key>
-    <dict>
-        <key>UIApplicationSupportsMultipleScenes</key>
-        <false/>
-        <key>UISceneConfigurations</key>
-        <dict>
-            <key>UIWindowSceneSessionRoleApplication</key>
-            <array>
-                <dict>
-                    <key>UISceneConfigurationName</key>
-                    <string>Default Configuration</string>
-                    <key>UISceneDelegateClassName</key>
-                    <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-                </dict>
-            </array>
-        </dict>
-    </dict>
-    <key>UIDesignRequiresCompatibility</key>
-    <false/>
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationPortraitUpsideDown</string>
-    </array>
+	<key>CFBuildDate</key>
+	<string>1183100400</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>0</string>
+	<key>CFFirstCompileDate</key>
+	<string>1183100400</string>
+	<key>CFTargetName</key>
+	<string>$(TARGET_NAME)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo library access is requested to save images.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>San Francisco (Bold Italic).otf</string>
+		<string>San Francisco (Bold).otf</string>
+		<string>San Francisco (Heavy Italic).otf</string>
+		<string>San Francisco (Heavy).otf</string>
+		<string>San Francisco (Light Italic).otf</string>
+		<string>San Francisco (Light).otf</string>
+		<string>San Francisco (Medium Italic).otf</string>
+		<string>San Francisco (Medium).otf</string>
+		<string>San Francisco (Regular Italic).otf</string>
+		<string>San Francisco (Regular).otf</string>
+		<string>San Francisco (Semibold Italic).otf</string>
+		<string>San Francisco (Semibold).otf</string>
+	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>UIDesignRequiresCompatibility</key>
+	<false/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
 </dict>
 </plist>

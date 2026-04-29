@@ -13,17 +13,42 @@ import SwiftUI
 /* Proprietary */
 import AppSubsystem
 
-/**
- Use this extension to define new colorable item types for specific UI elements.
- */
+/// Use this extension to define new ``ColoredItemType`` values for
+/// specific UI elements.
+///
+/// Define a new ``ColoredItemType`` for each semantic color slot your
+/// app introduces, then provide colors for it in your theme's palette:
+///
+/// ```swift
+/// extension ColoredItemType {
+///     static let cardBackground: ColoredItemType = .init("cardBackground")
+/// }
+/// ```
 extension ColoredItemType {}
 
-/**
- Use this extension to create custom `UIColor` types based on the current theme.
- */
+/// Use this extension to create custom `UIColor` properties that
+/// resolve against the current theme.
+///
+/// Add computed properties that call ``UITheme/color(for:)`` on the
+/// active theme:
+///
+/// ```swift
+/// extension UIColor {
+///     static var cardBackground: UIColor {
+///         ThemeService.currentTheme.color(for: .cardBackground)
+///     }
+/// }
+/// ```
 extension UIColor {}
 
-/**
- Provided to create convenience initializers for custom `Color` types.
- */
+/// Use this extension to create custom SwiftUI `Color` properties
+/// that resolve against the current theme.
+///
+/// Wrap the corresponding `UIColor` property in a `Color` initializer:
+///
+/// ```swift
+/// extension Color {
+///     static var cardBackground: Color { .init(uiColor: .cardBackground) }
+/// }
+/// ```
 extension Color {}
