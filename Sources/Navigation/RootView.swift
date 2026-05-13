@@ -13,6 +13,16 @@ import SwiftUI
 /* Proprietary */
 import AppSubsystem
 
+/// The app's root SwiftUI view.
+///
+/// `RootView` observes the navigation coordinator and renders the
+/// appropriate top-level screen based on the current
+/// ``RootNavigatorState/modal`` value. Add a `case` to the `switch`
+/// statement in `body` for each destination defined in
+/// ``RootNavigatorState/ModalPaths``.
+///
+/// ``SceneDelegate`` attaches this view to the window scene at launch
+/// through ``RootWindowScene/instantiate(_:rootView:)``.
 struct RootView: View {
     // MARK: - Dependencies
 

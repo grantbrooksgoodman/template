@@ -17,7 +17,6 @@ extension TranslatedLabelStringCollection {
     enum SamplePageViewStringKey: String, Equatable, CaseIterable, TranslatedLabelStringKey {
         // MARK: - Cases
 
-        case titleLabelText = "Hello World"
         case subtitleLabelText = "In Swift 6!"
 
         // MARK: - Properties

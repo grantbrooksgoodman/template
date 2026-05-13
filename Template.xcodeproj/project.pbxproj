@@ -13,8 +13,6 @@
 		A2DF2C5528199B660089DEA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5428199B660089DEA1 /* AppDelegate.swift */; };
 		A2DF2C5728199B660089DEA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */; };
 		A2DF2C5B28199B670089DEA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C5A28199B670089DEA1 /* Assets.xcassets */; };
-		A2DF2C7328199C3C0089DEA1 /* Chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */; };
-		A2DF2C7628199C400089DEA1 /* Chord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C7528199C400089DEA1 /* Chord.mp3 */; };
 		A2DF2CA128199CE20089DEA1 /* San Francisco (Heavy Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9528199CE20089DEA1 /* San Francisco (Heavy Italic).otf */; };
 		A2DF2CA228199CE20089DEA1 /* San Francisco (Bold Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9628199CE20089DEA1 /* San Francisco (Bold Italic).otf */; };
 		A2DF2CA328199CE20089DEA1 /* San Francisco (Heavy).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2DF2C9728199CE20089DEA1 /* San Francisco (Heavy).otf */; };
@@ -43,7 +41,7 @@
 		B978B19D2B87CE3200AA007A /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978B19C2B87CE3200AA007A /* RootSheet.swift */; };
 		B99B1DBA29E4C2AF00117D42 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DB929E4C2AF00117D42 /* CustomColors.swift */; };
 		B99B1DC029E4C45000117D42 /* UIThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99B1DBF29E4C45000117D42 /* UIThemes.swift */; };
-		B99F13F42A280A0500B9FCE2 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */; };
+		B99F13F42A280A0500B9FCE2 /* PersistentStorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F13F32A280A0500B9FCE2 /* PersistentStorageKeys.swift */; };
 		B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */; };
 		B9C5830829BECE59009DCE29 /* DevModeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5830729BECE59009DCE29 /* DevModeActions.swift */; };
 		B9C5E9132AB161B6004D79DA /* EmptyPageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C5E9122AB161B6004D79DA /* EmptyPageReducer.swift */; };
@@ -68,8 +66,6 @@
 		A2DF2C5428199B660089DEA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2DF2C5628199B660089DEA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A2DF2C5A28199B670089DEA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chime.mp3; sourceTree = "<group>"; };
-		A2DF2C7528199C400089DEA1 /* Chord.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chord.mp3; sourceTree = "<group>"; };
 		A2DF2C9528199CE20089DEA1 /* San Francisco (Heavy Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Heavy Italic).otf"; sourceTree = "<group>"; };
 		A2DF2C9628199CE20089DEA1 /* San Francisco (Bold Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Bold Italic).otf"; sourceTree = "<group>"; };
 		A2DF2C9728199CE20089DEA1 /* San Francisco (Heavy).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Heavy).otf"; sourceTree = "<group>"; };
@@ -173,7 +169,7 @@
 		B978B19C2B87CE3200AA007A /* RootSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSheet.swift; sourceTree = "<group>"; };
 		B99B1DB929E4C2AF00117D42 /* CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		B99B1DBF29E4C45000117D42 /* UIThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIThemes.swift; sourceTree = "<group>"; };
-		B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		B99F13F32A280A0500B9FCE2 /* PersistentStorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageKeys.swift; sourceTree = "<group>"; };
 		B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedLabelStringCollection.swift; sourceTree = "<group>"; };
 		B9C5830729BECE59009DCE29 /* DevModeActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevModeActions.swift; sourceTree = "<group>"; };
 		B9C5E9122AB161B6004D79DA /* EmptyPageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPageReducer.swift; sourceTree = "<group>"; };
@@ -247,21 +243,11 @@
 		A2DF2C6F28199BF40089DEA1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A2DF2C7128199C260089DEA1 /* Audio */,
 				A2DF2CAE28199CE90089DEA1 /* Images */,
 				B9D2410D2B85484E00E26CC6 /* Property Lists */,
 				B9E7D4522AAC3E0300FAF2A9 /* Other */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		A2DF2C7128199C260089DEA1 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				A2DF2C7228199C3C0089DEA1 /* Chime.mp3 */,
-				A2DF2C7528199C400089DEA1 /* Chord.mp3 */,
-			);
-			path = Audio;
 			sourceTree = "<group>";
 		};
 		A2DF2C8828199CBC0089DEA1 /* San Francisco Font */ = {
@@ -458,10 +444,10 @@
 				B934570A2AABFC7100944602 /* LocalizedStringKeys.swift */,
 				B92409842AB2DFC0004CF4C0 /* LoggerDomains.swift */,
 				B9E7D43E2AAC223700FAF2A9 /* Observables.swift */,
+				B99F13F32A280A0500B9FCE2 /* PersistentStorageKeys.swift */,
 				B978B19C2B87CE3200AA007A /* RootSheet.swift */,
 				B9CCEBBF2C8E6DD800CB9C01 /* StoredItemKeys.swift */,
 				B9BB3CF22AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift */,
-				B99F13F32A280A0500B9FCE2 /* UserDefaultsKeys.swift */,
 			);
 			path = Bundle;
 			sourceTree = "<group>";
@@ -496,7 +482,7 @@
 				B98145F32AB4F51700937D37 /* Run SwiftLint */,
 				A2DF2C4E28199B660089DEA1 /* Frameworks */,
 				A2DF2C4F28199B660089DEA1 /* Resources */,
-				A2DF2CC228199F000089DEA1 /* Update Build Information */,
+				A2DF2CC228199F000089DEA1 /* Stamp Build Date */,
 			);
 			buildRules = (
 			);
@@ -629,9 +615,7 @@
 				A2DF2CA328199CE20089DEA1 /* San Francisco (Heavy).otf in Resources */,
 				A2DF2CA728199CE20089DEA1 /* San Francisco (Medium).otf in Resources */,
 				A2DF2CA528199CE20089DEA1 /* San Francisco (Regular).otf in Resources */,
-				A2DF2C7328199C3C0089DEA1 /* Chime.mp3 in Resources */,
 				A2DF2CA828199CE20089DEA1 /* San Francisco (Semibold).otf in Resources */,
-				A2DF2C7628199C400089DEA1 /* Chord.mp3 in Resources */,
 				A2DF2CA428199CE20089DEA1 /* San Francisco (Medium Italic).otf in Resources */,
 				A2DF2CAA28199CE20089DEA1 /* San Francisco (Light).otf in Resources */,
 				A2DF2CA928199CE20089DEA1 /* San Francisco (Regular Italic).otf in Resources */,
@@ -649,7 +633,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A2DF2CC228199F000089DEA1 /* Update Build Information */ = {
+		A2DF2CC228199F000089DEA1 /* Stamp Build Date */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -659,7 +643,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Update Build Information";
+			name = "Stamp Build Date";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -753,7 +737,7 @@
 				B9E7D4222AAC1ED700FAF2A9 /* SamplePageReducer.swift in Sources */,
 				B90701E42C17D42700F80A02 /* DetailPageReducer.swift in Sources */,
 				B9E2E60F2C72E554004022FE /* CacheDomains.swift in Sources */,
-				B99F13F42A280A0500B9FCE2 /* UserDefaultsKeys.swift in Sources */,
+				B99F13F42A280A0500B9FCE2 /* PersistentStorageKeys.swift in Sources */,
 				B93BCDE52AAD9A1A00AA16FE /* SamplePageViewStrings.swift in Sources */,
 				B9F3615F2C18DD7A00586D1D /* AppConstants+SamplePageView.swift in Sources */,
 				B9BB3CF32AC0C6B50077D1BC /* TranslatedLabelStringCollection.swift in Sources */,
