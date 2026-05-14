@@ -43,7 +43,9 @@ struct DetailPageReducer: Reducer {
 
         /* MARK: Computed Properties */
 
-        var navigationTitle: String { "\(configuration.rawValue.firstUppercase) Detail View" }
+        var navigationTitle: String {
+            "\(configuration.rawValue.firstUppercase) Detail View"
+        }
 
         var popGestureAction: (@MainActor () -> Void)? {
             guard configuration == .modal else { return nil }

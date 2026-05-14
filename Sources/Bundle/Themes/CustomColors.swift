@@ -6,6 +6,8 @@
 //  Copyright © 2013-20YY NEOTechnica Corporation. All rights reserved.
 //
 
+// swiftformat:disable emptyExtensions
+
 /* Native */
 import Foundation
 import SwiftUI
@@ -52,3 +54,5 @@ extension UIColor {}
 /// }
 /// ```
 extension Color {}
+
+// swiftformat:enable emptyExtensions

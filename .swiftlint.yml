@@ -11,9 +11,6 @@ nesting:
   type_level: 3
   function_level: 3
 
-excluded:
-- Pods
-
 # Upgrade default rules to error, instead of warning
 # Make error values equal to the warning values
 

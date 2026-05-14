@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8488CCA531537608C7F22939 /* Pods_Template.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDFA0F1CD9A595EE8AF0DC6 /* Pods_Template.framework */; };
 		A206F7DA28AC4FD7008FFE18 /* LocalizedStrings.plist in Resources */ = {isa = PBXBuildFile; fileRef = A206F7D928AC4FD7008FFE18 /* LocalizedStrings.plist */; };
 		A24053A32F876B2500B29BCE /* AppSubsystem in Frameworks */ = {isa = PBXBuildFile; productRef = A24053A22F876B2500B29BCE /* AppSubsystem */; };
 		A2DF2C5528199B660089DEA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF2C5428199B660089DEA1 /* AppDelegate.swift */; };
@@ -60,7 +59,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A9B1E9D904D7BFD358EAC0D /* Pods-Template.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Template.debug.xcconfig"; path = "Target Support Files/Pods-Template/Pods-Template.debug.xcconfig"; sourceTree = "<group>"; };
 		A206F7D928AC4FD7008FFE18 /* LocalizedStrings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LocalizedStrings.plist; sourceTree = "<group>"; };
 		A2DF2C5128199B660089DEA1 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DF2C5428199B660089DEA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 		A2DF2C9E28199CE20089DEA1 /* San Francisco (Light).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Light).otf"; sourceTree = "<group>"; };
 		A2DF2C9F28199CE20089DEA1 /* San Francisco (Bold).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Bold).otf"; sourceTree = "<group>"; };
 		A2DF2CA028199CE20089DEA1 /* San Francisco (Light Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Light Italic).otf"; sourceTree = "<group>"; };
-		AEDFA0F1CD9A595EE8AF0DC6 /* Pods_Template.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Template.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90701CD2C17BE7600F80A02 /* RootNavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationService.swift; sourceTree = "<group>"; };
 		B90701D62C17D34300F80A02 /* SplashPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPageView.swift; sourceTree = "<group>"; };
 		B90701D82C17D34B00F80A02 /* SplashPageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPageReducer.swift; sourceTree = "<group>"; };
@@ -186,7 +183,6 @@
 		B9F3615C2C18DD7200586D1D /* AppConstants+DetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+DetailPageView.swift"; sourceTree = "<group>"; };
 		B9F3615E2C18DD7A00586D1D /* AppConstants+SamplePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConstants+SamplePageView.swift"; sourceTree = "<group>"; };
 		B9F361602C18E12600586D1D /* SampleContentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleContentContainerView.swift; sourceTree = "<group>"; };
-		CF52460DFCE5E62E30711A79 /* Pods-Template.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Template.release.xcconfig"; path = "Target Support Files/Pods-Template/Pods-Template.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,28 +191,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A24053A32F876B2500B29BCE /* AppSubsystem in Frameworks */,
-				8488CCA531537608C7F22939 /* Pods_Template.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A286879128A49DA600A34912 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AEDFA0F1CD9A595EE8AF0DC6 /* Pods_Template.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A2DF2C4828199B660089DEA1 = {
 			isa = PBXGroup;
 			children = (
 				A2DF2C5328199B660089DEA1 /* Sources */,
 				A2DF2C5228199B660089DEA1 /* Products */,
-				A286879128A49DA600A34912 /* Frameworks */,
-				B715D9B1ECFB89E634B86164 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -286,15 +271,6 @@
 				B9F361602C18E12600586D1D /* SampleContentContainerView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B715D9B1ECFB89E634B86164 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3A9B1E9D904D7BFD358EAC0D /* Pods-Template.debug.xcconfig */,
-				CF52460DFCE5E62E30711A79 /* Pods-Template.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		B90701D32C17D27100F80A02 /* DetailPageView */ = {
@@ -476,7 +452,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2DF2C6528199B670089DEA1 /* Build configuration list for PBXNativeTarget "Template" */;
 			buildPhases = (
-				F34BB2715D098A64B21A6C6F /* [CP] Check Pods Manifest.lock */,
 				B98145F22AB4F34100937D37 /* Run SwiftFormat */,
 				A2DF2C4D28199B660089DEA1 /* Sources */,
 				B98145F32AB4F51700937D37 /* Run SwiftLint */,
@@ -669,7 +644,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat --config ${SRCROOT}/.swiftformat $SRCROOT\n";
+			shellScript = "SWIFTFORMAT_VERSION=\"0.61.1\"\nSWIFTFORMAT=\"${SRCROOT}/.build-tools/swiftformat\"\n\nif [ ! -f \"$SWIFTFORMAT\" ]; then\n    mkdir -p \"${SRCROOT}/.build-tools\"\n    curl -sL \"https://github.com/nicklockwood/SwiftFormat/releases/download/${SWIFTFORMAT_VERSION}/swiftformat.zip\" -o \"${SRCROOT}/.build-tools/swiftformat.zip\"\n    unzip -oq \"${SRCROOT}/.build-tools/swiftformat.zip\" swiftformat -d \"${SRCROOT}/.build-tools/\"\n    chmod +x \"$SWIFTFORMAT\"\n    rm -f \"${SRCROOT}/.build-tools/swiftformat.zip\"\nfi\n\n\"$SWIFTFORMAT\" --config \"${SRCROOT}/.swiftformat\" \"${SRCROOT}/Sources\"\n";
 		};
 		B98145F32AB4F51700937D37 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -688,29 +663,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
-		};
-		F34BB2715D098A64B21A6C6F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Template-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "SWIFTLINT_VERSION=\"0.63.2\"\nSWIFTLINT=\"${SRCROOT}/.build-tools/swiftlint\"\n\nif [ ! -f \"$SWIFTLINT\" ]; then\n    mkdir -p \"${SRCROOT}/.build-tools\"\n    curl -sL \"https://github.com/realm/SwiftLint/releases/download/${SWIFTLINT_VERSION}/portable_swiftlint.zip\" -o \"${SRCROOT}/.build-tools/swiftlint.zip\"\n    unzip -oq \"${SRCROOT}/.build-tools/swiftlint.zip\" swiftlint -d \"${SRCROOT}/.build-tools/\"\n    chmod +x \"$SWIFTLINT\"\n    rm -f \"${SRCROOT}/.build-tools/swiftlint.zip\"\nfi\n\n\"$SWIFTLINT\" --config \"${SRCROOT}/.swiftlint.yml\" \"${SRCROOT}/Sources\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -906,6 +859,8 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -965,13 +920,14 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		A2DF2C6628199B670089DEA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A9B1E9D904D7BFD358EAC0D /* Pods-Template.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Application Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -998,7 +954,6 @@
 		};
 		A2DF2C6728199B670089DEA1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF52460DFCE5E62E30711A79 /* Pods-Template.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Application Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

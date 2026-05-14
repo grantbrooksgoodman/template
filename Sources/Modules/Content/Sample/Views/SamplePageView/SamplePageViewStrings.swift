@@ -21,7 +21,9 @@ extension TranslatedLabelStringCollection {
 
         // MARK: - Properties
 
-        var alternate: String? { nil }
+        var alternate: String? {
+            nil
+        }
     }
 }
 

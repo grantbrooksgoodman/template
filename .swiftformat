@@ -1,5 +1,5 @@
 # Swift version
---swiftversion 5
+--swiftversion 6
 
 # Opt-in rules (See https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#opt-in-rules-disabled-by-default)
 --enable acronyms
@@ -12,9 +12,6 @@
 
 # Disabled
 --disable wrapMultilineStatementBraces
-
-# Excluded directories
---exclude Pods
 
 # Rules Options
 ## Unused Arguments (See https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#unusedarguments)

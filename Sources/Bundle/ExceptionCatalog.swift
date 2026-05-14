@@ -52,7 +52,9 @@ extension AppException {
         ///
         /// - Returns: `true` if the exception can be reported;
         ///   otherwise, `false`.
-        func isReportable(_ errorCode: String) -> Bool { true }
+        func isReportable(_ errorCode: String) -> Bool {
+            true
+        }
 
         /// Returns a user-facing description for the given
         /// developer-facing descriptor, or `nil` if no mapping exists.

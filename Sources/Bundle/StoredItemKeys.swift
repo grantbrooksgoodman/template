@@ -52,5 +52,7 @@ extension RuntimeStorage {
     /// A placeholder accessor provided as a usage reference. Replace
     /// with typed accessors for the values your app stores at
     /// runtime.
-    static var `default`: String? { retrieve(.default) as? String }
+    static var `default`: String? {
+        retrieve(.default) as? String
+    }
 }

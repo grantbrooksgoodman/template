@@ -38,7 +38,9 @@ enum LocalizedStringKey: String, LocalizedStringKeyRepresentable {
 
     /// The snake case string used to look up the localized value
     /// in the property list.
-    var referent: String { rawValue.snakeCased }
+    var referent: String {
+        rawValue.snakeCased
+    }
 }
 
 /// Use this extension to provide a default ``LocalizationSource``
