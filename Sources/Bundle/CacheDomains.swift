@@ -20,7 +20,7 @@ import AppSubsystem
 ///
 /// ```swift
 /// extension CacheDomain {
-///     static let avatars: CacheDomain = .init("avatars") {
+///     static let avatars = CacheDomain("avatars") {
 ///         AvatarCache.shared.clear()
 ///     }
 /// }

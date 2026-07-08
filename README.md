@@ -46,7 +46,7 @@ The template includes a complete sample feature flow – splash screen, content 
 
 | Platform | Minimum Version |
 | --- | --- |
-| iOS | 17.0 |
+| iOS | 18.0 |
 
 ---
 
@@ -81,7 +81,7 @@ Sources/
 │   ├── LocalizedStringKeys.swift         # Pre-localized string keys
 │   ├── LoggerDomains.swift               # Logger domain subscriptions
 │   ├── Observables.swift                 # Reactive value declarations
-│   ├── RootSheet.swift                   # Root-level sheet definitions
+│   ├── RootSheets.swift                  # Root-level sheet definitions
 │   ├── StoredItemKeys.swift              # In-memory storage keys
 │   ├── TranslatedLabelStringCollection.swift  # On-the-fly translation strings
 │   └── PersistentStorageKeys.swift        # Permanent persistent storage keys
@@ -92,10 +92,9 @@ Sources/
 │   └── RootView.swift                    # Root SwiftUI view
 ├── Modules/
 │   └── Content/
-│       ├── Sample/                  # Replace with your features
+│       ├── Sample/                  # Sample content; replace with your features
 │       └── Shared/                  # Shared views (e.g., splash screen)
 └── Resources/
-    ├── Audio/
     ├── Images/
     ├── Other/
     └── Property Lists/
@@ -280,9 +279,9 @@ Add the domain to the `subscribedDomains` array so the logger receives its outpu
 
 [`Observables`](Sources/Bundle/Observables.swift) declares app-specific [`Observable`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Observable/Models/Observable.swift) values for reactive cross-scope communication. Use a typed observable to share a changing value, or [`Observable<Nil>`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Observable/Models/Observable.swift) to broadcast an event with no payload. Conform to the [`Observer`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Observable/Protocols/ObserverProtocol.swift) protocol to receive updates.
 
-### Root Sheet
+### Root Sheets
 
-[`RootSheet`](Sources/Bundle/RootSheet.swift) defines views for presentation on the root sheet, which presents content above all other views in the hierarchy regardless of navigation depth. Define named sheets as static properties and present them using `RootSheets.present(_:onDismiss:)`.
+[`RootSheets`](Sources/Bundle/RootSheets.swift) defines views for presentation on the root sheet, which presents content above all other views in the hierarchy regardless of navigation depth. Define named sheets as static properties and present them using `RootSheets.present(_:onDismiss:)`.
 
 ### Runtime Storage
 

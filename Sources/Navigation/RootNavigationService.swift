@@ -69,13 +69,22 @@ struct RootNavigationService: Navigating {
     /// - Parameters:
     ///   - route: The navigation action to perform.
     ///   - state: The current navigation state, modified in place.
-    func navigate(to route: Route, on state: inout RootNavigatorState) {
+    func navigate(
+        to route: Route,
+        on state: inout RootNavigatorState
+    ) {
         switch route {
         case let .root(rootRoute):
-            RootNavigator.navigate(to: rootRoute, on: &state)
+            RootNavigator.navigate(
+                to: rootRoute,
+                on: &state
+            )
 
         case let .sampleContent(sampleContentRoute):
-            SampleContentNavigator.navigate(to: sampleContentRoute, on: &state.sampleContent)
+            SampleContentNavigator.navigate(
+                to: sampleContentRoute,
+                on: &state.sampleContent
+            )
         }
     }
 }

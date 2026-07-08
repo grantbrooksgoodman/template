@@ -23,7 +23,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo library access is requested to save images.</string>
+	<string>Photo library access is requested to save images for Breadcrumbs capture.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>San Francisco (Bold Italic).otf</string>

@@ -18,7 +18,11 @@
 --stripunusedargs closure-only
 
 ## Wrapping Arguments (See https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#wraparguments)
+--closingparen balanced
 --wraparguments before-first
+--wrapcollections before-first
+--wrapconditions after-first
+--wrapparameters before-first
 
 ## Code indentation (See https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md#indent)
 --ifdef no-indent

@@ -64,7 +64,10 @@ struct DetailPageReducer: Reducer {
 
     // MARK: - Reduce
 
-    func reduce(into state: inout State, action: Action) -> Effect<Action> {
+    func reduce(
+        into state: inout State,
+        action: Action
+    ) -> Effect<Action> {
         @MainActor
         func navigateBack(_ configuration: State.Configuration) {
             switch configuration {

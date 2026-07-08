@@ -26,7 +26,8 @@ struct SamplePageReducer: Reducer {
 
         case modalButtonTapped
         case pushButtonTapped
-        case resolveReturned(Callback<[TranslationOutputMap], Exception>)
+        case resolveFailed(Exception)
+        case resolveReturned([TranslationOutputMap])
         case sheetButtonTapped
     }
 
@@ -41,13 +42,21 @@ struct SamplePageReducer: Reducer {
 
     // MARK: - Reduce
 
-    func reduce(into state: inout State, action: Action) -> Effect<Action> {
+    func reduce(
+        into state: inout State,
+        action: Action
+    ) -> Effect<Action> {
         switch action {
         case .viewAppeared:
             state.viewState = .loading
             return .task {
-                let result = await translator.resolve(SamplePageViewStrings.self)
-                return .resolveReturned(result)
+                do throws(Exception) {
+                    return try await .resolveReturned(
+                        translator.resolve(SamplePageViewStrings.self)
+                    )
+                } catch {
+                    return .resolveFailed(error)
+                }
             }
 
         case .modalButtonTapped:
@@ -60,12 +69,12 @@ struct SamplePageReducer: Reducer {
                 navigation.navigate(to: .sampleContent(.push(.pushDetail)))
             }
 
-        case let .resolveReturned(.success(strings)):
-            state.strings = strings
+        case let .resolveFailed(exception):
+            Logger.log(exception)
             state.viewState = .loaded
 
-        case let .resolveReturned(.failure(exception)):
-            Logger.log(exception)
+        case let .resolveReturned(strings):
+            state.strings = strings
             state.viewState = .loaded
 
         case .sheetButtonTapped:
