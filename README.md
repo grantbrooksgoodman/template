@@ -23,9 +23,9 @@ Template provides a preconfigured project with navigation, localization, theming
     - [Cache Domains](#cache-domains)
     - [Developer Mode Actions](#developer-mode-actions)
     - [Exception Catalog](#exception-catalog)
-    - [Observables](#observables)
     - [Root Sheet](#root-sheet)
     - [Runtime Storage](#runtime-storage)
+    - [Shared Values](#shared-values)
     - [Persistent Storage](#persistent-storage-keys)
 
 ---
@@ -80,8 +80,8 @@ Sources/
 │   ├── ExceptionCatalog.swift            # Error codes and reporting
 │   ├── LocalizedStringKeys.swift         # Pre-localized string keys
 │   ├── LoggerDomains.swift               # Logger domain subscriptions
-│   ├── Observables.swift                 # Reactive value declarations
 │   ├── RootSheets.swift                  # Root-level sheet definitions
+│   ├── Shared.swift                      # Shared value declarations
 │   ├── StoredItemKeys.swift              # In-memory storage keys
 │   ├── TranslatedLabelStringCollection.swift  # On-the-fly translation strings
 │   └── PersistentStorageKeys.swift        # Permanent persistent storage keys
@@ -275,10 +275,6 @@ Add the domain to the `subscribedDomains` array so the logger receives its outpu
 
 [`ExceptionCatalog`](Sources/Bundle/ExceptionCatalog.swift) catalogs app-specific error codes and configures exception reporting behavior. Define known error codes as static [`AppException`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Key%20Domains/AppException.swift) properties. Customize the [`ExceptionMetadataDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/ExceptionMetadataDelegate.swift) to control which errors are reportable and to supply user-facing descriptions for known error conditions.
 
-### Observables
-
-[`Observables`](Sources/Bundle/Observables.swift) declares app-specific [`Observable`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Observable/Models/Observable.swift) values for reactive cross-scope communication. Use a typed observable to share a changing value, or [`Observable<Nil>`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Observable/Models/Observable.swift) to broadcast an event with no payload. Conform to the [`Observer`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Observable/Protocols/ObserverProtocol.swift) protocol to receive updates.
-
 ### Root Sheets
 
 [`RootSheets`](Sources/Bundle/RootSheets.swift) defines views for presentation on the root sheet, which presents content above all other views in the hierarchy regardless of navigation depth. Define named sheets as static properties and present them using `RootSheets.present(_:onDismiss:)`.
@@ -286,6 +282,10 @@ Add the domain to the `subscribedDomains` array so the logger receives its outpu
 ### Runtime Storage
 
 [`StoredItemKeys`](Sources/Bundle/StoredItemKeys.swift) defines keys for [`RuntimeStorage`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Services/Public/RuntimeStorage.swift), a thread-safe in-memory key-value store. Values persist only for the lifetime of the current launch and are not written to disk. Define keys as static [`StoredItemKey`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Key%20Domains/StoredItemKey.swift) properties and add typed convenience accessors on [`RuntimeStorage`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Services/Public/RuntimeStorage.swift).
+
+### Shared Values
+
+[`Shared`](Sources/Bundle/Shared.swift) declares app-specific [`SharedState`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Shared/Models/SharedState.swift) and [`SharedEvent`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Shared/Models/SharedEvent.swift) values for reactive cross-scope communication. Use `SharedState` to share a changing value, or `SharedEvent` to broadcast occurrences with a typed payload. Subscribe view models with `observing(_:_:)`, or iterate the `changes` and `events` streams from services.
 
 ### Persistent Storage
 

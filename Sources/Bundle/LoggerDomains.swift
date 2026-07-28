@@ -37,9 +37,7 @@ extension LoggerDomain {
         ///
         /// Messages logged to these domains still appear in the
         /// console, but are not written to the session record file.
-        let domainsExcludedFromSessionRecord: [LoggerDomain] = [
-            .observer,
-        ]
+        let domainsExcludedFromSessionRecord = [LoggerDomain]()
 
         /// The domains the logger subscribes to at launch.
         ///
