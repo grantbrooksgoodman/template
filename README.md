@@ -81,7 +81,8 @@ Sources/
 │   ├── LocalizedStringKeys.swift         # Pre-localized string keys
 │   ├── LoggerDomains.swift               # Logger domain subscriptions
 │   ├── RootSheets.swift                  # Root-level sheet definitions
-│   ├── Shared.swift                      # Shared value declarations
+│   ├── SharedEvents.swift                # Shared event declarations
+│   ├── SharedStates.swift                # Shared state declarations
 │   ├── StoredItemKeys.swift              # In-memory storage keys
 │   ├── TranslatedLabelStringCollection.swift  # On-the-fly translation strings
 │   └── PersistentStorageKeys.swift        # Permanent persistent storage keys
@@ -285,7 +286,7 @@ Add the domain to the `subscribedDomains` array so the logger receives its outpu
 
 ### Shared Values
 
-[`Shared`](Sources/Bundle/Shared.swift) declares app-specific [`SharedState`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Shared/Models/SharedState.swift) and [`SharedEvent`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Shared/Models/SharedEvent.swift) values for reactive cross-scope communication. Use `SharedState` to share a changing value, or `SharedEvent` to broadcast occurrences with a typed payload. Subscribe view models with `observing(_:_:)`, or iterate the `changes` and `events` streams from services.
+[`SharedStates`](Sources/Bundle/SharedStates.swift) and [`SharedEvents`](Sources/Bundle/SharedEvents.swift) declare app-specific [`StateStream`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Shared/Models/StateStream.swift) and [`EventStream`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Shared/Models/EventStream.swift) values for reactive cross-scope communication. Use `StateStream` to share a changing value, or `EventStream` to broadcast occurrences with a typed payload. Access each kind exclusively through its property wrapper – [`@SharedState`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Shared/Models/SharedState.swift) for state and [`@SharedEvent`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Shared/Models/SharedEvent.swift) for events; neither is resolvable through `@Dependency`. Subscribe view models with `observing(_:_:)`, or iterate the `changes` and `events` streams from services.
 
 ### Persistent Storage
 
