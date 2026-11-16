@@ -28,6 +28,8 @@ import AppSubsystem
 ///
 /// RootSheets.present(.feedback)
 /// ```
+///
+/// - Note: ``RootSheets`` is isolated to the main actor.
 @MainActor
 extension RootSheet {
     /// A starting value wrapping an empty view. Add static

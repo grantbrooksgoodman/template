@@ -112,14 +112,14 @@ enum SampleContentNavigator {
     }
 }
 
-/// The set of navigation actions available for the sample child
-/// navigator.
-///
-/// Each case represents a navigation intent that the navigator
-/// translates into a state change on its
-/// ``SampleContentNavigatorState``. Define a similar route enum for
-/// each feature flow in your app.
 extension RootNavigationService.Route {
+    /// The set of navigation actions available for the sample child
+    /// navigator.
+    ///
+    /// Each case represents a navigation intent that the navigator
+    /// translates into a state change on its
+    /// ``SampleContentNavigatorState``. Define a similar route enum
+    /// for each feature flow in your app.
     enum SampleContentRoute {
         /// Presents or dismisses a full-screen modal.
         ///

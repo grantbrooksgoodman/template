@@ -20,9 +20,9 @@ import AppSubsystem
 /// navigation flow.
 ///
 /// The ``modal`` property determines which top-level screen the app
-/// displays. By default, it is set to ``ModalPaths/splash`` on launch.
-/// Add nested ``NavigatorState`` properties for each feature flow
-/// the app introduces.
+/// displays. By default, it is set to ``ModalPaths/splash`` on
+/// launch. Add nested ``NavigatorState`` properties for each feature
+/// flow the app introduces.
 ///
 /// - SeeAlso: ``RootNavigator``, ``RootNavigationService``
 struct RootNavigatorState: NavigatorState {
@@ -77,8 +77,8 @@ struct RootNavigatorState: NavigatorState {
 ///
 /// Routes are dispatched through ``RootNavigationService``, which
 /// delegates to this navigator to apply the corresponding state
-/// change. Add cases to ``RootRoute`` as the app introduces new
-/// root-level destinations.
+/// change. Add cases to ``RootNavigationService/Route/RootRoute`` as
+/// the app introduces new root-level destinations.
 enum RootNavigator {
     /// Applies the given route to the root navigation state.
     ///
@@ -97,8 +97,8 @@ enum RootNavigator {
     }
 }
 
-/// The set of navigation actions available at the root level.
 extension RootNavigationService.Route {
+    /// The set of navigation actions available at the root level.
     enum RootRoute {
         /// Presents a full-screen modal at the root of the app.
         case modal(RootNavigatorState.ModalPaths)

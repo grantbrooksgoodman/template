@@ -31,8 +31,12 @@ import AppSubsystem
 extension LoggerDomain {
     /// The delegate that specifies which logger domains the app
     /// subscribes to at launch.
+    ///
+    /// - Important: The subsystem reads this delegate during
+    ///   initialization. ``Application/initialize()`` registers it
+    ///   before initializing the subsystem; preserve that order.
     struct SubscriptionDelegate: AppSubsystem.Delegates.LoggerDomainSubscriptionDelegate {
-        /// The domains whose output is excluded from the on-disk
+        /// The domains whose output is omitted from the on-disk
         /// session record.
         ///
         /// Messages logged to these domains still appear in the
@@ -41,9 +45,9 @@ extension LoggerDomain {
 
         /// The domains the logger subscribes to at launch.
         ///
-        /// Only messages logged to a subscribed domain produce output.
-        /// Domains not listed here are silently ignored unless
-        /// subscribed to at runtime.
+        /// Only messages logged to a subscribed domain produce
+        /// output. Domains not in this list are silently ignored
+        /// unless subscribed to later at runtime.
         let subscribedDomains: [LoggerDomain] = [
             .alertKit,
             .caches,

@@ -26,6 +26,10 @@ import AppSubsystem
 ///
 ///     @Localized(.helloWorld) var greeting: String
 ///
+/// - Note: If no translation is found for the requested language,
+///   English is used as a fallback. If the English translation is
+///   also missing, the wrapper returns `"�"`.
+///
 /// - SeeAlso: ``Localized``, ``LocalizationSource``
 enum LocalizedStringKey: String, LocalizedStringKeyRepresentable {
     // MARK: - Cases

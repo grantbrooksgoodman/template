@@ -26,7 +26,7 @@ Template provides a preconfigured project with navigation, localization, theming
     - [Root Sheet](#root-sheet)
     - [Runtime Storage](#runtime-storage)
     - [Shared Values](#shared-values)
-    - [Persistent Storage](#persistent-storage-keys)
+    - [Persistent Storage](#persistent-storage)
 
 ---
 
@@ -53,7 +53,7 @@ The template includes a complete sample feature flow – splash screen, content 
 ## Getting Started
 
 1. Clone or duplicate this repository.
-2. Open `Template.xcworkspace` in Xcode.
+2. Open `Template.xcodeproj` in Xcode.
 3. Update the build metadata in [`Application`](Sources/Application.swift) – set `appStoreBuildNumber`, `buildMilestone`, `codeName`, and `finalName` to match your app's release cycle.
 4. Replace the sample content in `Sources/Modules/Content/Sample` with your own feature modules.
 5. Update [`RootNavigatorState`](Sources/Navigation/RootNavigator.swift) to define the top-level destinations for your app.
@@ -110,7 +110,7 @@ Sources/
 The app launches through a standard UIKit scene-based lifecycle:
 
 1. [`AppDelegate`](Sources/Bundle/Delegates/AppDelegate.swift) receives `application(_:didFinishLaunchingWithOptions:)` and calls `Application.initialize()`.
-2. [`Application`](Sources/Application.swift) registers all delegates with the subsystem, then calls `AppSubsystem.initialize(...)` to configure build metadata and enable framework services. This call may only occur once per launch.
+2. [`Application`](Sources/Application.swift) registers the app's delegate conformances with the subsystem, then calls `AppSubsystem.initialize(...)` to configure build metadata and enable framework services. This call may only occur once per launch.
 3. [`SceneDelegate`](Sources/Bundle/Delegates/SceneDelegate.swift) receives `scene(_:willConnectTo:options:)` and creates the root window by calling `RootWindowScene.instantiate(_:rootView:)` with [`RootView`](Sources/Navigation/RootView.swift) as its content.
 4. [`RootView`](Sources/Navigation/RootView.swift) observes the navigation coordinator and renders the appropriate top-level screen based on the current navigation state.
 
@@ -120,18 +120,20 @@ The app launches through a standard UIKit scene-based lifecycle:
 
 AppSubsystem uses a delegate pattern to let apps customize framework behavior without subclassing. Each delegate conforms to a protocol declared by AppSubsystem and is registered during initialization in [`Application`](Sources/Application.swift).
 
-The template provides conformances for every delegate slot. Most start empty – add your values as your app requires them:
+AppSubsystem declares nine delegate slots. The template provides conformances for the six below; most start empty – add your values as your app requires them:
 
 | Delegate | Purpose |
 | --- | --- |
-| [`CacheDomainListDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/CacheDomainListDelegate.swift) | Registers app-specific cache domains for memory-pressure cleanup. |
+| [`CacheDomainListDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/CacheDomainListDelegate.swift) | Registers app-specific cache domains for inclusion in bulk operations such as clearing all caches. |
 | [`DevModeAppActionDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Developer%20Mode/Protocols/DevModeAppActionDelegate.swift) | Adds actions to the Developer Mode menu in pre-release builds. |
 | [`ExceptionMetadataDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/ExceptionMetadataDelegate.swift) | Controls which exceptions are reportable and provides user-facing error descriptions. |
 | [`LoggerDomainSubscriptionDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/LoggerDomainSubscriptionDelegate.swift) | Configures which logger domains produce output and which are excluded from the session record. |
 | [`PermanentPersistentStorageKeyDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/PermanentPersistentStorageKeyDelegate.swift) | Declares persistent storage keys that survive a reset. |
 | [`UIThemeListDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/UIThemeListDelegate.swift) | Registers custom UI themes alongside the subsystem's built-in themes. |
 
-Pass `nil` for any delegate your app does not need. Delegates that are not registered fall back to the subsystem's default behavior.
+The remaining slots – [`BreadcrumbsCaptureDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/BreadcrumbsCaptureDelegate.swift), [`BuildInfoOverlayDotIndicatorColorDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/BuildInfoOverlayDotIndicatorColorDelegate.swift), and [`ForcedUpdateModalDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/ForcedUpdateModalDelegate.swift) – are left unregistered.
+
+Pass `nil` for any delegate your app does not need. Delegates with built-in defaults (breadcrumbs capture, cache domains, logger subscriptions, and UI themes) keep those defaults; optional delegates leave the corresponding feature disabled. At least one non-`nil` argument must be provided.
 
 ---
 
@@ -228,19 +230,23 @@ extension UITheme {
 }
 ```
 
-To use theme colors in your views, define semantic color slots, `UIColor` accessors, and SwiftUI `Color` accessors in [`CustomColors`](Sources/Bundle/Themes/CustomColors.swift):
+Applying a theme whose interface style differs from the current theme's is deferred until the next launch; the subsystem presents an alert explaining that a restart is required.
+
+To use theme colors in your views, define semantic color slots, `UIColor` accessors, and SwiftUI `Color` accessors in [`CustomColors`](Sources/Bundle/Themes/CustomColors.swift). The accessors call main-actor-isolated API, so mark the extensions `@MainActor`:
 
 ```swift
 extension ColoredItemType {
     static let cardBackground: ColoredItemType = .init("cardBackground")
 }
 
+@MainActor
 extension UIColor {
     static var cardBackground: UIColor {
         ThemeService.currentTheme.color(for: .cardBackground)
     }
 }
 
+@MainActor
 extension Color {
     static var cardBackground: Color { .init(uiColor: .cardBackground) }
 }
@@ -250,7 +256,7 @@ extension Color {
 
 ### Logging
 
-Configure logger subscriptions in [`LoggerDomains`](Sources/Bundle/LoggerDomains.swift). Only messages logged to a subscribed domain produce output. Define app-specific domains as static properties on [`LoggerDomain`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Key%20Domains/LoggerDomain.swift):
+Configure logger subscriptions in [`LoggerDomains`](Sources/Bundle/LoggerDomains.swift). Only messages logged to a subscribed domain produce output. Define app-specific domains as static properties on [`LoggerDomain`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Namespaces/LoggerDomain.swift):
 
 ```swift
 extension LoggerDomain {
@@ -266,7 +272,7 @@ Add the domain to the `subscribedDomains` array so the logger receives its outpu
 
 ### Cache Domains
 
-[`CacheDomains`](Sources/Bundle/CacheDomains.swift) registers app-specific cache domains. Each domain represents an independent cache that can be cleared programmatically or during memory-pressure cleanup. Define a [`CacheDomain`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Key%20Domains/CacheDomain.swift) with a name and a closure that clears the cache, then add it to the `appCacheDomains` array.
+[`CacheDomains`](Sources/Bundle/CacheDomains.swift) registers app-specific cache domains. Each domain pairs a name with a closure that clears its cache. Registered domains are included alongside the subsystem's built-in domains in bulk operations such as clearing all caches from the Developer Mode menu. Define a [`CacheDomain`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Namespaces/CacheDomain.swift) with a name and a closure that clears the cache, then add it to the `appCacheDomains` array.
 
 ### Developer Mode Actions
 
@@ -274,7 +280,7 @@ Add the domain to the `subscribedDomains` array so the logger receives its outpu
 
 ### Exception Catalog
 
-[`ExceptionCatalog`](Sources/Bundle/ExceptionCatalog.swift) catalogs app-specific error codes and configures exception reporting behavior. Define known error codes as static [`AppException`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Key%20Domains/AppException.swift) properties. Customize the [`ExceptionMetadataDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/ExceptionMetadataDelegate.swift) to control which errors are reportable and to supply user-facing descriptions for known error conditions.
+[`ExceptionCatalog`](Sources/Bundle/ExceptionCatalog.swift) catalogs app-specific error codes and configures exception reporting behavior. Define known error codes as static [`AppException`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Namespaces/AppException.swift) properties. Customize the [`ExceptionMetadataDelegate`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Protocols/Public/Delegates/ExceptionMetadataDelegate.swift) to control which errors are reportable and to supply user-facing descriptions for known error conditions.
 
 ### Root Sheets
 
@@ -282,7 +288,7 @@ Add the domain to the `subscribedDomains` array so the logger receives its outpu
 
 ### Runtime Storage
 
-[`StoredItemKeys`](Sources/Bundle/StoredItemKeys.swift) defines keys for [`RuntimeStorage`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Services/Public/RuntimeStorage.swift), a thread-safe in-memory key-value store. Values persist only for the lifetime of the current launch and are not written to disk. Define keys as static [`StoredItemKey`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Key%20Domains/StoredItemKey.swift) properties and add typed convenience accessors on [`RuntimeStorage`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Services/Public/RuntimeStorage.swift).
+[`StoredItemKeys`](Sources/Bundle/StoredItemKeys.swift) defines keys for [`RuntimeStorage`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Services/Public/RuntimeStorage.swift), a thread-safe in-memory key-value store. Values persist only for the lifetime of the current launch and are not written to disk. Define keys as static [`StoredItemKey`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Models/Public/Namespaces/StoredItemKey.swift) properties and add typed convenience accessors on [`RuntimeStorage`](https://github.com/grantbrooksgoodman/app-subsystem/blob/main/Sources/Modules/Foundation/Services/Public/RuntimeStorage.swift).
 
 ### Shared Values
 
@@ -290,7 +296,7 @@ Add the domain to the `subscribedDomains` array so the logger receives its outpu
 
 ### Persistent Storage
 
-[`PersistentStorageKeys`](Sources/Bundle/PersistentStorageKeys.swift) declares which persistent storage keys should survive a reset. Register keys as permanent when they store critical app state – such as authentication tokens or installation identifiers – that must be preserved when the user or subsystem resets persistent storage.
+[`PersistentStorageKeys`](Sources/Bundle/PersistentStorageKeys.swift) declares which persistent storage keys should survive a reset. Register keys as permanent when they store critical app state – such as authentication tokens or installation identifiers – that must survive a persistent storage reset. The subsystem preserves these keys, along with its own, when `UserDefaults.reset(preserving:)` is called with its default strategy – for example, from the Developer Mode menu.
 
 ---
 

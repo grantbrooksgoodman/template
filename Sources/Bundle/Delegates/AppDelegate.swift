@@ -14,7 +14,6 @@ import UIKit
 ///
 /// `AppDelegate` initializes the subsystem when the app
 /// launches.
-///
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - UIApplication

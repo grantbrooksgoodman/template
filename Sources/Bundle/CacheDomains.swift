@@ -16,7 +16,9 @@ import AppSubsystem
 ///
 /// Add ``CacheDomain`` values to the ``List/appCacheDomains`` array
 /// so they are included alongside the subsystem's built-in domains.
-/// Registered domains are cleared during memory-pressure cleanup.
+/// Registered domains appear in ``CacheDomain/allCases`` and are
+/// included in bulk operations such as clearing all caches from the
+/// Developer Mode menu.
 ///
 /// ```swift
 /// extension CacheDomain {

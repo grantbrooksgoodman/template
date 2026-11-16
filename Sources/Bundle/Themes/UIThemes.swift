@@ -30,10 +30,20 @@ import AppSubsystem
 /// ```
 ///
 /// Custom themes are merged with the subsystem's built-in themes and
-/// made available through ``UITheme/allCases``.
+/// made available through ``UITheme/allCases``. Duplicate entries
+/// are removed automatically.
+///
+/// - Note: Applying a theme whose interface style differs from the
+///   current theme's is deferred until the next launch; the
+///   subsystem presents an alert explaining that a restart is
+///   required.
 extension UITheme {
     /// The delegate that supplies the app's custom themes to the
     /// subsystem.
+    ///
+    /// - Important: The subsystem reads this delegate during
+    ///   initialization. ``Application/initialize()`` registers it
+    ///   before initializing the subsystem; preserve that order.
     struct List: AppSubsystem.Delegates.UIThemeListDelegate {
         /// The custom themes defined by this app.
         let uiThemes: [UITheme] = []

@@ -44,9 +44,9 @@ extension AppException {
         /// Returns a Boolean value indicating whether the exception
         /// with the given error code should be reported.
         ///
-        /// The default implementation returns `true` for all error
-        /// codes. Add cases to a `switch` statement to return `false`
-        /// for codes that should not generate reports.
+        /// This implementation returns `true` for all error codes.
+        /// Add cases to a `switch` statement to return `false` for
+        /// codes that should not generate reports.
         ///
         /// - Parameter errorCode: The exception's error code.
         ///
@@ -61,7 +61,9 @@ extension AppException {
         ///
         /// Implement this method to translate internal error
         /// descriptors into messages appropriate for the user. Return
-        /// `nil` to use the subsystem's default error message.
+        /// `nil` to fall back to the subsystem's default: on
+        /// general-release builds, a generic localized string; on
+        /// pre-release builds, the developer-facing descriptor.
         ///
         /// - Parameter descriptor: The exception's developer-facing
         ///   descriptor.

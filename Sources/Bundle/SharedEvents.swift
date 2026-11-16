@@ -14,11 +14,11 @@ import Foundation
 /* Proprietary */
 import AppSubsystem
 
-/// Use this extension to declare app-specific ``EventStream`` values for
-/// cross-scope communication.
+/// Use this extension to declare app-specific ``EventStream`` values
+/// for cross-scope communication.
 ///
-/// Define each event as a computed property; `EventStream<Void>` suits
-/// signals that carry no payload:
+/// Define each event as a computed property; `EventStream<Void>`
+/// suits signals that carry no payload:
 ///
 /// ```swift
 /// extension SharedEvents {
@@ -35,8 +35,13 @@ import AppSubsystem
 /// sessionDidExpire.send()
 /// ```
 ///
-/// Subscribe view models with ``ViewModelOf/observing(_:_:)``, or iterate
-/// the ``EventStream/events`` stream from services.
+/// Subscribe view models with ``ViewModelOf/observing(_:_:)``, or
+/// iterate the ``EventStream/events`` stream from services.
+///
+/// - Warning: Call ``SharedEvents/event(key:fileID:)`` only from the
+///   body of the computed property that declares the event. Calling
+///   it from anywhere else silently creates a differently-keyed
+///   instance.
 extension SharedEvents {}
 
 // swiftformat:enable emptyExtensions wrapPropertyBodies

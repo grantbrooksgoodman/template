@@ -22,6 +22,9 @@ import AppSubsystem
 /// Per-scene setup occurs in ``scene(_:willConnectTo:options:)``,
 /// which instantiates the root window scene and attaches the app's
 /// root SwiftUI view hierarchy.
+///
+/// - Important: Do not create additional `UIWindow` instances. The
+///   subsystem manages the full window hierarchy.
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Properties
 
@@ -34,7 +37,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ///
     /// This method calls
     /// ``RootWindowScene/instantiate(_:rootView:)`` to build the
-    /// window scene with ``RootView`` as its content.
+    /// window scene with ``RootView`` as its content, and stores the
+    /// returned window in ``window``.
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -51,9 +55,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     /// Notifies the subsystem when the trait collection changes.
     ///
     /// This method calls
-    /// ``RootWindowScene/traitCollectionChanged()`` to propagate
-    /// appearance changes – such as switching between light and dark
-    /// mode – throughout the view hierarchy.
+    /// ``RootWindowScene/traitCollectionChanged()`` so that the
+    /// subsystem updates themed views in response to appearance
+    /// changes, such as switching between light and dark mode.
     func windowScene(
         _ windowScene: UIWindowScene,
         didUpdate previousCoordinateSpace: UICoordinateSpace,

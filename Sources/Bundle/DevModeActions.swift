@@ -35,13 +35,13 @@ import AppSubsystem
 ///
 /// Group related actions under their own page with a destination
 /// action, and present a toggleable setting as a switch by passing
-/// `interaction: .switch(isOn:)` with the setting's current state. The
-/// subsystem reads ``AppActions/appActions`` each time the menu is
-/// presented or refreshed, so a computed list can reflect the app's
-/// current state.
+/// `interaction: .switch(isOn:)` with the setting's current state.
+/// The subsystem reads ``AppActions/appActions`` each time the menu
+/// is presented or refreshed, so a computed list can reflect the
+/// app's current state.
 ///
-/// - Note: Developer Mode actions are available only in pre-release builds. The subsystem
-/// hides them entirely in general-release builds.
+/// - Note: Developer Mode is not available on general-release
+///   builds.
 extension DevModeAction {
     /// The delegate that supplies app-specific actions to the
     /// Developer Mode menu.
